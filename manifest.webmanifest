@@ -1,0 +1,14 @@
+{
+  "name": "Basketball Brilliance",
+  "short_name": "BB",
+  "description": "Basketball tools for coaches, players and parents.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "any",
+  "icons": [
+    {"src":"assets/basketball-brilliance-header.gif","sizes":"any","type":"image/gif","purpose":"any"}
+  ]
+}
