@@ -1,4 +1,4 @@
-const CACHE='basketball-brilliance-v2';
+const CACHE='basketball-brilliance-v3';
 const CORE=['./manifest.webmanifest','./assets/basketball-brilliance-header.gif','./assets/dmv-ballin.mp3'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
