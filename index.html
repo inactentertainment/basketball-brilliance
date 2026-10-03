@@ -86,6 +86,88 @@ label{color:#f1f2f3}input,select,textarea{background:#fff;color:#111;border-colo
 .entry-brand img{height:100%;width:auto;max-width:none;left:0;top:50%;transform:translateY(-50%)}
 @media(max-width:980px){.portal-header-brand{width:min(350px,66vw);height:70px}.entry-brand{width:min(540px,86vw);height:104px}}
 @media(max-width:620px){.portal-header-brand{width:64vw;height:62px}.entry-brand{width:82vw;height:78px}}
+
+/* Arena portal refresh */
+.arena-entry{min-height:100vh;background:
+radial-gradient(circle at 50% 82%,rgba(241,90,41,.18),transparent 18%),
+radial-gradient(circle at 12% 20%,rgba(241,90,41,.08),transparent 22%),
+radial-gradient(circle at 88% 20%,rgba(241,90,41,.08),transparent 22%),
+linear-gradient(180deg,#030303,#08090a 54%,#0c0d0f);color:#fff;position:relative;overflow:hidden;padding:0 0 44px}
+.arena-entry:before{content:"";position:absolute;left:50%;bottom:-8vw;transform:translateX(-50%);width:125vw;height:34vw;border:2px solid rgba(241,90,41,.28);border-radius:50%;box-shadow:0 0 0 10vw rgba(241,90,41,.028),0 0 0 20vw rgba(255,255,255,.012);pointer-events:none}
+.arena-entry:after{content:"";position:absolute;inset:0;background:
+linear-gradient(90deg,transparent 48%,rgba(241,90,41,.04) 50%,transparent 52%),
+linear-gradient(transparent 84%,rgba(241,90,41,.12) 84.4%,transparent 84.8%) 0 0/100% 18px;opacity:.7;pointer-events:none}
+.arena-inner{width:min(1220px,95vw);margin:auto;position:relative;z-index:2;padding:68px 0 10px;text-align:center}
+.arena-kicker{font-size:13px;letter-spacing:.30em;text-transform:uppercase;color:#d7d9dd;font-weight:900}
+.arena-title{font-size:clamp(56px,9vw,112px);line-height:.9;letter-spacing:-.055em;margin:16px 0 8px;color:#fff}
+.arena-tagline{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;font-size:15px;letter-spacing:.31em;text-transform:uppercase;font-weight:850;color:#e7e9ec}
+.arena-tagline span{display:block;width:70px;height:2px;background:linear-gradient(90deg,transparent,#f15a29,transparent)}
+.arena-portals{display:grid;grid-template-columns:1fr 1.08fr 1fr;gap:20px;margin-top:30px}
+.arena-portal{position:relative;min-height:510px;border-radius:28px;border:1px solid #2f3238;background:linear-gradient(160deg,#131417,#080809);overflow:hidden;color:#fff;padding:0;box-shadow:0 30px 90px rgba(0,0,0,.52);transition:.25s ease;text-align:center}
+.arena-portal:hover{transform:translateY(-7px);border-color:#7b3b25;box-shadow:0 36px 100px rgba(0,0,0,.58),0 0 34px rgba(241,90,41,.08)}
+.arena-portal:before{content:"";position:absolute;inset:-100% -35%;background:linear-gradient(108deg,transparent 40%,rgba(255,255,255,.04) 46%,rgba(241,90,41,.24) 50%,rgba(255,255,255,.05) 54%,transparent 60%);transform:translateX(-120%);transition:.8s ease}
+.arena-portal:hover:before{transform:translateX(120%)}
+.portal-sign{position:absolute;top:20px;left:20px;right:20px;font-size:52px;font-weight:950;letter-spacing:-.04em;z-index:3;text-shadow:0 2px 22px #000}
+.script-sign{font-style:italic;color:#ff9467;text-shadow:0 0 18px rgba(241,90,41,.25)}
+.serif-sign{font-family:Georgia,serif;font-weight:700}
+.portal-scene{position:absolute;left:7%;right:7%;top:92px;height:240px;border-radius:18px;border:2px solid rgba(241,90,41,.45);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05),0 0 28px rgba(241,90,41,.15)}
+.coach-scene{background:linear-gradient(90deg,#34363c 0 34%,#101113 34% 66%,#34363c 66% 100%)}
+.coach-scene .door-seam{position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(241,90,41,.26)}
+.locker-line{position:absolute;top:17%;bottom:17%;width:1px;background:rgba(255,255,255,.13)}.l1{left:18%}.l2{left:32%}.l3{right:18%}
+.player-scene{background:repeating-linear-gradient(90deg,#0c0c0d 0 23px,#161719 23px 25px)}
+.player-ball{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);width:102px;height:102px;border:4px solid #f15a29;border-radius:50%;box-shadow:0 0 26px rgba(241,90,41,.3);animation:ballBeat 1.7s ease-in-out infinite}
+.player-ball:before,.player-ball:after{content:"";position:absolute;inset:22px -2px;border-top:3px solid #f15a29;border-radius:50%;transform:rotate(27deg)}
+.player-ball:after{inset:-2px 48px;transform:none;border-top:0;border-left:3px solid #f15a29}
+.player-lightline{position:absolute;left:16%;right:16%;height:3px;background:linear-gradient(90deg,transparent,#f15a29,transparent);box-shadow:0 0 16px rgba(241,90,41,.45)}.p1{top:24%}.p2{top:48%}.p3{top:72%}
+.parent-scene{background:linear-gradient(180deg,#fbfbfc,#e9edf1)}
+.parent-panel{position:absolute;top:18px;bottom:18px;width:38%;border:1px solid #dfe3e8;border-radius:8px;background:#fff}.parent-panel:nth-child(1){left:8%}.parent-panel:nth-child(2){right:8%}
+.parent-line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:#d7dce1}
+.portal-copy-block{position:absolute;top:350px;left:22px;right:22px}
+.portal-copy-block strong{display:block;font-size:26px;margin-bottom:7px}
+.portal-copy-block span{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#aeb3ba}
+.portal-cta{position:absolute;left:22px;right:22px;bottom:62px}
+.portal-caption{position:absolute;left:18px;right:18px;bottom:16px;font-size:11px;line-height:1.45;letter-spacing:.22em;text-transform:uppercase;color:#f1f2f5;font-weight:750}
+.portal-caption b{color:#dddfe3}
+.arena-glow{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(70px);opacity:.11;background:#f15a29}.arena-glow-a{left:-140px;top:20%}.arena-glow-b{right:-160px;top:8%}
+
+.portal-transition{position:fixed;inset:0;z-index:999;display:none;pointer-events:none;overflow:hidden}
+.portal-transition.active{display:block}
+.coach-transition{background:#050505;perspective:1400px}
+.coach-transition .half{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(90deg,#171717,#050505);box-shadow:inset 0 0 60px #000}
+.coach-transition .left{left:0;transform-origin:left;border-right:1px solid rgba(241,90,41,.25)}
+.coach-transition .right{right:0;transform-origin:right;border-left:1px solid rgba(241,90,41,.25)}
+.coach-transition.active .left{animation:bbCoachLeft 1.35s ease-in-out forwards}
+.coach-transition.active .right{animation:bbCoachRight 1.35s ease-in-out forwards}
+@keyframes bbCoachLeft{0%,22%{transform:rotateY(0)}100%{transform:rotateY(-104deg)}}
+@keyframes bbCoachRight{0%,22%{transform:rotateY(0)}100%{transform:rotateY(104deg)}}
+.player-transition{background:#050505}
+.player-transition .tball{position:absolute;width:78px;height:78px;border:4px solid #f15a29;border-radius:50%;left:6%;top:-90px;box-shadow:0 0 25px rgba(241,90,41,.28)}
+.player-transition .tball:before,.player-transition .tball:after{content:"";position:absolute;inset:17px -2px;border-top:3px solid #f15a29;border-radius:50%;transform:rotate(27deg)}
+.player-transition .tball:after{inset:-2px 35px;transform:none;border-top:0;border-left:3px solid #f15a29}
+.player-transition .ripple{position:absolute;left:50%;bottom:14%;transform:translateX(-50%);width:34px;height:10px;border:2px solid #f15a29;border-radius:50%;opacity:0}
+.player-transition.active .tball{animation:bbBounce 1.45s cubic-bezier(.35,.02,.22,1) forwards}
+.player-transition.active .ripple{animation:bbRipple 1.45s .74s ease-out forwards}
+@keyframes bbBounce{0%{left:6%;top:-90px;transform:rotate(0)}35%{left:31%;top:71vh;transform:rotate(180deg)}58%{left:54%;top:29vh;transform:rotate(360deg)}77%{left:72%;top:71vh;transform:rotate(540deg)}100%{left:105%;top:18vh;transform:rotate(760deg)}}
+@keyframes bbRipple{0%{opacity:0;transform:translateX(-50%) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(18)}}
+.parent-transition .phalf{position:absolute;left:0;right:0;height:50%;background:#070707}
+.parent-transition .top{top:0}.parent-transition .bottom{bottom:0}
+.parent-transition .glow{position:absolute;left:0;right:0;top:50%;height:2px;background:#f15a29;box-shadow:0 0 30px rgba(241,90,41,.85);transform:scaleX(0)}
+.parent-transition.active .top{animation:bbSplitTop 1.3s cubic-bezier(.6,0,.2,1) forwards}
+.parent-transition.active .bottom{animation:bbSplitBottom 1.3s cubic-bezier(.6,0,.2,1) forwards}
+.parent-transition.active .glow{animation:bbSplitGlow 1.3s ease-in-out forwards}
+@keyframes bbSplitTop{0%,30%{transform:translateY(0)}100%{transform:translateY(-100%)}}
+@keyframes bbSplitBottom{0%,30%{transform:translateY(0)}100%{transform:translateY(100%)}}
+@keyframes bbSplitGlow{0%{transform:scaleX(0)}30%{transform:scaleX(1)}75%{opacity:1}100%{opacity:0}}
+
+@media(max-width:980px){
+ .arena-portals{grid-template-columns:1fr;max-width:680px;margin-left:auto;margin-right:auto}
+ .arena-portal{min-height:455px}.portal-scene{height:200px}.portal-copy-block{top:312px}
+}
+@media(max-width:620px){
+ .arena-inner{padding-top:48px}.arena-title{font-size:52px}.arena-tagline{font-size:12px;letter-spacing:.18em}
+ .arena-portal{min-height:440px}.portal-sign{font-size:40px}.portal-scene{top:82px;height:192px}.portal-copy-block{top:296px}
+}
+
 </style>
 
 <link rel="manifest" href="manifest.webmanifest">
@@ -194,19 +276,59 @@ body[data-portal="coach"] .nav{display:block}
 </style>
 </head>
 <body id="top" data-portal="entry">
-<section class="entry-stage" id="entryStage">
- <div class="entry-inner">
-  <div class="entry-brand" aria-label="Basketball Brilliance"><img src="assets/basketball-brilliance-header.gif" alt="Basketball Brilliance"></div>
-  <div class="entry-kicker">One game. Three perspectives. One connected system.</div>
-  <h1 class="entry-title">Choose your Basketball Brilliance experience.</h1>
-  <p class="entry-copy">Start where you fit. Coaches run the team. Parents guide the journey. Players build the record of who they are becoming.</p>
-  <div class="portal-grid">
-   <button class="portal-door parent" onclick="enterPortal('parent')"><div class="portal-orbit"></div><small>For Families</small><h2>Parent Portal</h2><p>Stay connected, organize the journey, find opportunities and keep the long-term player story together.</p><div class="portal-enter"><span>Guide the journey</span><span>Enter →</span></div></button>
-   <button class="portal-door coach" onclick="enterPortal('coach')"><div class="portal-orbit"></div><small>Primary Team Hub</small><h2>Coach Portal</h2><p>Build the roster, run practices, track games, scout opponents, manage player information and organize the season.</p><div class="portal-enter"><span>Run the team</span><span>Enter →</span></div></button>
-   <button class="portal-door player" onclick="enterPortal('player')"><div class="portal-orbit"></div><small>For Players</small><h2>Player Portal</h2><p>Goals, development, stats, highlights, opportunities and your basketball story — built around you.</p><div class="portal-enter"><span>Raise your game</span><span>Enter →</span></div></button>
+
+<section class="entry-stage arena-entry" id="entryStage">
+  <div class="arena-glow arena-glow-a"></div>
+  <div class="arena-glow arena-glow-b"></div>
+  <div class="arena-inner">
+    <div class="arena-kicker">Three Paths. A Brighter Game.</div>
+    <h1 class="arena-title">Basketball Brilliance</h1>
+    <div class="arena-tagline"><span></span>Same Passion. Higher Potential.<span></span></div>
+
+    <div class="arena-portals">
+      <button class="arena-portal coach-door" onclick="transitionToPortal('coach')" aria-label="Enter Coach Portal">
+        <div class="portal-sign">COACH</div>
+        <div class="portal-scene coach-scene">
+          <div class="locker-line l1"></div><div class="locker-line l2"></div><div class="locker-line l3"></div>
+          <div class="door-seam"></div>
+        </div>
+        <div class="portal-copy-block">
+          <strong>Run the team.</strong>
+          <span>Roster • Practice • Games • Scouting • Reports</span>
+        </div>
+        <div class="portal-cta shimmer-btn">Enter Coach Portal →</div>
+        <div class="portal-caption">Build Better Coaches.<br><b>For A Brighter Game.</b></div>
+      </button>
+
+      <button class="arena-portal player-door" onclick="transitionToPortal('player')" aria-label="Enter Player Portal">
+        <div class="portal-sign script-sign">PLAYER</div>
+        <div class="portal-scene player-scene">
+          <div class="player-ball"></div>
+          <div class="player-lightline p1"></div><div class="player-lightline p2"></div><div class="player-lightline p3"></div>
+        </div>
+        <div class="portal-copy-block">
+          <strong>Raise your game.</strong>
+          <span>Goals • Workouts • Stats • Film • Opportunities</span>
+        </div>
+        <div class="portal-cta shimmer-btn">Enter Player Portal →</div>
+        <div class="portal-caption">Skills Today.<br><b>Brighter People Tomorrow.</b></div>
+      </button>
+
+      <button class="arena-portal parent-door" onclick="transitionToPortal('parent')" aria-label="Enter Parent Portal">
+        <div class="portal-sign serif-sign">PARENT</div>
+        <div class="portal-scene parent-scene">
+          <div class="parent-panel"></div><div class="parent-panel"></div>
+          <div class="parent-line"></div>
+        </div>
+        <div class="portal-copy-block">
+          <strong>Guide the journey.</strong>
+          <span>History • Opportunities • Recruiting • Family Records</span>
+        </div>
+        <div class="portal-cta shimmer-btn">Enter Parent Portal →</div>
+        <div class="portal-caption">Support Today.<br><b>Brighter People Tomorrow.</b></div>
+      </button>
+    </div>
   </div>
-  <div class="entry-note">Coach-linked team access and optional Player / Parent memberships work together without forcing the coach to sell family upgrades.</div>
- </div>
 </section>
 <header class="nav"><div class="wrap navin">
 <a class="portal-header-brand" href="javascript:void(0)" onclick="goEntry()" aria-label="Basketball Brilliance entry"><img src="assets/basketball-brilliance-header.gif" alt="Basketball Brilliance"><span class="portal-context" id="portalContext">Choose your portal</span></a>
@@ -413,6 +535,22 @@ function setPortalNav(p){
  m.innerHTML=links+'<button class="portal-back" onclick="closeMobileMenu();goEntry()">Choose Portal</button><button class="shimmer-btn mobile-member attention" onclick="closeMobileMenu();openLogin()">Member Access</button>';
  c.textContent=(p.charAt(0).toUpperCase()+p.slice(1))+' Portal';
 }
+
+function bbPortalClickSound(){
+  try{
+    const C=window.AudioContext||window.webkitAudioContext;if(!C)return;
+    const ctx=window.__bbctx||(window.__bbctx=new C());const o=ctx.createOscillator(),g=ctx.createGain();
+    o.type='triangle';o.frequency.value=280;g.gain.value=.001;o.connect(g);g.connect(ctx.destination);
+    const n=ctx.currentTime;g.gain.exponentialRampToValueAtTime(.035,n+.01);g.gain.exponentialRampToValueAtTime(.0001,n+.18);o.frequency.exponentialRampToValueAtTime(520,n+.17);o.start(n);o.stop(n+.19)
+  }catch(e){}
+}
+function transitionToPortal(p){
+  bbPortalClickSound();
+  const map={coach:['coachTransition',620,1400],player:['playerTransition',700,1500],parent:['parentTransition',430,1350]};
+  const [id,swap,done]=map[p];const el=document.getElementById(id);if(!el){enterPortal(p);return}
+  el.classList.add('active');setTimeout(()=>enterPortal(p),swap);setTimeout(()=>el.classList.remove('active'),done);
+}
+
 function goEntry(){
  clearTimeout(portalOfferTimer);bbStopMusic();document.body.dataset.portal='entry';location.hash='top';window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -433,4 +571,8 @@ async function installBasketballBrilliance(){if(installPrompt){installPrompt.pro
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
 window.addEventListener('load',()=>{const q=new URLSearchParams(location.search);if(q.get('invite'))enterPortal('parent')});
 </script><audio id="bbMusic" src="assets/dmv-ballin.mp3" preload="auto" loop></audio>
+
+<div id="coachTransition" class="portal-transition coach-transition"><div class="half left"></div><div class="half right"></div></div>
+<div id="playerTransition" class="portal-transition player-transition"><div class="tball"></div><div class="ripple"></div></div>
+<div id="parentTransition" class="portal-transition parent-transition"><div class="phalf top"></div><div class="phalf bottom"></div><div class="glow"></div></div>
 </body></html>
