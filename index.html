@@ -206,6 +206,68 @@ linear-gradient(transparent 84%,rgba(241,90,41,.12) 84.4%,transparent 84.8%) 0 0
  .bb-simple-footer .legal{justify-content:center}
 }
 
+
+/* Portal image alignment + true responsive entry */
+body:not([data-portal="entry"]) .image-portal-stage{display:none!important}
+body[data-portal="entry"] .image-portal-stage{display:block!important}
+.image-portal-stage{min-height:auto!important;overflow:visible!important;background:#030303!important}
+.image-portal-shell{width:100%!important;display:flex!important;justify-content:center!important;overflow:hidden!important;background:#030303!important}
+.portal-artboard{position:relative!important;width:min(1491px,100vw)!important;max-width:1491px!important;min-width:0!important;height:auto!important;aspect-ratio:1491/875!important;margin:0 auto!important;overflow:hidden!important}
+.portal-arena-image{width:100%!important;height:100%!important;object-fit:contain!important}
+.hs-coach{left:8.1%!important;top:74.4%!important;width:22.3%!important;height:6.8%!important}
+.hs-player{left:38.9%!important;top:74.4%!important;width:22.4%!important;height:6.8%!important}
+.hs-parent{left:69.9%!important;top:74.4%!important;width:22.3%!important;height:6.8%!important}
+.portal-court-extension{height:clamp(150px,19vw,300px);position:relative;overflow:hidden;background:
+radial-gradient(ellipse at 50% -35%,rgba(241,90,41,.25),transparent 44%),
+linear-gradient(180deg,#12100f 0,#090909 40%,#030303 100%);border-top:1px solid rgba(241,90,41,.18)}
+.portal-court-extension:before{content:"";position:absolute;left:50%;top:-54%;transform:translateX(-50%);width:118%;height:165%;border:2px solid rgba(241,90,41,.34);border-radius:50%;box-shadow:0 0 0 8vw rgba(241,90,41,.025),0 0 0 16vw rgba(255,255,255,.01)}
+.portal-court-extension:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,rgba(241,90,41,.36),rgba(241,90,41,.05),transparent);box-shadow:0 0 22px rgba(241,90,41,.18)}
+.portal-court-glow{position:absolute;left:8%;right:8%;bottom:16%;height:2px;background:linear-gradient(90deg,transparent,rgba(241,90,41,.52),transparent);box-shadow:0 0 20px rgba(241,90,41,.28)}
+@media(max-width:720px){
+ .image-portal-stage{display:block!important}
+ .image-portal-shell{overflow:hidden!important;justify-content:center!important}
+ .portal-artboard{width:100vw!important;min-width:0!important;margin:0!important;aspect-ratio:1491/875!important}
+ .portal-hotspot{min-height:30px!important;border-radius:12px!important}
+ .hs-coach,.hs-player,.hs-parent{top:72.8%!important;height:10.5%!important}
+ .portal-court-extension{height:210px}
+}
+
+/* Video-first portal sales headers */
+.portal-intro{padding:48px 0 34px!important}
+.portal-intro .wrap{grid-template-columns:minmax(0,1fr) minmax(360px,.92fr)!important;gap:38px!important;align-items:center!important}
+.portal-sales-copy{min-width:0}
+.portal-video-wrap{min-width:0}
+.portal-video{position:relative;aspect-ratio:16/9;border-radius:26px;overflow:hidden;background:#050505;border:1px solid rgba(255,255,255,.12);box-shadow:0 28px 70px rgba(0,0,0,.28)}
+body[data-portal="parent"] .portal-video{border-color:#d2d7dc;box-shadow:0 24px 58px rgba(0,0,0,.12)}
+.portal-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;font-size:11px;color:#8f949c}
+.video-label b{color:#f15a29;letter-spacing:.12em;text-transform:uppercase}
+.role-dashboard{padding:0 0 32px}
+.role-dashboard .dash-shell{border-radius:24px;padding:20px;background:linear-gradient(145deg,#2b2d32,#151619);border:1px solid #404349;box-shadow:0 18px 48px rgba(0,0,0,.18)}
+body[data-portal="parent"] .role-dashboard .dash-shell{background:linear-gradient(145deg,#fff,#edf0f3);border-color:#d9dde1;box-shadow:0 16px 38px rgba(0,0,0,.08)}
+.role-dashboard .dash-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:14px}
+.role-dashboard .dash-head h3{margin:0;color:#fff;font-size:24px}
+body[data-portal="parent"] .role-dashboard .dash-head h3{color:#17181a}
+.role-dashboard .dash-head span{font-size:12px;color:#a7abb1}
+.role-dashboard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.role-dashboard-card{border-radius:16px;padding:14px;background:#17191d;border:1px solid #383b41;color:#fff;min-height:98px}
+body[data-portal="parent"] .role-dashboard-card{background:#fff;border-color:#dce1e6;color:#17181a}
+.role-dashboard-card b{display:block;margin-bottom:5px}
+.role-dashboard-card span{font-size:12px;color:#aeb2b8}
+body[data-portal="parent"] .role-dashboard-card span{color:#68707a}
+@media(max-width:860px){
+ .portal-intro .wrap{grid-template-columns:1fr!important}
+ .portal-video-wrap{width:100%}
+ .role-dashboard-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+ .portal-intro{padding-top:26px!important}
+ .portal-title{font-size:44px!important}
+ .portal-lede{font-size:16px!important}
+ .portal-video{border-radius:18px}
+ .role-dashboard-grid{grid-template-columns:1fr 1fr}
+}
+
 </style>
 
 <link rel="manifest" href="manifest.webmanifest">
@@ -333,10 +395,25 @@ body[data-portal="coach"] .nav{display:block}
 <button class="hamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
 </div><nav class="mobile-drawer" id="mobileDrawer"></nav></header>
 <main id="coachPortal" class="portal-shell coach-theme">
-<section class="wrap hero" id="coach-home">
-<div><span class="demo-ribbon"><span class="demo-dot"></span> Coach Preview Mode</span><span class="eyebrow audience-eyebrow" style="margin-top:10px">Coach Command System</span><h1 class="audience-headline"><span class="hero-line"><small>COACH</small>Run the team.</span><span class="hero-line"><small>PLAYER</small><em>Raise your game.</em></span><span class="hero-line"><small>PARENT</small>Guide the journey.</span></h1><p class="lede">Basketball Brilliance connects the people who shape the season. Coaches organize the team, players track their growth, and parents stay connected to the journey — all through one basketball system.</p><div class="ctas"><a class="shimmer-btn attention" href="#app">Open Coach Command Center →</a><button class="shimmer-btn" onclick="openLogin()">Member Access</button></div><div class="micro">From first practice to the next opportunity, keep the basketball journey connected.</div></div>
-<div class="hero-card"><div class="dashhead"><div><b style="font-size:20px">Coach Command Center</b><div class="tiny" id="heroTeam">My Team • New Season</div></div><div class="record"><span class="tiny">RECORD</span><br><strong id="heroRecord">0–0</strong></div></div><div class="mini-grid"><div class="mini-tile"><b><span class="orange" id="heroPlayers">0</span> Players</b><span>Roster, guardians, contacts and player profiles</span></div><div class="mini-tile"><b><span class="orange" id="heroPractices">0</span> Plans</b><span>Practice sessions, focus areas and coaching notes</span></div><div class="mini-tile"><b><span class="orange" id="heroGames">0</span> Games</b><span>Game logs, player stats and season totals</span></div><div class="mini-tile"><b><span class="orange" id="heroScouts">0</span> Reports</b><span>Opponent personnel, tendencies and game plans</span></div></div></div>
-</section>
+
+<section class="portal-intro" id="coach-home"><div class="wrap">
+  <div class="portal-sales-copy">
+    <span class="demo-ribbon"><span class="demo-dot"></span> Coach Preview Mode</span>
+    <h1 class="portal-title">Run the team without losing the season.</h1>
+    <p class="portal-lede">Build the roster, organize practice, track games, scout opponents, connect families and keep the season record together in one coach-first system.</p>
+    <div class="ctas"><a class="shimmer-btn attention" href="#app">Explore Coach Tools</a><button class="shimmer-btn" onclick="openPortalOffer('coach')">Coach Membership</button></div>
+  </div>
+  <div class="portal-video-wrap">
+    <div class="portal-video"><iframe src="https://www.youtube.com/embed/pQAja2qvU1E?rel=0&modestbranding=1" title="Youth AAU basketball highlights" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <div class="video-label"><b>Temporary Video Preview</b><span>Final coach explainer video will replace this.</span></div>
+  </div>
+</div></section>
+<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Coach Command Preview</h3><span>Your active dashboard begins here.</span></div><div class="role-dashboard-grid">
+<div class="role-dashboard-card"><b>Team + Roster</b><span>Players, families, contacts and season structure.</span></div>
+<div class="role-dashboard-card"><b>Practice</b><span>Plans, drills, objectives and coaching notes.</span></div>
+<div class="role-dashboard-card"><b>Games + Stats</b><span>Results, player lines and season totals.</span></div>
+<div class="role-dashboard-card"><b>Reports</b><span>Scouting, season summaries and downloadable records.</span></div>
+</div></div></div></section>
 <section id="coaches"><div class="wrap"><span class="eyebrow">Coach-first business model</span><h2 class="section-title">The coach pays. The team connects.</h2><p class="section-copy">Parents and players do not need a second subscription just to complete the coach's team forms. They can enter requested information through a linked family path. Separate Parent + Player products remain optional upgrades owned by the family.</p><div class="flow"><div class="step"><span class="num">01 • Coach</span><h3>Create the team</h3><p>Set the team, season, staff, roster structure and required information.</p></div><div class="step"><span class="num">02 • Invite</span><h3>Send one link</h3><p>Generate a player/family invite without making the coach retype everything.</p></div><div class="step"><span class="num">03 • Connect</span><h3>Profile appears</h3><p>Player and guardian information flows into the same coach roster.</p></div><div class="step"><span class="num">04 • Grow</span><h3>Family owns more</h3><p>Basketball Passport, Journal, Opportunities, Recruiting and Parent Resources become natural upsells.</p></div></div></div></section>
 <section id="app"><div class="wrap"><span class="eyebrow">Coach workspace</span><h2 class="section-title">Coach Command Center</h2><p class="section-copy">Move from team setup to player development without losing the story of your season. Keep rosters, practices, games, scouting, plays, notes and reports organized in one place.</p>
 <div class="appshell">
@@ -362,17 +439,25 @@ body[data-portal="coach"] .nav{display:block}
 <section id="families"><div class="wrap"><div class="familyhub"><div class="familygrid"><div><span class="eyebrow">Parent + Player path</span><h2 style="font-size:40px;line-height:1.05;margin:16px 0 12px">Team-linked access first.<br>Family-owned tools second.</h2><p class="section-copy" style="margin-bottom:20px">Families can complete the information their coach needs without paying again. Optional long-term tools give players and parents a place to keep the journey going beyond one team or season.</p><div class="toolbar"><button class="shimmer-btn family-action" onclick="openFamilyDemo()">Explore Family Access</button></div></div><div class="upsell"><div><b>Basketball Passport</b><span>Keep teams, seasons, achievements, stats and player history beyond one coach.</span></div><div><b>Opportunity Finder</b><span>AAU, camps, tryouts, clinics and basketball opportunities.</span></div><div><b>Recruiting Roadmap</b><span>Grade-based tasks, school research, communication and recruiting organization.</span></div><div><b>Parent Resource Vault</b><span>Guides, checklists, downloads and Player Journal offers.</span></div></div></div></div></div></section>
 <section class="portal-pricing" id="coach-membership"><div class="wrap"><div class="price-box" style="background:linear-gradient(145deg,#2c2e33,#111214);border:1px solid #4b4e54;color:#fff;box-shadow:0 22px 55px rgba(0,0,0,.2)"><div><span class="eyebrow">Annual coach membership</span><h2 class="section-title" style="color:#fff">Turn the preview into your active season system.</h2><p class="section-copy" style="color:#c9cbd0">Persistent team records, synced access, roster history, family invitations, practices, games, scouting, reports, downloads and year-to-year archives.</p></div><div><div class="price-number">$99 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('coach')">See Coach Membership</button><div class="lock-note">Working introductory price for planning. Final pricing will be researched before launch.</div></div></div></div></section></main>
 <main id="parentPortal" class="portal-shell">
- <section class="portal-intro" id="parent-home"><div class="wrap">
-  <div><span class="demo-ribbon"><span class="demo-dot"></span> Parent Preview Mode</span><h1 class="portal-title">Guide the journey without losing the details.</h1><p class="portal-lede">Basketball Brilliance gives parents a brighter, simpler home for player history, team-linked information, opportunities, recruiting organization and the records that outlive one season.</p>
-  <div class="ctas"><a class="shimmer-btn attention" href="#parent-tools">Explore Parent Tools</a><button class="shimmer-btn" onclick="openPortalOffer('parent')">Parent Membership</button></div><div class="install-row"><button class="btn ghost tiny" onclick="installBasketballBrilliance()">Add Basketball Brilliance to Phone</button></div>
+ 
+<section class="portal-intro" id="parent-home"><div class="wrap">
+  <div class="portal-sales-copy">
+    <span class="demo-ribbon"><span class="demo-dot"></span> Parent Preview Mode</span>
+    <h1 class="portal-title">Guide the journey without losing the details.</h1>
+    <p class="portal-lede">Keep player history, team-linked information, opportunities, recruiting organization and the records that outlive one season in one brighter family experience.</p>
+    <div class="ctas"><a class="shimmer-btn attention" href="#parent-tools">Explore Parent Tools</a><button class="shimmer-btn" onclick="openPortalOffer('parent')">Parent Membership</button></div>
   </div>
-  <div class="portal-visual"><div><small style="color:#9b3b1a;font-weight:900;letter-spacing:.12em">PARENT DASHBOARD</small><h3 style="font-size:28px;margin:6px 0">One player story. Season after season.</h3></div><div class="portal-visual-grid">
-   <div class="portal-visual-card"><b>Basketball Passport</b><span>Teams, seasons, milestones, measurements and achievements.</span></div>
-   <div class="portal-visual-card"><b>Opportunity Finder</b><span>AAU, camps, clinics, showcases, tryouts and deadlines.</span></div>
-   <div class="portal-visual-card"><b>Recruiting Roadmap</b><span>Grade-by-grade tasks, research, contacts and next steps.</span></div>
-   <div class="portal-visual-card"><b>Family Vault</b><span>Forms, reports, links, documents and important basketball records.</span></div>
-  </div></div>
- </div></section>
+  <div class="portal-video-wrap">
+    <div class="portal-video"><iframe src="https://www.youtube.com/embed/pQAja2qvU1E?rel=0&modestbranding=1" title="Youth AAU basketball highlights" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <div class="video-label"><b>Temporary Video Preview</b><span>Final parent explainer video will replace this.</span></div>
+  </div>
+</div></section>
+<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Parent Dashboard Preview</h3><span>Family-owned tools continue below.</span></div><div class="role-dashboard-grid">
+<div class="role-dashboard-card"><b>Basketball Passport</b><span>Teams, seasons, milestones and player history.</span></div>
+<div class="role-dashboard-card"><b>Opportunity Finder</b><span>AAU, camps, clinics, showcases and tryouts.</span></div>
+<div class="role-dashboard-card"><b>Recruiting Roadmap</b><span>Grade-based tasks, contacts and next steps.</span></div>
+<div class="role-dashboard-card"><b>Family Vault</b><span>Documents, reports, links and important records.</span></div>
+</div></div></div></section>
  <section class="portal-tools" id="parent-tools"><div class="wrap"><span class="eyebrow">Try the tools</span><h2 class="section-title">Play with the system before you join.</h2><p class="section-copy">Preview the forms and workflows now. Annual membership activates persistent records, synced access, long-term history and downloadable reports.</p>
   <div class="toolboard">
    <div class="tool-preview"><small class="num">01 • History</small><h3>Basketball Passport</h3><p>Start a permanent timeline of teams, seasons, coaches, positions, measurements and milestones.</p><div class="tool-mini"><span class="tool-chip">Season</span><span class="tool-chip">Team</span><span class="tool-chip">Milestones</span></div><label>Current Team<input placeholder="Try entering a team"></label><button class="btn primary tiny" onclick="demoAction('Parent','Basketball Passport')">Try Passport</button></div>
@@ -387,17 +472,25 @@ body[data-portal="coach"] .nav{display:block}
 </main>
 
 <main id="playerPortal" class="portal-shell">
- <section class="portal-intro" id="player-home"><div class="wrap">
-  <div><span class="demo-ribbon"><span class="demo-dot"></span> Player Preview Mode</span><h1 class="portal-title">Your game. Your grind. Your record.</h1><p class="portal-lede">A darker, faster player experience built around goals, development, performance, opportunities and the story you are creating every season.</p>
-  <div class="ctas"><a class="shimmer-btn attention" href="#player-tools">Enter Player Tools</a><button class="shimmer-btn" onclick="openPortalOffer('player')">Player Membership</button></div><div class="install-row"><button class="btn ghost tiny" onclick="toggleBBMusic()">DMV BALLIN Sound</button><button class="btn ghost tiny" onclick="installBasketballBrilliance()">Add to Phone</button></div>
+ 
+<section class="portal-intro" id="player-home"><div class="wrap">
+  <div class="portal-sales-copy">
+    <span class="demo-ribbon"><span class="demo-dot"></span> Player Preview Mode</span>
+    <h1 class="portal-title">Your game. Your grind. Your record.</h1>
+    <p class="portal-lede">Goals, development, performance, film, opportunities and the story you are creating every season — presented in a darker, faster player experience.</p>
+    <div class="ctas"><a class="shimmer-btn attention" href="#player-tools">Explore Player Tools</a><button class="shimmer-btn" onclick="openPortalOffer('player')">Player Membership</button></div>
   </div>
-  <div class="portal-visual"><div><small style="color:#ff7a4c;font-weight:900;letter-spacing:.15em">PLAYER MODE</small><h3 style="font-size:29px;margin:6px 0">Build a basketball identity bigger than one box score.</h3></div><div class="portal-visual-grid">
-   <div class="portal-visual-card"><b>Goals + Grind</b><span>Set targets and track the work behind them.</span></div>
-   <div class="portal-visual-card"><b>My Numbers</b><span>Stats, trends, best games and season snapshots.</span></div>
-   <div class="portal-visual-card"><b>Highlights</b><span>Organize film links, clips, achievements and moments.</span></div>
-   <div class="portal-visual-card"><b>My Passport</b><span>A year-to-year record of the player you are becoming.</span></div>
-  </div></div>
- </div></section>
+  <div class="portal-video-wrap">
+    <div class="portal-video"><iframe src="https://www.youtube.com/embed/pQAja2qvU1E?rel=0&modestbranding=1" title="Youth AAU basketball highlights" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <div class="video-label"><b>Temporary Video Preview</b><span>Final player explainer video will replace this.</span></div>
+  </div>
+</div></section>
+<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Player Dashboard Preview</h3><span>Your player-owned record starts here.</span></div><div class="role-dashboard-grid">
+<div class="role-dashboard-card"><b>Goals + Grind</b><span>Targets, habits and weekly development.</span></div>
+<div class="role-dashboard-card"><b>My Numbers</b><span>Stats, trends, best games and progress.</span></div>
+<div class="role-dashboard-card"><b>Highlights + Film</b><span>Clips, links, achievements and moments.</span></div>
+<div class="role-dashboard-card"><b>My Passport</b><span>A season-to-season basketball timeline.</span></div>
+</div></div></div></section>
  <section class="portal-tools" id="player-tools"><div class="wrap"><span class="eyebrow">Player tools</span><h2 class="section-title" style="color:#fff">Touch it. Try it. See how it fits your game.</h2><p class="section-copy" style="color:#aeb1b6">Preview mode lets you work through the tools. Annual membership unlocks persistent records, synced history, downloads and the full player experience.</p>
   <div class="toolboard">
    <div class="tool-preview"><small class="num">01 • Focus</small><h3>Goals + Grind</h3><p>Turn big basketball goals into weekly actions and measurable work.</p><label>Current Goal<input placeholder="Example: improve weak-hand finish"></label><button class="btn primary tiny" onclick="demoAction('Player','Goals + Grind')">Try Goal Tracker</button></div>
@@ -568,7 +661,8 @@ function goEntry(){
  clearTimeout(portalOfferTimer);bbStopMusic();document.body.dataset.portal='entry';location.hash='top';window.scrollTo({top:0,behavior:'smooth'});
 }
 async function enterPortal(p){
- clearTimeout(portalOfferTimer);document.body.dataset.portal=p;setPortalNav(p);closeMobileMenu();window.scrollTo({top:0,behavior:'instant'});
+ clearTimeout(portalOfferTimer);document.body.dataset.portal=p;setPortalNav(p);closeMobileMenu();window.scrollTo({top:0,left:0,behavior:'instant'});
+ requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));
  if(p==='player'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch(e){}if(pref!=='off')await bbStartMusic();}
  else bbStopMusic();
  portalOfferTimer=setTimeout(()=>openPortalOffer(p),7000);
