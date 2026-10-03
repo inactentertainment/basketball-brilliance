@@ -78,6 +78,14 @@ label{color:#f1f2f3}input,select,textarea{background:#fff;color:#111;border-colo
   .hamburger{width:40px!important;height:36px!important}
 }
 
+
+/* Crop the animated source so the customer-facing lockup reads Basketball Brilliance, not Series. */
+.portal-header-brand{width:min(440px,40vw);height:88px}
+.portal-header-brand img{height:100%;width:auto;max-width:none;left:0;top:50%;transform:translateY(-50%)}
+.entry-brand{width:min(635px,86vw);height:128px}
+.entry-brand img{height:100%;width:auto;max-width:none;left:0;top:50%;transform:translateY(-50%)}
+@media(max-width:980px){.portal-header-brand{width:min(350px,66vw);height:70px}.entry-brand{width:min(540px,86vw);height:104px}}
+@media(max-width:620px){.portal-header-brand{width:64vw;height:62px}.entry-brand{width:82vw;height:78px}}
 </style>
 
 <link rel="manifest" href="manifest.webmanifest">
@@ -208,7 +216,7 @@ body[data-portal="coach"] .nav{display:block}
 </div><nav class="mobile-drawer" id="mobileDrawer"></nav></header>
 <main id="coachPortal" class="portal-shell coach-theme">
 <section class="wrap hero" id="coach-home">
-<div><span class="eyebrow audience-eyebrow">Coaches • Players • Parents</span><h1 class="audience-headline"><span class="hero-line"><small>COACH</small>Run the team.</span><span class="hero-line"><small>PLAYER</small><em>Raise your game.</em></span><span class="hero-line"><small>PARENT</small>Guide the journey.</span></h1><p class="lede">Basketball Brilliance connects the people who shape the season. Coaches organize the team, players track their growth, and parents stay connected to the journey — all through one basketball system.</p><div class="ctas"><a class="shimmer-btn attention" href="#app">Open Coach Command Center →</a><button class="shimmer-btn" onclick="openLogin()">Member Access</button></div><div class="micro">From first practice to the next opportunity, keep the basketball journey connected.</div></div>
+<div><span class="demo-ribbon"><span class="demo-dot"></span> Coach Preview Mode</span><span class="eyebrow audience-eyebrow" style="margin-top:10px">Coach Command System</span><h1 class="audience-headline"><span class="hero-line"><small>COACH</small>Run the team.</span><span class="hero-line"><small>PLAYER</small><em>Raise your game.</em></span><span class="hero-line"><small>PARENT</small>Guide the journey.</span></h1><p class="lede">Basketball Brilliance connects the people who shape the season. Coaches organize the team, players track their growth, and parents stay connected to the journey — all through one basketball system.</p><div class="ctas"><a class="shimmer-btn attention" href="#app">Open Coach Command Center →</a><button class="shimmer-btn" onclick="openLogin()">Member Access</button></div><div class="micro">From first practice to the next opportunity, keep the basketball journey connected.</div></div>
 <div class="hero-card"><div class="dashhead"><div><b style="font-size:20px">Coach Command Center</b><div class="tiny" id="heroTeam">My Team • New Season</div></div><div class="record"><span class="tiny">RECORD</span><br><strong id="heroRecord">0–0</strong></div></div><div class="mini-grid"><div class="mini-tile"><b><span class="orange" id="heroPlayers">0</span> Players</b><span>Roster, guardians, contacts and player profiles</span></div><div class="mini-tile"><b><span class="orange" id="heroPractices">0</span> Plans</b><span>Practice sessions, focus areas and coaching notes</span></div><div class="mini-tile"><b><span class="orange" id="heroGames">0</span> Games</b><span>Game logs, player stats and season totals</span></div><div class="mini-tile"><b><span class="orange" id="heroScouts">0</span> Reports</b><span>Opponent personnel, tendencies and game plans</span></div></div></div>
 </section>
 <section id="coaches"><div class="wrap"><span class="eyebrow">Coach-first business model</span><h2 class="section-title">The coach pays. The team connects.</h2><p class="section-copy">Parents and players do not need a second subscription just to complete the coach's team forms. They can enter requested information through a linked family path. Separate Parent + Player products remain optional upgrades owned by the family.</p><div class="flow"><div class="step"><span class="num">01 • Coach</span><h3>Create the team</h3><p>Set the team, season, staff, roster structure and required information.</p></div><div class="step"><span class="num">02 • Invite</span><h3>Send one link</h3><p>Generate a player/family invite without making the coach retype everything.</p></div><div class="step"><span class="num">03 • Connect</span><h3>Profile appears</h3><p>Player and guardian information flows into the same coach roster.</p></div><div class="step"><span class="num">04 • Grow</span><h3>Family owns more</h3><p>Basketball Passport, Journal, Opportunities, Recruiting and Parent Resources become natural upsells.</p></div></div></div></section>
@@ -234,7 +242,7 @@ body[data-portal="coach"] .nav{display:block}
 <div class="book"><div class="bar"></div><small>Season Record</small><h4>Reports + Archive</h4><p>Season summaries, downloadable reports, backups and long-term team history.</p><button onclick="switchView('reports');location.hash='app'">Open Reports →</button></div>
 </div></div></section>
 <section id="families"><div class="wrap"><div class="familyhub"><div class="familygrid"><div><span class="eyebrow">Parent + Player path</span><h2 style="font-size:40px;line-height:1.05;margin:16px 0 12px">Team-linked access first.<br>Family-owned tools second.</h2><p class="section-copy" style="margin-bottom:20px">Families can complete the information their coach needs without paying again. Optional long-term tools give players and parents a place to keep the journey going beyond one team or season.</p><div class="toolbar"><button class="shimmer-btn family-action" onclick="openFamilyDemo()">Explore Family Access</button></div></div><div class="upsell"><div><b>Basketball Passport</b><span>Keep teams, seasons, achievements, stats and player history beyond one coach.</span></div><div><b>Opportunity Finder</b><span>AAU, camps, tryouts, clinics and basketball opportunities.</span></div><div><b>Recruiting Roadmap</b><span>Grade-based tasks, school research, communication and recruiting organization.</span></div><div><b>Parent Resource Vault</b><span>Guides, checklists, downloads and Player Journal offers.</span></div></div></div></div></div></section>
-</main>
+<section class="portal-pricing" id="coach-membership"><div class="wrap"><div class="price-box" style="background:linear-gradient(145deg,#2c2e33,#111214);border:1px solid #4b4e54;color:#fff;box-shadow:0 22px 55px rgba(0,0,0,.2)"><div><span class="eyebrow">Annual coach membership</span><h2 class="section-title" style="color:#fff">Turn the preview into your active season system.</h2><p class="section-copy" style="color:#c9cbd0">Persistent team records, synced access, roster history, family invitations, practices, games, scouting, reports, downloads and year-to-year archives.</p></div><div><div class="price-number">$99 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('coach')">See Coach Membership</button><div class="lock-note">Working introductory price for planning. Final pricing will be researched before launch.</div></div></div></div></section></main>
 <main id="parentPortal" class="portal-shell">
  <section class="portal-intro" id="parent-home"><div class="wrap">
   <div><span class="demo-ribbon"><span class="demo-dot"></span> Parent Preview Mode</span><h1 class="portal-title">Guide the journey without losing the details.</h1><p class="portal-lede">Basketball Brilliance gives parents a brighter, simpler home for player history, team-linked information, opportunities, recruiting organization and the records that outlive one season.</p>
@@ -302,7 +310,7 @@ function storageSet(k,v){try{sessionStorage.setItem(k,v)}catch(e){memoryStore[k]
 const defaultData={team:{name:'',season:'',level:'Varsity',coach:'',org:'',gym:''},players:[],invites:[],practices:[],games:[],stats:[],scouts:[],plays:[],notes:[],session:{role:'Coach',email:''}};
 let db=loadDB();let courtDots=[];let selectedRole='Coach';
 function loadDB(){try{return Object.assign(structuredClone(defaultData),JSON.parse(storageGet(KEY)||'{}'))}catch(e){return JSON.parse(JSON.stringify(defaultData))}}
-function saveDB(msg){storageSet(KEY,JSON.stringify(db));refreshAll();if(msg)toast(msg)}
+function saveDB(msg){storageSet(KEY,JSON.stringify(db));refreshAll();if(msg)toast(msg+' • Preview saved for this visit. Annual membership activates persistent records.')}
 function uid(prefix){return prefix+'_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7)}
 function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2600)}
@@ -396,7 +404,7 @@ const portalOffers={
 function setPortalNav(p){
  const d=document.getElementById('desktopNav'),m=document.getElementById('mobileDrawer'),c=document.getElementById('portalContext');
  const cfg={
-  coach:[['#coach-home','Overview'],['#app','Coach System'],['#books','Coach Tools'],['#families','Families']],
+  coach:[['#coach-home','Overview'],['#app','Coach System'],['#books','Coach Tools'],['#families','Families'],['#coach-membership','Membership']],
   parent:[['#parent-home','Overview'],['#parent-tools','Parent Tools'],['#parent-membership','Membership']],
   player:[['#player-home','Overview'],['#player-tools','Player Tools'],['#player-membership','Membership']]
  }[p]||[];
