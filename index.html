@@ -375,38 +375,35 @@ body[data-portal="coach"] .nav{display:block}
 </style>
 
 <style id="portrait-portal-final">
-/* Final approved mobile crop: 12px off left edge, additional bottom trim */
-.image-portal-stage{background:#030303!important;min-height:auto!important;overflow:visible!important}
-.image-portal-shell{display:flex!important;justify-content:center!important;overflow:hidden!important;width:100%!important;background:#030303!important}
+.image-portal-stage{background:#020202!important;min-height:auto!important;overflow:hidden!important;position:relative!important}
+.image-portal-shell{display:flex!important;justify-content:center!important;overflow:hidden!important;width:100%!important;background:transparent!important;position:relative!important;z-index:2!important}
 .portal-artboard{
   position:relative!important;
-  width:min(852px,100vw)!important;
-  max-width:852px!important;
+  width:min(900px,100vw)!important;
+  max-width:900px!important;
   min-width:0!important;
   height:auto!important;
-  aspect-ratio:852/1312!important;
+  aspect-ratio:1152/2048!important;
   margin:0 auto!important;
   overflow:hidden!important;
-  background:#030303!important;
+  background:#020202!important;
 }
 .portal-arena-image{
   position:absolute!important;
-  left:-1.40845%!important;
-  top:0!important;
-  width:101.40845%!important;
-  height:auto!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
   max-width:none!important;
-  object-fit:initial!important;
 }
 .portal-court-extension{display:none!important}
-/* Click zones realigned to the edited crop */
-.hs-coach{left:2.445%!important;top:57.659%!important;width:30.118%!important;height:5.210%!important}
-.hs-player{left:35.301%!important;top:57.659%!important;width:29.307%!important;height:5.210%!important}
-.hs-parent{left:67.549%!important;top:57.659%!important;width:29.002%!important;height:5.210%!important}
+/* Active zones aligned to the three orange portal buttons in v4 artwork */
+.hs-coach{left:3.1%!important;top:48.45%!important;width:29.4%!important;height:4.45%!important}
+.hs-player{left:34.7%!important;top:48.45%!important;width:30.9%!important;height:4.45%!important}
+.hs-parent{left:67.1%!important;top:48.45%!important;width:29.3%!important;height:4.45%!important}
 @media(max-width:720px){
-  .image-portal-shell{overflow:hidden!important;justify-content:center!important}
-  .portal-artboard{width:100vw!important;max-width:100vw!important;min-width:0!important;margin:0!important;aspect-ratio:852/1312!important}
-  .portal-hotspot{min-height:27px!important;border-radius:12px!important}
+  .portal-artboard{width:100vw!important;max-width:100vw!important;aspect-ratio:1152/2048!important}
+  .portal-hotspot{min-height:28px!important;border-radius:12px!important}
 }
 </style>
 
@@ -597,6 +594,27 @@ body[data-portal="coach"] .nav{display:block}
 }
 </style>
 
+<style id="portal-atmosphere-boost">
+@media(min-width:721px){
+  .portal-atmosphere .arena-beam{opacity:.42!important;filter:blur(8px)!important}
+  .portal-atmosphere .beam-l1,.portal-atmosphere .beam-r1{width:28vw!important}
+  .portal-atmosphere .arena-smoke{opacity:.28!important}
+  .portal-atmosphere:before,.portal-atmosphere:after{
+    content:"";position:absolute;top:8%;bottom:8%;width:30vw;pointer-events:none;
+    background:
+      radial-gradient(ellipse at center,rgba(241,90,41,.10),transparent 58%),
+      repeating-linear-gradient(180deg,transparent 0 54px,rgba(241,90,41,.035) 55px 56px);
+    filter:blur(2px);
+    animation:bbSidePulse 7s ease-in-out infinite alternate;
+  }
+  .portal-atmosphere:before{left:0}
+  .portal-atmosphere:after{right:0;animation-delay:-3.5s}
+}
+@keyframes bbSidePulse{
+  0%{opacity:.28;transform:scale(1) translateY(0)}
+  100%{opacity:.62;transform:scale(1.04) translateY(-1.5%)}
+}
+</style>
 </head>
 <body id="top" data-portal="entry">
 
@@ -619,7 +637,7 @@ body[data-portal="coach"] .nav{display:block}
 
   <div class="image-portal-shell">
     <div class="portal-artboard" aria-label="Basketball Brilliance Coach, Player and Parent portals">
-      <img class="portal-arena-image" src="assets/basketball-brilliance-portal-portrait.png" alt="Basketball Brilliance Coach, Player and Parent portals">
+      <img class="portal-arena-image" src="assets/basketball-brilliance-portal-v4.png" alt="Basketball Brilliance Coach, Player and Parent portals">
       <button class="portal-hotspot hs-coach" onclick="transitionToPortal('coach')" aria-label="Enter Coach Portal"><span>Enter Coach Portal</span></button>
       <button class="portal-hotspot hs-player" onclick="transitionToPortal('player')" aria-label="Enter Player Portal"><span>Enter Player Portal</span></button>
       <button class="portal-hotspot hs-parent" onclick="transitionToPortal('parent')" aria-label="Enter Parent Portal"><span>Enter Parent Portal</span></button>
