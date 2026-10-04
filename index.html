@@ -375,30 +375,38 @@ body[data-portal="coach"] .nav{display:block}
 </style>
 
 <style id="portrait-portal-final">
-/* Exact uploaded portrait portal artwork */
+/* Tight mobile crop of the uploaded portal artwork: trims the right edge and lower court */
 .image-portal-stage{background:#030303!important;min-height:auto!important;overflow:visible!important}
 .image-portal-shell{display:flex!important;justify-content:center!important;overflow:hidden!important;width:100%!important;background:#030303!important}
 .portal-artboard{
   position:relative!important;
-  width:min(864px,100vw)!important;
-  max-width:864px!important;
+  width:min(856px,100vw)!important;
+  max-width:856px!important;
   min-width:0!important;
   height:auto!important;
-  aspect-ratio:864/1536!important;
+  aspect-ratio:856/1408!important;
   margin:0 auto!important;
   overflow:hidden!important;
   background:#030303!important;
 }
-.portal-arena-image{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important}
+.portal-arena-image{
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  width:100.935%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:initial!important;
+}
 .portal-court-extension{display:none!important}
-/* Live click zones aligned directly over the visible orange buttons */
-.hs-coach{left:3.8%!important;top:49.25%!important;width:29.7%!important;height:4.45%!important}
-.hs-player{left:36.2%!important;top:49.25%!important;width:28.9%!important;height:4.45%!important}
-.hs-parent{left:68.0%!important;top:49.25%!important;width:28.6%!important;height:4.45%!important}
+/* Click zones realigned to the visible orange portal buttons after crop */
+.hs-coach{left:3.83%!important;top:53.73%!important;width:29.98%!important;height:4.85%!important}
+.hs-player{left:36.54%!important;top:53.73%!important;width:29.17%!important;height:4.85%!important}
+.hs-parent{left:68.63%!important;top:53.73%!important;width:28.87%!important;height:4.85%!important}
 @media(max-width:720px){
   .image-portal-shell{overflow:hidden!important;justify-content:center!important}
-  .portal-artboard{width:100vw!important;max-width:100vw!important;min-width:0!important;margin:0!important;aspect-ratio:864/1536!important}
-  .portal-hotspot{min-height:28px!important;border-radius:12px!important}
+  .portal-artboard{width:100vw!important;max-width:100vw!important;min-width:0!important;margin:0!important;aspect-ratio:856/1408!important}
+  .portal-hotspot{min-height:27px!important;border-radius:12px!important}
 }
 </style>
 
