@@ -20,6 +20,10 @@
     const s=getClient(); if(!s) throw new Error("Basketball Brilliance backend is not connected yet.");
     return s.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
   }
+  async function resendConfirmation(email){
+    const s=getClient(); if(!s) throw new Error("Basketball Brilliance backend is not connected yet.");
+    return s.auth.resend({type:"signup",email,options:{emailRedirectTo:location.origin+location.pathname}});
+  }
   async function getSession(){const s=getClient();if(!s)return null;const {data}=await s.auth.getSession();return data.session}
   async function getProfile(){
     const s=getClient();if(!s)return null;
@@ -28,5 +32,5 @@
     if(error) throw error; return data;
   }
   function onAuthStateChange(cb){const s=getClient();if(!s)return null;return s.auth.onAuthStateChange(cb)}
-  window.BBAuth={isConfigured,getClient,signUp,signIn,signOut,resetPassword,getSession,getProfile,onAuthStateChange};
+  window.BBAuth={isConfigured,getClient,signUp,signIn,signOut,resetPassword,resendConfirmation,getSession,getProfile,onAuthStateChange};
 })();
