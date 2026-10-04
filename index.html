@@ -130,8 +130,8 @@ linear-gradient(transparent 84%,rgba(241,90,41,.12) 84.4%,transparent 84.8%) 0 0
 .portal-caption b{color:#dddfe3}
 .arena-glow{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(70px);opacity:.11;background:#f15a29}.arena-glow-a{left:-140px;top:20%}.arena-glow-b{right:-160px;top:8%}
 
-.portal-transition{position:fixed;inset:0;z-index:999;display:none;pointer-events:none;overflow:hidden}
-.portal-transition.active{display:block}
+.portal-transition{position:fixed!important;inset:0!important;z-index:2147483000!important;display:none;pointer-events:none;overflow:hidden;isolation:isolate}
+.portal-transition.active{display:block!important}
 .coach-transition{
   background:
     radial-gradient(ellipse at 50% 50%,rgba(241,90,41,.08) 0%,rgba(0,0,0,.18) 33%,#020202 78%);
@@ -191,7 +191,7 @@ linear-gradient(transparent 84%,rgba(241,90,41,.12) 84.4%,transparent 84.8%) 0 0
   72%{filter:brightness(1.35)}
   100%{filter:brightness(1.8)}
 }
-.player-transition{background:#050505}
+.player-transition{background:radial-gradient(circle at 50% 70%,rgba(241,90,41,.08),transparent 28%),#050505}
 .player-transition .tball{position:absolute;width:78px;height:78px;border:4px solid #f15a29;border-radius:50%;left:6%;top:-90px;box-shadow:0 0 25px rgba(241,90,41,.28)}
 .player-transition .tball:before,.player-transition .tball:after{content:"";position:absolute;inset:17px -2px;border-top:3px solid #f15a29;border-radius:50%;transform:rotate(27deg)}
 .player-transition .tball:after{inset:-2px 35px;transform:none;border-top:0;border-left:3px solid #f15a29}
@@ -200,6 +200,7 @@ linear-gradient(transparent 84%,rgba(241,90,41,.12) 84.4%,transparent 84.8%) 0 0
 .player-transition.active .ripple{animation:bbRipple 1.45s .74s ease-out forwards}
 @keyframes bbBounce{0%{left:6%;top:-90px;transform:rotate(0)}35%{left:31%;top:71vh;transform:rotate(180deg)}58%{left:54%;top:29vh;transform:rotate(360deg)}77%{left:72%;top:71vh;transform:rotate(540deg)}100%{left:105%;top:18vh;transform:rotate(760deg)}}
 @keyframes bbRipple{0%{opacity:0;transform:translateX(-50%) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(18)}}
+.parent-transition{background:#050505}
 .parent-transition .phalf{position:absolute;left:0;right:0;height:50%;background:#070707}
 .parent-transition .top{top:0}.parent-transition .bottom{bottom:0}
 .parent-transition .glow{position:absolute;left:0;right:0;top:50%;height:2px;background:#f15a29;box-shadow:0 0 30px rgba(241,90,41,.85);transform:scaleX(0)}
@@ -1194,11 +1195,40 @@ function bbPortalClickSound(){
     const n=ctx.currentTime;g.gain.exponentialRampToValueAtTime(.035,n+.01);g.gain.exponentialRampToValueAtTime(.0001,n+.18);o.frequency.exponentialRampToValueAtTime(520,n+.17);o.start(n);o.stop(n+.19)
   }catch(e){}
 }
+function buildPortalTransition(p){
+  const old=document.getElementById('bbLivePortalTransition');
+  if(old)old.remove();
+  const el=document.createElement('div');
+  el.id='bbLivePortalTransition';
+  el.className='portal-transition '+p+'-transition';
+  if(p==='coach'){
+    el.innerHTML='<div class="tunnel">'+
+      '<div class="tunnel-frame" style="--z:-520px;--s:.34;--o:.22"></div>'+
+      '<div class="tunnel-frame" style="--z:-430px;--s:.43;--o:.28"></div>'+
+      '<div class="tunnel-frame" style="--z:-340px;--s:.53;--o:.34"></div>'+
+      '<div class="tunnel-frame" style="--z:-250px;--s:.64;--o:.42"></div>'+
+      '<div class="tunnel-frame" style="--z:-160px;--s:.76;--o:.54"></div>'+
+      '<div class="tunnel-frame" style="--z:-70px;--s:.90;--o:.72"></div>'+
+      '<div class="tunnel-floor"></div>'+
+      '<div class="tunnel-light l1"></div><div class="tunnel-light l2"></div>'+
+      '<div class="tunnel-light r1"></div><div class="tunnel-light r2"></div>'+
+      '<div class="tunnel-vignette"></div></div>';
+  }else if(p==='player'){
+    el.innerHTML='<div class="tball"></div><div class="ripple"></div>';
+  }else{
+    el.innerHTML='<div class="phalf top"></div><div class="phalf bottom"></div><div class="glow"></div>';
+  }
+  document.body.appendChild(el);
+  return el;
+}
 function transitionToPortal(p){
   bbPortalClickSound();
-  const map={coach:['coachTransition',1550,2650],player:['playerTransition',700,1500],parent:['parentTransition',430,1350]};
-  const [id,swap,done]=map[p];const el=document.getElementById(id);if(!el){enterPortal(p);return}
-  el.classList.add('active');setTimeout(()=>enterPortal(p),swap);setTimeout(()=>el.classList.remove('active'),done);
+  const map={coach:[1550,2650],player:[700,1500],parent:[430,1350]};
+  const timing=map[p]||[0,0];
+  const el=buildPortalTransition(p);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('active')));
+  setTimeout(()=>enterPortal(p),timing[0]);
+  setTimeout(()=>{el.classList.remove('active');setTimeout(()=>el.remove(),80)},timing[1]);
 }
 
 function goEntry(){
@@ -1239,22 +1269,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.se
 window.addEventListener('load',()=>{const q=new URLSearchParams(location.search);if(q.get('invite'))enterPortal('parent')});
 </script><audio id="bbMusic" src="assets/dmv-ballin.mp3" preload="auto" loop></audio>
 
-<div id="coachTransition" class="portal-transition coach-transition">
-  <div class="tunnel">
-    <div class="tunnel-frame" style="--z:-520px;--s:.34;--o:.22"></div>
-    <div class="tunnel-frame" style="--z:-430px;--s:.43;--o:.28"></div>
-    <div class="tunnel-frame" style="--z:-340px;--s:.53;--o:.34"></div>
-    <div class="tunnel-frame" style="--z:-250px;--s:.64;--o:.42"></div>
-    <div class="tunnel-frame" style="--z:-160px;--s:.76;--o:.54"></div>
-    <div class="tunnel-frame" style="--z:-70px;--s:.90;--o:.72"></div>
-    <div class="tunnel-floor"></div>
-    <div class="tunnel-light l1"></div><div class="tunnel-light l2"></div>
-    <div class="tunnel-light r1"></div><div class="tunnel-light r2"></div>
-    <div class="tunnel-vignette"></div>
-  </div>
-</div>
-<div id="playerTransition" class="portal-transition player-transition"><div class="tball"></div><div class="ripple"></div></div>
-<div id="parentTransition" class="portal-transition parent-transition"><div class="phalf top"></div><div class="phalf bottom"></div><div class="glow"></div></div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/bb-config.js"></script>
