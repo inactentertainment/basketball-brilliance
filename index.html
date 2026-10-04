@@ -666,6 +666,43 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
 }
 </style>
 
+
+<style id="signup-celebration-styles">
+.signup-celebration{display:none;position:relative;overflow:hidden;text-align:center;padding:22px 8px 8px}
+.signup-celebration.show{display:block}
+.signup-celebration .celebrate-ball{
+  width:72px;height:72px;margin:0 auto 14px;border-radius:50%;
+  background:radial-gradient(circle at 36% 30%,#ff9d73 0 8%,#f15a29 32%,#8a2808 100%);
+  border:2px solid rgba(255,255,255,.18);
+  box-shadow:0 0 0 8px rgba(241,90,41,.08),0 18px 42px rgba(124,34,7,.34);
+  position:relative;
+}
+.signup-celebration .celebrate-ball:before,
+.signup-celebration .celebrate-ball:after{
+  content:"";position:absolute;border:2px solid rgba(17,17,17,.75);border-radius:50%
+}
+.signup-celebration .celebrate-ball:before{left:31px;top:-2px;width:8px;height:72px}
+.signup-celebration .celebrate-ball:after{left:-4px;top:28px;width:76px;height:13px;transform:rotate(13deg)}
+.signup-celebration h3{font-size:34px;line-height:1.02;margin:8px auto 10px;max-width:560px}
+.signup-celebration .welcome-line{color:#ff9a73;font-size:12px;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
+.signup-celebration p{max-width:570px;margin:0 auto 14px;color:#c9cdd2;line-height:1.6}
+.signup-confirm-box{background:linear-gradient(145deg,#25272c,#17181b);border:1px solid #44484f;border-radius:18px;padding:16px 18px;margin:16px auto;max-width:620px;text-align:left}
+.signup-confirm-box b{display:block;color:#fff;margin-bottom:5px}
+.signup-confirm-box span{color:#bdc2c9;font-size:14px;line-height:1.5}
+.confetti-piece{position:absolute;top:38%;left:50%;width:7px;height:14px;border-radius:2px;pointer-events:none;opacity:0;z-index:5}
+.signup-celebration.burst .confetti-piece{animation:bbConfettiBurst 1.2s cubic-bezier(.18,.75,.32,1) forwards}
+@keyframes bbConfettiBurst{
+  0%{opacity:0;transform:translate(-50%,-50%) rotate(0deg) scale(.5)}
+  10%{opacity:1}
+  100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1)}
+}
+.signup-celebration .celebrate-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+@media(max-width:640px){
+  .signup-celebration{padding-top:14px}
+  .signup-celebration h3{font-size:29px}
+  .signup-confirm-box{padding:14px}
+}
+</style>
 </head>
 <body id="top" data-portal="entry">
 
@@ -830,7 +867,22 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
   </div>
 </footer>
 
-<div class="modal" id="loginModal" onclick="if(event.target===this)closeModal('loginModal')"><div class="modalbox"><button class="close" onclick="closeModal('loginModal')">×</button><span class="eyebrow">Member access</span><h3>Basketball Brilliance Account</h3><p class="section-copy" style="font-size:14px;margin-bottom:10px">Choose your role, then sign in or create your account.</p><div class="rolegrid" id="roleGrid"><button class="role active" data-role="Coach">Coach</button><button class="role" data-role="Player">Player</button><button class="role" data-role="Parent">Parent</button></div><div class="formgrid" style="margin-top:12px"><label>Full Name<input id="loginName" placeholder="Your name" autocomplete="name"></label><label>Email<input id="loginEmail" placeholder="you@example.com" type="email" autocomplete="email"></label><label style="grid-column:1/-1">Password<input id="loginPassword" placeholder="At least 8 characters" type="password" autocomplete="current-password"></label></div><div id="authBackendStatus" class="notice" style="margin-top:12px">Secure Basketball Brilliance account system connected.</div><div class="toolbar" style="margin-top:14px"><button class="btn primary" onclick="continueLogin()">Sign In</button><button class="btn soft" id="createAccountBtn" onclick="createAccount()">Create Account</button><button class="btn ghost" onclick="resendConfirmationEmail()">Resend Confirmation</button><button class="btn ghost" onclick="resetAccountPassword()">Forgot Password</button></div><button class="btn ghost" style="width:100%;margin-top:10px" onclick="continuePreview()">Continue in Preview Mode</button></div></div>
+<div class="modal" id="loginModal" onclick="if(event.target===this)closeModal('loginModal')"><div class="modalbox"><button class="close" onclick="closeModal('loginModal')">×</button><div id="authFormView"><span class="eyebrow">Member access</span><h3>Basketball Brilliance Account</h3><p class="section-copy" style="font-size:14px;margin-bottom:10px">Choose your role, then sign in or create your account.</p><div class="rolegrid" id="roleGrid"><button class="role active" data-role="Coach">Coach</button><button class="role" data-role="Player">Player</button><button class="role" data-role="Parent">Parent</button></div><div class="formgrid" style="margin-top:12px"><label>Full Name<input id="loginName" placeholder="Your name" autocomplete="name"></label><label>Email<input id="loginEmail" placeholder="you@example.com" type="email" autocomplete="email"></label><label style="grid-column:1/-1">Password<input id="loginPassword" placeholder="At least 8 characters" type="password" autocomplete="current-password"></label></div><div id="authBackendStatus" class="notice" style="margin-top:12px">Secure Basketball Brilliance account system connected.</div><div class="toolbar" style="margin-top:14px"><button class="btn primary" onclick="continueLogin()">Sign In</button><button class="btn soft" id="createAccountBtn" onclick="createAccount()">Create Account</button><button class="btn ghost" onclick="resendConfirmationEmail()">Resend Confirmation</button><button class="btn ghost" onclick="resetAccountPassword()">Forgot Password</button></div><button class="btn ghost" style="width:100%;margin-top:10px" onclick="continuePreview()">Continue in Preview Mode</button></div>
+  <div id="signupCelebration" class="signup-celebration" aria-live="polite">
+    <div class="celebrate-ball"></div>
+    <div class="welcome-line">Welcome to Basketball Brilliance</div>
+    <h3>You made a great choice.</h3>
+    <p>Your account is created. You’re one step away from activating your Basketball Brilliance experience.</p>
+    <div class="signup-confirm-box">
+      <b>Confirm your email</b>
+      <span id="signupConfirmCopy">We sent a confirmation link to your email. Open that message, tap Confirm Email, then come back here.</span>
+    </div>
+    <div class="celebrate-actions">
+      <button class="shimmer-btn attention" onclick="returnToSignIn()">I Confirmed — Sign In</button>
+      <button class="btn ghost" onclick="resendConfirmationFromCelebration()">Resend Confirmation</button>
+      <button class="btn ghost" onclick="continuePreview()">Continue Preview</button>
+    </div>
+  </div></div>
 <div class="modal" id="playerModal" onclick="if(event.target===this)closeModal('playerModal')"><div class="modalbox"><button class="close" onclick="closeModal('playerModal')">×</button><span class="eyebrow">Player profile</span><h3 id="playerModalTitle">Add Player</h3><input type="hidden" id="playerId"><div class="formgrid"><label>Player Name<input id="playerName"></label><label>Jersey #<input id="jersey"></label><label>Position<input id="position"></label><label>Grade<input id="grade"></label><label>Height<input id="height" placeholder="6'1\""></label><label>Parent / Guardian<input id="guardian"></label><label>Guardian Email<input id="guardianEmail" type="email"></label><label>Phone<input id="guardianPhone" type="tel"></label></div><div class="voicebar"><button onclick="startVoice()">🎙 Speak Info</button><span id="voiceStatus">Try: “Marcus Hill, number 12, point guard, grade 10, six foot one.”</span></div><div class="toolbar"><button class="btn primary" onclick="savePlayer()">Save Player Profile</button></div></div></div>
 <div class="modal" id="inviteModal" onclick="if(event.target===this)closeModal('inviteModal')"><div class="modalbox"><button class="close" onclick="closeModal('inviteModal')">×</button><span class="eyebrow">Family invite</span><h3>Create a linked team invite</h3><div class="formgrid"><label>Player Name<input id="invitePlayer"></label><label>Family Email<input id="inviteEmail" type="email"></label></div><div class="toolbar"><button class="btn primary" onclick="generateInvite()">Generate Invite</button></div><div id="inviteResult" style="display:none"><label>Invite Code<input id="inviteCode" readonly></label><label style="margin-top:10px">Invite Link</label><div class="copybox"><input id="inviteLink" readonly><button class="btn soft tiny" onclick="copyInvite()">Copy</button></div><p class="notice">On the hosted site this same link opens the family completion path.</p></div></div></div>
 <div class="modal" id="familyModal" onclick="if(event.target===this)closeModal('familyModal')"><div class="modalbox"><button class="close" onclick="closeModal('familyModal')">×</button><span class="eyebrow">Team-linked family access</span><h3>Complete Player Information</h3><p class="section-copy" style="font-size:14px;margin-bottom:12px">No separate subscription is required to complete information requested by the coach.</p><div class="formgrid"><label>Invite Code<input id="famCode"></label><label>Player Name<input id="famPlayer"></label><label>Jersey #<input id="famJersey"></label><label>Position<input id="famPosition"></label><label>Grade<input id="famGrade"></label><label>Height<input id="famHeight"></label><label>Parent / Guardian<input id="famGuardian"></label><label>Guardian Email<input id="famEmail" type="email"></label><label>Phone<input id="famPhone" type="tel"></label></div><div class="toolbar"><button class="btn primary" onclick="submitFamilyProfile()">Send to Coach Roster</button></div><div class="divider"></div><div class="card"><h4>Optional family-owned membership</h4><p>Basketball Passport • Opportunity Finder • Recruiting Roadmap • Parent Resource Vault</p></div></div></div>
@@ -880,6 +932,8 @@ function setAuthStatus(message,type='info'){
   st.textContent=message;st.className='notice'+(type==='good'?' statusgood':type==='bad'?' statusbad':'');
 }
 function openLogin(){
+  const af=document.getElementById('authFormView'),sc=document.getElementById('signupCelebration');
+  if(af)af.style.display='';if(sc)sc.classList.remove('show');
   selectedRole=db.session.role||'Coach';
   document.querySelectorAll('#roleGrid .role').forEach(b=>b.classList.toggle('active',b.dataset.role===selectedRole));
   loginEmail.value=db.session.email||'';
@@ -915,6 +969,50 @@ function continuePreview(){
   const p=selectedRole.toLowerCase();enterPortal(p);if(p==='coach'){location.hash='app';switchView('dashboard')}
   toast(selectedRole+' preview opened.');
 }
+
+function launchSignupConfetti(){
+  const box=document.getElementById('signupCelebration');if(!box)return;
+  box.querySelectorAll('.confetti-piece').forEach(n=>n.remove());
+  const colors=['#f15a29','#ffffff','#ff8a57','#f4f4f4'];
+  for(let i=0;i<26;i++){
+    const p=document.createElement('i');p.className='confetti-piece';
+    const a=(Math.PI*2*i/26)+(Math.random()*.22);
+    const d=95+Math.random()*125;
+    p.style.background=colors[i%colors.length];
+    p.style.setProperty('--x',(Math.cos(a)*d)+'px');
+    p.style.setProperty('--y',(Math.sin(a)*d-30)+'px');
+    p.style.setProperty('--r',((Math.random()*720)-360)+'deg');
+    p.style.left=(48+Math.random()*4)+'%';p.style.top=(28+Math.random()*5)+'%';
+    box.appendChild(p);
+  }
+  box.classList.remove('burst');void box.offsetWidth;box.classList.add('burst');
+}
+function showSignupCelebration(email){
+  const form=document.getElementById('authFormView'),celebrate=document.getElementById('signupCelebration');
+  if(form)form.style.display='none';
+  if(celebrate){celebrate.classList.add('show');}
+  const c=document.getElementById('signupConfirmCopy');
+  if(c)c.textContent='We sent a confirmation link to '+email+'. Open that message, tap Confirm Email, then return here and sign in.';
+  launchSignupConfetti();
+}
+function returnToSignIn(){
+  const form=document.getElementById('authFormView'),celebrate=document.getElementById('signupCelebration');
+  if(celebrate)celebrate.classList.remove('show');
+  if(form)form.style.display='';
+  setAuthStatus('Email confirmed? Sign in with the email and password you created.','good');
+}
+async function resendConfirmationFromCelebration(){
+  const email=loginEmail.value.trim();
+  if(!email){returnToSignIn();setAuthStatus('Enter your email first.','bad');return}
+  try{
+    const {error}=await window.BBAuth.resendConfirmation(email);if(error)throw error;
+    const c=document.getElementById('signupConfirmCopy');if(c)c.textContent='A new confirmation email was sent to '+email+'. Check your inbox and spam folder.';
+    launchSignupConfetti();
+  }catch(e){
+    const c=document.getElementById('signupConfirmCopy');if(c)c.textContent=/security purposes|rate limit/i.test(String(e?.message||''))?'A confirmation email was already sent recently. Check your inbox or wait about one minute before trying again.':String(e?.message||'Could not resend confirmation.');
+  }
+}
+
 async function createAccount(){
   const email=loginEmail.value.trim(),password=(window.loginPassword?.value||''),fullName=(window.loginName?.value||'').trim();
   if(!window.BBAuth?.isConfigured?.()){setAuthStatus('Secure account system is not connected yet.','bad');return}
@@ -933,7 +1031,7 @@ async function createAccount(){
       await continueLogin();
     }else{
       localStorage.setItem(cooldownKey,String(Date.now()));
-      setAuthStatus('Account created. We sent a confirmation email to '+email+'. Open that email and tap Confirm, then return here and Sign In. Do not create the account again.','good');
+      showSignupCelebration(email);
       const btn=document.getElementById('createAccountBtn');if(btn){btn.textContent='Confirmation Sent';setTimeout(()=>btn.textContent='Create Account',60000)}
     }
   }catch(e){
