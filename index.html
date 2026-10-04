@@ -463,11 +463,160 @@ body[data-portal="coach"] .nav{display:block}
 }
 </style>
 
+
+<style id="portal-atmosphere-effects">
+/* Live animated arena atmosphere behind the portrait portal */
+.image-portal-stage{
+  position:relative!important;
+  display:block!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 50% 18%,rgba(241,90,41,.055),transparent 24%),
+    linear-gradient(180deg,#020202 0%,#050506 55%,#020202 100%)!important;
+}
+.portal-atmosphere{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+}
+.portal-atmosphere .arena-beam{
+  position:absolute;
+  top:-18%;
+  width:24vw;
+  min-width:190px;
+  height:145%;
+  opacity:.34;
+  filter:blur(10px);
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.13) 0%,
+    rgba(241,90,41,.16) 28%,
+    rgba(241,90,41,.07) 55%,
+    rgba(241,90,41,0) 86%
+  );
+  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%);
+  transform-origin:50% 0%;
+  mix-blend-mode:screen;
+}
+.portal-atmosphere .beam-l1{left:-5vw;animation:bbBeamLeft 11s ease-in-out infinite alternate}
+.portal-atmosphere .beam-l2{left:9vw;opacity:.19;animation:bbBeamLeft2 15s ease-in-out infinite alternate}
+.portal-atmosphere .beam-r1{right:-5vw;animation:bbBeamRight 12s ease-in-out infinite alternate}
+.portal-atmosphere .beam-r2{right:9vw;opacity:.19;animation:bbBeamRight2 16s ease-in-out infinite alternate}
+
+.portal-atmosphere .arena-smoke{
+  position:absolute;
+  width:34vw;
+  min-width:230px;
+  aspect-ratio:1;
+  border-radius:50%;
+  filter:blur(46px);
+  opacity:.22;
+  background:radial-gradient(circle,rgba(241,90,41,.18) 0,rgba(241,90,41,.07) 35%,rgba(255,255,255,.025) 50%,transparent 72%);
+}
+.portal-atmosphere .smoke-l{left:-3vw;top:24%;animation:bbSmokeL 17s ease-in-out infinite alternate}
+.portal-atmosphere .smoke-r{right:-3vw;top:20%;animation:bbSmokeR 19s ease-in-out infinite alternate}
+
+.portal-atmosphere .arena-ring{
+  position:absolute;
+  left:50%;
+  bottom:-13vw;
+  width:132vw;
+  height:38vw;
+  transform:translateX(-50%);
+  border:2px solid rgba(241,90,41,.16);
+  border-radius:50%;
+  box-shadow:
+    0 0 0 8vw rgba(241,90,41,.025),
+    0 0 0 16vw rgba(255,255,255,.008);
+  animation:bbArenaRing 8s ease-in-out infinite alternate;
+}
+.portal-atmosphere .arena-spark{
+  position:absolute;
+  width:3px;height:3px;border-radius:50%;
+  background:#ff7a43;
+  box-shadow:0 0 10px #f15a29;
+  opacity:.35;
+  animation:bbSpark 6s linear infinite;
+}
+.portal-atmosphere .sp1{left:8%;top:70%;animation-delay:-1s}
+.portal-atmosphere .sp2{left:18%;top:42%;animation-delay:-3s}
+.portal-atmosphere .sp3{right:9%;top:63%;animation-delay:-2s}
+.portal-atmosphere .sp4{right:20%;top:35%;animation-delay:-4s}
+
+.image-portal-shell,
+.portal-court-extension{
+  position:relative!important;
+  z-index:2!important;
+}
+
+@keyframes bbBeamLeft{
+  0%{transform:rotate(-15deg) translateX(-2vw)}
+  100%{transform:rotate(8deg) translateX(5vw)}
+}
+@keyframes bbBeamLeft2{
+  0%{transform:rotate(13deg) translateX(-1vw)}
+  100%{transform:rotate(-7deg) translateX(3vw)}
+}
+@keyframes bbBeamRight{
+  0%{transform:rotate(15deg) translateX(2vw)}
+  100%{transform:rotate(-8deg) translateX(-5vw)}
+}
+@keyframes bbBeamRight2{
+  0%{transform:rotate(-13deg) translateX(1vw)}
+  100%{transform:rotate(7deg) translateX(-3vw)}
+}
+@keyframes bbSmokeL{
+  0%{transform:translate(-2vw,2vh) scale(.92)}
+  100%{transform:translate(5vw,-3vh) scale(1.15)}
+}
+@keyframes bbSmokeR{
+  0%{transform:translate(2vw,1vh) scale(1)}
+  100%{transform:translate(-5vw,-2vh) scale(1.18)}
+}
+@keyframes bbArenaRing{
+  0%{opacity:.28;transform:translateX(-50%) scale(.98)}
+  100%{opacity:.55;transform:translateX(-50%) scale(1.04)}
+}
+@keyframes bbSpark{
+  0%{transform:translateY(30px);opacity:0}
+  25%{opacity:.45}
+  100%{transform:translateY(-90px);opacity:0}
+}
+
+/* Keep effects energetic on desktop but unobtrusive on phones */
+@media(max-width:720px){
+  .portal-atmosphere .arena-beam{opacity:.11;filter:blur(12px)}
+  .portal-atmosphere .arena-smoke{opacity:.08}
+  .portal-atmosphere .arena-ring{opacity:.18}
+  .portal-atmosphere .arena-spark{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .portal-atmosphere *{animation:none!important}
+}
+</style>
+
 </head>
 <body id="top" data-portal="entry">
 
 
 <section class="image-portal-stage" id="entryStage">
+
+  <div class="portal-atmosphere" aria-hidden="true">
+    <div class="arena-beam beam-l1"></div>
+    <div class="arena-beam beam-l2"></div>
+    <div class="arena-beam beam-r1"></div>
+    <div class="arena-beam beam-r2"></div>
+    <div class="arena-smoke smoke-l"></div>
+    <div class="arena-smoke smoke-r"></div>
+    <div class="arena-ring"></div>
+    <span class="arena-spark sp1"></span>
+    <span class="arena-spark sp2"></span>
+    <span class="arena-spark sp3"></span>
+    <span class="arena-spark sp4"></span>
+  </div>
+
   <div class="image-portal-shell">
     <div class="portal-artboard" aria-label="Basketball Brilliance Coach, Player and Parent portals">
       <img class="portal-arena-image" src="assets/basketball-brilliance-portal-portrait.png" alt="Basketball Brilliance Coach, Player and Parent portals">
