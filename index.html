@@ -830,7 +830,7 @@ body[data-portal="entry"] .hs-parent{top:51.55%!important}
   </div>
 </footer>
 
-<div class="modal" id="loginModal" onclick="if(event.target===this)closeModal('loginModal')"><div class="modalbox"><button class="close" onclick="closeModal('loginModal')">×</button><span class="eyebrow">Member access</span><h3>Choose your path</h3><p class="section-copy" style="font-size:14px;margin-bottom:10px">Choose the Basketball Brilliance experience that matches your role.</p><div class="rolegrid" id="roleGrid"><button class="role active" data-role="Coach">Coach</button><button class="role" data-role="Parent">Parent</button><button class="role" data-role="Player">Player</button></div><label>Email<input id="loginEmail" placeholder="you@example.com" type="email"></label><button class="btn primary" style="width:100%;margin-top:14px" onclick="continueLogin()">Continue</button></div></div>
+<div class="modal" id="loginModal" onclick="if(event.target===this)closeModal('loginModal')"><div class="modalbox"><button class="close" onclick="closeModal('loginModal')">×</button><span class="eyebrow">Member access</span><h3>Basketball Brilliance Account</h3><p class="section-copy" style="font-size:14px;margin-bottom:10px">Choose your role, then sign in or create your account.</p><div class="rolegrid" id="roleGrid"><button class="role active" data-role="Coach">Coach</button><button class="role" data-role="Player">Player</button><button class="role" data-role="Parent">Parent</button></div><div class="formgrid" style="margin-top:12px"><label>Full Name<input id="loginName" placeholder="Your name" autocomplete="name"></label><label>Email<input id="loginEmail" placeholder="you@example.com" type="email" autocomplete="email"></label><label style="grid-column:1/-1">Password<input id="loginPassword" placeholder="At least 8 characters" type="password" autocomplete="current-password"></label></div><div id="authBackendStatus" class="notice" style="margin-top:12px">Preview access is available while the dedicated membership database is being connected.</div><div class="toolbar" style="margin-top:14px"><button class="btn primary" onclick="continueLogin()">Sign In</button><button class="btn soft" onclick="createAccount()">Create Account</button><button class="btn ghost" onclick="resetAccountPassword()">Forgot Password</button></div><button class="btn ghost" style="width:100%;margin-top:10px" onclick="continuePreview()">Continue in Preview Mode</button></div></div>
 <div class="modal" id="playerModal" onclick="if(event.target===this)closeModal('playerModal')"><div class="modalbox"><button class="close" onclick="closeModal('playerModal')">×</button><span class="eyebrow">Player profile</span><h3 id="playerModalTitle">Add Player</h3><input type="hidden" id="playerId"><div class="formgrid"><label>Player Name<input id="playerName"></label><label>Jersey #<input id="jersey"></label><label>Position<input id="position"></label><label>Grade<input id="grade"></label><label>Height<input id="height" placeholder="6'1\""></label><label>Parent / Guardian<input id="guardian"></label><label>Guardian Email<input id="guardianEmail" type="email"></label><label>Phone<input id="guardianPhone" type="tel"></label></div><div class="voicebar"><button onclick="startVoice()">🎙 Speak Info</button><span id="voiceStatus">Try: “Marcus Hill, number 12, point guard, grade 10, six foot one.”</span></div><div class="toolbar"><button class="btn primary" onclick="savePlayer()">Save Player Profile</button></div></div></div>
 <div class="modal" id="inviteModal" onclick="if(event.target===this)closeModal('inviteModal')"><div class="modalbox"><button class="close" onclick="closeModal('inviteModal')">×</button><span class="eyebrow">Family invite</span><h3>Create a linked team invite</h3><div class="formgrid"><label>Player Name<input id="invitePlayer"></label><label>Family Email<input id="inviteEmail" type="email"></label></div><div class="toolbar"><button class="btn primary" onclick="generateInvite()">Generate Invite</button></div><div id="inviteResult" style="display:none"><label>Invite Code<input id="inviteCode" readonly></label><label style="margin-top:10px">Invite Link</label><div class="copybox"><input id="inviteLink" readonly><button class="btn soft tiny" onclick="copyInvite()">Copy</button></div><p class="notice">On the hosted site this same link opens the family completion path.</p></div></div></div>
 <div class="modal" id="familyModal" onclick="if(event.target===this)closeModal('familyModal')"><div class="modalbox"><button class="close" onclick="closeModal('familyModal')">×</button><span class="eyebrow">Team-linked family access</span><h3>Complete Player Information</h3><p class="section-copy" style="font-size:14px;margin-bottom:12px">No separate subscription is required to complete information requested by the coach.</p><div class="formgrid"><label>Invite Code<input id="famCode"></label><label>Player Name<input id="famPlayer"></label><label>Jersey #<input id="famJersey"></label><label>Position<input id="famPosition"></label><label>Grade<input id="famGrade"></label><label>Height<input id="famHeight"></label><label>Parent / Guardian<input id="famGuardian"></label><label>Guardian Email<input id="famEmail" type="email"></label><label>Phone<input id="famPhone" type="tel"></label></div><div class="toolbar"><button class="btn primary" onclick="submitFamilyProfile()">Send to Coach Roster</button></div><div class="divider"></div><div class="card"><h4>Optional family-owned membership</h4><p>Basketball Passport • Opportunity Finder • Recruiting Roadmap • Parent Resource Vault</p></div></div></div>
@@ -875,9 +875,43 @@ function closeMobileMenu(){const d=document.getElementById('mobileDrawer');if(d)
 function closeMembershipOffer(){const m=document.getElementById('membershipModal');if(m)m.classList.remove('open')}
 function showMembershipOffer(){const p=document.body.dataset.portal;if(p&&p!=='entry')openPortalOffer(p)}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMobileMenu();['membershipModal','loginModal','playerModal','inviteModal','familyModal','legalModal'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('open')})}});
-function openLogin(){selectedRole=db.session.role||'Coach';document.querySelectorAll('#roleGrid .role').forEach(b=>b.classList.toggle('active',b.dataset.role===selectedRole));loginEmail.value=db.session.email||'';openModal('loginModal')}
+function openLogin(){selectedRole=db.session.role||'Coach';document.querySelectorAll('#roleGrid .role').forEach(b=>b.classList.toggle('active',b.dataset.role===selectedRole));loginEmail.value=db.session.email||'';if(window.loginName)loginName.value='';if(window.loginPassword)loginPassword.value='';const st=document.getElementById('authBackendStatus');if(st)st.textContent=window.BBAuth?.isConfigured?.()?'Secure account system connected.':'Preview access is available while the dedicated membership database is being connected.';openModal('loginModal')}
 document.querySelectorAll('#roleGrid .role').forEach(b=>b.onclick=()=>{selectedRole=b.dataset.role;document.querySelectorAll('#roleGrid .role').forEach(x=>x.classList.toggle('active',x===b))});
-function continueLogin(){db.session={role:selectedRole,email:loginEmail.value.trim()};saveDB();closeModal('loginModal');const p=selectedRole.toLowerCase();enterPortal(p);if(p==='coach'){location.hash='app';switchView('dashboard')}toast(selectedRole+' experience opened.')}
+async function continueLogin(){
+  const email=loginEmail.value.trim(), password=(window.loginPassword?.value||'');
+  if(window.BBAuth?.isConfigured?.()){
+    if(!email||!password){toast('Enter your email and password.');return}
+    try{
+      const {data,error}=await window.BBAuth.signIn({email,password}); if(error)throw error;
+      const profile=await window.BBAuth.getProfile();
+      selectedRole=(profile?.primary_role||selectedRole).replace(/^./,c=>c.toUpperCase());
+      db.session={role:selectedRole,email};saveDB();closeModal('loginModal');
+      const p=selectedRole.toLowerCase();enterPortal(p);if(p==='coach'){location.hash='app';switchView('dashboard')}
+      toast('Welcome back.');
+    }catch(e){toast(e.message||'Sign in failed.')}
+    return;
+  }
+  continuePreview();
+}
+function continuePreview(){
+  db.session={role:selectedRole,email:loginEmail.value.trim()};saveDB();closeModal('loginModal');
+  const p=selectedRole.toLowerCase();enterPortal(p);if(p==='coach'){location.hash='app';switchView('dashboard')}
+  toast(selectedRole+' preview opened.');
+}
+async function createAccount(){
+  const email=loginEmail.value.trim(),password=(window.loginPassword?.value||''),fullName=(window.loginName?.value||'').trim();
+  if(!window.BBAuth?.isConfigured?.()){toast('The secure account database is prepared but not activated yet.');return}
+  if(!fullName||!email||password.length<8){toast('Enter your name, email, and a password of at least 8 characters.');return}
+  try{
+    const {data,error}=await window.BBAuth.signUp({email,password,role:selectedRole,fullName});if(error)throw error;
+    toast(data?.session?'Account created.':'Account created. Check your email to confirm it.');
+  }catch(e){toast(e.message||'Account creation failed.')}
+}
+async function resetAccountPassword(){
+  const email=loginEmail.value.trim();if(!email){toast('Enter your email first.');return}
+  if(!window.BBAuth?.isConfigured?.()){toast('Password reset activates with the secure account database.');return}
+  try{const {error}=await window.BBAuth.resetPassword(email);if(error)throw error;toast('Password reset email sent.')}catch(e){toast(e.message||'Could not send reset email.')}
+}
 function saveTeam(){db.team={name:teamName.value.trim(),season:seasonName.value.trim(),level:teamLevel.value,coach:headCoach.value.trim(),org:orgName.value.trim(),gym:homeGym.value.trim()};saveDB('Team setup saved.');teamNotice.textContent='✓ Team setup saved to your Basketball Brilliance workspace.';teamNotice.className='notice statusgood'}
 function hydrateTeam(){teamName.value=db.team.name||'';seasonName.value=db.team.season||'';teamLevel.value=db.team.level||'Varsity';headCoach.value=db.team.coach||'';orgName.value=db.team.org||'';homeGym.value=db.team.gym||''}
 function openPlayerModal(id){playerId.value=id||'';const p=db.players.find(x=>x.id===id)||{};playerModalTitle.textContent=id?'Edit Player':'Add Player';playerName.value=p.name||'';jersey.value=p.jersey||'';position.value=p.position||'';grade.value=p.grade||'';height.value=p.height||'';guardian.value=p.guardian||'';guardianEmail.value=p.guardianEmail||'';guardianPhone.value=p.guardianPhone||'';voiceStatus.textContent='Try: “Marcus Hill, number 12, point guard, grade 10, six foot one.”';openModal('playerModal')}
@@ -990,4 +1024,10 @@ window.addEventListener('load',()=>{const q=new URLSearchParams(location.search)
 <div id="coachTransition" class="portal-transition coach-transition"><div class="half left"></div><div class="half right"></div></div>
 <div id="playerTransition" class="portal-transition player-transition"><div class="tball"></div><div class="ripple"></div></div>
 <div id="parentTransition" class="portal-transition parent-transition"><div class="phalf top"></div><div class="phalf bottom"></div><div class="glow"></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/bb-config.js"></script>
+<script src="assets/js/bb-auth.js"></script>
+<script src="assets/js/bb-data.js"></script>
+
 </body></html>
