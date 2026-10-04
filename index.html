@@ -132,14 +132,65 @@ linear-gradient(transparent 84%,rgba(241,90,41,.12) 84.4%,transparent 84.8%) 0 0
 
 .portal-transition{position:fixed;inset:0;z-index:999;display:none;pointer-events:none;overflow:hidden}
 .portal-transition.active{display:block}
-.coach-transition{background:#050505;perspective:1400px}
-.coach-transition .half{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(90deg,#171717,#050505);box-shadow:inset 0 0 60px #000}
-.coach-transition .left{left:0;transform-origin:left;border-right:1px solid rgba(241,90,41,.25)}
-.coach-transition .right{right:0;transform-origin:right;border-left:1px solid rgba(241,90,41,.25)}
-.coach-transition.active .left{animation:bbCoachLeft 1.35s ease-in-out forwards}
-.coach-transition.active .right{animation:bbCoachRight 1.35s ease-in-out forwards}
-@keyframes bbCoachLeft{0%,22%{transform:rotateY(0)}100%{transform:rotateY(-104deg)}}
-@keyframes bbCoachRight{0%,22%{transform:rotateY(0)}100%{transform:rotateY(104deg)}}
+.coach-transition{
+  background:
+    radial-gradient(ellipse at 50% 50%,rgba(241,90,41,.08) 0%,rgba(0,0,0,.18) 33%,#020202 78%);
+  perspective:900px;
+}
+.coach-transition .tunnel{
+  position:absolute;inset:-8%;
+  transform-style:preserve-3d;
+  overflow:hidden;
+}
+.coach-transition .tunnel-frame{
+  position:absolute;
+  left:50%;top:50%;
+  width:82vw;height:72vh;
+  border:3px solid rgba(241,90,41,.34);
+  box-shadow:0 0 24px rgba(241,90,41,.16),inset 0 0 22px rgba(241,90,41,.08);
+  transform:translate(-50%,-50%) translateZ(var(--z)) scale(var(--s));
+  opacity:var(--o);
+}
+.coach-transition .tunnel-floor{
+  position:absolute;left:0;right:0;bottom:-8%;height:54%;
+  background:
+    linear-gradient(90deg,transparent 49.6%,rgba(241,90,41,.7) 50%,transparent 50.4%),
+    repeating-linear-gradient(90deg,transparent 0 9.5%,rgba(241,90,41,.22) 9.8% 10.1%,transparent 10.4% 20%),
+    repeating-linear-gradient(0deg,rgba(241,90,41,.18) 0 2px,transparent 2px 58px);
+  transform:perspective(540px) rotateX(66deg) translateY(19%);
+  transform-origin:50% 100%;
+  opacity:.62;
+  filter:drop-shadow(0 0 8px rgba(241,90,41,.16));
+}
+.coach-transition .tunnel-light{
+  position:absolute;top:4%;bottom:4%;width:4px;
+  background:linear-gradient(180deg,transparent,#f15a29 18%,#fff 50%,#f15a29 82%,transparent);
+  box-shadow:0 0 18px rgba(241,90,41,.5);
+  opacity:.7;
+}
+.coach-transition .tunnel-light.l1{left:15%}.coach-transition .tunnel-light.l2{left:31%}
+.coach-transition .tunnel-light.r1{right:15%}.coach-transition .tunnel-light.r2{right:31%}
+.coach-transition .tunnel-vignette{position:absolute;inset:0;box-shadow:inset 0 0 160px 62px #000}
+.coach-transition.active .tunnel{animation:bbArenaTunnelPush 2.55s cubic-bezier(.18,.72,.22,1) forwards}
+.coach-transition.active .tunnel-floor{animation:bbArenaFloor 2.55s cubic-bezier(.18,.72,.22,1) forwards}
+.coach-transition.active .tunnel-frame{animation:bbTunnelPulse 2.55s ease-in-out forwards}
+@keyframes bbArenaTunnelPush{
+  0%{transform:scale(.72);filter:blur(2px);opacity:.15}
+  18%{opacity:1}
+  72%{transform:scale(1.34);filter:blur(0);opacity:1}
+  100%{transform:scale(2.08);filter:blur(6px);opacity:0}
+}
+@keyframes bbArenaFloor{
+  0%{transform:perspective(540px) rotateX(66deg) translateY(19%) scale(.9);opacity:.3}
+  72%{transform:perspective(540px) rotateX(66deg) translateY(15%) scale(1.32);opacity:.72}
+  100%{transform:perspective(540px) rotateX(66deg) translateY(9%) scale(1.9);opacity:0}
+}
+@keyframes bbTunnelPulse{
+  0%{filter:brightness(.6)}
+  36%{filter:brightness(1.15)}
+  72%{filter:brightness(1.35)}
+  100%{filter:brightness(1.8)}
+}
 .player-transition{background:#050505}
 .player-transition .tball{position:absolute;width:78px;height:78px;border:4px solid #f15a29;border-radius:50%;left:6%;top:-90px;box-shadow:0 0 25px rgba(241,90,41,.28)}
 .player-transition .tball:before,.player-transition .tball:after{content:"";position:absolute;inset:17px -2px;border-top:3px solid #f15a29;border-radius:50%;transform:rotate(27deg)}
@@ -1145,7 +1196,7 @@ function bbPortalClickSound(){
 }
 function transitionToPortal(p){
   bbPortalClickSound();
-  const map={coach:['coachTransition',620,1400],player:['playerTransition',700,1500],parent:['parentTransition',430,1350]};
+  const map={coach:['coachTransition',1550,2650],player:['playerTransition',700,1500],parent:['parentTransition',430,1350]};
   const [id,swap,done]=map[p];const el=document.getElementById(id);if(!el){enterPortal(p);return}
   el.classList.add('active');setTimeout(()=>enterPortal(p),swap);setTimeout(()=>el.classList.remove('active'),done);
 }
@@ -1188,7 +1239,20 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.se
 window.addEventListener('load',()=>{const q=new URLSearchParams(location.search);if(q.get('invite'))enterPortal('parent')});
 </script><audio id="bbMusic" src="assets/dmv-ballin.mp3" preload="auto" loop></audio>
 
-<div id="coachTransition" class="portal-transition coach-transition"><div class="half left"></div><div class="half right"></div></div>
+<div id="coachTransition" class="portal-transition coach-transition">
+  <div class="tunnel">
+    <div class="tunnel-frame" style="--z:-520px;--s:.34;--o:.22"></div>
+    <div class="tunnel-frame" style="--z:-430px;--s:.43;--o:.28"></div>
+    <div class="tunnel-frame" style="--z:-340px;--s:.53;--o:.34"></div>
+    <div class="tunnel-frame" style="--z:-250px;--s:.64;--o:.42"></div>
+    <div class="tunnel-frame" style="--z:-160px;--s:.76;--o:.54"></div>
+    <div class="tunnel-frame" style="--z:-70px;--s:.90;--o:.72"></div>
+    <div class="tunnel-floor"></div>
+    <div class="tunnel-light l1"></div><div class="tunnel-light l2"></div>
+    <div class="tunnel-light r1"></div><div class="tunnel-light r2"></div>
+    <div class="tunnel-vignette"></div>
+  </div>
+</div>
 <div id="playerTransition" class="portal-transition player-transition"><div class="tball"></div><div class="ripple"></div></div>
 <div id="parentTransition" class="portal-transition parent-transition"><div class="phalf top"></div><div class="phalf bottom"></div><div class="glow"></div></div>
 
