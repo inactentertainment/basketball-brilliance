@@ -111,6 +111,13 @@
     if(error) throw error;
     return true;
   }
+  async function importTeamPlayers(teamId,players){
+    if(!teamId) throw new Error("Save Team Setup before importing a roster.");
+    if(!Array.isArray(players)||!players.length) throw new Error("No players to import.");
+    const {data,error}=await s().rpc("import_team_players",{p_team_id:teamId,p_players:players});
+    if(error) throw error;
+    return data;
+  }
   async function createInvite({teamId,playerId,email,role,inviteeName,staffTitle}){
     const u=await me();
     const row={
@@ -187,7 +194,7 @@
   }
   window.BBData={
     getProfile,updateProfile,createOrganization,saveTeam,listMyTeams,getTeam,
-    createPlayer,updatePlayer,listTeamPlayers,removePlayerFromTeam,
+    createPlayer,updatePlayer,listTeamPlayers,removePlayerFromTeam,importTeamPlayers,
     createInvite,listInvites,revokeInvite,listStaff,acceptInvite,myMemberships,dashboard
   };
 })();
