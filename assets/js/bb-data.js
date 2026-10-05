@@ -305,6 +305,13 @@
     const {error}=await s().from("coach_plays").delete().eq("id",id);
     if(error) throw error; return true;
   }
+
+  async function getMyMembership(role){
+    const u=await me();
+    const {data,error}=await s().from("memberships").select("*").eq("user_id",u.id).eq("role",role).maybeSingle();
+    if(error) throw error;
+    return data||null;
+  }
   async function dashboard(teamId){
     const [players,invites,staff,practices,games]=await Promise.all([
       listTeamPlayers(teamId),
@@ -337,6 +344,6 @@
     listScoutingReports,saveScoutingReport,deleteScoutingReport,
     listSeasonNotes,saveSeasonNote,deleteSeasonNote,
     saveCoachIQHistory,listCoachIQHistory,
-    listCoachPlays,saveCoachPlay,deleteCoachPlay,dashboard
+    listCoachPlays,saveCoachPlay,deleteCoachPlay,getMyMembership,dashboard
   };
 })();
