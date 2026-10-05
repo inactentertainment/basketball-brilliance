@@ -169,6 +169,112 @@
     if(error) throw error;
     return data||[];
   }
+
+  async function listPractices(teamId){
+    const {data,error}=await s().from("practices").select("*").eq("team_id",teamId).order("practice_date",{ascending:false}).order("created_at",{ascending:false});
+    if(error) throw error; return data||[];
+  }
+  async function savePractice(teamId,payload){
+    const u=await me();
+    const row={
+      team_id:teamId,created_by:u.id,title:payload.title||"Practice",
+      practice_date:payload.practice_date||null,objectives:payload.objectives||null,
+      plan:payload.plan||{},notes:payload.notes||null
+    };
+    if(payload.id){
+      const {data,error}=await s().from("practices").update(row).eq("id",payload.id).select().single();
+      if(error) throw error; return data;
+    }
+    const {data,error}=await s().from("practices").insert(row).select().single();
+    if(error) throw error; return data;
+  }
+  async function deletePractice(id){
+    const {error}=await s().from("practices").delete().eq("id",id); if(error) throw error; return true;
+  }
+
+  async function listGames(teamId){
+    const {data,error}=await s().from("games").select("*").eq("team_id",teamId).order("game_date",{ascending:false}).order("created_at",{ascending:false});
+    if(error) throw error; return data||[];
+  }
+  async function saveGame(teamId,payload){
+    const u=await me();
+    const result=(Number(payload.team_score)>Number(payload.opponent_score))?"W":(Number(payload.team_score)<Number(payload.opponent_score))?"L":"T";
+    const row={
+      team_id:teamId,created_by:u.id,game_date:payload.game_date||null,
+      opponent:payload.opponent,location:payload.location||null,
+      team_score:Number(payload.team_score||0),opponent_score:Number(payload.opponent_score||0),
+      result,notes:payload.notes||null
+    };
+    if(payload.id){
+      const {data,error}=await s().from("games").update(row).eq("id",payload.id).select().single();
+      if(error) throw error; return data;
+    }
+    const {data,error}=await s().from("games").insert(row).select().single();
+    if(error) throw error; return data;
+  }
+  async function deleteGame(id){
+    const {error}=await s().from("games").delete().eq("id",id); if(error) throw error; return true;
+  }
+
+  async function listTeamStats(teamId){
+    const {data,error}=await s()
+      .from("player_game_stats")
+      .select("*,games!inner(id,team_id,opponent,game_date),players(id,first_name,last_name)")
+      .eq("games.team_id",teamId);
+    if(error) throw error; return data||[];
+  }
+  async function saveStat(payload){
+    const row={
+      game_id:payload.game_id,player_id:payload.player_id,
+      minutes:Number(payload.minutes||0),points:Number(payload.points||0),
+      rebounds:Number(payload.rebounds||0),assists:Number(payload.assists||0),
+      steals:Number(payload.steals||0),blocks:Number(payload.blocks||0),
+      turnovers:Number(payload.turnovers||0),extras:payload.extras||{}
+    };
+    const {data,error}=await s().from("player_game_stats")
+      .upsert(row,{onConflict:"game_id,player_id"}).select().single();
+    if(error) throw error; return data;
+  }
+  async function deleteStat(id){
+    const {error}=await s().from("player_game_stats").delete().eq("id",id); if(error) throw error; return true;
+  }
+
+  async function listScoutingReports(teamId){
+    const {data,error}=await s().from("scouting_reports").select("*").eq("team_id",teamId).order("created_at",{ascending:false});
+    if(error) throw error; return data||[];
+  }
+  async function saveScoutingReport(teamId,payload){
+    const u=await me();
+    const row={team_id:teamId,created_by:u.id,opponent:payload.opponent,report:payload.report||{},notes:payload.notes||null};
+    if(payload.id){
+      const {data,error}=await s().from("scouting_reports").update(row).eq("id",payload.id).select().single();
+      if(error) throw error; return data;
+    }
+    const {data,error}=await s().from("scouting_reports").insert(row).select().single();
+    if(error) throw error; return data;
+  }
+  async function deleteScoutingReport(id){
+    const {error}=await s().from("scouting_reports").delete().eq("id",id); if(error) throw error; return true;
+  }
+
+  async function listSeasonNotes(teamId){
+    const {data,error}=await s().from("season_notes").select("*").eq("team_id",teamId).order("note_date",{ascending:false}).order("created_at",{ascending:false});
+    if(error) throw error; return data||[];
+  }
+  async function saveSeasonNote(teamId,payload){
+    const u=await me();
+    const row={team_id:teamId,created_by:u.id,note_date:payload.note_date||new Date().toISOString().slice(0,10),category:payload.category||null,title:payload.title||null,body:payload.body||""};
+    if(payload.id){
+      const {data,error}=await s().from("season_notes").update(row).eq("id",payload.id).select().single();
+      if(error) throw error; return data;
+    }
+    const {data,error}=await s().from("season_notes").insert(row).select().single();
+    if(error) throw error; return data;
+  }
+  async function deleteSeasonNote(id){
+    const {error}=await s().from("season_notes").delete().eq("id",id); if(error) throw error; return true;
+  }
+
   async function dashboard(teamId){
     const [players,invites,staff,practices,games]=await Promise.all([
       listTeamPlayers(teamId),
@@ -195,6 +301,10 @@
   window.BBData={
     getProfile,updateProfile,createOrganization,saveTeam,listMyTeams,getTeam,
     createPlayer,updatePlayer,listTeamPlayers,removePlayerFromTeam,importTeamPlayers,
-    createInvite,listInvites,revokeInvite,listStaff,acceptInvite,myMemberships,dashboard
+    createInvite,listInvites,revokeInvite,listStaff,acceptInvite,myMemberships,
+    listPractices,savePractice,deletePractice,
+    listGames,saveGame,deleteGame,listTeamStats,saveStat,deleteStat,
+    listScoutingReports,saveScoutingReport,deleteScoutingReport,
+    listSeasonNotes,saveSeasonNote,deleteSeasonNote,dashboard
   };
 })();
