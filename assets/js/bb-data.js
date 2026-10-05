@@ -312,6 +312,26 @@
     if(error) throw error;
     return data||null;
   }
+
+  async function listPlayerGoals(){ const u=await me(); const {data,error}=await s().from("player_goals").select("*").eq("user_id",u.id).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function savePlayerGoal(payload){ const u=await me(); const row={user_id:u.id,title:payload.title,target_date:payload.target_date||null,status:payload.status||"active",notes:payload.notes||null,updated_at:new Date().toISOString()}; const {data,error}=await s().from("player_goals").insert(row).select().single(); if(error) throw error; return data; }
+  async function deletePlayerGoal(id){ const {error}=await s().from("player_goals").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listPlayerWorkouts(){ const u=await me(); const {data,error}=await s().from("player_workouts").select("*").eq("user_id",u.id).order("workout_date",{ascending:false}).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function savePlayerWorkout(payload){ const u=await me(); const row={user_id:u.id,workout_date:payload.workout_date||new Date().toISOString().slice(0,10),focus:payload.focus,minutes:Number(payload.minutes||0),notes:payload.notes||null}; const {data,error}=await s().from("player_workouts").insert(row).select().single(); if(error) throw error; return data; }
+  async function deletePlayerWorkout(id){ const {error}=await s().from("player_workouts").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listPlayerHighlights(){ const u=await me(); const {data,error}=await s().from("player_highlights").select("*").eq("user_id",u.id).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function savePlayerHighlight(payload){ const u=await me(); const row={user_id:u.id,title:payload.title,url:payload.url||null,game_date:payload.game_date||null,notes:payload.notes||null}; const {data,error}=await s().from("player_highlights").insert(row).select().single(); if(error) throw error; return data; }
+  async function deletePlayerHighlight(id){ const {error}=await s().from("player_highlights").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listPlayerPassport(){ const u=await me(); const {data,error}=await s().from("player_passport_entries").select("*").eq("user_id",u.id).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function savePlayerPassport(payload){ const u=await me(); const row={user_id:u.id,season:payload.season||null,team:payload.team,coach:payload.coach||null,position:payload.position||null,level:payload.level||null,achievements:payload.achievements||null}; const {data,error}=await s().from("player_passport_entries").insert(row).select().single(); if(error) throw error; return data; }
+  async function deletePlayerPassport(id){ const {error}=await s().from("player_passport_entries").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listPlayerOpportunities(){ const u=await me(); const {data,error}=await s().from("player_opportunities").select("*").eq("user_id",u.id).order("event_date",{ascending:true}); if(error) throw error; return data||[]; }
+  async function savePlayerOpportunity(payload){ const u=await me(); const row={user_id:u.id,title:payload.title,opportunity_type:payload.opportunity_type||null,event_date:payload.event_date||null,url:payload.url||null,status:payload.status||"interested",notes:payload.notes||null}; const {data,error}=await s().from("player_opportunities").insert(row).select().single(); if(error) throw error; return data; }
+  async function deletePlayerOpportunity(id){ const {error}=await s().from("player_opportunities").delete().eq("id",id); if(error) throw error; return true; }
   async function dashboard(teamId){
     const [players,invites,staff,practices,games]=await Promise.all([
       listTeamPlayers(teamId),
@@ -344,6 +364,12 @@
     listScoutingReports,saveScoutingReport,deleteScoutingReport,
     listSeasonNotes,saveSeasonNote,deleteSeasonNote,
     saveCoachIQHistory,listCoachIQHistory,
-    listCoachPlays,saveCoachPlay,deleteCoachPlay,getMyMembership,dashboard
+    listCoachPlays,saveCoachPlay,deleteCoachPlay,getMyMembership,
+    listPlayerGoals,savePlayerGoal,deletePlayerGoal,
+    listPlayerWorkouts,savePlayerWorkout,deletePlayerWorkout,
+    listPlayerHighlights,savePlayerHighlight,deletePlayerHighlight,
+    listPlayerPassport,savePlayerPassport,deletePlayerPassport,
+    listPlayerOpportunities,savePlayerOpportunity,deletePlayerOpportunity,
+    dashboard
   };
 })();
