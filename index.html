@@ -834,7 +834,7 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
   <div id="staffInviteList" class="list"></div>
 </div>
 <div class="workspace" id="view-practice"><div class="workhead"><div><h3>Practice Planner</h3><div class="sub">Plan, save and review repeatable practice sessions.</div></div></div><div class="formgrid three"><label>Date<input id="practiceDate" type="date"></label><label>Duration (minutes)<input id="practiceDuration" type="number" min="1" value="90"></label><label>Primary Focus<input id="practiceFocus" placeholder="Defense, transition, shooting…"></label></div><div class="formgrid"><label>Objectives<textarea id="practiceObjectives" placeholder="What must the team accomplish today?"></textarea></label><label>Drills / Segments<textarea id="practiceDrills" placeholder="Warm-up 10 min\nShell drill 15 min\nTransition 15 min…"></textarea></label></div><label>Coach Notes<textarea id="practiceNotes" placeholder="Teaching cues, attendance notes, adjustments…"></textarea></label><div class="toolbar"><button class="btn primary" onclick="savePractice()">Save Practice Plan</button></div><div class="divider"></div><div id="practiceList" class="list"></div></div>
-<div class="workspace" id="view-games"><div class="workhead"><div><h3>Games + Stats</h3><div class="sub">Log the game result, then add a stat line for any rostered player.</div></div></div><div class="formgrid three"><label>Date<input id="gameDate" type="date"></label><label>Opponent<input id="gameOpponent" placeholder="Opponent"></label><label>Location<select id="gameLocation"><option>Home</option><option>Away</option><option>Neutral</option></select></label><label>Our Score<input id="ourScore" type="number" min="0"></label><label>Opponent Score<input id="oppScore" type="number" min="0"></label><label>Game Notes<input id="gameNotes" placeholder="Tournament, league, notes…"></label></div><div class="toolbar"><button class="btn primary" onclick="saveGame()">Save Game</button></div><div class="divider"></div><h4>Player Stat Entry</h4><div class="formgrid three"><label>Player<select id="statPlayer"></select></label><label>Game<select id="statGame"></select></label><label>Minutes<input id="stMIN" type="number" min="0" value="0"></label><label>Points<input id="stPTS" type="number" min="0" value="0"></label><label>Rebounds<input id="stREB" type="number" min="0" value="0"></label><label>Assists<input id="stAST" type="number" min="0" value="0"></label><label>Steals<input id="stSTL" type="number" min="0" value="0"></label><label>Blocks<input id="stBLK" type="number" min="0" value="0"></label><label>Turnovers<input id="stTO" type="number" min="0" value="0"></label></div><div class="toolbar"><button class="btn soft" onclick="saveStatLine()">Save Player Stat Line</button></div><div class="divider"></div><div class="scrollx"><table class="stat-table"><thead><tr><th>Game</th><th>Player</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>STL</th><th>BLK</th><th>TO</th><th></th></tr></thead><tbody id="statRows"></tbody></table></div></div>
+<div class="workspace" id="view-games"><div class="workhead"><div><h3>Games + Stats</h3><div class="sub">Log the game result, then add a stat line for any rostered player.</div></div></div><div class="formgrid three"><label>Date<input id="gameDate" type="date"></label><label>Opponent<input id="gameOpponent" placeholder="Opponent"></label><label>Location<select id="gameLocation"><option>Home</option><option>Away</option><option>Neutral</option></select></label><label>Our Score<input id="ourScore" type="number" min="0"></label><label>Opponent Score<input id="oppScore" type="number" min="0"></label><label>Game Notes<input id="gameNotes" placeholder="Tournament, league, notes…"></label></div><div class="toolbar"><button class="btn primary" onclick="saveGame()">Save Game</button></div><div class="divider"></div><h4>Saved Games</h4><div id="gameList" class="list"></div><div class="divider"></div><h4>Player Stat Entry</h4><div class="formgrid three"><label>Player<select id="statPlayer"></select></label><label>Game<select id="statGame"></select></label><label>Minutes<input id="stMIN" type="number" min="0" value="0"></label><label>Points<input id="stPTS" type="number" min="0" value="0"></label><label>Rebounds<input id="stREB" type="number" min="0" value="0"></label><label>Assists<input id="stAST" type="number" min="0" value="0"></label><label>Steals<input id="stSTL" type="number" min="0" value="0"></label><label>Blocks<input id="stBLK" type="number" min="0" value="0"></label><label>Turnovers<input id="stTO" type="number" min="0" value="0"></label></div><div class="toolbar"><button class="btn soft" onclick="saveStatLine()">Save Player Stat Line</button></div><div class="divider"></div><div class="scrollx"><table class="stat-table"><thead><tr><th>Game</th><th>Player</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>STL</th><th>BLK</th><th>TO</th><th></th></tr></thead><tbody id="statRows"></tbody></table></div></div>
 <div class="workspace" id="view-scouting"><div class="workhead"><div><h3>Scouting Report</h3><div class="sub">Capture opponent personnel, tendencies and the actual game plan in one record.</div></div></div><div class="formgrid"><label>Opponent<input id="scoutOpponent" placeholder="Opponent"></label><label>Date / Game<input id="scoutDate" type="date"></label><label>Offensive Tendencies<textarea id="scoutOffense" placeholder="Sets, pace, primary actions, favorite entries…"></textarea></label><label>Defensive Tendencies<textarea id="scoutDefense" placeholder="Man/zone, pressure, coverages, rotations…"></textarea></label><label>Key Personnel<textarea id="scoutPlayers" placeholder="#, player, role, strengths, weaknesses…"></textarea></label><label>Game Plan<textarea id="scoutPlan" placeholder="What are we taking away? What are we attacking?"></textarea></label></div><div class="toolbar"><button class="btn primary" onclick="saveScout()">Save Scouting Report</button></div><div class="divider"></div><div id="scoutList" class="list"></div></div>
 <div class="workspace" id="view-playlab"><div class="workhead"><div><h3>Play Lab</h3><div class="sub">Tap the court to place player/action markers. Save named diagrams with a short description.</div></div><button class="btn ghost tiny" onclick="clearCourt()">Clear Court</button></div><div class="court" id="court" onclick="addCourtDot(event)"></div><div class="formgrid" style="margin-top:13px"><label>Play / Drill Name<input id="playName" placeholder="e.g. Horns Twist"></label><label>Description<textarea id="playDesc" placeholder="Purpose, reads, teaching points…"></textarea></label></div><div class="toolbar"><button class="btn primary" onclick="savePlay()">Save Diagram</button></div><div class="divider"></div><div id="playList" class="list"></div></div>
 <div class="workspace" id="view-notes"><div class="workhead"><div><h3>Season Notes</h3><div class="sub">A running coach notebook for ideas, meetings, injuries, culture, goals and follow-up.</div></div></div><div class="formgrid"><label>Category<select id="noteCategory"><option>General</option><option>Player Development</option><option>Team Culture</option><option>Staff</option><option>Parent / Family</option><option>Injury / Availability</option><option>Goal</option></select></label><label>Title<input id="noteTitle" placeholder="Note title"></label></div><label>Note<textarea id="noteBody" placeholder="Write the note…"></textarea></label><div class="toolbar"><button class="btn primary" onclick="saveNote()">Save Note</button></div><div class="divider"></div><div id="noteList" class="list"></div></div>
@@ -1183,12 +1183,17 @@ async function loadPersistentCoachWorkspace(){
     const membership=teams.find(x=>x.team_id===saved)||teams[0];
     currentTeamId=membership.team_id;
     localStorage.setItem('bb_active_team',currentTeamId);
-    const [team,profile,players,invites,staff,dash]=await Promise.all([
+    const [team,profile,players,invites,staff,practices,games,stats,scouts,notes,dash]=await Promise.all([
       window.BBData.getTeam(currentTeamId),
       window.BBData.getProfile(),
       window.BBData.listTeamPlayers(currentTeamId),
       window.BBData.listInvites(currentTeamId),
       window.BBData.listStaff(currentTeamId),
+      window.BBData.listPractices(currentTeamId),
+      window.BBData.listGames(currentTeamId),
+      window.BBData.listTeamStats(currentTeamId),
+      window.BBData.listScoutingReports(currentTeamId),
+      window.BBData.listSeasonNotes(currentTeamId),
       window.BBData.dashboard(currentTeamId)
     ]);
     db.team={
@@ -1208,6 +1213,27 @@ async function loadPersistentCoachWorkspace(){
       player:(db.players.find(p=>p.id===x.player_id)?.name)||x.invitee_name||''
     }));
     db.staff=staff||[];
+    db.practices=(practices||[]).map(r=>({
+      id:r.id,date:r.practice_date||'',duration:r.plan?.duration||'',focus:r.title||'Practice',
+      objectives:r.objectives||'',drills:r.plan?.drills||'',notes:r.notes||'',created:new Date(r.created_at).getTime(),source:'database'
+    }));
+    db.games=(games||[]).map(r=>({
+      id:r.id,date:r.game_date||'',opponent:r.opponent||'',location:r.location||'',
+      our:Number(r.team_score||0),opp:Number(r.opponent_score||0),notes:r.notes||'',result:r.result||'',created:new Date(r.created_at).getTime(),source:'database'
+    }));
+    db.stats=(stats||[]).map(r=>({
+      id:r.id,playerId:r.player_id,gameId:r.game_id,MIN:Number(r.minutes||0),PTS:Number(r.points||0),
+      REB:Number(r.rebounds||0),AST:Number(r.assists||0),STL:Number(r.steals||0),BLK:Number(r.blocks||0),TO:Number(r.turnovers||0),source:'database'
+    }));
+    db.scouts=(scouts||[]).map(r=>({
+      id:r.id,opponent:r.opponent||'',date:r.report?.date||'',offense:r.report?.offense||'',
+      defense:r.report?.defense||'',players:r.report?.players||'',plan:r.report?.plan||'',notes:r.notes||'',
+      created:new Date(r.created_at).getTime(),source:'database'
+    }));
+    db.notes=(notes||[]).map(r=>({
+      id:r.id,category:r.category||'General',title:r.title||'Season Note',body:r.body||'',
+      date:r.note_date||'',created:new Date(r.created_at).getTime(),source:'database'
+    }));
     persistentCoachDashboard=dash;
     coachBackendLoaded=true;
     hydrateTeam();refreshAll();renderStaff();
@@ -1508,29 +1534,135 @@ function renderStaff(){
 }
 function openFamilyDemo(code){famCode.value=code||'';famPlayer.value='';famJersey.value='';famPosition.value='';famGrade.value='';famHeight.value='';famGuardian.value='';famEmail.value='';famPhone.value='';openModal('familyModal')}
 function submitFamilyProfile(){toast('Linked family completion activates after the invited Parent or Player signs in.');}
-function savePractice(){const rec={id:uid('pr'),date:practiceDate.value,duration:practiceDuration.value,focus:practiceFocus.value.trim(),objectives:practiceObjectives.value.trim(),drills:practiceDrills.value.trim(),notes:practiceNotes.value.trim(),created:Date.now()};if(!rec.date&&!rec.focus){toast('Add a date or practice focus.');return}db.practices.unshift(rec);saveDB('Practice plan saved.');practiceFocus.value=practiceObjectives.value=practiceDrills.value=practiceNotes.value=''}
-function deleteRecord(type,id){db[type]=db[type].filter(x=>x.id!==id);saveDB('Record removed.')}
-function renderPractices(){practiceList.innerHTML=db.practices.length?db.practices.map(r=>`<div class="row"><div><b>${esc(r.focus||'Practice')}</b><br><small>${esc(r.date||'No date')}</small></div><div>${esc(r.duration||'—')} min</div><div><span class="badge">${esc((r.drills||'').split('\n').filter(Boolean).length)} segments</span></div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('practices','${r.id}')">Remove</button></div></div>`).join(''):'<div class="empty">No practice plans saved yet.</div>'}
-function saveGame(){const a=Number(ourScore.value||0),b=Number(oppScore.value||0);const rec={id:uid('g'),date:gameDate.value,opponent:gameOpponent.value.trim(),location:gameLocation.value,our:a,opp:b,notes:gameNotes.value.trim(),created:Date.now()};if(!rec.opponent){toast('Enter the opponent.');return}db.games.unshift(rec);saveDB('Game saved.');gameOpponent.value=ourScore.value=oppScore.value=gameNotes.value=''}
-function renderStatSelectors(){const players=db.players.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('');statPlayer.innerHTML=players||'<option value="">Add a roster player first</option>';const games=db.games.map(g=>`<option value="${g.id}">${esc(g.date||'Game')} vs ${esc(g.opponent)}</option>`).join('');statGame.innerHTML=games||'<option value="">Save a game first</option>'}
-function saveStatLine(){if(!statPlayer.value||!statGame.value){toast('Choose a player and game first.');return}const rec={id:uid('st'),playerId:statPlayer.value,gameId:statGame.value,MIN:+stMIN.value||0,PTS:+stPTS.value||0,REB:+stREB.value||0,AST:+stAST.value||0,STL:+stSTL.value||0,BLK:+stBLK.value||0,TO:+stTO.value||0};db.stats.push(rec);saveDB('Player stat line saved.');['stMIN','stPTS','stREB','stAST','stSTL','stBLK','stTO'].forEach(id=>document.getElementById(id).value=0)}
-function renderStats(){statRows.innerHTML=db.stats.length?db.stats.map(s=>{const p=db.players.find(x=>x.id===s.playerId),g=db.games.find(x=>x.id===s.gameId);return `<tr><td>${esc(g?.opponent||'Game')}</td><td>${esc(p?.name||'Player')}</td><td>${s.MIN}</td><td>${s.PTS}</td><td>${s.REB}</td><td>${s.AST}</td><td>${s.STL}</td><td>${s.BLK}</td><td>${s.TO}</td><td><button class="btn danger tiny" onclick="deleteRecord('stats','${s.id}')">×</button></td></tr>`}).join(''):'<tr><td colspan="10" style="color:#888">No player stat lines saved yet.</td></tr>'}
-function saveScout(){const r={id:uid('sc'),opponent:scoutOpponent.value.trim(),date:scoutDate.value,offense:scoutOffense.value.trim(),defense:scoutDefense.value.trim(),players:scoutPlayers.value.trim(),plan:scoutPlan.value.trim(),created:Date.now()};if(!r.opponent){toast('Enter the opponent.');return}db.scouts.unshift(r);saveDB('Scouting report saved.');scoutOpponent.value=scoutOffense.value=scoutDefense.value=scoutPlayers.value=scoutPlan.value=''}
-function renderScouts(){scoutList.innerHTML=db.scouts.length?db.scouts.map(r=>`<div class="row"><div><b>${esc(r.opponent)}</b><br><small>${esc(r.date||'No date')}</small></div><div><small>Offense</small><br>${esc((r.offense||'—').slice(0,46))}</div><div><small>Game Plan</small><br>${esc((r.plan||'—').slice(0,46))}</div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('scouts','${r.id}')">Remove</button></div></div>`).join(''):'<div class="empty">No scouting reports saved yet.</div>'}
+
+async function savePractice(){
+  const rec={date:practiceDate.value,duration:practiceDuration.value,focus:practiceFocus.value.trim(),objectives:practiceObjectives.value.trim(),drills:practiceDrills.value.trim(),notes:practiceNotes.value.trim()};
+  if(!rec.date&&!rec.focus){toast('Add a date or practice focus.');return}
+  if(await coachSessionReady()){
+    if(!currentTeamId){toast('Save Team Setup first.');return}
+    try{
+      await window.BBData.savePractice(currentTeamId,{
+        title:rec.focus||'Practice',practice_date:rec.date||null,objectives:rec.objectives||null,
+        plan:{duration:rec.duration||null,drills:rec.drills||''},notes:rec.notes||null
+      });
+      practiceFocus.value=practiceObjectives.value=practiceDrills.value=practiceNotes.value='';
+      await loadPersistentCoachWorkspace();toast('Practice plan saved securely.');return;
+    }catch(e){toast(e.message||'Practice plan could not be saved.');return}
+  }
+  db.practices.unshift({id:uid('pr'),...rec,created:Date.now()});saveDB('Practice plan saved.');
+  practiceFocus.value=practiceObjectives.value=practiceDrills.value=practiceNotes.value='';
+}
+
+async function deleteRecord(type,id){
+  if(await coachSessionReady()){
+    try{
+      if(type==='practices')await window.BBData.deletePractice(id);
+      else if(type==='games')await window.BBData.deleteGame(id);
+      else if(type==='stats')await window.BBData.deleteStat(id);
+      else if(type==='scouts')await window.BBData.deleteScoutingReport(id);
+      else if(type==='notes')await window.BBData.deleteSeasonNote(id);
+      else {db[type]=db[type].filter(x=>x.id!==id);saveDB('Record removed.');return}
+      await loadPersistentCoachWorkspace();toast('Record removed.');return;
+    }catch(e){toast(e.message||'Record could not be removed.');return}
+  }
+  db[type]=db[type].filter(x=>x.id!==id);saveDB('Record removed.');
+}
+
+function renderPractices(){
+  practiceList.innerHTML=db.practices.length?db.practices.map(r=>`<div class="row"><div><b>${esc(r.focus||'Practice')}</b><br><small>${esc(r.date||'No date')}</small></div><div>${esc(r.duration||'—')} min</div><div><span class="badge">${esc((r.drills||'').split('\n').filter(Boolean).length)} segments</span></div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('practices','${r.id}')">Remove</button></div></div>`).join(''):'<div class="empty">No practice plans saved yet.</div>';
+}
+
+async function saveGame(){
+  const a=Number(ourScore.value||0),b=Number(oppScore.value||0);
+  const rec={date:gameDate.value,opponent:gameOpponent.value.trim(),location:gameLocation.value,our:a,opp:b,notes:gameNotes.value.trim()};
+  if(!rec.opponent){toast('Enter the opponent.');return}
+  if(await coachSessionReady()){
+    if(!currentTeamId){toast('Save Team Setup first.');return}
+    try{
+      await window.BBData.saveGame(currentTeamId,{game_date:rec.date||null,opponent:rec.opponent,location:rec.location,team_score:a,opponent_score:b,notes:rec.notes||null});
+      gameOpponent.value=ourScore.value=oppScore.value=gameNotes.value='';
+      await loadPersistentCoachWorkspace();toast('Game saved securely.');return;
+    }catch(e){toast(e.message||'Game could not be saved.');return}
+  }
+  db.games.unshift({id:uid('g'),...rec,created:Date.now()});saveDB('Game saved.');
+  gameOpponent.value=ourScore.value=oppScore.value=gameNotes.value='';
+}
+
+function renderGames(){
+  const el=document.getElementById('gameList');if(!el)return;
+  el.innerHTML=db.games.length?db.games.map(g=>{
+    const result=g.our>g.opp?'W':g.our<g.opp?'L':'T';
+    return `<div class="row"><div><b>vs ${esc(g.opponent)}</b><br><small>${esc(g.date||'No date')} • ${esc(g.location||'')}</small></div><div><span class="badge ${result==='W'?'orange':''}">${result}</span></div><div><b>${g.our}–${g.opp}</b></div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('games','${g.id}')">Remove</button></div></div>`;
+  }).join(''):'<div class="empty">No games saved yet.</div>';
+}
+
+function renderStatSelectors(){
+  const players=db.players.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join('');
+  statPlayer.innerHTML=players||'<option value="">Add a roster player first</option>';
+  const games=db.games.map(g=>`<option value="${g.id}">${esc(g.date||'Game')} vs ${esc(g.opponent)}</option>`).join('');
+  statGame.innerHTML=games||'<option value="">Save a game first</option>';
+}
+
+async function saveStatLine(){
+  if(!statPlayer.value||!statGame.value){toast('Choose a player and game first.');return}
+  const rec={playerId:statPlayer.value,gameId:statGame.value,MIN:+stMIN.value||0,PTS:+stPTS.value||0,REB:+stREB.value||0,AST:+stAST.value||0,STL:+stSTL.value||0,BLK:+stBLK.value||0,TO:+stTO.value||0};
+  if(await coachSessionReady()){
+    try{
+      await window.BBData.saveStat({game_id:rec.gameId,player_id:rec.playerId,minutes:rec.MIN,points:rec.PTS,rebounds:rec.REB,assists:rec.AST,steals:rec.STL,blocks:rec.BLK,turnovers:rec.TO});
+      ['stMIN','stPTS','stREB','stAST','stSTL','stBLK','stTO'].forEach(id=>document.getElementById(id).value=0);
+      await loadPersistentCoachWorkspace();toast('Player stat line saved securely.');return;
+    }catch(e){toast(e.message||'Stat line could not be saved.');return}
+  }
+  const existing=db.stats.find(x=>x.playerId===rec.playerId&&x.gameId===rec.gameId);
+  if(existing)Object.assign(existing,rec);else db.stats.push({id:uid('st'),...rec});
+  saveDB('Player stat line saved.');
+}
+
+function renderStats(){
+  statRows.innerHTML=db.stats.length?db.stats.map(s=>{const p=db.players.find(x=>x.id===s.playerId),g=db.games.find(x=>x.id===s.gameId);return `<tr><td>${esc(g?.opponent||'Game')}</td><td>${esc(p?.name||'Player')}</td><td>${s.MIN}</td><td>${s.PTS}</td><td>${s.REB}</td><td>${s.AST}</td><td>${s.STL}</td><td>${s.BLK}</td><td>${s.TO}</td><td><button class="btn danger tiny" onclick="deleteRecord('stats','${s.id}')">×</button></td></tr>`}).join(''):'<tr><td colspan="10" style="color:#888">No player stat lines saved yet.</td></tr>';
+}
+
+async function saveScout(){
+  const r={opponent:scoutOpponent.value.trim(),date:scoutDate.value,offense:scoutOffense.value.trim(),defense:scoutDefense.value.trim(),players:scoutPlayers.value.trim(),plan:scoutPlan.value.trim()};
+  if(!r.opponent){toast('Enter the opponent.');return}
+  if(await coachSessionReady()){
+    try{
+      await window.BBData.saveScoutingReport(currentTeamId,{opponent:r.opponent,report:{date:r.date,offense:r.offense,defense:r.defense,players:r.players,plan:r.plan}});
+      scoutOpponent.value=scoutOffense.value=scoutDefense.value=scoutPlayers.value=scoutPlan.value='';
+      await loadPersistentCoachWorkspace();toast('Scouting report saved securely.');return;
+    }catch(e){toast(e.message||'Scouting report could not be saved.');return}
+  }
+  db.scouts.unshift({id:uid('sc'),...r,created:Date.now()});saveDB('Scouting report saved.');
+}
+
+function renderScouts(){
+  scoutList.innerHTML=db.scouts.length?db.scouts.map(r=>`<div class="row"><div><b>${esc(r.opponent)}</b><br><small>${esc(r.date||'No date')}</small></div><div><small>Offense</small><br>${esc((r.offense||'—').slice(0,46))}</div><div><small>Game Plan</small><br>${esc((r.plan||'—').slice(0,46))}</div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('scouts','${r.id}')">Remove</button></div></div>`).join(''):'<div class="empty">No scouting reports saved yet.</div>';
+}
 function addCourtDot(e){const r=court.getBoundingClientRect();courtDots.push({x:(e.clientX-r.left)/r.width*100,y:(e.clientY-r.top)/r.height*100});drawCourt()}
 function drawCourt(){court.querySelectorAll('.dot').forEach(x=>x.remove());courtDots.forEach(d=>{const x=document.createElement('span');x.className='dot';x.style.left=d.x+'%';x.style.top=d.y+'%';court.appendChild(x)})}
 function clearCourt(){courtDots=[];drawCourt()}
 function savePlay(){const name=playName.value.trim();if(!name){toast('Name the play or drill.');return}db.plays.unshift({id:uid('pl'),name,desc:playDesc.value.trim(),dots:courtDots.slice(),created:Date.now()});saveDB('Play diagram saved.');playName.value=playDesc.value='';clearCourt()}
 function loadPlay(id){const p=db.plays.find(x=>x.id===id);if(!p)return;playName.value=p.name;playDesc.value=p.desc;courtDots=(p.dots||[]).slice();drawCourt();toast('Diagram loaded for editing/reference.')}
 function renderPlays(){playList.innerHTML=db.plays.length?db.plays.map(p=>`<div class="row"><div><b>${esc(p.name)}</b><br><small>${esc((p.desc||'No description').slice(0,60))}</small></div><div><span class="badge">${(p.dots||[]).length} markers</span></div><div></div><div class="actions inline"><button class="btn ghost tiny" onclick="loadPlay('${p.id}')">Load</button><button class="btn danger tiny" onclick="deleteRecord('plays','${p.id}')">×</button></div></div>`).join(''):'<div class="empty">No saved play diagrams yet.</div>'}
-function saveNote(){const title=noteTitle.value.trim();if(!title){toast('Add a note title.');return}db.notes.unshift({id:uid('n'),category:noteCategory.value,title,body:noteBody.value.trim(),created:Date.now()});saveDB('Season note saved.');noteTitle.value=noteBody.value=''}
-function renderNotes(){noteList.innerHTML=db.notes.length?db.notes.map(n=>`<div class="row"><div><b>${esc(n.title)}</b><br><small>${new Date(n.created).toLocaleDateString()}</small></div><div><span class="badge orange">${esc(n.category)}</span></div><div>${esc((n.body||'').slice(0,50))}</div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('notes','${n.id}')">Remove</button></div></div>`).join(''):'<div class="empty">No season notes saved yet.</div>'}
+
+async function saveNote(){
+  const title=noteTitle.value.trim();if(!title){toast('Add a note title.');return}
+  const rec={category:noteCategory.value,title,body:noteBody.value.trim()};
+  if(await coachSessionReady()){
+    try{
+      await window.BBData.saveSeasonNote(currentTeamId,{category:rec.category,title:rec.title,body:rec.body,note_date:new Date().toISOString().slice(0,10)});
+      noteTitle.value=noteBody.value='';await loadPersistentCoachWorkspace();toast('Season note saved securely.');return;
+    }catch(e){toast(e.message||'Season note could not be saved.');return}
+  }
+  db.notes.unshift({id:uid('n'),...rec,created:Date.now()});saveDB('Season note saved.');noteTitle.value=noteBody.value='';
+}
+function renderNotes(){noteList.innerHTML=db.notes.length?db.notes.map(n=>`<div class="row"><div><b>${esc(n.title)}</b><br><small>${esc(n.date||new Date(n.created).toLocaleDateString())}</small></div><div><span class="badge orange">${esc(n.category)}</span></div><div>${esc((n.body||'').slice(0,50))}</div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('notes','${n.id}')">Remove</button></div></div>`).join(''):'<div class="empty">No season notes saved yet.</div>'}
 function record(){let w=0,l=0;db.games.forEach(g=>{if(g.our>g.opp)w++;else if(g.our<g.opp)l++});return {w,l}}
 function totalsByPlayer(){const out={};db.stats.forEach(s=>{const k=s.playerId;out[k]??={PTS:0,REB:0,AST:0,STL:0,BLK:0,TO:0,GP:0};['PTS','REB','AST','STL','BLK','TO'].forEach(a=>out[k][a]+=+s[a]||0);out[k].GP++});return out}
 function prepareSeasonReport(showToast=true){const rr=record(),tot=totalsByPlayer();const leaders=Object.entries(tot).map(([id,v])=>({name:db.players.find(p=>p.id===id)?.name||'Player',...v})).sort((a,b)=>b.PTS-a.PTS);seasonReport.innerHTML=`<h3 style="margin-top:0">${esc(db.team.name||'Basketball Brilliance Team')} — ${esc(db.team.season||'Season Snapshot')}</h3><p><b>Coach:</b> ${esc(db.team.coach||'—')} &nbsp; • &nbsp; <b>Record:</b> ${rr.w}–${rr.l} &nbsp; • &nbsp; <b>Roster:</b> ${db.players.length}</p><div class="divider"></div><h4>Stat Leaders / Totals</h4>${leaders.length?leaders.slice(0,8).map(x=>`<p><b>${esc(x.name)}</b> — ${x.GP} GP • ${x.PTS} PTS • ${x.REB} REB • ${x.AST} AST • ${x.STL} STL • ${x.BLK} BLK</p>`).join(''):'<p>No player stats entered yet.</p>'}<div class="divider"></div><p><b>Latest Practice:</b> ${esc(db.practices[0]?.focus||'None')} ${esc(db.practices[0]?.date||'')}</p><p><b>Latest Scouting:</b> ${esc(db.scouts[0]?.opponent||'None')}</p><p><b>Saved Plays:</b> ${db.plays.length} &nbsp; • &nbsp; <b>Season Notes:</b> ${db.notes.length}</p>`;if(showToast)toast('Season report generated.')}
 function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='basketball-brilliance-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Basketball Brilliance backup downloaded.')}
 function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=Object.assign(JSON.parse(JSON.stringify(defaultData)),JSON.parse(r.result));saveDB('Backup restored.');hydrateTeam()}catch(err){toast('That backup could not be read.')}};r.readAsText(f)}
-function refreshAll(){const rr=record();heroTeam.textContent=(db.team.name||'My Team')+' • '+(db.team.season||'New Season');sideTeam.textContent=db.team.name||'Basketball Brilliance';sideSeason.textContent=(db.team.level||'Coach')+' • '+(db.team.season||'Workspace');heroRecord.textContent=rr.w+'–'+rr.l;heroPlayers.textContent=db.players.length;heroPractices.textContent=db.practices.length;heroGames.textContent=db.games.length;heroScouts.textContent=db.scouts.length;mPlayers.textContent=persistentCoachDashboard?.playerCount??db.players.length;mInvites.textContent=persistentCoachDashboard?.inviteCount??db.invites.length;mPractices.textContent=persistentCoachDashboard?.practiceCount??db.practices.length;mGames.textContent=persistentCoachDashboard?.gameCount??db.games.length;if(window.mAssistants)mAssistants.textContent=persistentCoachDashboard?.assistantCount??0;nextPractice.textContent=db.practices[0]?`${db.practices[0].date||'Upcoming'} • ${db.practices[0].focus||'Practice'}`:'No practice plan saved yet.';latestScout.textContent=db.scouts[0]?`${db.scouts[0].opponent} • ${(db.scouts[0].plan||'Report saved').slice(0,85)}`:'No opponent report saved yet.';familyStatus.textContent=db.invites.length?`${db.invites.filter(x=>x.status==='Completed').length} completed • ${db.invites.filter(x=>x.status!=='Completed').length} pending invite(s)`:'Generate an invite from Roster + Invites to connect the family path.';seasonRecordText.textContent=(persistentCoachDashboard?.wins??rr.w)+' wins • '+(persistentCoachDashboard?.losses??rr.l)+' losses';if(window.staffStatus){const active=persistentCoachDashboard?.assistantCount??0;const pending=(db.invites||[]).filter(x=>x.role==='coach'&&x.status==='pending').length;staffStatus.textContent=active+' active assistant'+(active===1?'':'s')+' • '+pending+' pending invite'+(pending===1?'':'s');}renderRoster();renderStaff();renderPractices();renderScouts();renderPlays();renderNotes();renderStatSelectors();renderStats()}
+function refreshAll(){const rr=record();heroTeam.textContent=(db.team.name||'My Team')+' • '+(db.team.season||'New Season');sideTeam.textContent=db.team.name||'Basketball Brilliance';sideSeason.textContent=(db.team.level||'Coach')+' • '+(db.team.season||'Workspace');heroRecord.textContent=rr.w+'–'+rr.l;heroPlayers.textContent=db.players.length;heroPractices.textContent=db.practices.length;heroGames.textContent=db.games.length;heroScouts.textContent=db.scouts.length;mPlayers.textContent=persistentCoachDashboard?.playerCount??db.players.length;mInvites.textContent=persistentCoachDashboard?.inviteCount??db.invites.length;mPractices.textContent=persistentCoachDashboard?.practiceCount??db.practices.length;mGames.textContent=persistentCoachDashboard?.gameCount??db.games.length;if(window.mAssistants)mAssistants.textContent=persistentCoachDashboard?.assistantCount??0;nextPractice.textContent=db.practices[0]?`${db.practices[0].date||'Upcoming'} • ${db.practices[0].focus||'Practice'}`:'No practice plan saved yet.';latestScout.textContent=db.scouts[0]?`${db.scouts[0].opponent} • ${(db.scouts[0].plan||'Report saved').slice(0,85)}`:'No opponent report saved yet.';familyStatus.textContent=db.invites.length?`${db.invites.filter(x=>x.status==='Completed').length} completed • ${db.invites.filter(x=>x.status!=='Completed').length} pending invite(s)`:'Generate an invite from Roster + Invites to connect the family path.';seasonRecordText.textContent=(persistentCoachDashboard?.wins??rr.w)+' wins • '+(persistentCoachDashboard?.losses??rr.l)+' losses';if(window.staffStatus){const active=persistentCoachDashboard?.assistantCount??0;const pending=(db.invites||[]).filter(x=>x.role==='coach'&&x.status==='pending').length;staffStatus.textContent=active+' active assistant'+(active===1?'':'s')+' • '+pending+' pending invite'+(pending===1?'':'s');}renderRoster();renderStaff();renderPractices();renderGames();renderScouts();renderPlays();renderNotes();renderStatSelectors();renderStats()}
 function startVoice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){voiceStatus.textContent='Voice recognition is not available in this browser. Chrome usually supports it.';return}const r=new SR();r.lang='en-US';r.interimResults=false;r.maxAlternatives=1;voiceStatus.textContent='Listening…';r.onresult=e=>{const t=e.results[0][0].transcript;voiceStatus.textContent='Heard: “'+t+'”';parseSpeech(t)};r.onerror=()=>voiceStatus.textContent='I could not hear that clearly. Tap and try again.';r.start()}
 function parseSpeech(t){let s=t.trim();const num=s.match(/(?:number|jersey)\s+(\d+)/i);if(num)jersey.value=num[1];const gr=s.match(/grade\s+(\d+)/i);if(gr)grade.value=gr[1];const pos=s.match(/(point guard|shooting guard|small forward|power forward|center|guard|forward)/i);if(pos)position.value=pos[1].replace(/\b\w/g,c=>c.toUpperCase());const name=s.match(/^(.+?)(?:,| number| jersey| point guard| shooting guard| small forward| power forward| center| guard| forward| grade)/i);if(name)playerName.value=name[1].trim().replace(/\b\w/g,c=>c.toUpperCase());const ht=s.match(/(\d)\s*(?:foot|feet)\s*(\d{1,2})?/i);if(ht)height.value=ht[1]+"'"+(ht[2]||'0')+'"'}
 function showLegal(which){
