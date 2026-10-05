@@ -1,0 +1,162 @@
+(() => {
+  const raw = [{"term":"ACE","definition":"A play call where the offense runs a specific action, often a stagger or flare for a shooter","cue":"Say the call early, confirm spots","mistake":"Late call, players guessing","category":"Fundamentals","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"ATO","definition":"After timeout play, a designed set to get a great shot","cue":"Have 3 options, first, second, safety","mistake":"No safety option","category":"Situations","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"BLOB","definition":"Baseline out of bounds play","cue":"Sell the screen, set legal angles","mistake":"Moving screens, poor spacing","category":"Situations","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"SLOB","definition":"Sideline out of bounds play","cue":"Be ready to pivot into secondary","mistake":"Forcing first option","category":"Situations","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"DHO","definition":"Dribble handoff, a live handoff used like a moving screen","cue":"Turn the corner, read the defender","mistake":"Standing still on handoff","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Reject","definition":"Decline the screen and drive opposite","cue":"Read the ICE, attack the seam","mistake":"Reject with no spacing","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Short Roll","definition":"Ball screener rolls to the middle area to pass or shoot","cue":"Catch, chin the ball, play fast","mistake":"Dribbling into traffic","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Tag","definition":"Help defender bumps the roller then recovers","cue":"Hit, hold, and recover with urgency","mistake":"Over helping and giving up corner","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"X Out","definition":"Two defenders rotate on the weak side to cover two shooters","cue":"Sprint, point, and communicate","mistake":"Jogging, silent rotations","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Ice","definition":"Force side ball screen toward baseline, away from middle","cue":"Keep ball on sideline, drop big","mistake":"Letting ball get middle","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Drop","definition":"Big stays back on ball screen to protect rim","cue":"Hands up, contain pull up","mistake":"Too deep, giving open pull up","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Hedge","definition":"Big shows to stop the ball then recovers","cue":"Two slides then recover","mistake":"Over hedging and getting split","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Blitz","definition":"Double team the ball handler on screen","cue":"Trap high, hands active, rotate out","mistake":"No backside rotation","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Gap","definition":"Help position one pass away to stop drives","cue":"Foot in the paint, see both","mistake":"Hugging your man, no help","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Stunt","definition":"Quick step toward ball to slow drive, then recover","cue":"Show and go, hands high","mistake":"Full commit and late recover","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Closeout","definition":"Sprint then chop feet to contest and contain","cue":"High hands, no fly by","mistake":"Flying by, fouling","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Down Screen","definition":"Screen set toward baseline for a cutter","cue":"Screen angle, cutter shoulder to shoulder","mistake":"Bad angle, cutter wide","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Flare Screen","definition":"Screen that sends shooter away from ball","cue":"Shot ready, drift to space","mistake":"Catching off balance","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Stagger","definition":"Two screens in a row for one cutter","cue":"Tight off both, sprint to spot","mistake":"Curling into traffic","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Slip","definition":"Screener fakes screen then cuts to basket","cue":"Sell it, then explode","mistake":"Slipping with no timing","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Duck In","definition":"Post seals defender to receive pass close to rim","cue":"Wide base, show target hand","mistake":"Catching too far out","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Seal","definition":"Holding position with body to create passing lane","cue":"Chin on shoulder, stay wide","mistake":"Pushing with arms","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"High Low","definition":"High post passes to low post after seal","cue":"Look first, then swing","mistake":"Forcing into traffic","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Skip Pass","definition":"Cross court pass to beat help","cue":"Ball fake first, step into pass","mistake":"Lazy float pass","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Swing Swing","definition":"Two quick passes to shift the defense","cue":"Catch and move it","mistake":"Holding the ball","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Paint Touch","definition":"Drive or post catch that forces collapse","cue":"Two feet in paint, kick out","mistake":"Stopping short","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Spacing","definition":"Proper distance and lanes for drives and passes","cue":"15 to 18 feet, corners filled","mistake":"Crowding the ball","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Transition Defense","definition":"Sprint back, stop ball, match up","cue":"First three steps sprint","mistake":"Ball watching","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Early Offense","definition":"Quick actions before defense sets, drag screens, rim runs","cue":"Run lanes, screen early","mistake":"Walking into half court","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Box Out","definition":"Contact, hit, and pursue rebound","cue":"Hit first, then get it","mistake":"Jumping without contact","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Wall Up","definition":"Vertical defense at rim without fouling","cue":"Hands straight up","mistake":"Swiping down","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Help the Helper","definition":"Rotate to cover a teammate who helped","cue":"Next man steps up","mistake":"Standing and pointing","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Ball Side","definition":"The side of court where ball is located","cue":"Load to ball side","mistake":"Overloading leaving skip","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Weak Side","definition":"Side opposite the ball","cue":"Be ready to rotate and rebound","mistake":"Falling asleep","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Deny","definition":"Position to discourage pass","cue":"Hand and foot in lane","mistake":"Over deny, backdoor","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Backdoor","definition":"Cut behind overplaying defender","cue":"Eye contact, bounce pass","mistake":"Cut with no passer ready","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Curl","definition":"Cut tight around screen toward basket or midrange","cue":"Shoulder to shoulder, catch ready","mistake":"Going wide, defender recovers","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Fade","definition":"Cut away from screen to create space","cue":"Create separation","mistake":"Fading into help","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Pop","definition":"Screener moves to perimeter after screen","cue":"Hands ready, quick shot","mistake":"Drifting with no target","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Roll","definition":"Screener goes to rim after screen","cue":"Rim run, show hands","mistake":"Rolling slow","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Press Breaker","definition":"System to beat full court press","cue":"Middle, reversal, diagonal","mistake":"Dribbling into traps","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"1 2 2 Press","definition":"Zone press with two up top, two wings, one back","cue":"Trap corners, protect middle","mistake":"Chasing and fouling","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"2 2 1 Press","definition":"Two up, two middle, one back","cue":"Force sideline, trap at half","mistake":"No back safety","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"1 3 1 Zone","definition":"One top, three across, one back","cue":"Deny wing, trap corner","mistake":"Giving up high post","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"2 3 Zone","definition":"Two guards, three across back","cue":"Protect paint, rebound","mistake":"No closeouts","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"3 2 Zone","definition":"Three guards, two back","cue":"Protect arc, rebound","mistake":"Giving up high low","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Matchup Zone","definition":"Hybrid zone with man like principles","cue":"Communicate matchups","mistake":"Ball watching","category":"Defense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Horns Set","definition":"Two bigs at elbows, guards in corners","cue":"Enter, then flow","mistake":"Standing after entry","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Flex Set","definition":"Baseline screen into down screen series","cue":"Screen and replace","mistake":"Loose cuts","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Spacing, 5 Out","definition":"All perimeter, create driving lanes","cue":"Cut hard, fill behind","mistake":"Static offense","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Spacing, 4 Out 1 In","definition":"One post, four outside","cue":"Post opposite ball, cutters active","mistake":"Post clogging ball side","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Zone Offense, Overload","definition":"Shift players to one side to create gap","cue":"Find high post and short corner","mistake":"Everyone on one side","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Zone Offense, High Post","definition":"Flash to foul line area to collapse zone","cue":"Catch, pivot, look inside out","mistake":"Holding the ball","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Zone Offense, Short Corner","definition":"Player in short corner to stress back line","cue":"Catch and score or kick","mistake":"Standing out of bounds","category":"Offense","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Clock Management","definition":"Using time and score smartly","cue":"Know scenarios, communicate","mistake":"No plan","category":"Situations","source_label":"Basketball Coaches Master Playbook Workbook v3"},{"term":"Assist","definition":"A pass to a teammate who scores a basket immediately or after one dribble.","cue":"","mistake":"","category":"Fundamentals","source_label":"Basketball Glossary PDF"},{"term":"Backdoor Cut","definition":"An offensive play in which a player on the perimeter steps away from the basket, drawing the defender along, then suddenly cuts to the basket behind the defender for a pass.","cue":"","mistake":"","category":"Offense","source_label":"Basketball Glossary PDF"},{"term":"Ball Screen","definition":"An offensive play in which a player sets a screen on the defender guarding the player with the ball.","cue":"","mistake":"","category":"Offense","source_label":"Basketball Glossary PDF"},{"term":"Baseline Out-of-Bounds Play","definition":"The play used to return the ball to the court from outside the baseline along the opponent's basket.","cue":"","mistake":"","category":"Situations","source_label":"Basketball Glossary PDF"},{"term":"Box-and-One","definition":"A combination defense in which four defenders play zone in a box formation and the fifth defender guards one player man-to-man.","cue":"","mistake":"","category":"Defense","source_label":"Basketball Glossary PDF"},{"term":"Motion Offense","definition":"Offense created through a series of cuts and screens to create the best possible shot, with most or all offensive players moving simultaneously.","cue":"","mistake":"","category":"Offense","source_label":"Basketball Glossary PDF"},{"term":"Transition Defense","definition":"The portion of a team's defensive play conducted when the other team has first gained possession and is moving up the court, before both teams have established positions. Includes defense against fast breaks.","cue":"","mistake":"","category":"Defense","source_label":"Basketball Glossary PDF"},{"term":"Transition Offense","definition":"The portion of a team's offensive play conducted when first obtaining possession from the other team and moving up the court, before both teams have established positions. Includes fast breaks.","cue":"","mistake":"","category":"Offense","source_label":"Basketball Glossary PDF"},{"term":"Triangle Offense","definition":"An offensive strategy with the goal of exchanging three (sometimes all five) positions, creating spacing among players and allowing each one to pass to four teammates.","cue":"","mistake":"","category":"Offense","source_label":"Basketball Glossary PDF"},{"term":"Zone Defense","definition":"A defense in which each player is responsible for a section of the court.","cue":"","mistake":"","category":"Defense","source_label":"Basketball Glossary PDF"}];
+  const seen = new Map();
+  raw.forEach(x => {
+    const k = x.term.toLowerCase();
+    if (!seen.has(k)) seen.set(k, x);
+    else {
+      const current = seen.get(k);
+      if (!current.cue && x.cue) current.cue = x.cue;
+      if (!current.mistake && x.mistake) current.mistake = x.mistake;
+      if ((x.definition||'').length > (current.definition||'').length) current.definition = x.definition;
+    }
+  });
+  const terms = [...seen.values()].sort((a,b)=>a.term.localeCompare(b.term));
+  let activeCategory = 'All';
+  let currentMatches = [];
+
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const el = id => document.getElementById(id);
+
+  function related(item){
+    return terms.filter(x => x !== item && x.category === item.category).slice(0,4);
+  }
+
+  function enrich(item){
+    const context = item.category === 'Defense'
+      ? 'Use this term when teaching defensive positioning, rotations, coverage rules, or pressure concepts.'
+      : item.category === 'Offense'
+      ? 'Use this term when teaching spacing, screening, cutting, reads, or organized offensive actions.'
+      : item.category === 'Situations'
+      ? 'This belongs to special-situation preparation where timing, score, location, and options matter.'
+      : 'This is a core basketball term that supports communication and shared language across a team.';
+    return context;
+  }
+
+  function speak(text){
+    if (!('speechSynthesis' in window)) { window.toast?.('Read-aloud is not available in this browser.'); return; }
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US'; u.rate = .92; u.pitch = 1;
+    speechSynthesis.speak(u);
+  }
+
+  function pronounce(term){ speak(term); }
+
+  function readEntry(term){
+    const item = terms.find(x => x.term === term); if (!item) return;
+    let text = item.term + '. ' + item.definition + '. ';
+    if (item.cue) text += 'Coach cue: ' + item.cue + '. ';
+    if (item.mistake) text += 'Common mistake: ' + item.mistake + '. ';
+    speak(text);
+  }
+
+  function renderDetail(item){
+    const box = el('coachLibraryDetail'); if (!box) return;
+    if (!item) {
+      box.innerHTML = '<div class="library-empty">Search or speak a basketball term to open the full entry.</div>';
+      return;
+    }
+    const rel = related(item);
+    box.innerHTML = `
+      <article class="library-detail-card">
+        <div class="library-detail-top">
+          <div><span class="library-cat">${esc(item.category)}</span><h3>${esc(item.term)}</h3></div>
+          <div class="library-audio-actions">
+            <button class="btn soft tiny" onclick='BBLibrary.pronounce(${JSON.stringify(item.term)})'>🔊 Pronounce</button>
+            <button class="btn ghost tiny" onclick='BBLibrary.readEntry(${JSON.stringify(item.term)})'>▶ Read Entry</button>
+          </div>
+        </div>
+        <p class="library-definition">${esc(item.definition)}</p>
+        <div class="library-detail-grid">
+          ${item.cue ? '<div class="library-info good"><b>Coach Cue</b><span>'+esc(item.cue)+'</span></div>' : ''}
+          ${item.mistake ? '<div class="library-info warn"><b>Common Mistake</b><span>'+esc(item.mistake)+'</span></div>' : ''}
+          <div class="library-info"><b>Basketball Brilliance Context</b><span>${esc(enrich(item))}</span></div>
+          <div class="library-info"><b>Source</b><span>${esc(item.source_label)}</span></div>
+        </div>
+        <div class="library-related"><b>Related terms</b><div>${rel.map(r=>`<button class="library-related-chip" onclick='BBLibrary.openTerm(${JSON.stringify(r.term)})'>${esc(r.term)}</button>`).join('')}</div></div>
+      </article>`;
+  }
+
+  function renderMatches(list){
+    currentMatches = list;
+    const grid = el('coachLibraryMatches'); if (!grid) return;
+    if (!list.length) {
+      grid.innerHTML = '<div class="library-empty">No exact match yet. Try a shorter phrase, another term, or use voice search.</div>';
+      return;
+    }
+    grid.innerHTML = list.slice(0,24).map(item => `
+      <button class="library-term-card" onclick='BBLibrary.openTerm(${JSON.stringify(item.term)})'>
+        <span class="library-cat">${esc(item.category)}</span>
+        <b>${esc(item.term)}</b>
+        <span>${esc(item.definition.slice(0,105))}${item.definition.length>105?'…':''}</span>
+        <em>Open full entry →</em>
+      </button>`).join('');
+  }
+
+  function search(){
+    const q = (el('coachLibrarySearch')?.value || '').trim().toLowerCase();
+    let list = terms.filter(x => activeCategory === 'All' || x.category === activeCategory);
+    if (q) {
+      const words = q.split(/s+/).filter(Boolean);
+      list = list.map(x => {
+        const hay = (x.term+' '+x.definition+' '+x.cue+' '+x.mistake).toLowerCase();
+        let score = 0;
+        if (x.term.toLowerCase() === q) score += 50;
+        if (x.term.toLowerCase().startsWith(q)) score += 20;
+        words.forEach(w => { if (hay.includes(w)) score += 3; });
+        return {x,score};
+      }).filter(z=>z.score>0).sort((a,b)=>b.score-a.score || a.x.term.localeCompare(b.x.term)).map(z=>z.x);
+    }
+    renderMatches(list);
+    if (q && list.length) renderDetail(list[0]);
+  }
+
+  function openTerm(term){
+    const item = terms.find(x => x.term === term); if (!item) return;
+    const s = el('coachLibrarySearch'); if (s) s.value = item.term;
+    renderDetail(item);
+    document.getElementById('coachLibraryDetail')?.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  function setCategory(cat, btn){
+    activeCategory = cat;
+    document.querySelectorAll('#coachLibraryFilters .library-filter').forEach(x=>x.classList.toggle('active',x===btn));
+    search();
+  }
+
+  function voiceSearch(){
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { window.toast?.('Voice search is not available in this browser. Type the term instead.'); return; }
+    const r = new SR(); r.lang='en-US'; r.interimResults=false; r.maxAlternatives=1;
+    const b = el('coachLibraryMic'); if (b) b.textContent='Listening…';
+    r.onresult = e => {
+      const t = e.results[0][0].transcript;
+      const s = el('coachLibrarySearch'); if (s) s.value = t;
+      search();
+    };
+    r.onerror = () => window.toast?.('I could not hear that clearly. Try again.');
+    r.onend = () => { if (b) b.textContent='🎙 Speak a Term'; };
+    r.start();
+  }
+
+  function downloadPreview(){
+    const top = terms.slice(0,30);
+    const rows = top.map(x => '<section><h2>'+esc(x.term)+'</h2><p>'+esc(x.definition)+'</p>'+(x.cue?'<p><b>Coach Cue:</b> '+esc(x.cue)+'</p>':'')+(x.mistake?'<p><b>Common Mistake:</b> '+esc(x.mistake)+'</p>':'')+'</section>').join('');
+    const html = '<!doctype html><html><head><meta charset="utf-8"><title>Basketball Brilliance Coach Glossary Preview</title><style>body{font-family:Arial,sans-serif;max-width:850px;margin:40px auto;color:#171717;padding:0 24px}header{border-bottom:6px solid #f15a29;padding-bottom:16px;margin-bottom:24px}h1{margin:0}h2{margin-bottom:4px;color:#c64316}section{padding:12px 0;border-bottom:1px solid #ddd}small{color:#666}</style></head><body><header><h1>BASKETBALL BRILLIANCE</h1><p>Coach Glossary Preview</p><small>Preview edition - working membership resource</small></header>'+rows+'</body></html>';
+    const blob = new Blob([html],{type:'text/html'}); const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='Basketball-Brilliance-Coach-Glossary-Preview.html'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  }
+
+  function init(){
+    const s=el('coachLibrarySearch'); if (!s) return;
+    s.addEventListener('input',search);
+    renderMatches(terms.slice(0,18));
+    renderDetail(terms[0]);
+    const c=el('coachLibraryCount'); if(c)c.textContent=terms.length+' terms loaded';
+  }
+
+  window.BBLibrary={terms,search,openTerm,setCategory,voiceSearch,pronounce,readEntry,downloadPreview,init};
+  document.addEventListener('DOMContentLoaded',init);
+})();
