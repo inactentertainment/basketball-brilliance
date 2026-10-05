@@ -286,6 +286,25 @@
     const {data,error}=await s().from("coach_iq_history").select("*").eq("team_id",teamId).order("created_at",{ascending:false}).limit(20);
     if(error) throw error; return data||[];
   }
+
+  async function listCoachPlays(teamId){
+    const {data,error}=await s().from("coach_plays").select("*").eq("team_id",teamId).order("created_at",{ascending:false});
+    if(error) throw error; return data||[];
+  }
+  async function saveCoachPlay(teamId,payload){
+    const u=await me();
+    const row={team_id:teamId,created_by:u.id,name:payload.name,description:payload.description||null,markers:payload.markers||[],source:payload.source||null,updated_at:new Date().toISOString()};
+    if(payload.id){
+      const {data,error}=await s().from("coach_plays").update(row).eq("id",payload.id).select().single();
+      if(error) throw error; return data;
+    }
+    const {data,error}=await s().from("coach_plays").insert(row).select().single();
+    if(error) throw error; return data;
+  }
+  async function deleteCoachPlay(id){
+    const {error}=await s().from("coach_plays").delete().eq("id",id);
+    if(error) throw error; return true;
+  }
   async function dashboard(teamId){
     const [players,invites,staff,practices,games]=await Promise.all([
       listTeamPlayers(teamId),
@@ -317,6 +336,7 @@
     listGames,saveGame,deleteGame,listTeamStats,saveStat,deleteStat,
     listScoutingReports,saveScoutingReport,deleteScoutingReport,
     listSeasonNotes,saveSeasonNote,deleteSeasonNote,
-    saveCoachIQHistory,listCoachIQHistory,dashboard
+    saveCoachIQHistory,listCoachIQHistory,
+    listCoachPlays,saveCoachPlay,deleteCoachPlay,dashboard
   };
 })();
