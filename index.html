@@ -833,6 +833,104 @@ body[data-portal="parent"] .placeholder-chips span{background:#fff;color:#444;bo
 @media(max-width:900px){.library-layout{grid-template-columns:1fr}.library-matches{max-height:360px}.library-download-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.library-head{display:block}.library-count{display:inline-block;margin-top:10px}.library-search-row{grid-template-columns:1fr}.library-search-row button{min-width:0}.library-matches{grid-template-columns:1fr}.library-detail-grid{grid-template-columns:1fr}.library-download-grid{grid-template-columns:1fr}.library-detail-top{display:block}.library-audio-actions{justify-content:flex-start;margin-top:10px}}
 </style>
+<style id="coach-balance-theme">
+/* Coach portal = balanced black + smoke gray + white + Basketball Brilliance orange */
+body[data-portal="coach"] .book{
+  background:linear-gradient(155deg,#34373c,#26292e);
+  border-color:#555a62;
+  box-shadow:0 12px 30px rgba(0,0,0,.16);
+}
+body[data-portal="coach"] .book p{color:#d0d3d7}
+body[data-portal="coach"] .book button,
+body[data-portal="coach"] .book a{
+  display:inline-flex;align-items:center;justify-content:flex-start;
+  width:max-content;max-width:100%;
+  padding:9px 12px;border-radius:10px;
+  background:linear-gradient(180deg,#666b72,#4a4f56);
+  border:1px solid #787e86;color:#fff;
+  box-shadow:0 6px 16px rgba(0,0,0,.16);
+}
+body[data-portal="coach"] .book button:hover,
+body[data-portal="coach"] .book a:hover{
+  transform:translateY(-1px);
+  border-color:#ff7a43;
+  box-shadow:0 8px 20px rgba(241,90,41,.16);
+}
+body[data-portal="coach"] .card,
+body[data-portal="coach"] .metric,
+body[data-portal="coach"] .row{
+  background:linear-gradient(160deg,#383b41,#292c31);
+  border-color:#555a62;
+}
+body[data-portal="coach"] .card p,
+body[data-portal="coach"] .row small,
+body[data-portal="coach"] .metric span{color:#d0d3d7}
+body[data-portal="coach"] .btn.ghost{
+  background:linear-gradient(180deg,#656a71,#4a4f55);
+  border:1px solid #7a8088;color:#fff;
+}
+body[data-portal="coach"] .btn.soft{
+  background:linear-gradient(180deg,#565b62,#40454c);
+  border:1px solid #70767e;color:#fff;
+}
+body[data-portal="coach"] .btn.ghost:hover,
+body[data-portal="coach"] .btn.soft:hover{
+  border-color:#f15a29;
+  box-shadow:0 7px 18px rgba(241,90,41,.14);
+}
+body[data-portal="coach"] .iq-result{
+  background:linear-gradient(160deg,#3b3e44,#292c31);
+  border-color:#575c64;
+}
+body[data-portal="coach"] .iq-detail{
+  background:#4a4e55;border-color:#666b73;
+}
+body[data-portal="coach"] .iq-titlewrap p,
+body[data-portal="coach"] .iq-detail span{color:#f0f1f2}
+body[data-portal="coach"] .iq-quick{
+  background:linear-gradient(180deg,#676c73,#50555c);
+  border-color:#7b8189;color:#fff;
+}
+body[data-portal="coach"] .iq-history-chip{
+  background:#555a61;border-color:#727880;color:#fff;
+}
+body[data-portal="coach"] .library-shell{
+  background:linear-gradient(145deg,#34373d,#24272b);
+  border-color:#555a62;
+}
+body[data-portal="coach"] .library-term-card{
+  background:linear-gradient(160deg,#555a61,#3e4248);
+  border-color:#6d737b;color:#fff;
+}
+body[data-portal="coach"] .library-term-card span:not(.library-cat){color:#eef0f2}
+body[data-portal="coach"] .library-detail-card{
+  background:linear-gradient(155deg,#464a50,#2f3338);
+  border-color:#626870;
+}
+body[data-portal="coach"] .library-info{
+  background:#565b62;border-color:#70767e;
+}
+body[data-portal="coach"] .library-info span{color:#f3f4f5}
+body[data-portal="coach"] .library-filter,
+body[data-portal="coach"] .library-related-chip{
+  background:linear-gradient(180deg,#676c73,#4e535a);
+  border-color:#7c828a;color:#fff;
+}
+body[data-portal="coach"] .library-download-card{
+  background:linear-gradient(155deg,#4a4e54,#34383e);
+  border-color:#636970;
+}
+body[data-portal="coach"] .library-download-card p{color:#e0e2e5}
+.coach-flowbar{
+  margin:16px 0 4px;padding:11px 13px;border-radius:14px;
+  background:linear-gradient(90deg,#4e535a,#3c4046);
+  border:1px solid #696f77;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+}
+.coach-flowbar b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#ff9b72}
+.coach-flowbar span{font-size:12px;color:#e6e8ea}
+.coach-flowbar .btn{margin-left:auto}
+</style>
 </head>
 <body id="top" data-portal="entry">
 
@@ -957,12 +1055,17 @@ body[data-portal="parent"] .placeholder-chips span{background:#fff;color:#444;bo
   <h4>Pending Staff Invites</h4>
   <div id="staffInviteList" class="list"></div>
 </div>
-<div class="workspace" id="view-practice"><div class="workhead"><div><h3>Practice Planner</h3><div class="sub">Plan, save and review repeatable practice sessions.</div></div></div><div class="formgrid three"><label>Date<input id="practiceDate" type="date"></label><label>Duration (minutes)<input id="practiceDuration" type="number" min="1" value="90"></label><label>Primary Focus<input id="practiceFocus" placeholder="Defense, transition, shooting…"></label></div><div class="formgrid"><label>Objectives<textarea id="practiceObjectives" placeholder="What must the team accomplish today?"></textarea></label><label>Drills / Segments<textarea id="practiceDrills" placeholder="Warm-up 10 min\nShell drill 15 min\nTransition 15 min…"></textarea></label></div><label>Coach Notes<textarea id="practiceNotes" placeholder="Teaching cues, attendance notes, adjustments…"></textarea></label><div class="toolbar"><button class="btn primary" onclick="savePractice()">Save Practice Plan</button></div><div class="divider"></div><div id="practiceList" class="list"></div></div>
-<div class="workspace" id="view-games"><div class="workhead"><div><h3>Games + Stats</h3><div class="sub">Log the game result, then add a stat line for any rostered player.</div></div></div><div class="formgrid three"><label>Date<input id="gameDate" type="date"></label><label>Opponent<input id="gameOpponent" placeholder="Opponent"></label><label>Location<select id="gameLocation"><option>Home</option><option>Away</option><option>Neutral</option></select></label><label>Our Score<input id="ourScore" type="number" min="0"></label><label>Opponent Score<input id="oppScore" type="number" min="0"></label><label>Game Notes<input id="gameNotes" placeholder="Tournament, league, notes…"></label></div><div class="toolbar"><button class="btn primary" onclick="saveGame()">Save Game</button></div><div class="divider"></div><h4>Saved Games</h4><div id="gameList" class="list"></div><div class="divider"></div><h4>Player Stat Entry</h4><div class="formgrid three"><label>Player<select id="statPlayer"></select></label><label>Game<select id="statGame"></select></label><label>Minutes<input id="stMIN" type="number" min="0" value="0"></label><label>Points<input id="stPTS" type="number" min="0" value="0"></label><label>Rebounds<input id="stREB" type="number" min="0" value="0"></label><label>Assists<input id="stAST" type="number" min="0" value="0"></label><label>Steals<input id="stSTL" type="number" min="0" value="0"></label><label>Blocks<input id="stBLK" type="number" min="0" value="0"></label><label>Turnovers<input id="stTO" type="number" min="0" value="0"></label></div><div class="toolbar"><button class="btn soft" onclick="saveStatLine()">Save Player Stat Line</button></div><div class="divider"></div><div class="scrollx"><table class="stat-table"><thead><tr><th>Game</th><th>Player</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>STL</th><th>BLK</th><th>TO</th><th></th></tr></thead><tbody id="statRows"></tbody></table></div></div>
-<div class="workspace" id="view-scouting"><div class="workhead"><div><h3>Scouting Report</h3><div class="sub">Capture opponent personnel, tendencies and the actual game plan in one record.</div></div></div><div class="formgrid"><label>Opponent<input id="scoutOpponent" placeholder="Opponent"></label><label>Date / Game<input id="scoutDate" type="date"></label><label>Offensive Tendencies<textarea id="scoutOffense" placeholder="Sets, pace, primary actions, favorite entries…"></textarea></label><label>Defensive Tendencies<textarea id="scoutDefense" placeholder="Man/zone, pressure, coverages, rotations…"></textarea></label><label>Key Personnel<textarea id="scoutPlayers" placeholder="#, player, role, strengths, weaknesses…"></textarea></label><label>Game Plan<textarea id="scoutPlan" placeholder="What are we taking away? What are we attacking?"></textarea></label></div><div class="toolbar"><button class="btn primary" onclick="saveScout()">Save Scouting Report</button></div><div class="divider"></div><div id="scoutList" class="list"></div></div>
-<div class="workspace" id="view-playlab"><div class="workhead"><div><h3>Play Lab</h3><div class="sub">Tap the court to place player/action markers. Save named diagrams with a short description.</div></div><button class="btn ghost tiny" onclick="clearCourt()">Clear Court</button></div><div class="court" id="court" onclick="addCourtDot(event)"></div><div class="formgrid" style="margin-top:13px"><label>Play / Drill Name<input id="playName" placeholder="e.g. Horns Twist"></label><label>Description<textarea id="playDesc" placeholder="Purpose, reads, teaching points…"></textarea></label></div><div class="toolbar"><button class="btn primary" onclick="savePlay()">Save Diagram</button></div><div class="divider"></div><div id="playList" class="list"></div></div>
+<div class="workspace" id="view-practice"><div class="workhead"><div><h3>Practice Planner</h3><div class="sub">Plan, save and review repeatable practice sessions.</div></div></div><div class="formgrid three"><label>Date<input id="practiceDate" type="date"></label><label>Duration (minutes)<input id="practiceDuration" type="number" min="1" value="90"></label><label>Primary Focus<input id="practiceFocus" placeholder="Defense, transition, shooting…"></label></div><div class="formgrid"><label>Objectives<textarea id="practiceObjectives" placeholder="What must the team accomplish today?"></textarea></label><label>Drills / Segments<textarea id="practiceDrills" placeholder="Warm-up 10 min\nShell drill 15 min\nTransition 15 min…"></textarea></label></div><label>Coach Notes<textarea id="practiceNotes" placeholder="Teaching cues, attendance notes, adjustments…"></textarea></label><div class="toolbar"><button class="btn primary" onclick="savePractice()">Save Practice Plan</button></div><div class="divider"></div><div id="practiceList" class="list"></div>
+<div class="coach-flowbar"><div><b>Next step</b><span>After practice, log the game and player performance.</span></div><button class="btn ghost tiny" onclick="switchView('games')">Go to Games + Stats →</button></div></div>
+<div class="workspace" id="view-games"><div class="workhead"><div><h3>Games + Stats</h3><div class="sub">Log the game result, then add a stat line for any rostered player.</div></div></div><div class="formgrid three"><label>Date<input id="gameDate" type="date"></label><label>Opponent<input id="gameOpponent" placeholder="Opponent"></label><label>Location<select id="gameLocation"><option>Home</option><option>Away</option><option>Neutral</option></select></label><label>Our Score<input id="ourScore" type="number" min="0"></label><label>Opponent Score<input id="oppScore" type="number" min="0"></label><label>Game Notes<input id="gameNotes" placeholder="Tournament, league, notes…"></label></div><div class="toolbar"><button class="btn primary" onclick="saveGame()">Save Game</button></div><div class="divider"></div><h4>Saved Games</h4><div id="gameList" class="list"></div><div class="divider"></div><h4>Player Stat Entry</h4><div class="formgrid three"><label>Player<select id="statPlayer"></select></label><label>Game<select id="statGame"></select></label><label>Minutes<input id="stMIN" type="number" min="0" value="0"></label><label>Points<input id="stPTS" type="number" min="0" value="0"></label><label>Rebounds<input id="stREB" type="number" min="0" value="0"></label><label>Assists<input id="stAST" type="number" min="0" value="0"></label><label>Steals<input id="stSTL" type="number" min="0" value="0"></label><label>Blocks<input id="stBLK" type="number" min="0" value="0"></label><label>Turnovers<input id="stTO" type="number" min="0" value="0"></label></div><div class="toolbar"><button class="btn soft" onclick="saveStatLine()">Save Player Stat Line</button></div><div class="divider"></div><div class="scrollx"><table class="stat-table"><thead><tr><th>Game</th><th>Player</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>STL</th><th>BLK</th><th>TO</th><th></th></tr></thead><tbody id="statRows"></tbody></table></div>
+<div class="coach-flowbar"><div><b>Next step</b><span>Use the result and tendencies you saw to prepare the next scouting report.</span></div><button class="btn ghost tiny" onclick="prefillScoutFromLatestGame();switchView('scouting')">Send Latest Game to Scouting →</button></div></div>
+<div class="workspace" id="view-scouting"><div class="workhead"><div><h3>Scouting Report</h3><div class="sub">Capture opponent personnel, tendencies and the actual game plan in one record.</div></div></div><div class="formgrid"><label>Opponent<input id="scoutOpponent" placeholder="Opponent"></label><label>Date / Game<input id="scoutDate" type="date"></label><label>Offensive Tendencies<textarea id="scoutOffense" placeholder="Sets, pace, primary actions, favorite entries…"></textarea></label><label>Defensive Tendencies<textarea id="scoutDefense" placeholder="Man/zone, pressure, coverages, rotations…"></textarea></label><label>Key Personnel<textarea id="scoutPlayers" placeholder="#, player, role, strengths, weaknesses…"></textarea></label><label>Game Plan<textarea id="scoutPlan" placeholder="What are we taking away? What are we attacking?"></textarea></label></div><div class="toolbar"><button class="btn primary" onclick="saveScout()">Save Scouting Report</button></div><div class="divider"></div><div id="scoutList" class="list"></div>
+<div class="coach-flowbar"><div><b>Next step</b><span>Turn the scouting plan into a visual action or counter.</span></div><button class="btn ghost tiny" onclick="sendScoutToPlayLab()">Send Game Plan to Play Lab →</button></div></div>
+<div class="workspace" id="view-playlab"><div class="workhead"><div><h3>Play Lab</h3><div class="sub">Tap the court to place player/action markers. Save named diagrams with a short description.</div></div><button class="btn ghost tiny" onclick="clearCourt()">Clear Court</button></div><div class="court" id="court" onclick="addCourtDot(event)"></div><div class="formgrid" style="margin-top:13px"><label>Play / Drill Name<input id="playName" placeholder="e.g. Horns Twist"></label><label>Description<textarea id="playDesc" placeholder="Purpose, reads, teaching points…"></textarea></label></div><div class="toolbar"><button class="btn primary" onclick="savePlay()">Save Diagram</button></div><div class="divider"></div><div id="playList" class="list"></div>
+<div class="coach-flowbar"><div><b>Next step</b><span>Install the saved action in practice before game day.</span></div><button class="btn ghost tiny" onclick="sendCurrentPlayToPractice()">Send Current Play to Practice →</button></div></div>
 <div class="workspace" id="view-notes"><div class="workhead"><div><h3>Season Notes</h3><div class="sub">A running coach notebook for ideas, meetings, injuries, culture, goals and follow-up.</div></div></div><div class="formgrid"><label>Category<select id="noteCategory"><option>General</option><option>Player Development</option><option>Team Culture</option><option>Staff</option><option>Parent / Family</option><option>Injury / Availability</option><option>Goal</option></select></label><label>Title<input id="noteTitle" placeholder="Note title"></label></div><label>Note<textarea id="noteBody" placeholder="Write the note…"></textarea></label><div class="toolbar"><button class="btn primary" onclick="saveNote()">Save Note</button></div><div class="divider"></div><div id="noteList" class="list"></div></div>
-<div class="workspace" id="view-reports"><div class="workhead"><div><h3>Reports + Exports</h3><div class="sub">Generate a clean season snapshot and keep a portable backup of your records.</div></div></div><div class="cards"><div class="card"><h4>Season Snapshot</h4><p>Team, roster count, record, recent practice, latest scouting report and player stat totals.</p><div class="toolbar"><button class="btn primary tiny" onclick="prepareSeasonReport()">Generate Report</button><button class="btn ghost tiny" onclick="prepareAndPrintSeasonReport()">Print / Save PDF</button></div></div><div class="card"><h4>Data Backup</h4><p>Download a backup of your Basketball Brilliance records or restore one later.</p><div class="toolbar"><button class="btn soft tiny" onclick="exportBackup()">Download Backup</button><label class="btn ghost tiny" style="cursor:pointer">Restore Backup<input type="file" accept="application/json" onchange="importBackup(event)" style="display:none"></label></div></div></div><div class="divider"></div><div id="seasonReport" class="card"><p>No report generated yet.</p></div></div>
+<div class="workspace" id="view-reports"><div class="workhead"><div><h3>Reports + Exports</h3><div class="sub">Generate a clean season snapshot and keep a portable backup of your records.</div></div></div><div class="cards"><div class="card"><h4>Season Snapshot</h4><p>Team, roster count, record, recent practice, latest scouting report and player stat totals.</p><div class="toolbar"><button class="btn primary tiny" onclick="prepareSeasonReport()">Generate Report</button><button class="btn ghost tiny" onclick="prepareAndPrintSeasonReport()">Print / Save PDF</button></div></div><div class="card"><h4>Data Backup</h4><p>Download a backup of your Basketball Brilliance records or restore one later.</p><div class="toolbar"><button class="btn soft tiny" onclick="exportBackup()">Download Backup</button><label class="btn ghost tiny" style="cursor:pointer">Restore Backup<input type="file" accept="application/json" onchange="importBackup(event)" style="display:none"></label></div></div></div><div class="divider"></div><div id="seasonReport" class="card"><p>No report generated yet.</p></div>
+<div class="coach-flowbar"><div><b>Season loop</b><span>Use the report to review trends, then return to Practice Planner for the next cycle.</span></div><button class="btn ghost tiny" onclick="switchView('practice')">Back to Practice Planner →</button></div></div>
 </div></div></div></section>
 <section id="books"><div class="wrap"><span class="eyebrow">Coach tools</span><h2 class="section-title">Seven core tools. One connected season.</h2><p class="section-copy">Ask the question, learn the language, run the team, prepare, compete and preserve the season. Every core tool connects back to the Coach Command Center.</p><div class="books">
 <div class="book"><div class="bar"></div><small>Coach IQ</small><h4>Basketball Brilliance Situation Station</h4><p>Speak or type the basketball situation, compare recommended solutions, then send an answer directly to Practice Planner or Play Lab.</p><button onclick="document.getElementById('coachIQStation').scrollIntoView({behavior:'smooth'})">Open Situation Station →</button></div>
@@ -1806,7 +1909,32 @@ async function saveNote(){
 function renderNotes(){noteList.innerHTML=db.notes.length?db.notes.map(n=>`<div class="row"><div><b>${esc(n.title)}</b><br><small>${esc(n.date||new Date(n.created).toLocaleDateString())}</small></div><div><span class="badge orange">${esc(n.category)}</span></div><div>${esc((n.body||'').slice(0,50))}</div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('notes','${n.id}')">Remove</button></div></div>`).join(''):'<div class="empty">No season notes saved yet.</div>'}
 function record(){let w=0,l=0;db.games.forEach(g=>{if(g.our>g.opp)w++;else if(g.our<g.opp)l++});return {w,l}}
 function totalsByPlayer(){const out={};db.stats.forEach(s=>{const k=s.playerId;out[k]??={PTS:0,REB:0,AST:0,STL:0,BLK:0,TO:0,GP:0};['PTS','REB','AST','STL','BLK','TO'].forEach(a=>out[k][a]+=+s[a]||0);out[k].GP++});return out}
-function prepareSeasonReport(showToast=true){const rr=record(),tot=totalsByPlayer();const leaders=Object.entries(tot).map(([id,v])=>({name:db.players.find(p=>p.id===id)?.name||'Player',...v})).sort((a,b)=>b.PTS-a.PTS);seasonReport.innerHTML=`<h3 style="margin-top:0">${esc(db.team.name||'Basketball Brilliance Team')} — ${esc(db.team.season||'Season Snapshot')}</h3><p><b>Coach:</b> ${esc(db.team.coach||'—')} &nbsp; • &nbsp; <b>Record:</b> ${rr.w}–${rr.l} &nbsp; • &nbsp; <b>Roster:</b> ${db.players.length}</p><div class="divider"></div><h4>Stat Leaders / Totals</h4>${leaders.length?leaders.slice(0,8).map(x=>`<p><b>${esc(x.name)}</b> — ${x.GP} GP • ${x.PTS} PTS • ${x.REB} REB • ${x.AST} AST • ${x.STL} STL • ${x.BLK} BLK</p>`).join(''):'<p>No player stats entered yet.</p>'}<div class="divider"></div><p><b>Latest Practice:</b> ${esc(db.practices[0]?.focus||'None')} ${esc(db.practices[0]?.date||'')}</p><p><b>Latest Scouting:</b> ${esc(db.scouts[0]?.opponent||'None')}</p><p><b>Saved Plays:</b> ${db.plays.length} &nbsp; • &nbsp; <b>Season Notes:</b> ${db.notes.length}</p>`;if(showToast)toast('Season report generated.')}
+function prefillScoutFromLatestGame(){
+  const g=db.games?.[0];if(!g){toast('Save a game first.');return}
+  scoutOpponent.value=g.opponent||'';
+  scoutDate.value=g.date||'';
+  const result=(g.our>g.opp?'Win':g.our<g.opp?'Loss':'Tie')+' '+g.our+'–'+g.opp;
+  if(!scoutPlan.value)scoutPlan.value='Previous result: '+result+'. Review what changed and what we need to attack or take away next time.';
+}
+function sendScoutToPlayLab(){
+  const opponent=scoutOpponent.value.trim()||db.scouts?.[0]?.opponent||'Opponent';
+  const offense=scoutOffense.value.trim()||db.scouts?.[0]?.offense||'';
+  const defense=scoutDefense.value.trim()||db.scouts?.[0]?.defense||'';
+  const plan=scoutPlan.value.trim()||db.scouts?.[0]?.plan||'';
+  playName.value='Game Plan vs '+opponent;
+  playDesc.value=['Opponent offense: '+offense,'Opponent defense: '+defense,'Our game plan: '+plan].filter(x=>!x.endsWith(': ')).join('\n\n');
+  switchView('playlab');toast('Scouting game plan sent to Play Lab.');
+}
+function sendCurrentPlayToPractice(){
+  const name=playName.value.trim()||'Play Lab Action';
+  const desc=playDesc.value.trim();
+  practiceFocus.value='Install '+name;
+  practiceObjectives.value='Teach alignment, timing, reads and counters for '+name+'.';
+  practiceDrills.value='1. Walk-through alignment\n2. First action at 50%\n3. Add defensive read\n4. Live situational reps';
+  practiceNotes.value=desc||'Use the saved Play Lab diagram as the visual reference.';
+  switchView('practice');toast('Play Lab action sent to Practice Planner.');
+}
+function prepareSeasonReport(showToast=true){const rr=record(),tot=totalsByPlayer();const leaders=Object.entries(tot).map(([id,v])=>({name:db.players.find(p=>p.id===id)?.name||'Player',...v})).sort((a,b)=>b.PTS-a.PTS);seasonReport.innerHTML=`<h3 style="margin-top:0">${esc(db.team.name||'Basketball Brilliance Team')} — ${esc(db.team.season||'Season Snapshot')}</h3><p><b>Coach:</b> ${esc(db.team.coach||'—')} &nbsp; • &nbsp; <b>Record:</b> ${rr.w}–${rr.l} &nbsp; • &nbsp; <b>Roster:</b> ${db.players.length}</p><div class="divider"></div><h4>Stat Leaders / Totals</h4>${leaders.length?leaders.slice(0,8).map(x=>`<p><b>${esc(x.name)}</b> — ${x.GP} GP • ${x.PTS} PTS • ${x.REB} REB • ${x.AST} AST • ${x.STL} STL • ${x.BLK} BLK</p>`).join(''):'<p>No player stats entered yet.</p>'}<div class="divider"></div><p><b>Latest Practice:</b> ${esc(db.practices[0]?.focus||'None')} ${esc(db.practices[0]?.date||'')}</p><p><b>Latest Scouting:</b> ${esc(db.scouts[0]?.opponent||'None')}</p><p><b>Practice Plans:</b> ${db.practices.length} &nbsp; • &nbsp; <b>Games:</b> ${db.games.length} &nbsp; • &nbsp; <b>Scouting Reports:</b> ${db.scouts.length}</p><p><b>Saved Plays:</b> ${db.plays.length} &nbsp; • &nbsp; <b>Season Notes:</b> ${db.notes.length}</p>`;if(showToast)toast('Season report generated.')}
 function prepareAndPrintSeasonReport(){prepareSeasonReport(false);setTimeout(()=>window.print(),120)}
 function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='basketball-brilliance-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Basketball Brilliance backup downloaded.')}
 function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=Object.assign(JSON.parse(JSON.stringify(defaultData)),JSON.parse(r.result));saveDB('Backup restored.');hydrateTeam()}catch(err){toast('That backup could not be read.')}};r.readAsText(f)}
