@@ -366,6 +366,60 @@
   async function listPlayerBounceBack(){ const u=await me(); const {data,error}=await s().from("player_bounce_back").select("*").eq("user_id",u.id).order("event_date",{ascending:false}).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
   async function savePlayerBounceBack(payload){ const u=await me(); const row={user_id:u.id,event_date:payload.event_date||new Date().toISOString().slice(0,10),setback:payload.setback,controllables:payload.controllables||null,lesson:payload.lesson||null,next_action:payload.next_action||null,confidence:payload.confidence?Number(payload.confidence):null}; const {data,error}=await s().from("player_bounce_back").insert(row).select().single(); if(error) throw error; return data; }
   async function deletePlayerBounceBack(id){ const {error}=await s().from("player_bounce_back").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listParentChildren(){ const u=await me(); const {data,error}=await s().from("parent_children").select("*").eq("user_id",u.id).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function saveParentChild(payload){ const u=await me(); const row={user_id:u.id,name:payload.name,graduation_year:payload.graduation_year?Number(payload.graduation_year):null,grade:payload.grade||null,primary_position:payload.primary_position||null,notes:payload.notes||null}; const {data,error}=await s().from("parent_children").insert(row).select().single(); if(error) throw error; return data; }
+  async function deleteParentChild(id){ const {error}=await s().from("parent_children").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listParentPassport(){ const u=await me(); const {data,error}=await s().from("parent_passport_entries").select("*").eq("user_id",u.id).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function saveParentPassport(payload){ const u=await me(); const row={user_id:u.id,child_id:payload.child_id||null,season:payload.season||null,team:payload.team,coach:payload.coach||null,level:payload.level||null,position:payload.position||null,milestones:payload.milestones||null}; const {data,error}=await s().from("parent_passport_entries").insert(row).select().single(); if(error) throw error; return data; }
+  async function deleteParentPassport(id){ const {error}=await s().from("parent_passport_entries").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listParentOpportunities(){ const u=await me(); const {data,error}=await s().from("parent_opportunities").select("*").eq("user_id",u.id).order("event_date",{ascending:true}).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function saveParentOpportunity(payload){ const u=await me(); const row={user_id:u.id,child_id:payload.child_id||null,title:payload.title,opportunity_type:payload.opportunity_type||null,organization:payload.organization||null,event_date:payload.event_date||null,deadline:payload.deadline||null,cost:payload.cost?Number(payload.cost):null,url:payload.url||null,status:payload.status||"researching",notes:payload.notes||null}; const {data,error}=await s().from("parent_opportunities").insert(row).select().single(); if(error) throw error; return data; }
+  async function deleteParentOpportunity(id){ const {error}=await s().from("parent_opportunities").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listParentRecruiting(){ const u=await me(); const {data,error}=await s().from("parent_recruiting").select("*").eq("user_id",u.id).order("next_step_date",{ascending:true}).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function saveParentRecruiting(payload){ const u=await me(); const row={user_id:u.id,child_id:payload.child_id||null,school:payload.school,level:payload.level||null,fit:payload.fit||null,contact_name:payload.contact_name||null,contact_email:payload.contact_email||null,status:payload.status||"researching",next_step:payload.next_step||null,next_step_date:payload.next_step_date||null,notes:payload.notes||null}; const {data,error}=await s().from("parent_recruiting").insert(row).select().single(); if(error) throw error; return data; }
+  async function deleteParentRecruiting(id){ const {error}=await s().from("parent_recruiting").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listParentNextSteps(){ const u=await me(); const {data,error}=await s().from("parent_next_steps").select("*").eq("user_id",u.id).order("due_date",{ascending:true}).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function saveParentNextStep(payload){ const u=await me(); const row={user_id:u.id,child_id:payload.child_id||null,title:payload.title,due_date:payload.due_date||null,category:payload.category||null,status:payload.status||"open",notes:payload.notes||null}; const {data,error}=await s().from("parent_next_steps").insert(row).select().single(); if(error) throw error; return data; }
+  async function deleteParentNextStep(id){ const {error}=await s().from("parent_next_steps").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listParentVault(){ const u=await me(); const {data,error}=await s().from("parent_vault_documents").select("*").eq("user_id",u.id).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function uploadParentVaultFile(file,payload={}){
+    const u=await me();
+    const clean=String(file.name||"document").replace(/[^a-zA-Z0-9._-]/g,"_");
+    const path=u.id+"/"+Date.now()+"-"+clean;
+    const upload=await s().storage.from("parent-vault").upload(path,file,{upsert:false});
+    if(upload.error) throw upload.error;
+    const row={user_id:u.id,child_id:payload.child_id||null,title:payload.title||file.name,document_type:payload.document_type||file.type||"Document",storage_path:path,external_url:null,notes:payload.notes||null};
+    const {data,error}=await s().from("parent_vault_documents").insert(row).select().single();
+    if(error) throw error; return data;
+  }
+  async function saveParentVaultLink(payload){
+    const u=await me();
+    const row={user_id:u.id,child_id:payload.child_id||null,title:payload.title,document_type:payload.document_type||"Link",storage_path:null,external_url:payload.external_url||null,notes:payload.notes||null};
+    const {data,error}=await s().from("parent_vault_documents").insert(row).select().single();
+    if(error) throw error; return data;
+  }
+  async function openParentVaultDocument(doc){
+    if(doc.external_url) return doc.external_url;
+    if(!doc.storage_path) return null;
+    const {data,error}=await s().storage.from("parent-vault").createSignedUrl(doc.storage_path,300);
+    if(error) throw error; return data?.signedUrl||null;
+  }
+  async function deleteParentVaultDocument(doc){
+    if(doc.storage_path){ const rm=await s().storage.from("parent-vault").remove([doc.storage_path]); if(rm.error) throw rm.error; }
+    const {error}=await s().from("parent_vault_documents").delete().eq("id",doc.id); if(error) throw error; return true;
+  }
+
+  async function getMyParentConnections(){
+    const u=await me();
+    const {data,error}=await s().from("team_memberships").select("id,team_id,player_id,status,teams(name,season,level,home_gym),players(id,first_name,last_name,jersey_number,position,grade,height_text,graduation_year)").eq("user_id",u.id).eq("role","parent").order("created_at",{ascending:false});
+    if(error) throw error; return data||[];
+  }
   async function dashboard(teamId){
     const [players,invites,staff,practices,games]=await Promise.all([
       listTeamPlayers(teamId),
@@ -407,6 +461,13 @@
     getMyLinkedPlayer,listMyOfficialStats,
     listPlayerCollegePathway,savePlayerCollegePathway,deletePlayerCollegePathway,
     listPlayerBounceBack,savePlayerBounceBack,deletePlayerBounceBack,
+    listParentChildren,saveParentChild,deleteParentChild,
+    listParentPassport,saveParentPassport,deleteParentPassport,
+    listParentOpportunities,saveParentOpportunity,deleteParentOpportunity,
+    listParentRecruiting,saveParentRecruiting,deleteParentRecruiting,
+    listParentNextSteps,saveParentNextStep,deleteParentNextStep,
+    listParentVault,uploadParentVaultFile,saveParentVaultLink,openParentVaultDocument,deleteParentVaultDocument,
+    getMyParentConnections,
     dashboard
   };
 })();
