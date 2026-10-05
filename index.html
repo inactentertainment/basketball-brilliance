@@ -1004,7 +1004,11 @@ async function continueLogin(){
       const invite=q.get('invite');
       if(invite){
         try{
-          await window.BBData.acceptInvite(invite);
+          const accepted=await window.BBData.acceptInvite(invite);
+          if(accepted?.role){
+            selectedRole=String(accepted.role).replace(/^./,c=>c.toUpperCase());
+            db.session.role=selectedRole;
+          }
           toast('Team invitation accepted.');
           history.replaceState({},'',location.pathname+location.hash);
         }catch(invErr){
