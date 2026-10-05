@@ -44,17 +44,14 @@
       season:payload.season||null,
       level:payload.level||null,
       home_gym:payload.home_gym||null,
-      organization_id,
-      head_coach_id:u.id,
-      created_by:u.id
+      organization_id
     };
     if(payload.id){
-      delete row.created_by;
       const {data,error}=await s().from("teams").update(row).eq("id",payload.id).select().single();
       if(error) throw error;
       return data;
     }
-    const {data,error}=await s().from("teams").insert(row).select().single();
+    const {data,error}=await s().from("teams").insert({...row,head_coach_id:u.id,created_by:u.id}).select().single();
     if(error) throw error;
     const m=await s().from("team_memberships").insert({
       team_id:data.id,user_id:u.id,role:"coach",status:"active",staff_title:"Head Coach"
