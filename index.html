@@ -1173,6 +1173,12 @@ body[data-portal="coach"] .library-layout{
     <button class="iq-quick" onclick="askCoachIQPreset('last-shot')">Last Shot</button>
     <button class="iq-quick" onclick="askCoachIQPreset('stop-scorer')">Stop a Scorer</button>
     <button class="iq-quick" onclick="askCoachIQPreset('pnr-defense')">Pick-and-Roll Defense</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('protect-lead')">Protect a Lead</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('foul-or-defend')">Foul or Defend?</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('vs-switching')">Beat Switching</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('post-mismatch')">Post Mismatch</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('two-for-one')">2-for-1</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('ato')">ATO</button>
     <button class="shimmer-btn" onclick="runCoachIQ()">Ask Coach IQ</button>
   </div>
   </div>
@@ -1241,7 +1247,9 @@ body[data-portal="coach"] .library-layout{
 <div class="workspace" id="view-playlab"><div class="workhead"><div><h3>Play Lab</h3><div class="sub">Tap the court to place player/action markers. Save named diagrams with a short description.</div></div><button class="btn ghost tiny" onclick="clearCourt()">Clear Court</button></div><div class="court" id="court" onclick="addCourtDot(event)"></div><div class="formgrid" style="margin-top:13px"><label>Play / Drill Name<input id="playName" placeholder="e.g. Horns Twist"></label><label>Description<textarea id="playDesc" placeholder="Purpose, reads, teaching points…"></textarea></label></div><div class="toolbar"><button class="btn primary" onclick="savePlay()">Save Diagram</button></div><div class="divider"></div><div id="playList" class="list"></div>
 <div class="coach-flowbar"><div><b>Next step</b><span>Install the saved action in practice before game day.</span></div><button class="btn ghost tiny" onclick="sendCurrentPlayToPractice()">Send Current Play to Practice →</button></div></div>
 <div class="workspace" id="view-notes"><div class="workhead"><div><h3>Season Notes</h3><div class="sub">A running coach notebook for ideas, meetings, injuries, culture, goals and follow-up.</div></div></div><div class="formgrid"><label>Category<select id="noteCategory"><option>General</option><option>Player Development</option><option>Team Culture</option><option>Staff</option><option>Parent / Family</option><option>Injury / Availability</option><option>Goal</option></select></label><label>Title<input id="noteTitle" placeholder="Note title"></label></div><label>Note<textarea id="noteBody" placeholder="Write the note…"></textarea></label><div class="toolbar"><button class="btn primary" onclick="saveNote()">Save Note</button></div><div class="divider"></div><div id="noteList" class="list"></div></div>
-<div class="workspace" id="view-reports"><div class="workhead"><div><h3>Reports + Exports</h3><div class="sub">Generate a clean season snapshot and keep a portable backup of your records.</div></div></div><div class="cards"><div class="card"><h4>Season Snapshot</h4><p>Team, roster count, record, recent practice, latest scouting report and player stat totals.</p><div class="toolbar"><button class="btn primary tiny" onclick="prepareSeasonReport()">Generate Report</button><button class="btn ghost tiny" onclick="prepareAndPrintSeasonReport()">Print / Save PDF</button></div></div><div class="card"><h4>Data Backup</h4><p>Download a backup of your Basketball Brilliance records or restore one later.</p><div class="toolbar"><button class="btn soft tiny" onclick="exportBackup()">Download Backup</button><label class="btn ghost tiny" style="cursor:pointer">Restore Backup<input type="file" accept="application/json" onchange="importBackup(event)" style="display:none"></label></div></div></div><div class="divider"></div><div id="seasonReport" class="card"><p>No report generated yet.</p></div>
+<div class="workspace" id="view-reports"><div class="workhead"><div><h3>Reports + Exports</h3><div class="sub">Generate a clean season snapshot and keep a portable backup of your records.</div></div></div><div class="cards"><div class="card"><h4>Season Snapshot</h4><p>Team, roster count, record, recent practice, latest scouting report and player stat totals.</p><div class="toolbar"><button class="btn primary tiny" onclick="prepareSeasonReport()">Generate Report</button><button class="btn ghost tiny" onclick="prepareAndPrintSeasonReport()">Print / Save PDF</button></div></div><div class="card"><h4>Data Backup</h4><p>Download a backup of your Basketball Brilliance records or restore one later.</p><div class="toolbar"><button class="btn soft tiny" onclick="exportBackup()">Download Backup</button><label class="btn ghost tiny" style="cursor:pointer">Restore Backup<input type="file" accept="application/json" onchange="importBackup(event)" style="display:none"></label></div></div>
+<div class="card"><h4>Coach Data Exports</h4><p>Download clean spreadsheet-ready CSV files for roster, games, and player statistics.</p><div class="toolbar"><button class="btn soft tiny" onclick="exportRosterCSV()">Roster CSV</button><button class="btn soft tiny" onclick="exportGamesCSV()">Games CSV</button><button class="btn soft tiny" onclick="exportStatsCSV()">Stats CSV</button></div></div>
+<div class="card"><h4>Launch Readiness</h4><p>Check whether the Coach workspace has the records and account pieces needed for a real season.</p><div class="toolbar"><button class="btn primary tiny" onclick="runCoachLaunchCheck()">Run Readiness Check</button></div><div id="coachLaunchStatus" class="sub" style="margin-top:8px">Not checked yet.</div></div></div><div class="divider"></div><div id="seasonReport" class="card"><p>No report generated yet.</p></div>
 <div class="coach-flowbar"><div><b>Season loop</b><span>Use the report to review trends, then return to Practice Planner for the next cycle.</span></div><button class="btn ghost tiny" onclick="switchView('practice')">Back to Practice Planner →</button></div></div>
 </div></div></div></section>
 <section id="books"><div class="wrap"><span class="eyebrow">Coach tools</span><h2 class="section-title">Seven core tools. One connected season.</h2><p class="section-copy">Ask the question, learn the language, run the team, prepare, compete and preserve the season. Every core tool connects back to the Coach Command Center.</p><div class="books">
@@ -1254,7 +1262,7 @@ body[data-portal="coach"] .library-layout{
 <div class="book"><div class="bar"></div><small>Season Record</small><h4>Reports + Archive</h4><p>Season summaries, downloadable reports, backups, saved plays and long-term history.</p><button onclick="switchView('reports');location.hash='app'">Open Reports →</button></div>
 </div></div></section>
 <section id="families"><div class="wrap"><div class="familyhub"><div class="familygrid"><div><span class="eyebrow">Parent + Player path</span><h2 style="font-size:40px;line-height:1.05;margin:16px 0 12px">Team-linked access first.<br>Family-owned tools second.</h2><p class="section-copy" style="margin-bottom:20px">Families can complete the information their coach needs without paying again. Optional long-term tools give players and parents a place to keep the journey going beyond one team or season.</p><div class="toolbar"><button class="shimmer-btn family-action" onclick="openFamilyDemo()">Explore Family Access</button></div></div><div class="upsell"><div><b>Basketball Passport</b><span>Keep teams, seasons, achievements, stats and player history beyond one coach.</span></div><div><b>Opportunity Finder</b><span>AAU, camps, tryouts, clinics and basketball opportunities.</span></div><div><b>Recruiting Roadmap</b><span>Grade-based tasks, school research, communication and recruiting organization.</span></div><div><b>Parent Resource Vault</b><span>Guides, checklists, downloads and Player Journal offers.</span></div></div></div></div></div></section>
-<section class="portal-pricing" id="coach-membership"><div class="wrap"><div class="price-box" style="background:linear-gradient(145deg,#2c2e33,#111214);border:1px solid #4b4e54;color:#fff;box-shadow:0 22px 55px rgba(0,0,0,.2)"><div><span class="eyebrow">Annual coach membership</span><h2 class="section-title" style="color:#fff">Turn the preview into your active season system.</h2><p class="section-copy" style="color:#c9cbd0">Persistent team records, synced access, roster history, family invitations, practices, games, scouting, reports, downloads and year-to-year archives.</p></div><div><div class="price-number">$99 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('coach')">See Coach Membership</button><div class="lock-note">Working introductory price for planning. Final pricing will be researched before launch.</div></div></div></div></section></main>
+<section class="portal-pricing" id="coach-membership"><div class="wrap"><div class="price-box" style="background:linear-gradient(145deg,#2c2e33,#111214);border:1px solid #4b4e54;color:#fff;box-shadow:0 22px 55px rgba(0,0,0,.2)"><div><span class="eyebrow">Annual coach membership</span><h2 class="section-title" style="color:#fff">Turn the preview into your active season system.</h2><p class="section-copy" style="color:#c9cbd0">Persistent team records, synced access, roster history, family invitations, practices, games, scouting, reports, downloads and year-to-year archives.</p></div><div><div class="price-number">$99 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('coach')">See Coach Membership</button><div id="coachMembershipState" class="lock-note">Account foundation ready. Payment provider activation is the remaining launch step.</div><div class="lock-note">Working introductory price for planning. Final pricing will be researched before launch.</div></div></div></div></section></main>
 <main id="parentPortal" class="portal-shell">
  
 <section class="portal-intro" id="parent-home"><div class="wrap">
@@ -2113,6 +2121,50 @@ function sendCurrentPlayToPractice(){
 }
 function prepareSeasonReport(showToast=true){const rr=record(),tot=totalsByPlayer();const leaders=Object.entries(tot).map(([id,v])=>({name:db.players.find(p=>p.id===id)?.name||'Player',...v})).sort((a,b)=>b.PTS-a.PTS);seasonReport.innerHTML=`<h3 style="margin-top:0">${esc(db.team.name||'Basketball Brilliance Team')} — ${esc(db.team.season||'Season Snapshot')}</h3><p><b>Coach:</b> ${esc(db.team.coach||'—')} &nbsp; • &nbsp; <b>Record:</b> ${rr.w}–${rr.l} &nbsp; • &nbsp; <b>Roster:</b> ${db.players.length}</p><div class="divider"></div><h4>Stat Leaders / Totals</h4>${leaders.length?leaders.slice(0,8).map(x=>`<p><b>${esc(x.name)}</b> — ${x.GP} GP • ${x.PTS} PTS • ${x.REB} REB • ${x.AST} AST • ${x.STL} STL • ${x.BLK} BLK</p>`).join(''):'<p>No player stats entered yet.</p>'}<div class="divider"></div><p><b>Latest Practice:</b> ${esc(db.practices[0]?.focus||'None')} ${esc(db.practices[0]?.date||'')}</p><p><b>Latest Scouting:</b> ${esc(db.scouts[0]?.opponent||'None')}</p><p><b>Practice Plans:</b> ${db.practices.length} &nbsp; • &nbsp; <b>Games:</b> ${db.games.length} &nbsp; • &nbsp; <b>Scouting Reports:</b> ${db.scouts.length}</p><p><b>Saved Plays:</b> ${db.plays.length} &nbsp; • &nbsp; <b>Season Notes:</b> ${db.notes.length}</p>`;if(showToast)toast('Season report generated.')}
 function prepareAndPrintSeasonReport(){prepareSeasonReport(false);setTimeout(()=>window.print(),120)}
+function bbDownloadCSV(filename,rows){
+  if(!rows.length){toast('There is no data to export yet.');return}
+  const headers=Object.keys(rows[0]);
+  const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const csv=[headers.map(q).join(','),...rows.map(r=>headers.map(k=>q(r[k])).join(','))].join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)
+}
+function exportRosterCSV(){
+  bbDownloadCSV('basketball-brilliance-roster.csv',(db.players||[]).map(p=>({name:p.name,jersey:p.jersey||'',position:p.position||'',grade:p.grade||'',height:p.height||'',guardian:p.guardian||'',guardian_email:p.guardianEmail||'',guardian_phone:p.guardianPhone||''})));
+}
+function exportGamesCSV(){
+  bbDownloadCSV('basketball-brilliance-games.csv',(db.games||[]).map(g=>({date:g.date||'',opponent:g.opponent||'',location:g.location||'',team_score:g.our??'',opponent_score:g.opp??'',result:(g.our>g.opp?'W':g.our<g.opp?'L':'T'),notes:g.notes||''})));
+}
+function exportStatsCSV(){
+  bbDownloadCSV('basketball-brilliance-player-stats.csv',(db.stats||[]).map(s=>({player:db.players.find(p=>p.id===s.playerId)?.name||'',game:db.games.find(g=>g.id===s.gameId)?.opponent||'',minutes:s.MIN||0,points:s.PTS||0,rebounds:s.REB||0,assists:s.AST||0,steals:s.STL||0,blocks:s.BLK||0,turnovers:s.TO||0})));
+}
+async function runCoachLaunchCheck(){
+  const el=document.getElementById('coachLaunchStatus');if(!el)return;
+  let signed=false,membership=null;
+  try{signed=!!(await window.BBAuth?.getSession?.());if(signed)membership=await window.BBData?.getMyMembership?.('coach')}catch(e){}
+  const checks=[
+    ['Account signed in',signed],
+    ['Team setup saved',!!currentTeamId],
+    ['Roster started',(db.players||[]).length>0],
+    ['Practice plan saved',(db.practices||[]).length>0],
+    ['Game record saved',(db.games||[]).length>0],
+    ['Scouting report saved',(db.scouts||[]).length>0],
+    ['Play Lab record saved',(db.plays||[]).length>0],
+    ['Season report ready',(db.games||[]).length>0||(db.practices||[]).length>0]
+  ];
+  const done=checks.filter(x=>x[1]).length;
+  el.innerHTML='<b>'+done+'/'+checks.length+' Coach readiness checks complete</b><br>'+checks.map(x=>(x[1]?'✓ ':'○ ')+esc(x[0])).join(' • ')+'<br><span style="display:inline-block;margin-top:6px">Membership status: '+esc(membership?.status||'preview / payment not activated')+'</span>';
+}
+async function refreshCoachMembershipState(){
+  const el=document.getElementById('coachMembershipState');if(!el)return;
+  try{
+    const session=await window.BBAuth?.getSession?.();
+    if(!session){el.textContent='Create or sign in to your Coach account first. Payment activation comes after account setup.';return}
+    const m=await window.BBData?.getMyMembership?.('coach');
+    if(m?.status==='active')el.textContent='Coach membership active.';
+    else el.textContent='Coach account ready. Secure payment checkout is the remaining launch step.';
+  }catch(e){el.textContent='Coach account foundation ready. Payment provider activation is the remaining launch step.'}
+}
 function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='basketball-brilliance-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Basketball Brilliance backup downloaded.')}
 function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=Object.assign(JSON.parse(JSON.stringify(defaultData)),JSON.parse(r.result));saveDB('Backup restored.');hydrateTeam()}catch(err){toast('That backup could not be read.')}};r.readAsText(f)}
 function refreshAll(){const rr=record();heroTeam.textContent=(db.team.name||'My Team')+' • '+(db.team.season||'New Season');sideTeam.textContent=db.team.name||'Basketball Brilliance';sideSeason.textContent=(db.team.level||'Coach')+' • '+(db.team.season||'Workspace');heroRecord.textContent=rr.w+'–'+rr.l;heroPlayers.textContent=db.players.length;heroPractices.textContent=db.practices.length;heroGames.textContent=db.games.length;heroScouts.textContent=db.scouts.length;mPlayers.textContent=persistentCoachDashboard?.playerCount??db.players.length;mInvites.textContent=persistentCoachDashboard?.inviteCount??db.invites.length;mPractices.textContent=persistentCoachDashboard?.practiceCount??db.practices.length;mGames.textContent=persistentCoachDashboard?.gameCount??db.games.length;if(window.mAssistants)mAssistants.textContent=persistentCoachDashboard?.assistantCount??0;nextPractice.textContent=db.practices[0]?`${db.practices[0].date||'Upcoming'} • ${db.practices[0].focus||'Practice'}`:'No practice plan saved yet.';latestScout.textContent=db.scouts[0]?`${db.scouts[0].opponent} • ${(db.scouts[0].plan||'Report saved').slice(0,85)}`:'No opponent report saved yet.';familyStatus.textContent=db.invites.length?`${db.invites.filter(x=>x.status==='Completed').length} completed • ${db.invites.filter(x=>x.status!=='Completed').length} pending invite(s)`:'Generate an invite from Roster + Invites to connect the family path.';seasonRecordText.textContent=(persistentCoachDashboard?.wins??rr.w)+' wins • '+(persistentCoachDashboard?.losses??rr.l)+' losses';if(window.staffStatus){const active=persistentCoachDashboard?.assistantCount??0;const pending=(db.invites||[]).filter(x=>x.role==='coach'&&x.status==='pending').length;staffStatus.textContent=active+' active assistant'+(active===1?'':'s')+' • '+pending+' pending invite'+(pending===1?'':'s');}renderRoster();renderStaff();renderPractices();renderGames();renderScouts();renderPlays();renderNotes();renderStatSelectors();renderStats()}
@@ -2187,12 +2239,73 @@ const COACH_IQ_LIBRARY={
   }
 };
 
+
+Object.assign(COACH_IQ_LIBRARY,{
+  "protect-lead":{
+    keywords:["protect lead","up late","winning late","slow down","hold lead","ahead late"],
+    prompt:"We have the lead late. How should we manage the final possessions?",
+    solutions:[
+      {title:"Value Possession + Paint Touch",summary:"Use clock without becoming passive, then attack a high-value paint touch late in the possession.",why:"Pure stall offense often kills rhythm. Controlled spacing lets you burn clock while still creating a strong shot.",personnel:"Reliable primary handler, decision-making forward, best free-throw shooters.",counter:"If they deny or trap, shorten the floor with a safety outlet and attack the rotation.",teaching:"Use the clock, not the sideline. Finish possessions with balance behind the ball.",play:"Late Lead Control"},
+      {title:"Free-Throw Lineup",summary:"Keep your best ball security and free-throw personnel on the floor.",why:"Late-game possessions frequently end with pressure, fouls, and sideline traps.",personnel:"Best handlers, best free-throw shooters, one strong rebounder.",counter:"If they stop fouling, flow into normal offense with the same spacing.",teaching:"Inbound to a receiver moving toward the ball, not away from it.",play:"Closeout Lineup"}
+    ]
+  },
+  "foul-or-defend":{
+    keywords:["foul or defend","foul up three","up 3","up three","defend three","late foul"],
+    prompt:"We are up three late. Should we foul or defend?",
+    solutions:[
+      {title:"Situational Foul Before the Shot",summary:"If your program teaches it and the clock/location are right, foul before the shooting motion to remove the tying three.",why:"A non-shooting foul can trade a possible tying three for free throws or another inbound, depending on rules and bonus status.",personnel:"Disciplined defender who understands timing and no-shot contact.",counter:"If the opponent is already in the act or the foul risk is unclear, defend the three instead.",teaching:"Know the rules, bonus, time, and referee interpretation before choosing this strategy.",play:"Late Game Foul Plan"},
+      {title:"Defend the Arc Without Fouling",summary:"Switch or stay attached to shooters, protect the three-point line, and concede a quick two if necessary.",why:"It avoids the risk of a three-shot foul or intentional-foul mistake.",personnel:"Best perimeter defenders and rebounders.",counter:"If they slip to the rim, communicate whether the quick two is acceptable.",teaching:"No unnecessary help off shooters. Finish with the rebound.",play:"Protect the Arc"}
+    ]
+  },
+  "vs-switching":{
+    keywords:["switching everything","switch everything","beat switching","switch defense","they switch"],
+    prompt:"They are switching everything. How should we attack it?",
+    solutions:[
+      {title:"Slip Before Contact",summary:"Have the screener leave early before the switch can be completed.",why:"Switch defenses rely on predictable contact and exchange timing. Early slips attack the exchange itself.",personnel:"Mobile screener and guard who sees the slip quickly.",counter:"If the low defender tags the slip, skip to the weak side.",teaching:"Screen just long enough to force communication, then slip hard.",play:"Slip the Switch"},
+      {title:"Hunt the Mismatch",summary:"Force the preferred switch, clear the side, and attack the mismatch with spacing.",why:"Switching removes the first advantage but often creates a personnel advantage.",personnel:"Strong post scorer or quick guard capable of attacking size.",counter:"If they scram switch out of the mismatch, attack during the exchange.",teaching:"Do not rush. Create space before attacking.",play:"Mismatch Hunt"},
+      {title:"Ghost Screen",summary:"Fake the ball screen and pop without making contact.",why:"It can create indecision between two defenders who are prepared to switch.",personnel:"Shooter or playmaking screener.",counter:"If both stay with the ball, hit the pop. If both jump the pop, turn the corner.",teaching:"The screener must arrive with believable speed and angle.",play:"Ghost Action"}
+    ]
+  },
+  "post-mismatch":{
+    keywords:["post mismatch","small defender","guard switched on big","mismatch inside","post up"],
+    prompt:"We have a post mismatch. How should we attack it?",
+    solutions:[
+      {title:"Early Seal + Direct Entry",summary:"Feed the mismatch before the defense can front, dig, or scram out.",why:"The biggest advantage exists immediately after the switch.",personnel:"Strong interior finisher and passer with a clean entry angle.",counter:"If they front, flash high-low or lob from the correct angle.",teaching:"Seal above the block and show a target hand immediately.",play:"Early Seal"},
+      {title:"Empty-Side Post",summary:"Clear the side and remove the nearest help defender.",why:"Empty-side spacing makes the double team longer and easier to read.",personnel:"Post scorer who can pass out of pressure.",counter:"On the double, skip opposite or hit the cutter behind help.",teaching:"Post player waits for spacing before making the move.",play:"Empty Side Post"}
+    ]
+  },
+  "two-for-one":{
+    keywords:["2 for 1","two for one","two-for-one","end quarter","end period"],
+    prompt:"How do we manage a two-for-one at the end of a quarter?",
+    solutions:[
+      {title:"Quick Quality First Shot",summary:"Attack early enough to preserve another possession, but only if a quality shot is available.",why:"A rushed bad shot defeats the value of gaining the extra possession.",personnel:"Primary creator with clock awareness.",counter:"If the first action is not clean, flow quickly into a second option rather than forcing.",teaching:"Know the target time before the possession starts.",play:"Two-for-One Timing"},
+      {title:"Early Ball Screen Into Flow",summary:"Use a fast first action that can create a rim attempt, free throws, or a kickout three.",why:"Simple early action is easier to execute under clock pressure.",personnel:"Best ballhandler plus reliable screener.",counter:"If switched, attack mismatch without over-dribbling.",teaching:"The goal is early quality, not early chaos.",play:"Two-for-One PNR"}
+    ]
+  },
+  "ato":{
+    keywords:["after timeout","ato","after a timeout","timeout play"],
+    prompt:"What should we run after a timeout?",
+    solutions:[
+      {title:"Best Player First, Counter Second",summary:"Design the first look for your best scorer and build a counter off the expected denial.",why:"Timeout defenses usually anticipate the obvious first option, so the counter must be part of the original design.",personnel:"Primary scorer, reliable inbounder, one strong screener.",counter:"Use the first scorer as a decoy into a second-side action.",teaching:"Every player must know first option, second option, and safety.",play:"ATO Primary + Counter"},
+      {title:"Screen-the-Screener ATO",summary:"Use one screen to trigger the defense, then free the real target with a second screen.",why:"It forces multiple defensive communication decisions in a short window.",personnel:"Two disciplined screeners and one primary finisher.",counter:"If they switch both actions, slip the second screener.",teaching:"Timing matters more than speed.",play:"ATO STS"}
+    ]
+  }
+});
+
 function coachIQMatch(query){
-  const q=String(query||'').toLowerCase();
-  let best='attack-zone',score=-1;
+  const q=String(query||'').toLowerCase().replace(/[^a-z0-9\s-]/g,' ').replace(/\s+/g,' ').trim();
+  let best='attack-zone',bestScore=-1;
   for(const [key,item] of Object.entries(COACH_IQ_LIBRARY)){
-    let s=0;item.keywords.forEach(k=>{if(q.includes(k))s+=k.length>6?3:1});
-    if(s>score){score=s;best=key}
+    let score=0;
+    item.keywords.forEach(raw=>{
+      const k=String(raw).toLowerCase();
+      if(q===k)score+=20;
+      else if(q.includes(k))score+=Math.max(2,Math.min(9,k.split(/\s+/).length*3));
+    });
+    if((/late|seconds|clock|final|end/.test(q))&&/(last-shot|protect-lead|foul-or-defend|two-for-one|need-three|ato)/.test(key))score+=2;
+    if((/zone|2-3|3-2|1-3-1/.test(q))&&key==='attack-zone')score+=3;
+    if((/press|trap|full court/.test(q))&&key==='beat-press')score+=3;
+    if(score>bestScore){bestScore=score;best=key}
   }
   return best;
 }
@@ -2400,7 +2513,7 @@ async function enterPortal(p){
  requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));
  if(p==='player'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch(e){}if(pref!=='off')await bbStartMusic();}
  else bbStopMusic();
- if(p==='coach'){try{if(await window.BBAuth?.getSession?.())await loadPersistentCoachWorkspace()}catch(e){}}
+ if(p==='coach'){try{if(await window.BBAuth?.getSession?.())await loadPersistentCoachWorkspace();await refreshCoachMembershipState()}catch(e){}}
  portalOfferTimer=setTimeout(()=>openPortalOffer(p),12000);
 }
 let pendingMembershipRole='coach';
@@ -2418,7 +2531,8 @@ async function demoCheckout(){
   try{
     const session=await window.BBAuth?.getSession?.();
     if(session){
-      toast('Your '+selectedRole+' account is signed in. Secure checkout is the next launch step.');
+      toast('Your '+selectedRole+' account is ready. Secure payment activation is the remaining launch step.');
+      refreshCoachMembershipState();
       return;
     }
   }catch(e){}
