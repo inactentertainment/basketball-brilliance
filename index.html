@@ -793,11 +793,28 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
 <section id="coaches"><div class="wrap"><span class="eyebrow">Coach-first business model</span><h2 class="section-title">The coach pays. The team connects.</h2><p class="section-copy">Parents and players do not need a second subscription just to complete the coach's team forms. They can enter requested information through a linked family path. Separate Parent + Player products remain optional upgrades owned by the family.</p><div class="flow"><div class="step"><span class="num">01 • Coach</span><h3>Create the team</h3><p>Set the team, season, staff, roster structure and required information.</p></div><div class="step"><span class="num">02 • Invite</span><h3>Send one link</h3><p>Generate a player/family invite without making the coach retype everything.</p></div><div class="step"><span class="num">03 • Connect</span><h3>Profile appears</h3><p>Player and guardian information flows into the same coach roster.</p></div><div class="step"><span class="num">04 • Grow</span><h3>Family owns more</h3><p>Basketball Passport, Journal, Opportunities, Recruiting and Parent Resources become natural upsells.</p></div></div></div></section>
 <section id="app"><div class="wrap"><span class="eyebrow">Coach workspace</span><h2 class="section-title">Coach Command Center</h2><p class="section-copy">Move from team setup to player development without losing the story of your season. Keep rosters, practices, games, scouting, plays, notes and reports organized in one place.</p>
 <div class="appshell">
-<aside class="sidebar"><div class="sidebrand"><b id="sideTeam">Basketball Brilliance</b><span id="sideSeason">Coach Workspace</span></div><div class="menu" id="appMenu"><button data-view="dashboard" class="active">Command Center</button><button data-view="team">Team Setup</button><button data-view="roster">Roster + Invites</button><button data-view="practice">Practice Planner</button><button data-view="games">Games + Stats</button><button data-view="scouting">Scouting</button><button data-view="playlab">Play Lab</button><button data-view="notes">Season Notes</button><button data-view="reports">Reports</button></div></aside>
+<aside class="sidebar"><div class="sidebrand"><b id="sideTeam">Basketball Brilliance</b><span id="sideSeason">Coach Workspace</span></div><div class="menu" id="appMenu"><button data-view="dashboard" class="active">Command Center</button><button data-view="team">Team Setup</button><button data-view="roster">Roster + Invites</button><button data-view="staff">Staff + Assistants</button><button data-view="practice">Practice Planner</button><button data-view="games">Games + Stats</button><button data-view="scouting">Scouting</button><button data-view="playlab">Play Lab</button><button data-view="notes">Season Notes</button><button data-view="reports">Reports</button></div></aside>
 <div class="workarea">
-<div class="workspace active" id="view-dashboard"><div class="workhead"><div><h3>Command Center</h3><div class="sub">A clear overview of the records you manage across the season.</div></div><div class="toolbar"><button class="btn soft tiny" onclick="openLogin()">Switch Role</button><button class="btn ghost tiny" onclick="exportBackup()">Export Backup</button></div></div><div class="metricgrid"><div class="metric"><strong id="mPlayers">0</strong><span>Players</span></div><div class="metric"><strong id="mInvites">0</strong><span>Family Invites</span></div><div class="metric"><strong id="mPractices">0</strong><span>Practice Plans</span></div><div class="metric"><strong id="mGames">0</strong><span>Games Logged</span></div></div><div class="cards"><div class="card"><h4>Next Practice</h4><p id="nextPractice">No practice plan saved yet.</p></div><div class="card"><h4>Latest Scouting Report</h4><p id="latestScout">No opponent report saved yet.</p></div><div class="card"><h4>Family Workflow</h4><p id="familyStatus">Generate an invite from Roster + Invites to connect the family path.</p></div><div class="card"><h4>Season Record</h4><p><span id="seasonRecordText">0 wins • 0 losses</span></p></div></div></div>
+<div class="workspace active" id="view-dashboard"><div class="workhead"><div><h3>Command Center</h3><div class="sub">A clear overview of the records you manage across the season.</div></div><div class="toolbar"><button class="btn soft tiny" onclick="openLogin()">Switch Role</button><button class="btn ghost tiny" onclick="exportBackup()">Export Backup</button></div></div><div class="metricgrid"><div class="metric"><strong id="mPlayers">0</strong><span>Players</span></div><div class="metric"><strong id="mInvites">0</strong><span>Family Invites</span></div><div class="metric"><strong id="mPractices">0</strong><span>Practice Plans</span></div><div class="metric"><strong id="mGames">0</strong><span>Games Logged</span></div><div class="metric"><strong id="mAssistants">0</strong><span>Assistant Coaches</span></div></div><div class="cards"><div class="card"><h4>Next Practice</h4><p id="nextPractice">No practice plan saved yet.</p></div><div class="card"><h4>Latest Scouting Report</h4><p id="latestScout">No opponent report saved yet.</p></div><div class="card"><h4>Family Workflow</h4><p id="familyStatus">Generate an invite from Roster + Invites to connect the family path.</p></div><div class="card"><h4>Season Record</h4><p><span id="seasonRecordText">0 wins • 0 losses</span></p></div></div></div>
 <div class="workspace" id="view-team"><div class="workhead"><div><h3>Team Setup</h3><div class="sub">Create the season shell that every player, plan, game and report belongs to.</div></div></div><div class="formgrid three"><label>Team Name<input id="teamName" placeholder="e.g. Brilliance Varsity"></label><label>Season<input id="seasonName" placeholder="2026–27"></label><label>Level<select id="teamLevel"><option>Varsity</option><option>JV</option><option>Middle School</option><option>AAU / Club</option><option>Youth</option><option>Other</option></select></label><label>Head Coach<input id="headCoach" placeholder="Coach name"></label><label>School / Organization<input id="orgName" placeholder="School or club"></label><label>Home Gym<input id="homeGym" placeholder="Primary location"></label></div><div class="toolbar"><button class="btn primary" onclick="saveTeam()">Save Team Setup</button></div><div class="notice" id="teamNotice">Start with the essentials, then expand the team record as your season grows.</div></div>
 <div class="workspace" id="view-roster"><div class="workhead"><div><h3>Roster + Family Invites</h3><div class="sub">Coach can enter a player directly or create a family link/code for the parent or player to complete.</div></div><button class="btn primary" onclick="openPlayerModal()">+ Add Player</button></div><div class="inline"><div class="grow"><label>Search Roster<input id="rosterSearch" placeholder="Search player, position, guardian…" oninput="renderRoster()"></label></div><button class="btn ghost" style="margin-top:20px" onclick="openInviteModal()">Generate Invite</button></div><div class="divider"></div><div id="rosterList" class="list"></div></div>
+
+<div class="workspace" id="view-staff">
+  <div class="workhead"><div><h3>Staff + Assistant Coaches</h3><div class="sub">Invite assistant coaches into the same team workspace without changing Head Coach ownership.</div></div></div>
+  <div class="formgrid three">
+    <label>Assistant Coach Name<input id="staffInviteName" placeholder="Coach name"></label>
+    <label>Email<input id="staffInviteEmail" type="email" placeholder="coach@example.com"></label>
+    <label>Staff Title<select id="staffInviteTitle"><option>Assistant Coach</option><option>Associate Head Coach</option><option>Volunteer Assistant</option><option>Team Manager</option><option>Trainer</option></select></label>
+  </div>
+  <div class="toolbar"><button class="btn primary" onclick="sendAssistantInvite()">Create Staff Invite</button></div>
+  <div class="notice">Assistant coaches receive Coach-level team access after accepting the invite. Head Coach ownership remains unchanged.</div>
+  <div class="divider"></div>
+  <h4>Active Coaching Staff</h4>
+  <div id="staffList" class="list"></div>
+  <div class="divider"></div>
+  <h4>Pending Staff Invites</h4>
+  <div id="staffInviteList" class="list"></div>
+</div>
 <div class="workspace" id="view-practice"><div class="workhead"><div><h3>Practice Planner</h3><div class="sub">Plan, save and review repeatable practice sessions.</div></div></div><div class="formgrid three"><label>Date<input id="practiceDate" type="date"></label><label>Duration (minutes)<input id="practiceDuration" type="number" min="1" value="90"></label><label>Primary Focus<input id="practiceFocus" placeholder="Defense, transition, shooting…"></label></div><div class="formgrid"><label>Objectives<textarea id="practiceObjectives" placeholder="What must the team accomplish today?"></textarea></label><label>Drills / Segments<textarea id="practiceDrills" placeholder="Warm-up 10 min\nShell drill 15 min\nTransition 15 min…"></textarea></label></div><label>Coach Notes<textarea id="practiceNotes" placeholder="Teaching cues, attendance notes, adjustments…"></textarea></label><div class="toolbar"><button class="btn primary" onclick="savePractice()">Save Practice Plan</button></div><div class="divider"></div><div id="practiceList" class="list"></div></div>
 <div class="workspace" id="view-games"><div class="workhead"><div><h3>Games + Stats</h3><div class="sub">Log the game result, then add a stat line for any rostered player.</div></div></div><div class="formgrid three"><label>Date<input id="gameDate" type="date"></label><label>Opponent<input id="gameOpponent" placeholder="Opponent"></label><label>Location<select id="gameLocation"><option>Home</option><option>Away</option><option>Neutral</option></select></label><label>Our Score<input id="ourScore" type="number" min="0"></label><label>Opponent Score<input id="oppScore" type="number" min="0"></label><label>Game Notes<input id="gameNotes" placeholder="Tournament, league, notes…"></label></div><div class="toolbar"><button class="btn primary" onclick="saveGame()">Save Game</button></div><div class="divider"></div><h4>Player Stat Entry</h4><div class="formgrid three"><label>Player<select id="statPlayer"></select></label><label>Game<select id="statGame"></select></label><label>Minutes<input id="stMIN" type="number" min="0" value="0"></label><label>Points<input id="stPTS" type="number" min="0" value="0"></label><label>Rebounds<input id="stREB" type="number" min="0" value="0"></label><label>Assists<input id="stAST" type="number" min="0" value="0"></label><label>Steals<input id="stSTL" type="number" min="0" value="0"></label><label>Blocks<input id="stBLK" type="number" min="0" value="0"></label><label>Turnovers<input id="stTO" type="number" min="0" value="0"></label></div><div class="toolbar"><button class="btn soft" onclick="saveStatLine()">Save Player Stat Line</button></div><div class="divider"></div><div class="scrollx"><table class="stat-table"><thead><tr><th>Game</th><th>Player</th><th>MIN</th><th>PTS</th><th>REB</th><th>AST</th><th>STL</th><th>BLK</th><th>TO</th><th></th></tr></thead><tbody id="statRows"></tbody></table></div></div>
 <div class="workspace" id="view-scouting"><div class="workhead"><div><h3>Scouting Report</h3><div class="sub">Capture opponent personnel, tendencies and the actual game plan in one record.</div></div></div><div class="formgrid"><label>Opponent<input id="scoutOpponent" placeholder="Opponent"></label><label>Date / Game<input id="scoutDate" type="date"></label><label>Offensive Tendencies<textarea id="scoutOffense" placeholder="Sets, pace, primary actions, favorite entries…"></textarea></label><label>Defensive Tendencies<textarea id="scoutDefense" placeholder="Man/zone, pressure, coverages, rotations…"></textarea></label><label>Key Personnel<textarea id="scoutPlayers" placeholder="#, player, role, strengths, weaknesses…"></textarea></label><label>Game Plan<textarea id="scoutPlan" placeholder="What are we taking away? What are we attacking?"></textarea></label></div><div class="toolbar"><button class="btn primary" onclick="saveScout()">Save Scouting Report</button></div><div class="divider"></div><div id="scoutList" class="list"></div></div>
@@ -915,7 +932,7 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
     </div>
   </div></div>
 <div class="modal" id="playerModal" onclick="if(event.target===this)closeModal('playerModal')"><div class="modalbox"><button class="close" onclick="closeModal('playerModal')">×</button><span class="eyebrow">Player profile</span><h3 id="playerModalTitle">Add Player</h3><input type="hidden" id="playerId"><div class="formgrid"><label>Player Name<input id="playerName"></label><label>Jersey #<input id="jersey"></label><label>Position<input id="position"></label><label>Grade<input id="grade"></label><label>Height<input id="height" placeholder="6'1\""></label><label>Parent / Guardian<input id="guardian"></label><label>Guardian Email<input id="guardianEmail" type="email"></label><label>Phone<input id="guardianPhone" type="tel"></label></div><div class="voicebar"><button onclick="startVoice()">🎙 Speak Info</button><span id="voiceStatus">Try: “Marcus Hill, number 12, point guard, grade 10, six foot one.”</span></div><div class="toolbar"><button class="btn primary" onclick="savePlayer()">Save Player Profile</button></div></div></div>
-<div class="modal" id="inviteModal" onclick="if(event.target===this)closeModal('inviteModal')"><div class="modalbox"><button class="close" onclick="closeModal('inviteModal')">×</button><span class="eyebrow">Family invite</span><h3>Create a linked team invite</h3><div class="formgrid"><label>Player Name<input id="invitePlayer"></label><label>Family Email<input id="inviteEmail" type="email"></label></div><div class="toolbar"><button class="btn primary" onclick="generateInvite()">Generate Invite</button></div><div id="inviteResult" style="display:none"><label>Invite Code<input id="inviteCode" readonly></label><label style="margin-top:10px">Invite Link</label><div class="copybox"><input id="inviteLink" readonly><button class="btn soft tiny" onclick="copyInvite()">Copy</button></div><p class="notice">On the hosted site this same link opens the family completion path.</p></div></div></div>
+<div class="modal" id="inviteModal" onclick="if(event.target===this)closeModal('inviteModal')"><div class="modalbox"><button class="close" onclick="closeModal('inviteModal')">×</button><span class="eyebrow">Linked team invite</span><h3>Invite a Player or Parent</h3><div class="formgrid"><label>Roster Player<select id="invitePlayerId"></select></label><label>Invite As<select id="inviteRole"><option value="parent">Parent / Guardian</option><option value="player">Player</option></select></label><label style="grid-column:1/-1">Email<input id="inviteEmail" type="email"></label></div><div class="toolbar"><button class="btn primary" onclick="generateInvite()">Generate Invite</button></div><div id="inviteResult" style="display:none"><label>Invite Code<input id="inviteCode" readonly></label><label style="margin-top:10px">Invite Link</label><div class="copybox"><input id="inviteLink" readonly><button class="btn soft tiny" onclick="copyInvite()">Copy</button></div><p class="notice">The link connects this account to the selected player and team after sign-in.</p></div></div></div>
 <div class="modal" id="familyModal" onclick="if(event.target===this)closeModal('familyModal')"><div class="modalbox"><button class="close" onclick="closeModal('familyModal')">×</button><span class="eyebrow">Team-linked family access</span><h3>Complete Player Information</h3><p class="section-copy" style="font-size:14px;margin-bottom:12px">No separate subscription is required to complete information requested by the coach.</p><div class="formgrid"><label>Invite Code<input id="famCode"></label><label>Player Name<input id="famPlayer"></label><label>Jersey #<input id="famJersey"></label><label>Position<input id="famPosition"></label><label>Grade<input id="famGrade"></label><label>Height<input id="famHeight"></label><label>Parent / Guardian<input id="famGuardian"></label><label>Guardian Email<input id="famEmail" type="email"></label><label>Phone<input id="famPhone" type="tel"></label></div><div class="toolbar"><button class="btn primary" onclick="submitFamilyProfile()">Send to Coach Roster</button></div><div class="divider"></div><div class="card"><h4>Optional family-owned membership</h4><p>Basketball Passport • Opportunity Finder • Recruiting Roadmap • Parent Resource Vault</p></div></div></div>
 <div class="modal" id="legalModal" onclick="if(event.target===this)closeModal('legalModal')"><div class="modalbox"><button class="close" onclick="closeModal('legalModal')">×</button><h3 id="legalTitle">Legal</h3><div id="legalBody" class="sub" style="line-height:1.7"></div></div></div>
 <div class="modal membership-modal" id="membershipModal" onclick="if(event.target===this)closeMembershipOffer()"><div class="modalbox"><button class="close" onclick="closeMembershipOffer()">×</button><div class="membership-kicker">Basketball Brilliance Membership</div><h3 style="font-size:32px;margin:6px 0 8px">Three paths. One basketball journey.</h3><p class="section-copy" style="margin-bottom:8px">Whether you run the team, play the game, or guide the journey, Basketball Brilliance keeps the right tools within reach.</p><div class="membership-grid"><div class="membership-card featured"><span class="who">Coach</span><h4>Run the Team</h4><p>Organize rosters, practices, games, scouting, plays, notes and season reports from one command center.</p><a class="shimmer-btn" href="#app" onclick="closeMembershipOffer()">Explore Coach Membership</a></div><div class="membership-card"><span class="who">Player</span><h4>Raise Your Game</h4><p>Stay connected to team information while building a longer record of development, goals, seasons and achievements.</p><a class="shimmer-btn" href="#families" onclick="closeMembershipOffer()">Explore Player Membership</a></div><div class="membership-card"><span class="who">Parent</span><h4>Guide the Journey</h4><p>Keep player history, opportunities, recruiting organization, resources and family-owned records together beyond one season.</p><a class="shimmer-btn" href="#families" onclick="closeMembershipOffer()">Explore Parent Membership</a></div></div><div class="membership-note">Coach-linked team forms remain part of the team workflow. Optional family memberships add long-term player and parent tools.</div></div></div>
@@ -927,7 +944,7 @@ let memoryStore={};
 function storageGet(k){try{return sessionStorage.getItem(k)||localStorage.getItem(k)}catch(e){return memoryStore[k]||null}}
 function storageSet(k,v){try{sessionStorage.setItem(k,v)}catch(e){memoryStore[k]=v}}
 const defaultData={team:{name:'',season:'',level:'Varsity',coach:'',org:'',gym:''},players:[],invites:[],practices:[],games:[],stats:[],scouts:[],plays:[],notes:[],session:{role:'Coach',email:''}};
-let db=loadDB();let courtDots=[];let selectedRole='Coach';
+let db=loadDB();let courtDots=[];let selectedRole='Coach';let currentTeamId=null;let coachBackendLoaded=false;let persistentCoachDashboard=null;
 function loadDB(){try{return Object.assign(structuredClone(defaultData),JSON.parse(storageGet(KEY)||'{}'))}catch(e){return JSON.parse(JSON.stringify(defaultData))}}
 function saveDB(msg){storageSet(KEY,JSON.stringify(db));refreshAll();if(msg)toast(msg+' • Preview saved for this visit. Annual membership activates persistent records.')}
 function uid(prefix){return prefix+'_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7)}
@@ -983,7 +1000,20 @@ async function continueLogin(){
       const profile=await window.BBAuth.getProfile();
       selectedRole=(profile?.primary_role||selectedRole).replace(/^./,c=>c.toUpperCase());
       db.session={role:selectedRole,email};saveDB();closeModal('loginModal');
-      const p=selectedRole.toLowerCase();enterPortal(p);if(p==='coach'){location.hash='app';switchView('dashboard')}
+      const q=new URLSearchParams(location.search);
+      const invite=q.get('invite');
+      if(invite){
+        try{
+          await window.BBData.acceptInvite(invite);
+          toast('Team invitation accepted.');
+          history.replaceState({},'',location.pathname+location.hash);
+        }catch(invErr){
+          toast(invErr.message||'Could not accept that invite.');
+        }
+      }
+      const p=selectedRole.toLowerCase();
+      await enterPortal(p);
+      if(p==='coach'){await loadPersistentCoachWorkspace();location.hash='app';switchView('dashboard')}
       toast('Welcome back.');
     }catch(e){
       const msg=String(e?.message||'Sign in failed.');
@@ -1094,17 +1124,169 @@ async function resetAccountPassword(){
   if(!window.BBAuth?.isConfigured?.()){setAuthStatus('Secure account system is not connected yet.','bad');return}
   try{const {error}=await window.BBAuth.resetPassword(email);if(error)throw error;setAuthStatus('Password reset email sent.','good')}catch(e){setAuthStatus(e.message||'Could not send reset email.','bad')}
 }
-function saveTeam(){db.team={name:teamName.value.trim(),season:seasonName.value.trim(),level:teamLevel.value,coach:headCoach.value.trim(),org:orgName.value.trim(),gym:homeGym.value.trim()};saveDB('Team setup saved.');teamNotice.textContent='✓ Team setup saved to your Basketball Brilliance workspace.';teamNotice.className='notice statusgood'}
-function hydrateTeam(){teamName.value=db.team.name||'';seasonName.value=db.team.season||'';teamLevel.value=db.team.level||'Varsity';headCoach.value=db.team.coach||'';orgName.value=db.team.org||'';homeGym.value=db.team.gym||''}
-function openPlayerModal(id){playerId.value=id||'';const p=db.players.find(x=>x.id===id)||{};playerModalTitle.textContent=id?'Edit Player':'Add Player';playerName.value=p.name||'';jersey.value=p.jersey||'';position.value=p.position||'';grade.value=p.grade||'';height.value=p.height||'';guardian.value=p.guardian||'';guardianEmail.value=p.guardianEmail||'';guardianPhone.value=p.guardianPhone||'';voiceStatus.textContent='Try: “Marcus Hill, number 12, point guard, grade 10, six foot one.”';openModal('playerModal')}
-function savePlayer(){const p={id:playerId.value||uid('p'),name:playerName.value.trim(),jersey:jersey.value.trim(),position:position.value.trim(),grade:grade.value.trim(),height:height.value.trim(),guardian:guardian.value.trim(),guardianEmail:guardianEmail.value.trim(),guardianPhone:guardianPhone.value.trim(),source:'coach',updated:Date.now()};if(!p.name){toast('Enter the player name first.');return}const i=db.players.findIndex(x=>x.id===p.id);if(i>=0)db.players[i]=p;else db.players.push(p);saveDB(p.name+' saved to roster.');closeModal('playerModal')}
-function deletePlayer(id){const p=db.players.find(x=>x.id===id);if(!p)return;if(confirm('Remove '+p.name+' from this roster?')){db.players=db.players.filter(x=>x.id!==id);saveDB('Player removed.')}}
-function renderRoster(){const q=(rosterSearch?.value||'').toLowerCase();const list=db.players.filter(p=>[p.name,p.position,p.guardian,p.jersey].join(' ').toLowerCase().includes(q));rosterList.innerHTML=list.length?list.map(p=>`<div class="row"><div><b>${esc(p.name)}</b><br><small>#${esc(p.jersey||'—')} • ${esc(p.position||'Position not set')}</small></div><div><small>Grade / Height</small><br>${esc(p.grade||'—')} • ${esc(p.height||'—')}</div><div><small>Guardian</small><br>${esc(p.guardian||'—')}</div><div class="actions inline"><button class="btn ghost tiny" onclick="openPlayerModal('${p.id}')">Edit</button><button class="btn danger tiny" onclick="deletePlayer('${p.id}')">×</button></div></div>`).join(''):'<div class="empty">No players yet. Add a player directly or generate a family invite.</div>';renderStatSelectors()}
-function openInviteModal(){invitePlayer.value='';inviteEmail.value='';inviteResult.style.display='none';openModal('inviteModal')}
-function generateInvite(){const name=invitePlayer.value.trim();const email=inviteEmail.value.trim();if(!name){toast('Enter the player name.');return}const code=('BB-'+Math.random().toString(36).slice(2,8)).toUpperCase();const inv={id:uid('i'),code,player:name,email,status:'Sent',created:Date.now()};db.invites.push(inv);saveDB();inviteCode.value=code;const base=location.href.split('?')[0].split('#')[0];inviteLink.value=base+'?invite='+encodeURIComponent(code)+'#families';inviteResult.style.display='block';toast('Family invite generated.')}
+
+async function coachSessionReady(){
+  try{return !!(window.BBAuth?.isConfigured?.() && await window.BBAuth.getSession())}catch(e){return false}
+}
+function splitPlayerName(name){
+  const parts=(name||'').trim().split(/\s+/).filter(Boolean);
+  return {first_name:parts.shift()||'',last_name:parts.join(' ')||null};
+}
+async function loadPersistentCoachWorkspace(){
+  if(!(await coachSessionReady())) return false;
+  try{
+    const teams=await window.BBData.listMyTeams();
+    if(!teams.length){
+      coachBackendLoaded=true;currentTeamId=null;persistentCoachDashboard={playerCount:0,inviteCount:0,assistantCount:0,practiceCount:0,gameCount:0,wins:0,losses:0,staff:[],invites:[]};
+      db.team={name:'',season:'',level:'Varsity',coach:'',org:'',gym:''};db.players=[];db.invites=[];db.staff=[];
+      hydrateTeam();refreshAll();renderStaff();
+      teamNotice.textContent='Your secure Coach workspace is ready. Create your first team below.';
+      teamNotice.className='notice statusgood';
+      return true;
+    }
+    const saved=localStorage.getItem('bb_active_team');
+    const membership=teams.find(x=>x.team_id===saved)||teams[0];
+    currentTeamId=membership.team_id;
+    localStorage.setItem('bb_active_team',currentTeamId);
+    const [team,profile,players,invites,staff,dash]=await Promise.all([
+      window.BBData.getTeam(currentTeamId),
+      window.BBData.getProfile(),
+      window.BBData.listTeamPlayers(currentTeamId),
+      window.BBData.listInvites(currentTeamId),
+      window.BBData.listStaff(currentTeamId),
+      window.BBData.dashboard(currentTeamId)
+    ]);
+    db.team={
+      id:team.id,name:team.name||'',season:team.season||'',level:team.level||'Varsity',
+      coach:profile?.full_name||'',org:team.organizations?.name||'',gym:team.home_gym||''
+    };
+    db.players=(players||[]).map(r=>({
+      id:r.players.id,
+      name:[r.players.first_name,r.players.last_name].filter(Boolean).join(' '),
+      jersey:r.players.jersey_number||'',position:r.players.position||'',grade:r.players.grade||'',
+      height:r.players.height_text||'',guardian:r.players.guardian_name||'',
+      guardianEmail:r.players.guardian_email||'',guardianPhone:r.players.guardian_phone||'',
+      source:'database'
+    }));
+    db.invites=(invites||[]).map(x=>({
+      id:x.id,code:x.invite_code,playerId:x.player_id,email:x.email,role:x.role,status:x.status,
+      player:(db.players.find(p=>p.id===x.player_id)?.name)||x.invitee_name||''
+    }));
+    db.staff=staff||[];
+    persistentCoachDashboard=dash;
+    coachBackendLoaded=true;
+    hydrateTeam();refreshAll();renderStaff();
+    teamNotice.textContent='✓ Secure team workspace loaded from Basketball Brilliance.';
+    teamNotice.className='notice statusgood';
+    return true;
+  }catch(e){
+    console.error(e);toast(e.message||'Could not load the secure Coach workspace.');return false;
+  }
+}
+async function saveTeam(){
+  const name=teamName.value.trim();
+  if(!name){toast('Enter the team name first.');return}
+  const payload={id:currentTeamId,name,season:seasonName.value.trim(),level:teamLevel.value,home_gym:homeGym.value.trim(),organization_name:orgName.value.trim()};
+  if(await coachSessionReady()){
+    try{
+      if(headCoach.value.trim()) await window.BBData.updateProfile({full_name:headCoach.value.trim()});
+      const team=await window.BBData.saveTeam(payload);
+      currentTeamId=team.id;localStorage.setItem('bb_active_team',team.id);
+      await loadPersistentCoachWorkspace();
+      toast('Team setup saved securely.');
+      return;
+    }catch(e){toast(e.message||'Team setup could not be saved.');return}
+  }
+  db.team={name,season:seasonName.value.trim(),level:teamLevel.value,coach:headCoach.value.trim(),org:orgName.value.trim(),gym:homeGym.value.trim()};
+  saveDB('Team setup saved.');
+}
+function hydrateTeam(){
+  teamName.value=db.team.name||'';seasonName.value=db.team.season||'';teamLevel.value=db.team.level||'Varsity';
+  headCoach.value=db.team.coach||'';orgName.value=db.team.org||'';homeGym.value=db.team.gym||'';
+}
+function openPlayerModal(id){
+  playerId.value=id||'';const p=db.players.find(x=>x.id===id)||{};
+  playerModalTitle.textContent=id?'Edit Player':'Add Player';playerName.value=p.name||'';jersey.value=p.jersey||'';
+  position.value=p.position||'';grade.value=p.grade||'';height.value=p.height||'';guardian.value=p.guardian||'';
+  guardianEmail.value=p.guardianEmail||'';guardianPhone.value=p.guardianPhone||'';
+  voiceStatus.textContent='Try: “Marcus Hill, number 12, point guard, grade 10, six foot one.”';openModal('playerModal');
+}
+async function savePlayer(){
+  const name=playerName.value.trim();if(!name){toast('Enter the player name first.');return}
+  const names=splitPlayerName(name);
+  const payload={...names,jersey_number:jersey.value.trim()||null,position:position.value.trim()||null,grade:grade.value.trim()||null,height_text:height.value.trim()||null,guardian_name:guardian.value.trim()||null,guardian_email:guardianEmail.value.trim()||null,guardian_phone:guardianPhone.value.trim()||null};
+  if(await coachSessionReady()){
+    if(!currentTeamId){toast('Save Team Setup before adding players.');return}
+    try{
+      if(playerId.value) await window.BBData.updatePlayer(playerId.value,payload);
+      else await window.BBData.createPlayer(payload,currentTeamId);
+      closeModal('playerModal');await loadPersistentCoachWorkspace();toast(name+' saved to the secure roster.');return;
+    }catch(e){toast(e.message||'Player could not be saved.');return}
+  }
+  const p={id:playerId.value||uid('p'),name,jersey:jersey.value.trim(),position:position.value.trim(),grade:grade.value.trim(),height:height.value.trim(),guardian:guardian.value.trim(),guardianEmail:guardianEmail.value.trim(),guardianPhone:guardianPhone.value.trim(),source:'coach',updated:Date.now()};
+  const i=db.players.findIndex(x=>x.id===p.id);if(i>=0)db.players[i]=p;else db.players.push(p);saveDB(p.name+' saved to roster.');closeModal('playerModal');
+}
+async function deletePlayer(id){
+  const p=db.players.find(x=>x.id===id);if(!p)return;
+  if(!confirm('Remove '+p.name+' from this roster?'))return;
+  if(await coachSessionReady()){
+    try{await window.BBData.removePlayerFromTeam(currentTeamId,id);await loadPersistentCoachWorkspace();toast('Player removed from roster.');return}catch(e){toast(e.message||'Player could not be removed.');return}
+  }
+  db.players=db.players.filter(x=>x.id!==id);saveDB('Player removed.');
+}
+function renderRoster(){
+  const q=(rosterSearch?.value||'').toLowerCase();
+  const list=db.players.filter(p=>[p.name,p.position,p.guardian,p.jersey].join(' ').toLowerCase().includes(q));
+  rosterList.innerHTML=list.length?list.map(p=>`<div class="row"><div><b>${esc(p.name)}</b><br><small>#${esc(p.jersey||'—')} • ${esc(p.position||'Position not set')}</small></div><div><small>Grade / Height</small><br>${esc(p.grade||'—')} • ${esc(p.height||'—')}</div><div><small>Guardian</small><br>${esc(p.guardian||'—')}</div><div class="actions inline"><button class="btn ghost tiny" onclick="openPlayerModal('${p.id}')">Edit</button><button class="btn danger tiny" onclick="deletePlayer('${p.id}')">×</button></div></div>`).join(''):'<div class="empty">No players yet. Add a player directly or generate a linked invitation.</div>';
+  renderStatSelectors();
+}
+function openInviteModal(){
+  invitePlayerId.innerHTML=db.players.length?db.players.map(p=>`<option value="${p.id}">${esc(p.name)}</option>`).join(''):'<option value="">Add a roster player first</option>';
+  inviteRole.value='parent';inviteEmail.value='';inviteResult.style.display='none';openModal('inviteModal');
+}
+async function generateInvite(){
+  const playerId=invitePlayerId.value,email=inviteEmail.value.trim(),role=inviteRole.value;
+  if(!playerId){toast('Choose a roster player first.');return}
+  if(!email){toast('Enter the invitation email.');return}
+  if(await coachSessionReady()){
+    try{
+      const inv=await window.BBData.createInvite({teamId:currentTeamId,playerId,email,role});
+      inviteCode.value=inv.invite_code;
+      const base=location.origin+location.pathname;
+      inviteLink.value=base+'?invite='+encodeURIComponent(inv.invite_code)+'&role='+encodeURIComponent(role);
+      inviteResult.style.display='block';await loadPersistentCoachWorkspace();toast('Linked invitation created.');return;
+    }catch(e){toast(e.message||'Invitation could not be created.');return}
+  }
+  const p=db.players.find(x=>x.id===playerId);const code=('BB-'+Math.random().toString(36).slice(2,8)).toUpperCase();
+  db.invites.push({id:uid('i'),code,playerId,player:p?.name||'',email,role,status:'pending',created:Date.now()});saveDB();
+  inviteCode.value=code;inviteLink.value=location.href.split('?')[0].split('#')[0]+'?invite='+encodeURIComponent(code)+'&role='+role;inviteResult.style.display='block';toast('Invite generated.');
+}
 async function copyInvite(){try{await navigator.clipboard.writeText(inviteLink.value);toast('Invite link copied.')}catch(e){inviteLink.select();document.execCommand('copy');toast('Invite link copied.')}}
-function openFamilyDemo(code){famCode.value=code||'';const inv=db.invites.find(x=>x.code===famCode.value);famPlayer.value=inv?.player||'';famJersey.value='';famPosition.value='';famGrade.value='';famHeight.value='';famGuardian.value='';famEmail.value=inv?.email||'';famPhone.value='';openModal('familyModal')}
-function submitFamilyProfile(){const code=famCode.value.trim().toUpperCase();const inv=db.invites.find(x=>x.code===code);const name=famPlayer.value.trim();if(!name){toast('Enter the player name.');return}const existing=db.players.find(p=>p.name.toLowerCase()===name.toLowerCase());const p={id:existing?.id||uid('p'),name,jersey:famJersey.value.trim(),position:famPosition.value.trim(),grade:famGrade.value.trim(),height:famHeight.value.trim(),guardian:famGuardian.value.trim(),guardianEmail:famEmail.value.trim(),guardianPhone:famPhone.value.trim(),source:'family',updated:Date.now()};const idx=db.players.findIndex(x=>x.id===p.id);if(idx>=0)db.players[idx]=p;else db.players.push(p);if(inv)inv.status='Completed';saveDB(name+' information sent to coach roster.');closeModal('familyModal')}
+async function sendAssistantInvite(){
+  const name=staffInviteName.value.trim(),email=staffInviteEmail.value.trim(),title=staffInviteTitle.value;
+  if(!email){toast('Enter the assistant coach email.');return}
+  if(!(await coachSessionReady())||!currentTeamId){toast('Sign in and save Team Setup first.');return}
+  try{
+    const inv=await window.BBData.createInvite({teamId:currentTeamId,email,role:'coach',inviteeName:name,staffTitle:title});
+    const base=location.origin+location.pathname;
+    const link=base+'?invite='+encodeURIComponent(inv.invite_code)+'&role=coach';
+    try{await navigator.clipboard.writeText(link);toast('Assistant Coach invite created and link copied.')}catch(e){toast('Assistant Coach invite created.')}
+    staffInviteName.value='';staffInviteEmail.value='';await loadPersistentCoachWorkspace();
+  }catch(e){toast(e.message||'Assistant Coach invite could not be created.')}
+}
+async function revokeTeamInvite(id){
+  try{await window.BBData.revokeInvite(id);await loadPersistentCoachWorkspace();toast('Invite revoked.')}catch(e){toast(e.message||'Invite could not be revoked.')}
+}
+function renderStaff(){
+  const staff=db.staff||[];
+  if(window.staffList) staffList.innerHTML=staff.length?staff.map(s=>{
+    const p=s.profiles||{};return `<div class="row"><div><b>${esc(p.full_name||'Coach')}</b><br><small>${esc(p.email||'')}</small></div><div><span class="badge orange">${esc(s.staff_title||'Coach')}</span></div><div><small>Access</small><br>Active team workspace</div><div></div></div>`;
+  }).join(''):'<div class="empty">No coaching staff connected yet.</div>';
+  const pending=(db.invites||[]).filter(x=>x.role==='coach'&&x.status==='pending');
+  if(window.staffInviteList) staffInviteList.innerHTML=pending.length?pending.map(x=>`<div class="row"><div><b>${esc(x.player||'Assistant Coach')}</b><br><small>${esc(x.email)}</small></div><div><span class="badge">Pending</span></div><div><small>Invite Code</small><br>${esc(x.code)}</div><div class="actions"><button class="btn danger tiny" onclick="revokeTeamInvite('${x.id}')">Revoke</button></div></div>`).join(''):'<div class="empty">No pending staff invitations.</div>';
+}
+function openFamilyDemo(code){famCode.value=code||'';famPlayer.value='';famJersey.value='';famPosition.value='';famGrade.value='';famHeight.value='';famGuardian.value='';famEmail.value='';famPhone.value='';openModal('familyModal')}
+function submitFamilyProfile(){toast('Linked family completion activates after the invited Parent or Player signs in.');}
 function savePractice(){const rec={id:uid('pr'),date:practiceDate.value,duration:practiceDuration.value,focus:practiceFocus.value.trim(),objectives:practiceObjectives.value.trim(),drills:practiceDrills.value.trim(),notes:practiceNotes.value.trim(),created:Date.now()};if(!rec.date&&!rec.focus){toast('Add a date or practice focus.');return}db.practices.unshift(rec);saveDB('Practice plan saved.');practiceFocus.value=practiceObjectives.value=practiceDrills.value=practiceNotes.value=''}
 function deleteRecord(type,id){db[type]=db[type].filter(x=>x.id!==id);saveDB('Record removed.')}
 function renderPractices(){practiceList.innerHTML=db.practices.length?db.practices.map(r=>`<div class="row"><div><b>${esc(r.focus||'Practice')}</b><br><small>${esc(r.date||'No date')}</small></div><div>${esc(r.duration||'—')} min</div><div><span class="badge">${esc((r.drills||'').split('\n').filter(Boolean).length)} segments</span></div><div class="actions"><button class="btn danger tiny" onclick="deleteRecord('practices','${r.id}')">Remove</button></div></div>`).join(''):'<div class="empty">No practice plans saved yet.</div>'}
@@ -1127,7 +1309,7 @@ function totalsByPlayer(){const out={};db.stats.forEach(s=>{const k=s.playerId;o
 function prepareSeasonReport(showToast=true){const rr=record(),tot=totalsByPlayer();const leaders=Object.entries(tot).map(([id,v])=>({name:db.players.find(p=>p.id===id)?.name||'Player',...v})).sort((a,b)=>b.PTS-a.PTS);seasonReport.innerHTML=`<h3 style="margin-top:0">${esc(db.team.name||'Basketball Brilliance Team')} — ${esc(db.team.season||'Season Snapshot')}</h3><p><b>Coach:</b> ${esc(db.team.coach||'—')} &nbsp; • &nbsp; <b>Record:</b> ${rr.w}–${rr.l} &nbsp; • &nbsp; <b>Roster:</b> ${db.players.length}</p><div class="divider"></div><h4>Stat Leaders / Totals</h4>${leaders.length?leaders.slice(0,8).map(x=>`<p><b>${esc(x.name)}</b> — ${x.GP} GP • ${x.PTS} PTS • ${x.REB} REB • ${x.AST} AST • ${x.STL} STL • ${x.BLK} BLK</p>`).join(''):'<p>No player stats entered yet.</p>'}<div class="divider"></div><p><b>Latest Practice:</b> ${esc(db.practices[0]?.focus||'None')} ${esc(db.practices[0]?.date||'')}</p><p><b>Latest Scouting:</b> ${esc(db.scouts[0]?.opponent||'None')}</p><p><b>Saved Plays:</b> ${db.plays.length} &nbsp; • &nbsp; <b>Season Notes:</b> ${db.notes.length}</p>`;if(showToast)toast('Season report generated.')}
 function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='basketball-brilliance-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Basketball Brilliance backup downloaded.')}
 function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=Object.assign(JSON.parse(JSON.stringify(defaultData)),JSON.parse(r.result));saveDB('Backup restored.');hydrateTeam()}catch(err){toast('That backup could not be read.')}};r.readAsText(f)}
-function refreshAll(){const rr=record();heroTeam.textContent=(db.team.name||'My Team')+' • '+(db.team.season||'New Season');sideTeam.textContent=db.team.name||'Basketball Brilliance';sideSeason.textContent=(db.team.level||'Coach')+' • '+(db.team.season||'Workspace');heroRecord.textContent=rr.w+'–'+rr.l;heroPlayers.textContent=db.players.length;heroPractices.textContent=db.practices.length;heroGames.textContent=db.games.length;heroScouts.textContent=db.scouts.length;mPlayers.textContent=db.players.length;mInvites.textContent=db.invites.length;mPractices.textContent=db.practices.length;mGames.textContent=db.games.length;nextPractice.textContent=db.practices[0]?`${db.practices[0].date||'Upcoming'} • ${db.practices[0].focus||'Practice'}`:'No practice plan saved yet.';latestScout.textContent=db.scouts[0]?`${db.scouts[0].opponent} • ${(db.scouts[0].plan||'Report saved').slice(0,85)}`:'No opponent report saved yet.';familyStatus.textContent=db.invites.length?`${db.invites.filter(x=>x.status==='Completed').length} completed • ${db.invites.filter(x=>x.status!=='Completed').length} pending invite(s)`:'Generate an invite from Roster + Invites to connect the family path.';seasonRecordText.textContent=rr.w+' wins • '+rr.l+' losses';renderRoster();renderPractices();renderScouts();renderPlays();renderNotes();renderStatSelectors();renderStats()}
+function refreshAll(){const rr=record();heroTeam.textContent=(db.team.name||'My Team')+' • '+(db.team.season||'New Season');sideTeam.textContent=db.team.name||'Basketball Brilliance';sideSeason.textContent=(db.team.level||'Coach')+' • '+(db.team.season||'Workspace');heroRecord.textContent=rr.w+'–'+rr.l;heroPlayers.textContent=db.players.length;heroPractices.textContent=db.practices.length;heroGames.textContent=db.games.length;heroScouts.textContent=db.scouts.length;mPlayers.textContent=persistentCoachDashboard?.playerCount??db.players.length;mInvites.textContent=persistentCoachDashboard?.inviteCount??db.invites.length;mPractices.textContent=persistentCoachDashboard?.practiceCount??db.practices.length;mGames.textContent=persistentCoachDashboard?.gameCount??db.games.length;if(window.mAssistants)mAssistants.textContent=persistentCoachDashboard?.assistantCount??0;nextPractice.textContent=db.practices[0]?`${db.practices[0].date||'Upcoming'} • ${db.practices[0].focus||'Practice'}`:'No practice plan saved yet.';latestScout.textContent=db.scouts[0]?`${db.scouts[0].opponent} • ${(db.scouts[0].plan||'Report saved').slice(0,85)}`:'No opponent report saved yet.';familyStatus.textContent=db.invites.length?`${db.invites.filter(x=>x.status==='Completed').length} completed • ${db.invites.filter(x=>x.status!=='Completed').length} pending invite(s)`:'Generate an invite from Roster + Invites to connect the family path.';seasonRecordText.textContent=(persistentCoachDashboard?.wins??rr.w)+' wins • '+(persistentCoachDashboard?.losses??rr.l)+' losses';renderRoster();renderStaff();renderPractices();renderScouts();renderPlays();renderNotes();renderStatSelectors();renderStats()}
 function startVoice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){voiceStatus.textContent='Voice recognition is not available in this browser. Chrome usually supports it.';return}const r=new SR();r.lang='en-US';r.interimResults=false;r.maxAlternatives=1;voiceStatus.textContent='Listening…';r.onresult=e=>{const t=e.results[0][0].transcript;voiceStatus.textContent='Heard: “'+t+'”';parseSpeech(t)};r.onerror=()=>voiceStatus.textContent='I could not hear that clearly. Tap and try again.';r.start()}
 function parseSpeech(t){let s=t.trim();const num=s.match(/(?:number|jersey)\s+(\d+)/i);if(num)jersey.value=num[1];const gr=s.match(/grade\s+(\d+)/i);if(gr)grade.value=gr[1];const pos=s.match(/(point guard|shooting guard|small forward|power forward|center|guard|forward)/i);if(pos)position.value=pos[1].replace(/\b\w/g,c=>c.toUpperCase());const name=s.match(/^(.+?)(?:,| number| jersey| point guard| shooting guard| small forward| power forward| center| guard| forward| grade)/i);if(name)playerName.value=name[1].trim().replace(/\b\w/g,c=>c.toUpperCase());const ht=s.match(/(\d)\s*(?:foot|feet)\s*(\d{1,2})?/i);if(ht)height.value=ht[1]+"'"+(ht[2]||'0')+'"'}
 function showLegal(which){
@@ -1237,6 +1419,7 @@ async function enterPortal(p){
  requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));
  if(p==='player'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch(e){}if(pref!=='off')await bbStartMusic();}
  else bbStopMusic();
+ if(p==='coach'){try{if(await window.BBAuth?.getSession?.())await loadPersistentCoachWorkspace()}catch(e){}}
  portalOfferTimer=setTimeout(()=>openPortalOffer(p),12000);
 }
 let pendingMembershipRole='coach';
@@ -1264,7 +1447,7 @@ async function demoCheckout(){
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});
 async function installBasketballBrilliance(){if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else toast('On supported phones, use Add to Home Screen / Install App from your browser menu.')}
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
-window.addEventListener('load',()=>{const q=new URLSearchParams(location.search);if(q.get('invite'))enterPortal('parent')});
+window.addEventListener('load',async()=>{const q=new URLSearchParams(location.search);const invite=q.get('invite');if(invite){const role=(q.get('role')||'parent').toLowerCase();selectedRole=role.charAt(0).toUpperCase()+role.slice(1);db.session.role=selectedRole;await enterPortal(role==='coach'?'coach':role);openLogin();setAuthStatus('You were invited to a Basketball Brilliance team. Create an account or sign in to accept this invitation.','good');}});
 </script><audio id="bbMusic" src="assets/dmv-ballin.mp3" preload="auto" loop></audio>
 
 
