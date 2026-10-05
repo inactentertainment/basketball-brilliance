@@ -1076,6 +1076,34 @@ body[data-portal="coach"] .iq-empty{
 }
 </style>
 
+
+<style id="coach-interaction-card-style">
+body[data-portal="coach"] .coach-interaction-card{
+  background:linear-gradient(160deg,#151619,#090a0b);
+  border:1px solid #30343a;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+  margin-top:8px;
+  margin-bottom:22px;
+}
+body[data-portal="coach"] .coach-interaction-card .coach-iq-actions,
+body[data-portal="coach"] .coach-interaction-card .library-filters{
+  margin-bottom:0;
+}
+body[data-portal="coach"] .iq-results,
+body[data-portal="coach"] .library-layout{
+  margin-top:0!important;
+}
+@media(max-width:620px){
+  body[data-portal="coach"] .coach-interaction-card{
+    padding:14px;
+    border-radius:18px;
+    margin-bottom:18px;
+  }
+}
+</style>
+
 </head>
 <body id="top" data-portal="entry">
 
@@ -1131,6 +1159,7 @@ body[data-portal="coach"] .iq-empty{
     <div><span class="eyebrow">Coach IQ</span><h2>Basketball Brilliance Situation Station</h2><p>Tell Coach IQ what you are seeing. Get multiple basketball solutions, teaching points and counters — then send the answer directly into your Practice Planner or Play Lab.</p></div>
     <span class="coach-iq-badge">Ask • Compare • Save</span>
   </div>
+  <div class="coach-interaction-card">
   <div class="coach-iq-entry">
     <textarea id="coachIQQuery" placeholder="Example: They're in a 3-2 zone. I have two good shooters and a strong high-post player. What should I run?"></textarea>
     <button class="shimmer-btn attention speakbtn" onclick="startCoachIQVoice()">🎙 Speak Situation</button>
@@ -1146,6 +1175,7 @@ body[data-portal="coach"] .iq-empty{
     <button class="iq-quick" onclick="askCoachIQPreset('pnr-defense')">Pick-and-Roll Defense</button>
     <button class="shimmer-btn" onclick="runCoachIQ()">Ask Coach IQ</button>
   </div>
+  </div>
   <div id="coachIQResults" class="iq-results"><div class="iq-empty">Ask a situation or tap a quick scenario to see recommended options.</div></div>
   <div class="iq-history"><h4>Recent Coach IQ Questions</h4><div id="coachIQHistory" class="iq-history-list"><span class="sub">Your signed-in team history will appear here.</span></div></div>
 </div></div></section>
@@ -1154,6 +1184,7 @@ body[data-portal="coach"] .iq-empty{
     <div><span class="eyebrow">Coach Reference Center</span><h2>Basketball Brilliance Coach Library</h2><p>Search the language of basketball, hear the pronunciation, listen to the complete entry, and use coach-specific cues to teach the concept clearly.</p></div>
     <span class="library-count" id="coachLibraryCount">Loading terms…</span>
   </div>
+  <div class="coach-interaction-card">
   <div class="library-search-row"><input id="coachLibrarySearch" placeholder="Type a term: ICE, BLOB, 3-2 zone, high post, ball screen…"><button class="shimmer-btn attention" id="coachLibraryMic" onclick="BBLibrary.voiceSearch()">🎙 Speak a Term</button></div>
   <div class="library-filters" id="coachLibraryFilters">
     <button class="library-filter active" onclick="BBLibrary.setCategory('All',this)">All</button>
@@ -1161,6 +1192,7 @@ body[data-portal="coach"] .iq-empty{
     <button class="library-filter" onclick="BBLibrary.setCategory('Defense',this)">Defense</button>
     <button class="library-filter" onclick="BBLibrary.setCategory('Situations',this)">Situations</button>
     <button class="library-filter" onclick="BBLibrary.setCategory('Fundamentals',this)">Fundamentals</button>
+  </div>
   </div>
   <div class="library-layout"><div id="coachLibraryMatches" class="library-matches"></div><div id="coachLibraryDetail"></div></div>
   <div class="library-downloads"><h3>Coach Member Downloads</h3><div class="library-download-grid">
