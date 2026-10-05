@@ -734,6 +734,24 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
   .signup-confirm-box{padding:14px}
 }
 </style>
+<script defer src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<style id="roster-import-styles">
+.import-paths{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.import-path{background:linear-gradient(180deg,#1b1c1f,#111214);border:1px solid #34373c;border-radius:16px;padding:16px;text-align:left;color:#fff;cursor:pointer;min-height:116px;transition:.2s ease}
+.import-path:hover,.import-path.active{border-color:#c84418;transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,68,24,.14)}
+.import-path b{display:block;margin:7px 0 3px;font-size:14px}.import-path span{display:block;color:#9ea2a8;font-size:12px;line-height:1.4}
+.import-icon{font-size:22px}.import-panel{display:none;margin-top:15px}.import-panel.active{display:block}
+.import-drop{border:1px dashed #555a62;border-radius:16px;padding:22px;text-align:center;background:#0d0e10}
+.import-drop input{background:#fff;color:#111}
+.import-review{overflow:auto;max-height:48vh;border:1px solid #303239;border-radius:14px;margin-top:14px}
+.import-review table{width:100%;border-collapse:collapse;min-width:850px}.import-review th,.import-review td{padding:8px;border-bottom:1px solid #2d2f33;text-align:left;vertical-align:middle}
+.import-review th{position:sticky;top:0;background:#17181b;z-index:2;color:#b9bdc3;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.import-review input{margin:0;padding:8px 9px;min-width:95px}.import-review .namefield{min-width:180px}.import-review .emailfield{min-width:190px}
+.import-status{padding:11px 13px;border-radius:12px;background:#17181b;border:1px solid #31343a;color:#c4c7cc;font-size:12px;margin-top:12px}
+.import-status.good{border-color:#285d3d;color:#8ee0a9}.import-status.bad{border-color:#71302d;color:#ff9a91}
+@media(max-width:760px){.import-paths{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 <body id="top" data-portal="entry">
 
@@ -797,7 +815,7 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
 <div class="workarea">
 <div class="workspace active" id="view-dashboard"><div class="workhead"><div><h3>Command Center</h3><div class="sub">A clear overview of the records you manage across the season.</div></div><div class="toolbar"><button class="btn soft tiny" onclick="openLogin()">Switch Role</button><button class="btn ghost tiny" onclick="exportBackup()">Export Backup</button></div></div><div class="metricgrid"><div class="metric"><strong id="mPlayers">0</strong><span>Players</span></div><div class="metric"><strong id="mInvites">0</strong><span>Family Invites</span></div><div class="metric"><strong id="mPractices">0</strong><span>Practice Plans</span></div><div class="metric"><strong id="mGames">0</strong><span>Games Logged</span></div><div class="metric"><strong id="mAssistants">0</strong><span>Assistant Coaches</span></div></div><div class="cards"><div class="card"><h4>Next Practice</h4><p id="nextPractice">No practice plan saved yet.</p></div><div class="card"><h4>Latest Scouting Report</h4><p id="latestScout">No opponent report saved yet.</p></div><div class="card"><h4>Family Workflow</h4><p id="familyStatus">Generate an invite from Roster + Invites to connect the family path.</p></div><div class="card"><h4>Season Record</h4><p><span id="seasonRecordText">0 wins • 0 losses</span></p></div><div class="card"><h4>Coaching Staff</h4><p id="staffStatus">No assistant coaches connected yet.</p></div></div></div>
 <div class="workspace" id="view-team"><div class="workhead"><div><h3>Team Setup</h3><div class="sub">Create the season shell that every player, plan, game and report belongs to.</div></div></div><div class="formgrid three"><label>Team Name<input id="teamName" placeholder="e.g. Brilliance Varsity"></label><label>Season<input id="seasonName" placeholder="2026–27"></label><label>Level<select id="teamLevel"><option>Varsity</option><option>JV</option><option>Middle School</option><option>AAU / Club</option><option>Youth</option><option>Other</option></select></label><label>Head Coach<input id="headCoach" placeholder="Coach name"></label><label>School / Organization<input id="orgName" placeholder="School or club"></label><label>Home Gym<input id="homeGym" placeholder="Primary location"></label></div><div class="toolbar"><button class="btn primary" onclick="saveTeam()">Save Team Setup</button></div><div class="notice" id="teamNotice">Start with the essentials, then expand the team record as your season grows.</div></div>
-<div class="workspace" id="view-roster"><div class="workhead"><div><h3>Roster + Family Invites</h3><div class="sub">Coach can enter a player directly or create a family link/code for the parent or player to complete.</div></div><button class="btn primary" onclick="openPlayerModal()">+ Add Player</button></div><div class="inline"><div class="grow"><label>Search Roster<input id="rosterSearch" placeholder="Search player, position, guardian…" oninput="renderRoster()"></label></div><button class="btn ghost" style="margin-top:20px" onclick="openInviteModal()">Generate Invite</button></div><div class="divider"></div><div id="rosterList" class="list"></div></div>
+<div class="workspace" id="view-roster"><div class="workhead"><div><h3>Roster + Family Invites</h3><div class="sub">Add one player manually or import an entire roster from a spreadsheet, pasted list, or photo.</div></div><div class="toolbar" style="margin:0"><button class="btn primary" onclick="openRosterImport()">+ Import Roster</button><button class="btn soft" onclick="openPlayerModal()">+ Add Player</button></div></div><div class="inline"><div class="grow"><label>Search Roster<input id="rosterSearch" placeholder="Search player, position, guardian…" oninput="renderRoster()"></label></div><button class="btn ghost" style="margin-top:20px" onclick="openInviteModal()">Generate Invite</button></div><div class="divider"></div><div id="rosterList" class="list"></div></div>
 
 <div class="workspace" id="view-staff">
   <div class="workhead"><div><h3>Staff + Assistant Coaches</h3><div class="sub">Invite assistant coaches into the same team workspace without changing Head Coach ownership.</div></div></div>
@@ -931,6 +949,19 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
       <button class="btn ghost" onclick="continuePreview()">Continue Preview</button>
     </div>
   </div></div>
+<div class="modal" id="rosterImportModal" onclick="if(event.target===this)closeModal('rosterImportModal')"><div class="modalbox" style="width:min(980px,96vw)"><button class="close" onclick="closeModal('rosterImportModal')">×</button><span class="eyebrow">Fast roster setup</span><h3>Roster Import Center</h3><p class="section-copy" style="font-size:14px;margin-bottom:10px">Bring in the roster you already have. Basketball Brilliance extracts the players first, then you review and approve every row before anything is saved.</p>
+<div class="import-paths">
+<button class="import-path active" data-import-mode="file" onclick="setRosterImportMode('file',this)"><span class="import-icon">▦</span><b>Spreadsheet</b><span>Excel, XLSX, XLS or CSV roster files.</span></button>
+<button class="import-path" data-import-mode="paste" onclick="setRosterImportMode('paste',this)"><span class="import-icon">≡</span><b>Paste Roster</b><span>Paste names from email, Word, a website or text.</span></button>
+<button class="import-path" data-import-mode="photo" onclick="setRosterImportMode('photo',this)"><span class="import-icon">▣</span><b>Scan / Photo</b><span>Take or upload a picture of a printed roster.</span></button>
+<button class="import-path" data-import-mode="manual" onclick="closeModal('rosterImportModal');openPlayerModal()"><span class="import-icon">＋</span><b>Add Manually</b><span>Enter a single player profile yourself.</span></button>
+</div>
+<div class="import-panel active" id="importPanelFile"><div class="import-drop"><b>Choose a roster file</b><p class="sub">Common columns are recognized automatically: player/name, jersey/number, position, grade, height, guardian, email and phone.</p><input id="rosterFileInput" type="file" accept=".xlsx,.xls,.csv,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onchange="handleRosterSpreadsheet(this.files[0])"></div></div>
+<div class="import-panel" id="importPanelPaste"><label>Paste roster text<textarea id="rosterPasteText" style="min-height:170px" placeholder="12 Marcus Hill PG 10 6'1&#10;24 Jordan Smith F 11 6'4&#10;&#10;or paste comma/tab separated rows with headers"></textarea></label><div class="toolbar"><button class="btn primary" onclick="parsePastedRoster()">Build Review List</button></div></div>
+<div class="import-panel" id="importPanelPhoto"><div class="import-drop"><b>Take or upload a roster photo</b><p class="sub">Best results: flat page, bright light, straight-on image, clear printed text. The image is read in your browser and the extracted roster must be reviewed before saving.</p><input id="rosterPhotoInput" type="file" accept="image/*" capture="environment" onchange="scanRosterPhoto(this.files[0])"></div></div>
+<div id="rosterImportStatus" class="import-status">Choose an import method to begin.</div>
+<div id="rosterImportReviewWrap" style="display:none"><div class="divider"></div><div class="workhead" style="margin-bottom:8px"><div><h4 style="margin:0">Review Before Import</h4><div class="sub">Correct anything that was read incorrectly. Remove rows you do not want.</div></div><span class="badge orange" id="rosterReviewCount">0 players</span></div><div class="import-review"><table><thead><tr><th>Player Name</th><th>#</th><th>Position</th><th>Grade</th><th>Height</th><th>Guardian</th><th>Guardian Email</th><th></th></tr></thead><tbody id="rosterImportRows"></tbody></table></div><div class="toolbar"><button class="btn primary" onclick="importReviewedRoster()">Confirm + Add to Roster</button><button class="btn ghost" onclick="clearRosterImport()">Clear</button></div></div>
+</div></div>
 <div class="modal" id="playerModal" onclick="if(event.target===this)closeModal('playerModal')"><div class="modalbox"><button class="close" onclick="closeModal('playerModal')">×</button><span class="eyebrow">Player profile</span><h3 id="playerModalTitle">Add Player</h3><input type="hidden" id="playerId"><div class="formgrid"><label>Player Name<input id="playerName"></label><label>Jersey #<input id="jersey"></label><label>Position<input id="position"></label><label>Grade<input id="grade"></label><label>Height<input id="height" placeholder="6'1\""></label><label>Parent / Guardian<input id="guardian"></label><label>Guardian Email<input id="guardianEmail" type="email"></label><label>Phone<input id="guardianPhone" type="tel"></label></div><div class="voicebar"><button onclick="startVoice()">🎙 Speak Info</button><span id="voiceStatus">Try: “Marcus Hill, number 12, point guard, grade 10, six foot one.”</span></div><div class="toolbar"><button class="btn primary" onclick="savePlayer()">Save Player Profile</button></div></div></div>
 <div class="modal" id="inviteModal" onclick="if(event.target===this)closeModal('inviteModal')"><div class="modalbox"><button class="close" onclick="closeModal('inviteModal')">×</button><span class="eyebrow">Linked team invite</span><h3>Invite a Player or Parent</h3><div class="formgrid"><label>Roster Player<select id="invitePlayerId"></select></label><label>Invite As<select id="inviteRole"><option value="parent">Parent / Guardian</option><option value="player">Player</option></select></label><label style="grid-column:1/-1">Email<input id="inviteEmail" type="email"></label></div><div class="toolbar"><button class="btn primary" onclick="generateInvite()">Generate Invite</button></div><div id="inviteResult" style="display:none"><label>Invite Code<input id="inviteCode" readonly></label><label style="margin-top:10px">Invite Link</label><div class="copybox"><input id="inviteLink" readonly><button class="btn soft tiny" onclick="copyInvite()">Copy</button></div><p class="notice">The link connects this account to the selected player and team after sign-in.</p></div></div></div>
 <div class="modal" id="familyModal" onclick="if(event.target===this)closeModal('familyModal')"><div class="modalbox"><button class="close" onclick="closeModal('familyModal')">×</button><span class="eyebrow">Team-linked family access</span><h3>Complete Player Information</h3><p class="section-copy" style="font-size:14px;margin-bottom:12px">No separate subscription is required to complete information requested by the coach.</p><div class="formgrid"><label>Invite Code<input id="famCode"></label><label>Player Name<input id="famPlayer"></label><label>Jersey #<input id="famJersey"></label><label>Position<input id="famPosition"></label><label>Grade<input id="famGrade"></label><label>Height<input id="famHeight"></label><label>Parent / Guardian<input id="famGuardian"></label><label>Guardian Email<input id="famEmail" type="email"></label><label>Phone<input id="famPhone" type="tel"></label></div><div class="toolbar"><button class="btn primary" onclick="submitFamilyProfile()">Send to Coach Roster</button></div><div class="divider"></div><div class="card"><h4>Optional family-owned membership</h4><p>Basketball Passport • Opportunity Finder • Recruiting Roadmap • Parent Resource Vault</p></div></div></div>
@@ -1208,6 +1239,174 @@ function hydrateTeam(){
   teamName.value=db.team.name||'';seasonName.value=db.team.season||'';teamLevel.value=db.team.level||'Varsity';
   headCoach.value=db.team.coach||'';orgName.value=db.team.org||'';homeGym.value=db.team.gym||'';
 }
+
+let rosterImportData=[];
+
+function openRosterImport(){
+  rosterImportData=[];
+  if(window.rosterFileInput)rosterFileInput.value='';
+  if(window.rosterPhotoInput)rosterPhotoInput.value='';
+  if(window.rosterPasteText)rosterPasteText.value='';
+  setRosterImportMode('file',document.querySelector('[data-import-mode="file"]'));
+  setRosterImportStatus('Choose an import method to begin.');
+  rosterImportReviewWrap.style.display='none';
+  openModal('rosterImportModal');
+}
+function setRosterImportMode(mode,btn){
+  document.querySelectorAll('.import-path').forEach(x=>x.classList.toggle('active',x===btn));
+  ['File','Paste','Photo'].forEach(x=>{const p=document.getElementById('importPanel'+x);if(p)p.classList.toggle('active',x.toLowerCase()===mode)});
+}
+function setRosterImportStatus(msg,type=''){
+  if(!window.rosterImportStatus)return;
+  rosterImportStatus.textContent=msg;rosterImportStatus.className='import-status'+(type?' '+type:'');
+}
+function cleanKey(k){return String(k||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,' ')}
+function fieldFromRow(row,aliases){
+  const keys=Object.keys(row||{});
+  for(const a of aliases){const hit=keys.find(k=>cleanKey(k)===a||cleanKey(k).includes(a));if(hit!=null&&String(row[hit]??'').trim())return String(row[hit]).trim()}
+  return '';
+}
+function normalizeSpreadsheetRows(rows){
+  return (rows||[]).map(r=>{
+    let name=fieldFromRow(r,['player name','name','player','athlete','student']);
+    let first=fieldFromRow(r,['first name','firstname']);
+    let last=fieldFromRow(r,['last name','lastname']);
+    if(!name)name=[first,last].filter(Boolean).join(' ');
+    return {
+      name,
+      jersey:fieldFromRow(r,['jersey number','jersey','number','no','num']),
+      position:fieldFromRow(r,['position','pos']),
+      grade:fieldFromRow(r,['grade','class','year']),
+      height:fieldFromRow(r,['height','ht']),
+      guardian:fieldFromRow(r,['guardian name','parent name','guardian','parent']),
+      guardianEmail:fieldFromRow(r,['guardian email','parent email','email']),
+      guardianPhone:fieldFromRow(r,['guardian phone','parent phone','phone'])
+    };
+  }).filter(r=>r.name);
+}
+async function handleRosterSpreadsheet(file){
+  if(!file)return;
+  if(!window.XLSX){setRosterImportStatus('Spreadsheet reader is still loading. Try again in a moment.','bad');return}
+  try{
+    setRosterImportStatus('Reading '+file.name+'…');
+    const buf=await file.arrayBuffer();
+    const wb=XLSX.read(buf,{type:'array'});
+    const ws=wb.Sheets[wb.SheetNames[0]];
+    const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
+    rosterImportData=normalizeSpreadsheetRows(rows);
+    if(!rosterImportData.length){
+      const matrix=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+      rosterImportData=parseRosterLines(matrix.map(r=>r.join('\t')).join('\n'));
+    }
+    renderRosterImportReview();
+    setRosterImportStatus(rosterImportData.length+' player row'+(rosterImportData.length===1?'':'s')+' found. Review them below before importing.','good');
+  }catch(e){setRosterImportStatus('I could not read that roster file. Try CSV/XLSX or use Paste Roster.','bad')}
+}
+function parsePastedRoster(){
+  const text=rosterPasteText.value.trim();if(!text){setRosterImportStatus('Paste a roster first.','bad');return}
+  rosterImportData=parseRosterLines(text);
+  renderRosterImportReview();
+  setRosterImportStatus(rosterImportData.length?rosterImportData.length+' player row'+(rosterImportData.length===1?'':'s')+' found. Review below.':'No player rows were recognized. Try one player per line.',''+(rosterImportData.length?'good':'bad'));
+}
+function parseRosterLines(text){
+  const lines=String(text||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+  if(!lines.length)return [];
+  const first=lines[0].toLowerCase();
+  const hasHeader=/(name|player|jersey|number|position|grade|height)/.test(first)&&(/[\t,|]/.test(lines[0]));
+  if(hasHeader){
+    const delim=lines[0].includes('\t')?'\t':lines[0].includes('|')?'|':',';
+    const headers=lines[0].split(delim).map(x=>x.trim());
+    const objs=lines.slice(1).map(line=>{const vals=line.split(delim).map(x=>x.trim());const o={};headers.forEach((k,i)=>o[k]=vals[i]||'');return o});
+    return normalizeSpreadsheetRows(objs);
+  }
+  return lines.map(line=>parseRosterLine(line)).filter(x=>x&&x.name);
+}
+function parseRosterLine(line){
+  const raw=line.replace(/[•;]/g,',').trim();
+  if(/[\t,|]/.test(raw)){
+    const parts=raw.split(raw.includes('\t')?'\t':raw.includes('|')?'|':',').map(x=>x.trim()).filter(Boolean);
+    let jersey='',name='',position='',grade='',height='';
+    if(/^#?\d{1,3}$/.test(parts[0]||'')){jersey=parts.shift().replace('#','')}
+    name=parts.shift()||'';
+    if(!jersey&&/^#?\d{1,3}$/.test(parts[0]||''))jersey=(parts.shift()||'').replace('#','');
+    position=parts.shift()||'';grade=parts.shift()||'';height=parts.shift()||'';
+    return {name,jersey,position,grade,height,guardian:'',guardianEmail:'',guardianPhone:''};
+  }
+  const tokens=raw.replace(/\s+/g,' ').split(' ');
+  let jersey='';
+  if(/^#?\d{1,3}$/.test(tokens[0]||''))jersey=tokens.shift().replace('#','');
+  const posRe=/^(PG|SG|SF|PF|C|G|F|POINT|SHOOTING|SMALL|POWER|CENTER|GUARD|FORWARD)$/i;
+  let posIndex=tokens.findIndex(t=>posRe.test(t));
+  let nameTokens=posIndex>0?tokens.slice(0,posIndex):tokens.slice(0,Math.min(2,tokens.length));
+  let rest=posIndex>0?tokens.slice(posIndex):tokens.slice(nameTokens.length);
+  let position='';
+  if(rest.length){
+    if(/^(POINT|SHOOTING|SMALL|POWER)$/i.test(rest[0])&&/^(GUARD|FORWARD)$/i.test(rest[1]||'')){position=rest.splice(0,2).join(' ')}
+    else if(posRe.test(rest[0]))position=rest.shift();
+  }
+  const gradeIdx=rest.findIndex(t=>/^(?:[6-9]|1[0-2])(?:th)?$/i.test(t));
+  const grade=gradeIdx>=0?rest.splice(gradeIdx,1)[0].replace(/th$/i,''):'';
+  const heightIdx=rest.findIndex(t=>/^\d['’]\d{1,2}["”]?$/.test(t)||/^\d-\d{1,2}$/.test(t));
+  const height=heightIdx>=0?rest.splice(heightIdx,1)[0]:'';
+  return {name:nameTokens.join(' '),jersey,position,grade,height,guardian:'',guardianEmail:'',guardianPhone:''};
+}
+async function scanRosterPhoto(file){
+  if(!file)return;
+  if(!window.Tesseract){setRosterImportStatus('Photo scanner is still loading. Try again in a moment.','bad');return}
+  try{
+    setRosterImportStatus('Scanning roster photo… 0%');
+    const result=await Tesseract.recognize(file,'eng',{logger:m=>{
+      if(m.status==='recognizing text')setRosterImportStatus('Scanning roster photo… '+Math.round((m.progress||0)*100)+'%');
+      else if(m.status)setRosterImportStatus('Scanning roster photo… '+m.status.replace(/_/g,' '));
+    }});
+    const text=result?.data?.text||'';
+    rosterImportData=parseRosterLines(text);
+    renderRosterImportReview();
+    setRosterImportStatus(rosterImportData.length?rosterImportData.length+' possible player row'+(rosterImportData.length===1?'':'s')+' extracted. Photo scans can make mistakes — review every row before importing.':'Text was detected, but no clear player rows were recognized. Try a straighter/brighter photo or use Paste Roster.',rosterImportData.length?'good':'bad');
+  }catch(e){setRosterImportStatus('The photo could not be read. Try a clearer image or use Paste Roster.','bad')}
+}
+function renderRosterImportReview(){
+  rosterImportReviewWrap.style.display=rosterImportData.length?'block':'none';
+  rosterReviewCount.textContent=rosterImportData.length+' player'+(rosterImportData.length===1?'':'s');
+  rosterImportRows.innerHTML=rosterImportData.map((r,i)=>`<tr data-import-row="${i}">
+    <td><input class="namefield" data-field="name" value="${esc(r.name||'')}"></td>
+    <td><input data-field="jersey" value="${esc(r.jersey||'')}"></td>
+    <td><input data-field="position" value="${esc(r.position||'')}"></td>
+    <td><input data-field="grade" value="${esc(r.grade||'')}"></td>
+    <td><input data-field="height" value="${esc(r.height||'')}"></td>
+    <td><input data-field="guardian" value="${esc(r.guardian||'')}"></td>
+    <td><input class="emailfield" type="email" data-field="guardianEmail" value="${esc(r.guardianEmail||'')}"></td>
+    <td><button class="btn danger tiny" onclick="removeRosterImportRow(${i})">×</button></td>
+  </tr>`).join('');
+}
+function removeRosterImportRow(i){rosterImportData.splice(i,1);renderRosterImportReview()}
+function clearRosterImport(){rosterImportData=[];renderRosterImportReview();setRosterImportStatus('Import list cleared.')}
+function collectRosterImportRows(){
+  return [...rosterImportRows.querySelectorAll('tr')].map(tr=>{
+    const get=f=>tr.querySelector('[data-field="'+f+'"]')?.value.trim()||'';
+    return {name:get('name'),jersey:get('jersey'),position:get('position'),grade:get('grade'),height:get('height'),guardian:get('guardian'),guardianEmail:get('guardianEmail')};
+  }).filter(r=>r.name);
+}
+async function importReviewedRoster(){
+  const rows=collectRosterImportRows();if(!rows.length){setRosterImportStatus('There are no players to import.','bad');return}
+  if(await coachSessionReady()){
+    if(!currentTeamId){setRosterImportStatus('Save Team Setup before importing a roster.','bad');return}
+    try{
+      setRosterImportStatus('Adding '+rows.length+' players to the secure roster…');
+      const payload=rows.map(r=>{const n=splitPlayerName(r.name);return {...n,jersey_number:r.jersey||null,position:r.position||null,grade:r.grade||null,height_text:r.height||null,guardian_name:r.guardian||null,guardian_email:r.guardianEmail||null,guardian_phone:null}});
+      const result=await window.BBData.importTeamPlayers(currentTeamId,payload);
+      await loadPersistentCoachWorkspace();
+      setRosterImportStatus((result?.imported||0)+' players added'+((result?.skipped||0)?' • '+result.skipped+' duplicate/blank row'+(result.skipped===1?'':'s')+' skipped':'')+'.','good');
+      rosterImportData=[];renderRosterImportReview();
+      setTimeout(()=>closeModal('rosterImportModal'),900);
+      toast('Roster import complete.');
+    }catch(e){setRosterImportStatus(e.message||'Roster import failed.','bad')}
+    return;
+  }
+  rows.forEach(r=>db.players.push({id:uid('p'),...r,guardianPhone:'',source:'import',updated:Date.now()}));
+  saveDB(rows.length+' players added to preview roster.');closeModal('rosterImportModal');
+}
+
 function openPlayerModal(id){
   playerId.value=id||'';const p=db.players.find(x=>x.id===id)||{};
   playerModalTitle.textContent=id?'Edit Player':'Add Player';playerName.value=p.name||'';jersey.value=p.jersey||'';
@@ -1241,7 +1440,7 @@ async function deletePlayer(id){
 function renderRoster(){
   const q=(rosterSearch?.value||'').toLowerCase();
   const list=db.players.filter(p=>[p.name,p.position,p.guardian,p.jersey].join(' ').toLowerCase().includes(q));
-  rosterList.innerHTML=list.length?list.map(p=>`<div class="row"><div><b>${esc(p.name)}</b><br><small>#${esc(p.jersey||'—')} • ${esc(p.position||'Position not set')}</small></div><div><small>Grade / Height</small><br>${esc(p.grade||'—')} • ${esc(p.height||'—')}</div><div><small>Guardian</small><br>${esc(p.guardian||'—')}</div><div class="actions inline"><button class="btn ghost tiny" onclick="openPlayerModal('${p.id}')">Edit</button><button class="btn danger tiny" onclick="deletePlayer('${p.id}')">×</button></div></div>`).join(''):'<div class="empty">No players yet. Add a player directly or generate a linked invitation.</div>';
+  rosterList.innerHTML=list.length?list.map(p=>`<div class="row"><div><b>${esc(p.name)}</b><br><small>#${esc(p.jersey||'—')} • ${esc(p.position||'Position not set')}</small></div><div><small>Grade / Height</small><br>${esc(p.grade||'—')} • ${esc(p.height||'—')}</div><div><small>Guardian</small><br>${esc(p.guardian||'—')}</div><div class="actions inline"><button class="btn ghost tiny" onclick="openPlayerModal('${p.id}')">Edit</button><button class="btn danger tiny" onclick="deletePlayer('${p.id}')">×</button></div></div>`).join(''):'<div class="empty">No players yet. Import a roster, add a player manually, or generate a linked invitation.</div>';
   renderStatSelectors();
 }
 function openInviteModal(){
