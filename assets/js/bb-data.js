@@ -75,13 +75,20 @@
     return data;
   }
   async function createPlayer(payload,teamId){
-    const u=await me();
-    const {data,error}=await s().from("players").insert({...payload,created_by:u.id}).select().single();
+    if(!teamId) throw new Error("Team is required.");
+    const {data,error}=await s().rpc("create_team_player",{
+      p_team_id:teamId,
+      p_first_name:payload.first_name||"",
+      p_last_name:payload.last_name||null,
+      p_jersey_number:payload.jersey_number||null,
+      p_position:payload.position||null,
+      p_grade:payload.grade||null,
+      p_height_text:payload.height_text||null,
+      p_guardian_name:payload.guardian_name||null,
+      p_guardian_email:payload.guardian_email||null,
+      p_guardian_phone:payload.guardian_phone||null
+    });
     if(error) throw error;
-    if(teamId){
-      const j=await s().from("team_players").insert({team_id:teamId,player_id:data.id,status:"active"});
-      if(j.error) throw j.error;
-    }
     return data;
   }
   async function updatePlayer(playerId,payload){
