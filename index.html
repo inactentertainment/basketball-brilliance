@@ -752,6 +752,34 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
 .import-status.good{border-color:#285d3d;color:#8ee0a9}.import-status.bad{border-color:#71302d;color:#ff9a91}
 @media(max-width:760px){.import-paths{grid-template-columns:repeat(2,1fr)}}
 </style>
+<style id="coach-iq-styles">
+.coach-iq{padding:12px 0 34px}
+.coach-iq-shell{background:linear-gradient(145deg,#17181b,#0c0d0f);border:1px solid #31343a;border-radius:28px;padding:24px;box-shadow:0 24px 70px rgba(0,0,0,.24);position:relative;overflow:hidden}
+.coach-iq-shell:before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 20% 30%,rgba(241,90,41,.13),transparent 18%),radial-gradient(circle at 80% 70%,rgba(241,90,41,.08),transparent 22%);pointer-events:none}
+.coach-iq-head{position:relative;display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px}
+.coach-iq-head h2{margin:4px 0 6px;font-size:clamp(28px,4vw,48px);color:#fff}
+.coach-iq-head p{margin:0;color:#aeb2b8;max-width:720px;line-height:1.55}
+.coach-iq-badge{white-space:nowrap;border:1px solid rgba(241,90,41,.45);color:#ff8a57;background:rgba(241,90,41,.09);border-radius:999px;padding:9px 13px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.coach-iq-entry{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.coach-iq-entry textarea{min-height:86px;margin:0;border-radius:18px;padding:16px 18px;font-size:16px}
+.coach-iq-entry .speakbtn{height:86px;min-width:106px;border-radius:18px}
+.coach-iq-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.iq-quick{background:#1d1f23;border:1px solid #3a3d44;color:#fff;border-radius:999px;padding:9px 12px;font-weight:800;font-size:12px;cursor:pointer}
+.iq-quick:hover{border-color:#f15a29;box-shadow:0 0 0 2px rgba(241,90,41,.08)}
+.iq-results{position:relative;margin-top:18px;display:grid;gap:12px}
+.iq-result{border:1px solid #34373d;background:linear-gradient(180deg,#1c1e22,#111214);border-radius:20px;padding:18px}
+.iq-result-top{display:flex;gap:14px;justify-content:space-between;align-items:flex-start}
+.iq-rank{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:950;background:linear-gradient(145deg,#ff6d35,#8a2608);color:#fff;box-shadow:0 8px 20px rgba(241,90,41,.23);flex:0 0 auto}
+.iq-titlewrap{flex:1}.iq-titlewrap h3{margin:0 0 4px;color:#fff;font-size:20px}.iq-titlewrap p{margin:0;color:#b8bcc2;line-height:1.45}
+.iq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.iq-detail{border:1px solid #303238;background:#16181b;border-radius:14px;padding:10px}.iq-detail b{display:block;color:#ff8a57;font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}.iq-detail span{color:#d8dadd;font-size:12px;line-height:1.4}
+.iq-card-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.iq-empty{padding:18px;border:1px dashed #3a3d43;border-radius:16px;color:#9fa4aa;text-align:center}
+.iq-history{position:relative;margin-top:18px;border-top:1px solid #2e3136;padding-top:14px}.iq-history h4{margin:0 0 10px;color:#fff}
+.iq-history-list{display:flex;gap:8px;flex-wrap:wrap}.iq-history-chip{border:1px solid #32353b;background:#15171a;color:#c6c9ce;border-radius:999px;padding:8px 11px;font-size:11px;cursor:pointer}
+@media(max-width:820px){.coach-iq-head{display:block}.coach-iq-badge{display:inline-block;margin-top:10px}.iq-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.coach-iq-shell{padding:18px;border-radius:22px}.coach-iq-entry{grid-template-columns:1fr}.coach-iq-entry .speakbtn{height:auto;min-height:52px}.iq-grid{grid-template-columns:1fr}.iq-result-top{align-items:flex-start}}
+</style>
 </head>
 <body id="top" data-portal="entry">
 
@@ -802,6 +830,29 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
     <div class="video-label"><b>Temporary Video Preview</b><span>Final coach explainer video will replace this.</span></div>
   </div>
 </div></section>
+<section class="coach-iq" id="coachIQStation"><div class="wrap"><div class="coach-iq-shell">
+  <div class="coach-iq-head">
+    <div><span class="eyebrow">Coach IQ</span><h2>Basketball Brilliance Situation Station</h2><p>Tell Coach IQ what you are seeing. Get multiple basketball solutions, teaching points and counters — then send the answer directly into your Practice Planner or Play Lab.</p></div>
+    <span class="coach-iq-badge">Ask • Compare • Save</span>
+  </div>
+  <div class="coach-iq-entry">
+    <textarea id="coachIQQuery" placeholder="Example: They're in a 3-2 zone. I have two good shooters and a strong high-post player. What should I run?"></textarea>
+    <button class="shimmer-btn attention speakbtn" onclick="startCoachIQVoice()">🎙 Speak Situation</button>
+  </div>
+  <div class="coach-iq-actions">
+    <button class="iq-quick" onclick="askCoachIQPreset('attack-zone')">Attack a Zone</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('beat-press')">Beat a Press</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('blob')">BLOB</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('slob')">SLOB</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('need-three')">Need a 3</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('last-shot')">Last Shot</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('stop-scorer')">Stop a Scorer</button>
+    <button class="iq-quick" onclick="askCoachIQPreset('pnr-defense')">Pick-and-Roll Defense</button>
+    <button class="shimmer-btn" onclick="runCoachIQ()">Ask Coach IQ</button>
+  </div>
+  <div id="coachIQResults" class="iq-results"><div class="iq-empty">Ask a situation or tap a quick scenario to see recommended options.</div></div>
+  <div class="iq-history"><h4>Recent Coach IQ Questions</h4><div id="coachIQHistory" class="iq-history-list"><span class="sub">Your signed-in team history will appear here.</span></div></div>
+</div></div></section>
 <section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Coach Command Preview</h3><span>Your active dashboard begins here.</span></div><div class="role-dashboard-grid">
 <div class="role-dashboard-card"><b>Team + Roster</b><span>Players, families, contacts and season structure.</span></div>
 <div class="role-dashboard-card"><b>Practice</b><span>Plans, drills, objectives and coaching notes.</span></div>
@@ -811,7 +862,7 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
 <section id="coaches"><div class="wrap"><span class="eyebrow">Coach-first business model</span><h2 class="section-title">The coach pays. The team connects.</h2><p class="section-copy">Parents and players do not need a second subscription just to complete the coach's team forms. They can enter requested information through a linked family path. Separate Parent + Player products remain optional upgrades owned by the family.</p><div class="flow"><div class="step"><span class="num">01 • Coach</span><h3>Create the team</h3><p>Set the team, season, staff, roster structure and required information.</p></div><div class="step"><span class="num">02 • Invite</span><h3>Send one link</h3><p>Generate a player/family invite without making the coach retype everything.</p></div><div class="step"><span class="num">03 • Connect</span><h3>Profile appears</h3><p>Player and guardian information flows into the same coach roster.</p></div><div class="step"><span class="num">04 • Grow</span><h3>Family owns more</h3><p>Basketball Passport, Journal, Opportunities, Recruiting and Parent Resources become natural upsells.</p></div></div></div></section>
 <section id="app"><div class="wrap"><span class="eyebrow">Coach workspace</span><h2 class="section-title">Coach Command Center</h2><p class="section-copy">Move from team setup to player development without losing the story of your season. Keep rosters, practices, games, scouting, plays, notes and reports organized in one place.</p>
 <div class="appshell">
-<aside class="sidebar"><div class="sidebrand"><b id="sideTeam">Basketball Brilliance</b><span id="sideSeason">Coach Workspace</span></div><div class="menu" id="appMenu"><button data-view="dashboard" class="active">Command Center</button><button data-view="team">Team Setup</button><button data-view="roster">Roster + Invites</button><button data-view="staff">Staff + Assistants</button><button data-view="practice">Practice Planner</button><button data-view="games">Games + Stats</button><button data-view="scouting">Scouting</button><button data-view="playlab">Play Lab</button><button data-view="notes">Season Notes</button><button data-view="reports">Reports</button></div></aside>
+<aside class="sidebar"><div class="sidebrand"><b id="sideTeam">Basketball Brilliance</b><span id="sideSeason">Coach Workspace</span></div><div class="menu" id="appMenu"><button type="button" onclick="document.getElementById('coachIQStation').scrollIntoView({behavior:'smooth'})">Situation Station</button><button data-view="dashboard" class="active">Command Center</button><button data-view="team">Team Setup</button><button data-view="roster">Roster + Invites</button><button data-view="staff">Staff + Assistants</button><button data-view="practice">Practice Planner</button><button data-view="games">Games + Stats</button><button data-view="scouting">Scouting</button><button data-view="playlab">Play Lab</button><button data-view="notes">Season Notes</button><button data-view="reports">Reports</button></div></aside>
 <div class="workarea">
 <div class="workspace active" id="view-dashboard"><div class="workhead"><div><h3>Command Center</h3><div class="sub">A clear overview of the records you manage across the season.</div></div><div class="toolbar"><button class="btn soft tiny" onclick="openLogin()">Switch Role</button><button class="btn ghost tiny" onclick="exportBackup()">Export Backup</button></div></div><div class="metricgrid"><div class="metric"><strong id="mPlayers">0</strong><span>Players</span></div><div class="metric"><strong id="mInvites">0</strong><span>Family Invites</span></div><div class="metric"><strong id="mPractices">0</strong><span>Practice Plans</span></div><div class="metric"><strong id="mGames">0</strong><span>Games Logged</span></div><div class="metric"><strong id="mAssistants">0</strong><span>Assistant Coaches</span></div></div><div class="cards"><div class="card"><h4>Next Practice</h4><p id="nextPractice">No practice plan saved yet.</p></div><div class="card"><h4>Latest Scouting Report</h4><p id="latestScout">No opponent report saved yet.</p></div><div class="card"><h4>Family Workflow</h4><p id="familyStatus">Generate an invite from Roster + Invites to connect the family path.</p></div><div class="card"><h4>Season Record</h4><p><span id="seasonRecordText">0 wins • 0 losses</span></p></div><div class="card"><h4>Coaching Staff</h4><p id="staffStatus">No assistant coaches connected yet.</p></div></div></div>
 <div class="workspace" id="view-team"><div class="workhead"><div><h3>Team Setup</h3><div class="sub">Create the season shell that every player, plan, game and report belongs to.</div></div></div><div class="formgrid three"><label>Team Name<input id="teamName" placeholder="e.g. Brilliance Varsity"></label><label>Season<input id="seasonName" placeholder="2026–27"></label><label>Level<select id="teamLevel"><option>Varsity</option><option>JV</option><option>Middle School</option><option>AAU / Club</option><option>Youth</option><option>Other</option></select></label><label>Head Coach<input id="headCoach" placeholder="Coach name"></label><label>School / Organization<input id="orgName" placeholder="School or club"></label><label>Home Gym<input id="homeGym" placeholder="Primary location"></label></div><div class="toolbar"><button class="btn primary" onclick="saveTeam()">Save Team Setup</button></div><div class="notice" id="teamNotice">Start with the essentials, then expand the team record as your season grows.</div></div>
@@ -1236,7 +1287,7 @@ async function loadPersistentCoachWorkspace(){
     }));
     persistentCoachDashboard=dash;
     coachBackendLoaded=true;
-    hydrateTeam();refreshAll();renderStaff();
+    hydrateTeam();refreshAll();renderStaff();loadCoachIQHistory();
     teamNotice.textContent='✓ Secure team workspace loaded from Basketball Brilliance.';
     teamNotice.className='notice statusgood';
     return true;
@@ -1663,6 +1714,177 @@ function prepareSeasonReport(showToast=true){const rr=record(),tot=totalsByPlaye
 function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='basketball-brilliance-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Basketball Brilliance backup downloaded.')}
 function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=Object.assign(JSON.parse(JSON.stringify(defaultData)),JSON.parse(r.result));saveDB('Backup restored.');hydrateTeam()}catch(err){toast('That backup could not be read.')}};r.readAsText(f)}
 function refreshAll(){const rr=record();heroTeam.textContent=(db.team.name||'My Team')+' • '+(db.team.season||'New Season');sideTeam.textContent=db.team.name||'Basketball Brilliance';sideSeason.textContent=(db.team.level||'Coach')+' • '+(db.team.season||'Workspace');heroRecord.textContent=rr.w+'–'+rr.l;heroPlayers.textContent=db.players.length;heroPractices.textContent=db.practices.length;heroGames.textContent=db.games.length;heroScouts.textContent=db.scouts.length;mPlayers.textContent=persistentCoachDashboard?.playerCount??db.players.length;mInvites.textContent=persistentCoachDashboard?.inviteCount??db.invites.length;mPractices.textContent=persistentCoachDashboard?.practiceCount??db.practices.length;mGames.textContent=persistentCoachDashboard?.gameCount??db.games.length;if(window.mAssistants)mAssistants.textContent=persistentCoachDashboard?.assistantCount??0;nextPractice.textContent=db.practices[0]?`${db.practices[0].date||'Upcoming'} • ${db.practices[0].focus||'Practice'}`:'No practice plan saved yet.';latestScout.textContent=db.scouts[0]?`${db.scouts[0].opponent} • ${(db.scouts[0].plan||'Report saved').slice(0,85)}`:'No opponent report saved yet.';familyStatus.textContent=db.invites.length?`${db.invites.filter(x=>x.status==='Completed').length} completed • ${db.invites.filter(x=>x.status!=='Completed').length} pending invite(s)`:'Generate an invite from Roster + Invites to connect the family path.';seasonRecordText.textContent=(persistentCoachDashboard?.wins??rr.w)+' wins • '+(persistentCoachDashboard?.losses??rr.l)+' losses';if(window.staffStatus){const active=persistentCoachDashboard?.assistantCount??0;const pending=(db.invites||[]).filter(x=>x.role==='coach'&&x.status==='pending').length;staffStatus.textContent=active+' active assistant'+(active===1?'':'s')+' • '+pending+' pending invite'+(pending===1?'':'s');}renderRoster();renderStaff();renderPractices();renderGames();renderScouts();renderPlays();renderNotes();renderStatSelectors();renderStats()}
+
+const COACH_IQ_LIBRARY={
+  "attack-zone":{
+    keywords:["zone","2-3","3-2","1-3-1","high post","short corner"],
+    prompt:"How should we attack a zone defense?",
+    solutions:[
+      {title:"High-Post Touch + Baseline Runner",summary:"Put a decision-maker at the nail/high post and force the middle defender to choose.",why:"Zone defenses are strongest when the ball stays outside. A high-post catch collapses the second line and opens the short corner, opposite slot and baseline runner.",personnel:"Smart passer at the high post, one baseline runner, two perimeter shooters.",counter:"If the middle defender stays home, turn and score or hit the short corner. If a wing sinks, skip opposite.",teaching:"Catch facing the rim. Do not hold the ball. Read low defender first.",play:"High Post Zone Hub"},
+      {title:"Overload One Side",summary:"Create four offensive threats against three defenders on one side.",why:"The overload stretches the wing, low defender and middle defender beyond their normal zone landmarks.",personnel:"Shooter in corner, wing passer, high-post flash, short-corner finisher.",counter:"When the backside collapses, reverse quickly for the skip three.",teaching:"Keep 12–15 feet of spacing. Enter the short corner only after the ball arrives on the wing.",play:"Zone Overload"},
+      {title:"Gap Drive + Drift",summary:"Attack seams off the catch instead of passing around the perimeter.",why:"Penetration forces two zone defenders to guard the ball, creating a clean kickout or dump-down.",personnel:"Guard who can touch the paint, corner shooter, rim runner.",counter:"If the low defender steps up, dump to baseline. If the wing pinches, drift the corner shooter.",teaching:"Drive the gap on the catch. Two feet in the paint is the trigger for the pass.",play:"Gap & Drift"}
+    ]
+  },
+  "beat-press":{
+    keywords:["press","full court","trap","1-2-1-1","2-2-1"],
+    prompt:"How should we beat full-court pressure?",
+    solutions:[
+      {title:"Middle Flash Press Break",summary:"Keep the inbounder as a return option and flash a skilled receiver to the middle.",why:"The middle of most presses is the pressure release point. Catching there turns the press into a numbers advantage.",personnel:"Best decision-maker in the middle, secure inbounder, speed on the sidelines.",counter:"If the middle is denied, screen into the flash or reverse to the inbounder.",teaching:"Never dribble into the trap. Catch, chin, pivot, see middle.",play:"Middle Flash Press Break"},
+      {title:"Four-Across Entry",summary:"Start four players across and screen for the best receiver.",why:"It creates multiple release points and makes the defense reveal who is trapping and who is protecting long.",personnel:"Two screeners, reliable ballhandler, deep runner.",counter:"Slip the screen when defenders switch.",teaching:"Inbounder must stay available. Advance with passes before dribbles.",play:"Four Across Press Break"},
+      {title:"Safety Reverse",summary:"Use the inbounder and opposite guard to reverse the floor before attacking.",why:"Presses load to the first side. Reversing before crossing half court often creates the best attacking lane.",personnel:"Two composed guards and a middle target.",counter:"If the reverse is denied, hit the middle immediately.",teaching:"Reverse early, not after the trap closes.",play:"Safety Reverse"}
+    ]
+  },
+  "blob":{
+    keywords:["baseline out","blob","under basket"],
+    prompt:"What baseline out-of-bounds action should we use?",
+    solutions:[
+      {title:"Box Screen-the-Screener",summary:"Use a box alignment with a first screen at the rim and a second screen for the shooter.",why:"The defense must navigate two different actions in a confined area.",personnel:"Strong screener, rim finisher, shooter.",counter:"If they switch, slip the first screener to the rim.",teaching:"Screen angles matter more than speed. Inbounder reads rim first, shooter second.",play:"Box STS BLOB"},
+      {title:"Stack Slip",summary:"Stack on the lane line and slip the first screener behind switching defenders.",why:"Many teams overplay the obvious cutter on baseline out-of-bounds.",personnel:"Quick finisher and passer with vision.",counter:"If the slip is covered, flow into a corner three.",teaching:"Sell contact, then separate hard.",play:"Stack Slip BLOB"}
+    ]
+  },
+  "slob":{
+    keywords:["sideline out","slob"],
+    prompt:"What sideline out-of-bounds action should we use?",
+    solutions:[
+      {title:"Horns SLOB Entry",summary:"Enter through horns spacing and flow directly into handoff or ball screen.",why:"It gets the ball safely inbounded while immediately entering organized offense.",personnel:"Two skilled elbows, guard who can turn the corner.",counter:"If denied, back-cut the first receiver.",teaching:"Do not stop after the inbound; flow into the second action.",play:"Horns SLOB"},
+      {title:"Screen-the-Screener SLOB",summary:"Use one cutter as a decoy, then free the primary option off a second screen.",why:"Defenders often relax after guarding the first cut.",personnel:"Shooter or primary scorer.",counter:"Slip the screener if they top-lock.",teaching:"Timing between first and second screen is everything.",play:"STS SLOB"}
+    ]
+  },
+  "need-three":{
+    keywords:["need a three","3 point","three pointer","down 3","down three"],
+    prompt:"We need a three. What should we run?",
+    solutions:[
+      {title:"Hammer Action",summary:"Drive baseline while the weak-side shooter receives a back screen into the corner.",why:"The defense naturally turns its head toward the drive, freeing the opposite corner.",personnel:"Strong baseline driver, corner shooter, physical screener.",counter:"If the corner is switched, hit the screener slipping to the rim if time permits.",teaching:"Driver must get below the backboard line to pull help.",play:"Hammer Three"},
+      {title:"Elevator Release",summary:"Run the shooter through two screeners who close the gate after the cut.",why:"It creates separation in the middle of the floor and gives the shooter multiple exit angles.",personnel:"Elite movement shooter and two disciplined screeners.",counter:"If top-locked, reject and back-cut into a re-screen.",teaching:"Shooter changes pace before exploding through the gate.",play:"Elevator Three"}
+    ]
+  },
+  "last-shot":{
+    keywords:["last shot","final possession","end game","end of game"],
+    prompt:"What should we run for the last shot?",
+    solutions:[
+      {title:"Flat Ball Screen",summary:"Clear the lane, flatten the defense and let your best creator attack one decision.",why:"It reduces help locations and gives the ballhandler simple reads late in the clock.",personnel:"Best creator plus screener who can roll or pop.",counter:"If they switch, attack the mismatch. If they trap, short roll.",teaching:"Start the action early enough to allow one counter.",play:"Flat Last Shot"},
+      {title:"Decoy Into Primary Action",summary:"Show an early action for one scorer, then flow into the real action for another.",why:"Late-game defenses often overplay the obvious first option.",personnel:"Two credible scoring threats.",counter:"If the decoy is completely open, take it.",teaching:"The decoy must run like they expect the ball.",play:"Decoy Last Shot"}
+    ]
+  },
+  "stop-scorer":{
+    keywords:["stop scorer","best player","leading scorer","star player"],
+    prompt:"How do we limit their best scorer?",
+    solutions:[
+      {title:"Top-Lock + Early Help",summary:"Deny the scorer's preferred catch and preload help toward their strongest driving lane.",why:"Elite scorers become less efficient when forced to catch farther from their preferred spot.",personnel:"Best on-ball defender plus disciplined weak-side help.",counter:"If they back-cut, switch the low defender onto the cut.",teaching:"Win the catch before trying to win the shot.",play:"Top Lock Coverage"},
+      {title:"Selective Blitz",summary:"Trap only on predictable ball screens or favorite isolation spots.",why:"Targeted pressure forces the scorer to give the ball up without compromising the whole defense every possession.",personnel:"Two long defenders and quick rotations behind.",counter:"Rotate out of the blitz with an X-out on the weak side.",teaching:"Blitz on the trigger, not randomly.",play:"Selective Blitz"}
+    ]
+  },
+  "pnr-defense":{
+    keywords:["pick and roll","ball screen","pnr","screen defense"],
+    prompt:"How should we defend pick-and-roll?",
+    solutions:[
+      {title:"ICE / Down the Side",summary:"Force side pick-and-rolls away from the middle and toward the baseline.",why:"It shrinks the floor and keeps the ball out of the middle where the offense has more passing options.",personnel:"On-ball defender who can angle the handler and a mobile big.",counter:"Against a popping big, stunt from the nearest wing and recover.",teaching:"Guard jumps to the high hip before the screen arrives.",play:"ICE Coverage"},
+      {title:"Switch",summary:"Switch the screen to remove the immediate advantage.",why:"It can erase the first action against teams without a strong mismatch attacker.",personnel:"Similar-sized defenders or a switchable big.",counter:"Front the post if they immediately attack the mismatch.",teaching:"Call the switch early and get square; do not open a driving gap.",play:"Switch PNR"},
+      {title:"Drop + Nail Help",summary:"Keep the big below the screen while the guard fights over and nail help protects the pull-up lane.",why:"It protects the rim while conceding lower-value pull-ups.",personnel:"Rim-protecting big and guard who can recover.",counter:"Against elite pull-up shooting, raise the drop or move to show/hedge.",teaching:"Big contains ball and roller in one vision.",play:"Drop Coverage"}
+    ]
+  }
+};
+
+function coachIQMatch(query){
+  const q=String(query||'').toLowerCase();
+  let best='attack-zone',score=-1;
+  for(const [key,item] of Object.entries(COACH_IQ_LIBRARY)){
+    let s=0;item.keywords.forEach(k=>{if(q.includes(k))s+=k.length>6?3:1});
+    if(s>score){score=s;best=key}
+  }
+  return best;
+}
+function askCoachIQPreset(key){
+  const item=COACH_IQ_LIBRARY[key];if(!item)return;
+  const box=document.getElementById('coachIQQuery');if(box)box.value=item.prompt;
+  renderCoachIQ(key,item.prompt);
+}
+async function runCoachIQ(){
+  const box=document.getElementById('coachIQQuery');
+  const q=(box?.value||'').trim();if(!q){toast('Tell Coach IQ what situation you are seeing.');return}
+  const key=coachIQMatch(q);renderCoachIQ(key,q);
+}
+function renderCoachIQ(key,query){
+  const item=COACH_IQ_LIBRARY[key]||COACH_IQ_LIBRARY['attack-zone'];
+  const el=document.getElementById('coachIQResults');if(!el)return;
+  el.innerHTML=item.solutions.map((s,i)=>`<article class="iq-result">
+    <div class="iq-result-top"><span class="iq-rank">${i+1}</span><div class="iq-titlewrap"><h3>${esc(s.title)}</h3><p>${esc(s.summary)}</p></div></div>
+    <div class="iq-grid">
+      <div class="iq-detail"><b>Why it works</b><span>${esc(s.why)}</span></div>
+      <div class="iq-detail"><b>Best personnel</b><span>${esc(s.personnel)}</span></div>
+      <div class="iq-detail"><b>Counter</b><span>${esc(s.counter)}</span></div>
+      <div class="iq-detail"><b>Teaching point</b><span>${esc(s.teaching)}</span></div>
+    </div>
+    <div class="iq-card-actions">
+      <button class="btn primary tiny" onclick="addCoachIQToPractice('${key}',${i})">Add to Practice Plan</button>
+      <button class="btn soft tiny" onclick="sendCoachIQToPlayLab('${key}',${i})">Send to Play Lab</button>
+      <button class="btn ghost tiny" onclick="saveCoachIQChoice('${key}',${i})">Save Recommendation</button>
+    </div>
+  </article>`).join('');
+  saveCoachIQQuestion(query,key);
+}
+async function saveCoachIQQuestion(query,key){
+  try{
+    if(await coachSessionReady()&&currentTeamId){
+      await window.BBData.saveCoachIQHistory(currentTeamId,{query,scenario_key:key});
+      await loadCoachIQHistory();
+    }else{
+      const local=JSON.parse(storageGet('bb_iq_history')||'[]');local.unshift({query,key,created:Date.now()});storageSet('bb_iq_history',JSON.stringify(local.slice(0,12)));renderLocalCoachIQHistory(local);
+    }
+  }catch(e){}
+}
+async function saveCoachIQChoice(key,i){
+  const item=COACH_IQ_LIBRARY[key],s=item?.solutions?.[i];if(!s)return;
+  try{
+    if(await coachSessionReady()&&currentTeamId){
+      await window.BBData.saveCoachIQHistory(currentTeamId,{query:(document.getElementById('coachIQQuery')?.value||item.prompt),scenario_key:key,selected_solution:s.title});
+      await loadCoachIQHistory();toast('Coach IQ recommendation saved.');
+    }else toast('Recommendation saved when you sign in to the Coach workspace.');
+  }catch(e){toast(e.message||'Could not save recommendation.')}
+}
+function addCoachIQToPractice(key,i){
+  const s=COACH_IQ_LIBRARY[key]?.solutions?.[i];if(!s)return;
+  document.getElementById('practiceFocus').value=s.title;
+  document.getElementById('practiceObjectives').value='Install and teach '+s.title+'\nWhy: '+s.why;
+  document.getElementById('practiceDrills').value='1. Alignment + spacing walkthrough\n2. First read / primary action\n3. Defensive counter reps\n4. Live 5-on-5 situational reps';
+  document.getElementById('practiceNotes').value='Personnel: '+s.personnel+'\nCounter: '+s.counter+'\nTeaching point: '+s.teaching;
+  document.getElementById('app').scrollIntoView({behavior:'smooth'});
+  switchView('practice');toast('Coach IQ recommendation added to Practice Planner.');
+}
+function sendCoachIQToPlayLab(key,i){
+  const s=COACH_IQ_LIBRARY[key]?.solutions?.[i];if(!s)return;
+  document.getElementById('playName').value=s.play||s.title;
+  document.getElementById('playDesc').value=s.summary+'\n\nWhy it works: '+s.why+'\nPersonnel: '+s.personnel+'\nCounter: '+s.counter+'\nTeaching point: '+s.teaching;
+  document.getElementById('app').scrollIntoView({behavior:'smooth'});
+  switchView('playlab');toast('Coach IQ recommendation sent to Play Lab.');
+}
+function startCoachIQVoice(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){toast('Voice recognition is not available in this browser. You can type the situation instead.');return}
+  const r=new SR();r.lang='en-US';r.interimResults=false;r.maxAlternatives=1;
+  const btn=document.querySelector('.coach-iq .speakbtn');if(btn)btn.textContent='Listening…';
+  r.onresult=e=>{const text=e.results[0][0].transcript;const box=document.getElementById('coachIQQuery');if(box)box.value=text;runCoachIQ()};
+  r.onerror=()=>toast('I could not hear that clearly. Try again or type the situation.');
+  r.onend=()=>{if(btn)btn.textContent='🎙 Speak Situation'};
+  r.start();
+}
+function renderLocalCoachIQHistory(list){
+  const el=document.getElementById('coachIQHistory');if(!el)return;
+  el.innerHTML=(list||[]).slice(0,8).map(x=>`<button class="iq-history-chip" onclick="document.getElementById('coachIQQuery').value='${esc(x.query).replace(/'/g,"&#39;")}';runCoachIQ()">${esc(x.query).slice(0,54)}</button>`).join('')||'<span class="sub">Your questions will appear here.</span>';
+}
+async function loadCoachIQHistory(){
+  const el=document.getElementById('coachIQHistory');if(!el)return;
+  try{
+    if(await coachSessionReady()&&currentTeamId){
+      const rows=await window.BBData.listCoachIQHistory(currentTeamId);
+      el.innerHTML=rows.length?rows.slice(0,8).map(x=>`<button class="iq-history-chip" onclick="document.getElementById('coachIQQuery').value='${esc(x.query).replace(/'/g,"&#39;")}';runCoachIQ()">${esc(x.query).slice(0,54)}</button>`).join(''):'<span class="sub">No Coach IQ questions saved yet.</span>';
+      return;
+    }
+  }catch(e){}
+  let local=[];try{local=JSON.parse(storageGet('bb_iq_history')||'[]')}catch(e){}
+  renderLocalCoachIQHistory(local);
+}
+
 function startVoice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){voiceStatus.textContent='Voice recognition is not available in this browser. Chrome usually supports it.';return}const r=new SR();r.lang='en-US';r.interimResults=false;r.maxAlternatives=1;voiceStatus.textContent='Listening…';r.onresult=e=>{const t=e.results[0][0].transcript;voiceStatus.textContent='Heard: “'+t+'”';parseSpeech(t)};r.onerror=()=>voiceStatus.textContent='I could not hear that clearly. Tap and try again.';r.start()}
 function parseSpeech(t){let s=t.trim();const num=s.match(/(?:number|jersey)\s+(\d+)/i);if(num)jersey.value=num[1];const gr=s.match(/grade\s+(\d+)/i);if(gr)grade.value=gr[1];const pos=s.match(/(point guard|shooting guard|small forward|power forward|center|guard|forward)/i);if(pos)position.value=pos[1].replace(/\b\w/g,c=>c.toUpperCase());const name=s.match(/^(.+?)(?:,| number| jersey| point guard| shooting guard| small forward| power forward| center| guard| forward| grade)/i);if(name)playerName.value=name[1].trim().replace(/\b\w/g,c=>c.toUpperCase());const ht=s.match(/(\d)\s*(?:foot|feet)\s*(\d{1,2})?/i);if(ht)height.value=ht[1]+"'"+(ht[2]||'0')+'"'}
 function showLegal(which){
