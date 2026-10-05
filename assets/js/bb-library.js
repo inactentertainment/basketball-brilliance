@@ -95,15 +95,16 @@
   }
 
   function search(){
-    const q = (el('coachLibrarySearch')?.value || '').trim().toLowerCase();
+    const q = (el('coachLibrarySearch')?.value || '').trim().toLowerCase().replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
     let list = terms.filter(x => activeCategory === 'All' || x.category === activeCategory);
     if (q) {
       const words = q.split(/s+/).filter(Boolean);
       list = list.map(x => {
-        const hay = (x.term+' '+x.definition+' '+x.cue+' '+x.mistake).toLowerCase();
+        const hay = (x.term+' '+x.definition+' '+x.cue+' '+x.mistake).toLowerCase().replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
         let score = 0;
-        if (x.term.toLowerCase() === q) score += 50;
-        if (x.term.toLowerCase().startsWith(q)) score += 20;
+        const normalizedTerm=x.term.toLowerCase().replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
+        if (normalizedTerm === q) score += 50;
+        if (normalizedTerm.startsWith(q)) score += 20;
         words.forEach(w => { if (hay.includes(w)) score += 3; });
         return {x,score};
       }).filter(z=>z.score>0).sort((a,b)=>b.score-a.score || a.x.term.localeCompare(b.x.term)).map(z=>z.x);
