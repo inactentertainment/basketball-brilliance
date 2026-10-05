@@ -815,7 +815,7 @@ body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;wi
 <div class="workarea">
 <div class="workspace active" id="view-dashboard"><div class="workhead"><div><h3>Command Center</h3><div class="sub">A clear overview of the records you manage across the season.</div></div><div class="toolbar"><button class="btn soft tiny" onclick="openLogin()">Switch Role</button><button class="btn ghost tiny" onclick="exportBackup()">Export Backup</button></div></div><div class="metricgrid"><div class="metric"><strong id="mPlayers">0</strong><span>Players</span></div><div class="metric"><strong id="mInvites">0</strong><span>Family Invites</span></div><div class="metric"><strong id="mPractices">0</strong><span>Practice Plans</span></div><div class="metric"><strong id="mGames">0</strong><span>Games Logged</span></div><div class="metric"><strong id="mAssistants">0</strong><span>Assistant Coaches</span></div></div><div class="cards"><div class="card"><h4>Next Practice</h4><p id="nextPractice">No practice plan saved yet.</p></div><div class="card"><h4>Latest Scouting Report</h4><p id="latestScout">No opponent report saved yet.</p></div><div class="card"><h4>Family Workflow</h4><p id="familyStatus">Generate an invite from Roster + Invites to connect the family path.</p></div><div class="card"><h4>Season Record</h4><p><span id="seasonRecordText">0 wins • 0 losses</span></p></div><div class="card"><h4>Coaching Staff</h4><p id="staffStatus">No assistant coaches connected yet.</p></div></div></div>
 <div class="workspace" id="view-team"><div class="workhead"><div><h3>Team Setup</h3><div class="sub">Create the season shell that every player, plan, game and report belongs to.</div></div></div><div class="formgrid three"><label>Team Name<input id="teamName" placeholder="e.g. Brilliance Varsity"></label><label>Season<input id="seasonName" placeholder="2026–27"></label><label>Level<select id="teamLevel"><option>Varsity</option><option>JV</option><option>Middle School</option><option>AAU / Club</option><option>Youth</option><option>Other</option></select></label><label>Head Coach<input id="headCoach" placeholder="Coach name"></label><label>School / Organization<input id="orgName" placeholder="School or club"></label><label>Home Gym<input id="homeGym" placeholder="Primary location"></label></div><div class="toolbar"><button class="btn primary" onclick="saveTeam()">Save Team Setup</button></div><div class="notice" id="teamNotice">Start with the essentials, then expand the team record as your season grows.</div></div>
-<div class="workspace" id="view-roster"><div class="workhead"><div><h3>Roster + Family Invites</h3><div class="sub">Add one player manually or import an entire roster from a spreadsheet, pasted list, or photo.</div></div><div class="toolbar" style="margin:0"><button class="btn primary" onclick="openRosterImport()">+ Import Roster</button><button class="btn soft" onclick="openPlayerModal()">+ Add Player</button></div></div><div class="inline"><div class="grow"><label>Search Roster<input id="rosterSearch" placeholder="Search player, position, guardian…" oninput="renderRoster()"></label></div><button class="btn ghost" style="margin-top:20px" onclick="openInviteModal()">Generate Invite</button></div><div class="divider"></div><div id="rosterList" class="list"></div></div>
+<div class="workspace" id="view-roster"><div class="workhead"><div><h3>Roster + Family Invites</h3><div class="sub">Add one player manually or import an entire roster from a spreadsheet, pasted list, or photo.</div></div><div class="toolbar" style="margin:0"><button class="btn primary" data-action="open-roster-import" onclick="openRosterImport()">+ Import Roster</button><button class="btn soft" onclick="openPlayerModal()">+ Add Player</button></div></div><div class="inline"><div class="grow"><label>Search Roster<input id="rosterSearch" placeholder="Search player, position, guardian…" oninput="renderRoster()"></label></div><button class="btn ghost" style="margin-top:20px" onclick="openInviteModal()">Generate Invite</button></div><div class="divider"></div><div id="rosterList" class="list"></div></div>
 
 <div class="workspace" id="view-staff">
   <div class="workhead"><div><h3>Staff + Assistant Coaches</h3><div class="sub">Invite assistant coaches into the same team workspace without changing Head Coach ownership.</div></div></div>
@@ -1244,21 +1244,33 @@ let rosterImportData=[];
 
 function openRosterImport(){
   rosterImportData=[];
-  if(window.rosterFileInput)rosterFileInput.value='';
-  if(window.rosterPhotoInput)rosterPhotoInput.value='';
-  if(window.rosterPasteText)rosterPasteText.value='';
-  setRosterImportMode('file',document.querySelector('[data-import-mode="file"]'));
-  setRosterImportStatus('Choose an import method to begin.');
-  rosterImportReviewWrap.style.display='none';
+  const file=document.getElementById('rosterFileInput');
+  const photo=document.getElementById('rosterPhotoInput');
+  const paste=document.getElementById('rosterPasteText');
+  const review=document.getElementById('rosterImportReviewWrap');
+  if(file)file.value='';
+  if(photo)photo.value='';
+  if(paste)paste.value='';
+  if(review)review.style.display='none';
   openModal('rosterImportModal');
+  requestAnimationFrame(()=>{
+    const first=document.querySelector('#rosterImportModal [data-import-mode="file"]');
+    setRosterImportMode('file',first);
+    setRosterImportStatus('Choose an import method to begin.');
+  });
 }
 function setRosterImportMode(mode,btn){
-  document.querySelectorAll('.import-path').forEach(x=>x.classList.toggle('active',x===btn));
-  ['File','Paste','Photo'].forEach(x=>{const p=document.getElementById('importPanel'+x);if(p)p.classList.toggle('active',x.toLowerCase()===mode)});
+  const modal=document.getElementById('rosterImportModal');
+  if(!modal)return;
+  modal.querySelectorAll('.import-path').forEach(x=>x.classList.toggle('active',x===btn));
+  ['file','paste','photo'].forEach(name=>{
+    const p=document.getElementById('importPanel'+name.charAt(0).toUpperCase()+name.slice(1));
+    if(p)p.classList.toggle('active',name===mode);
+  });
 }
 function setRosterImportStatus(msg,type=''){
-  if(!window.rosterImportStatus)return;
-  rosterImportStatus.textContent=msg;rosterImportStatus.className='import-status'+(type?' '+type:'');
+  const el=document.getElementById('rosterImportStatus');if(!el)return;
+  el.textContent=msg;el.className='import-status'+(type?' '+type:'');
 }
 function cleanKey(k){return String(k||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,' ')}
 function fieldFromRow(row,aliases){
@@ -1303,7 +1315,8 @@ async function handleRosterSpreadsheet(file){
   }catch(e){setRosterImportStatus('I could not read that roster file. Try CSV/XLSX or use Paste Roster.','bad')}
 }
 function parsePastedRoster(){
-  const text=rosterPasteText.value.trim();if(!text){setRosterImportStatus('Paste a roster first.','bad');return}
+  const box=document.getElementById('rosterPasteText');
+  const text=(box?.value||'').trim();if(!text){setRosterImportStatus('Paste a roster first.','bad');return}
   rosterImportData=parseRosterLines(text);
   renderRosterImportReview();
   setRosterImportStatus(rosterImportData.length?rosterImportData.length+' player row'+(rosterImportData.length===1?'':'s')+' found. Review below.':'No player rows were recognized. Try one player per line.',''+(rosterImportData.length?'good':'bad'));
@@ -1366,9 +1379,13 @@ async function scanRosterPhoto(file){
   }catch(e){setRosterImportStatus('The photo could not be read. Try a clearer image or use Paste Roster.','bad')}
 }
 function renderRosterImportReview(){
-  rosterImportReviewWrap.style.display=rosterImportData.length?'block':'none';
-  rosterReviewCount.textContent=rosterImportData.length+' player'+(rosterImportData.length===1?'':'s');
-  rosterImportRows.innerHTML=rosterImportData.map((r,i)=>`<tr data-import-row="${i}">
+  const wrap=document.getElementById('rosterImportReviewWrap');
+  const count=document.getElementById('rosterReviewCount');
+  const body=document.getElementById('rosterImportRows');
+  if(!wrap||!count||!body)return;
+  wrap.style.display=rosterImportData.length?'block':'none';
+  count.textContent=rosterImportData.length+' player'+(rosterImportData.length===1?'':'s');
+  body.innerHTML=rosterImportData.map((r,i)=>`<tr data-import-row="${i}">
     <td><input class="namefield" data-field="name" value="${esc(r.name||'')}"></td>
     <td><input data-field="jersey" value="${esc(r.jersey||'')}"></td>
     <td><input data-field="position" value="${esc(r.position||'')}"></td>
@@ -1382,7 +1399,8 @@ function renderRosterImportReview(){
 function removeRosterImportRow(i){rosterImportData.splice(i,1);renderRosterImportReview()}
 function clearRosterImport(){rosterImportData=[];renderRosterImportReview();setRosterImportStatus('Import list cleared.')}
 function collectRosterImportRows(){
-  return [...rosterImportRows.querySelectorAll('tr')].map(tr=>{
+  const body=document.getElementById('rosterImportRows');if(!body)return [];
+  return [...body.querySelectorAll('tr')].map(tr=>{
     const get=f=>tr.querySelector('[data-field="'+f+'"]')?.value.trim()||'';
     return {name:get('name'),jersey:get('jersey'),position:get('position'),grade:get('grade'),height:get('height'),guardian:get('guardian'),guardianEmail:get('guardianEmail')};
   }).filter(r=>r.name);
@@ -1529,6 +1547,10 @@ accessibility:['Accessibility',`<p>Basketball Brilliance is being designed for k
 contact:['Contact',`<p>Basketball Brilliance is an InAct Entertainment digital product. Customer support, billing support and privacy contact information will be published before paid memberships are activated.</p>`]
 };legalTitle.textContent=data[which]?.[0]||'Legal';legalBody.innerHTML=data[which]?.[1]||'';openModal('legalModal')}
 (function init(){hydrateTeam();refreshAll();const q=new URLSearchParams(location.search);const code=q.get('invite');if(code)setTimeout(()=>openFamilyDemo(code),350);const today=new Date().toISOString().slice(0,10);practiceDate.value=gameDate.value=scoutDate.value=today})();
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('[data-action="open-roster-import"]');
+  if(btn){e.preventDefault();openRosterImport();}
+});
 </script>
 
 <script>
