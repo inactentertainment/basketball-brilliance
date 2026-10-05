@@ -931,6 +931,151 @@ body[data-portal="coach"] .library-download-card p{color:#e0e2e5}
 .coach-flowbar span{font-size:12px;color:#e6e8ea}
 .coach-flowbar .btn{margin-left:auto}
 </style>
+
+<style id="coach-section-hierarchy-v2">
+/* Match Situation Station + Coach Library to the Coach-first business model section */
+body[data-portal="coach"] .coach-iq,
+body[data-portal="coach"] .bb-library{
+  background:transparent!important;
+  color:#111!important;
+}
+body[data-portal="coach"] .coach-iq-shell,
+body[data-portal="coach"] .library-shell{
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+body[data-portal="coach"] .coach-iq-shell:before{display:none!important}
+
+body[data-portal="coach"] .coach-iq-head h2,
+body[data-portal="coach"] .library-head h2{
+  color:#111!important;
+}
+body[data-portal="coach"] .coach-iq-head p,
+body[data-portal="coach"] .library-head p{
+  color:#24262a!important;
+}
+body[data-portal="coach"] .coach-iq-head,
+body[data-portal="coach"] .library-head{
+  position:relative;
+  margin-bottom:18px;
+}
+
+/* Section tags: gray surface + orange outline + white text */
+body[data-portal="coach"] .coach-iq .eyebrow,
+body[data-portal="coach"] .bb-library .eyebrow,
+body[data-portal="coach"] .coach-iq-badge,
+body[data-portal="coach"] .library-count{
+  background:linear-gradient(180deg,#70757c,#565b62)!important;
+  border:1px solid #d75a2b!important;
+  color:#fff!important;
+  box-shadow:0 5px 14px rgba(0,0,0,.12)!important;
+}
+
+/* Search/situation entry sits cleanly on gray */
+body[data-portal="coach"] .coach-iq-entry textarea,
+body[data-portal="coach"] .library-search-row input{
+  background:#fff!important;
+  color:#151515!important;
+  border:1px solid #9da1a7!important;
+}
+body[data-portal="coach"] .coach-iq-entry textarea::placeholder,
+body[data-portal="coach"] .library-search-row input::placeholder{
+  color:#71757b!important;
+}
+
+/* Quick action/filter buttons all use the same gray/orange language */
+body[data-portal="coach"] .iq-quick,
+body[data-portal="coach"] .library-filter,
+body[data-portal="coach"] .library-related-chip,
+body[data-portal="coach"] .iq-history-chip{
+  background:linear-gradient(180deg,#6a6f76,#50555c)!important;
+  border:1px solid #d75a2b!important;
+  color:#fff!important;
+  box-shadow:0 5px 13px rgba(0,0,0,.11)!important;
+}
+body[data-portal="coach"] .iq-quick:hover,
+body[data-portal="coach"] .library-filter:hover,
+body[data-portal="coach"] .library-filter.active,
+body[data-portal="coach"] .library-related-chip:hover,
+body[data-portal="coach"] .iq-history-chip:hover{
+  background:linear-gradient(180deg,#777c83,#5d6269)!important;
+  border-color:#f15a29!important;
+  transform:translateY(-1px);
+}
+
+/* Keep the content cards dark/black, separated directly on gray */
+body[data-portal="coach"] .iq-result,
+body[data-portal="coach"] .library-term-card,
+body[data-portal="coach"] .library-detail-card,
+body[data-portal="coach"] .library-download-card{
+  background:linear-gradient(160deg,#17181b,#090a0b)!important;
+  border:1px solid #35383d!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.16)!important;
+  color:#fff!important;
+}
+body[data-portal="coach"] .iq-detail,
+body[data-portal="coach"] .library-info{
+  background:#222428!important;
+  border-color:#3f4349!important;
+}
+body[data-portal="coach"] .iq-titlewrap h3,
+body[data-portal="coach"] .library-detail-top h3,
+body[data-portal="coach"] .library-downloads h3,
+body[data-portal="coach"] .iq-history h4{
+  color:#111!important;
+}
+body[data-portal="coach"] .iq-result .iq-titlewrap h3,
+body[data-portal="coach"] .library-detail-card .library-detail-top h3{
+  color:#fff!important;
+}
+body[data-portal="coach"] .iq-titlewrap p,
+body[data-portal="coach"] .iq-detail span,
+body[data-portal="coach"] .library-term-card span:not(.library-cat),
+body[data-portal="coach"] .library-definition,
+body[data-portal="coach"] .library-info span,
+body[data-portal="coach"] .library-download-card p{
+  color:#d9dce0!important;
+}
+
+/* Secondary card actions: gray, orange outline, white text */
+body[data-portal="coach"] .iq-card-actions .btn.soft,
+body[data-portal="coach"] .iq-card-actions .btn.ghost,
+body[data-portal="coach"] .library-audio-actions .btn.soft,
+body[data-portal="coach"] .library-audio-actions .btn.ghost,
+body[data-portal="coach"] .library-download-card .btn.ghost{
+  background:linear-gradient(180deg,#6a6f76,#50555c)!important;
+  border:1px solid #d75a2b!important;
+  color:#fff!important;
+}
+body[data-portal="coach"] .iq-card-actions .btn.soft:hover,
+body[data-portal="coach"] .iq-card-actions .btn.ghost:hover,
+body[data-portal="coach"] .library-audio-actions .btn.soft:hover,
+body[data-portal="coach"] .library-audio-actions .btn.ghost:hover,
+body[data-portal="coach"] .library-download-card .btn.ghost:hover{
+  background:linear-gradient(180deg,#777c83,#5d6269)!important;
+  border-color:#f15a29!important;
+}
+
+/* On the gray page, separator/detail labels stay readable */
+body[data-portal="coach"] .iq-history{
+  border-top-color:#8e9298!important;
+}
+body[data-portal="coach"] .library-downloads{
+  border-top-color:#90949a!important;
+}
+body[data-portal="coach"] .library-related{color:#1b1c1e!important}
+body[data-portal="coach"] .library-empty,
+body[data-portal="coach"] .iq-empty{
+  border-color:#7f848a!important;
+  color:#31343a!important;
+  background:rgba(255,255,255,.16)!important;
+}
+</style>
+
 </head>
 <body id="top" data-portal="entry">
 
