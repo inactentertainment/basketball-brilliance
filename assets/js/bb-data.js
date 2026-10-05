@@ -275,6 +275,17 @@
     const {error}=await s().from("season_notes").delete().eq("id",id); if(error) throw error; return true;
   }
 
+
+  async function saveCoachIQHistory(teamId,payload){
+    const u=await me();
+    const row={team_id:teamId,user_id:u.id,query:payload.query,scenario_key:payload.scenario_key||null,selected_solution:payload.selected_solution||null};
+    const {data,error}=await s().from("coach_iq_history").insert(row).select().single();
+    if(error) throw error; return data;
+  }
+  async function listCoachIQHistory(teamId){
+    const {data,error}=await s().from("coach_iq_history").select("*").eq("team_id",teamId).order("created_at",{ascending:false}).limit(20);
+    if(error) throw error; return data||[];
+  }
   async function dashboard(teamId){
     const [players,invites,staff,practices,games]=await Promise.all([
       listTeamPlayers(teamId),
@@ -305,6 +316,7 @@
     listPractices,savePractice,deletePractice,
     listGames,saveGame,deleteGame,listTeamStats,saveStat,deleteStat,
     listScoutingReports,saveScoutingReport,deleteScoutingReport,
-    listSeasonNotes,saveSeasonNote,deleteSeasonNote,dashboard
+    listSeasonNotes,saveSeasonNote,deleteSeasonNote,
+    saveCoachIQHistory,listCoachIQHistory,dashboard
   };
 })();
