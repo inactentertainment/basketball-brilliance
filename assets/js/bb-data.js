@@ -332,6 +332,40 @@
   async function listPlayerOpportunities(){ const u=await me(); const {data,error}=await s().from("player_opportunities").select("*").eq("user_id",u.id).order("event_date",{ascending:true}); if(error) throw error; return data||[]; }
   async function savePlayerOpportunity(payload){ const u=await me(); const row={user_id:u.id,title:payload.title,opportunity_type:payload.opportunity_type||null,event_date:payload.event_date||null,url:payload.url||null,status:payload.status||"interested",notes:payload.notes||null}; const {data,error}=await s().from("player_opportunities").insert(row).select().single(); if(error) throw error; return data; }
   async function deletePlayerOpportunity(id){ const {error}=await s().from("player_opportunities").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function getMyLinkedPlayer(){
+    const u=await me();
+    const m=await s().from("team_memberships").select("team_id,player_id,role,status,teams(name,season,level)").eq("user_id",u.id).eq("role","player").eq("status","active");
+    if(m.error) throw m.error;
+    let playerId=m.data?.[0]?.player_id||null;
+    if(!playerId){
+      const p=await s().from("players").select("*").eq("owner_user_id",u.id).limit(1);
+      if(p.error) throw p.error;
+      if(p.data?.[0]) return {player:p.data[0],membership:m.data?.[0]||null};
+      return {player:null,membership:m.data?.[0]||null};
+    }
+    const p=await s().from("players").select("*").eq("id",playerId).single();
+    if(p.error) throw p.error;
+    return {player:p.data,membership:m.data?.[0]||null};
+  }
+  async function listMyOfficialStats(){
+    const linked=await getMyLinkedPlayer();
+    if(!linked.player?.id) return [];
+    const {data,error}=await s()
+      .from("player_game_stats")
+      .select("*,games(id,team_id,opponent,game_date,team_score,opponent_score,result)")
+      .eq("player_id",linked.player.id);
+    if(error) throw error;
+    return (data||[]).sort((a,b)=>String(b.games?.game_date||"").localeCompare(String(a.games?.game_date||"")));
+  }
+
+  async function listPlayerCollegePathway(){ const u=await me(); const {data,error}=await s().from("player_college_pathway").select("*").eq("user_id",u.id).order("next_step_date",{ascending:true}).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function savePlayerCollegePathway(payload){ const u=await me(); const row={user_id:u.id,school:payload.school,level:payload.level||null,status:payload.status||"researching",contact_name:payload.contact_name||null,contact_email:payload.contact_email||null,next_step:payload.next_step||null,next_step_date:payload.next_step_date||null,notes:payload.notes||null}; const {data,error}=await s().from("player_college_pathway").insert(row).select().single(); if(error) throw error; return data; }
+  async function deletePlayerCollegePathway(id){ const {error}=await s().from("player_college_pathway").delete().eq("id",id); if(error) throw error; return true; }
+
+  async function listPlayerBounceBack(){ const u=await me(); const {data,error}=await s().from("player_bounce_back").select("*").eq("user_id",u.id).order("event_date",{ascending:false}).order("created_at",{ascending:false}); if(error) throw error; return data||[]; }
+  async function savePlayerBounceBack(payload){ const u=await me(); const row={user_id:u.id,event_date:payload.event_date||new Date().toISOString().slice(0,10),setback:payload.setback,controllables:payload.controllables||null,lesson:payload.lesson||null,next_action:payload.next_action||null,confidence:payload.confidence?Number(payload.confidence):null}; const {data,error}=await s().from("player_bounce_back").insert(row).select().single(); if(error) throw error; return data; }
+  async function deletePlayerBounceBack(id){ const {error}=await s().from("player_bounce_back").delete().eq("id",id); if(error) throw error; return true; }
   async function dashboard(teamId){
     const [players,invites,staff,practices,games]=await Promise.all([
       listTeamPlayers(teamId),
@@ -370,6 +404,9 @@
     listPlayerHighlights,savePlayerHighlight,deletePlayerHighlight,
     listPlayerPassport,savePlayerPassport,deletePlayerPassport,
     listPlayerOpportunities,savePlayerOpportunity,deletePlayerOpportunity,
+    getMyLinkedPlayer,listMyOfficialStats,
+    listPlayerCollegePathway,savePlayerCollegePathway,deletePlayerCollegePathway,
+    listPlayerBounceBack,savePlayerBounceBack,deletePlayerBounceBack,
     dashboard
   };
 })();
