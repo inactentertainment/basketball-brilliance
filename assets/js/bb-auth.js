@@ -9,7 +9,7 @@
   }
   async function signUp({email,password,role,fullName}){
     const s=getClient(); if(!s) throw new Error("Basketball Brilliance backend is not connected yet.");
-    return s.auth.signUp({email,password,options:{data:{role:String(role||"player").toLowerCase(),full_name:fullName||""},emailRedirectTo:location.origin+location.pathname}});
+    return s.auth.signUp({email,password,options:{data:{role:String(role||"player").toLowerCase(),full_name:fullName||""},emailRedirectTo:location.origin+location.pathname+location.search}});
   }
   async function signIn({email,password}){
     const s=getClient(); if(!s) throw new Error("Basketball Brilliance backend is not connected yet.");
@@ -18,11 +18,11 @@
   async function signOut(){const s=getClient(); if(s) return s.auth.signOut()}
   async function resetPassword(email){
     const s=getClient(); if(!s) throw new Error("Basketball Brilliance backend is not connected yet.");
-    return s.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+    return s.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname+location.search});
   }
   async function resendConfirmation(email){
     const s=getClient(); if(!s) throw new Error("Basketball Brilliance backend is not connected yet.");
-    return s.auth.resend({type:"signup",email,options:{emailRedirectTo:location.origin+location.pathname}});
+    return s.auth.resend({type:"signup",email,options:{emailRedirectTo:location.origin+location.pathname+location.search}});
   }
   async function getSession(){const s=getClient();if(!s)return null;const {data}=await s.auth.getSession();return data.session}
   async function getProfile(){
