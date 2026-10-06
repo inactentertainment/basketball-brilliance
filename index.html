@@ -258,7 +258,9 @@ linear-gradient(180deg,#12100f 0,#090909 40%,#030303 100%);border-top:1px solid 
  .image-portal-shell{overflow:hidden!important;justify-content:center!important}
  .portal-artboard{width:100vw!important;min-width:0!important;margin:0!important;aspect-ratio:1491/875!important}
  .portal-hotspot{min-height:30px!important;border-radius:12px!important}
- .hs-coach,.hs-player,.hs-parent{left:68.1%!important;top:49.0%!important;width:28.7%!important;height:4.6%!important}
+ .hs-coach{left:3.4%!important;top:49.0%!important;width:29.9%!important;height:4.6%!important}
+ .hs-player{left:36.1%!important;top:49.0%!important;width:29.2%!important;height:4.6%!important}
+ .hs-parent{left:68.1%!important;top:49.0%!important;width:28.7%!important;height:4.6%!important}
  .portal-court-extension{height:210px}
 }
 
@@ -1248,6 +1250,108 @@ body[data-portal="parent"] .tool-preview p{color:#555b61!important}
 @media(max-width:900px){.parent-dashboard-stats{grid-template-columns:repeat(3,1fr)}.parent-download-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.parent-dashboard-stats{grid-template-columns:repeat(2,1fr)}.parent-download-grid{grid-template-columns:1fr}}
 </style>
+
+<style id="mobile-stability-patch">
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden!important;
+  overscroll-behavior-x:none;
+}
+body{
+  position:relative;
+}
+*,*::before,*::after{
+  box-sizing:border-box;
+}
+img,video,iframe,canvas,svg{
+  max-width:100%;
+}
+.wrap,
+.portal-shell,
+.portal-intro,
+.role-dashboard,
+.portal-tools,
+.portal-pricing,
+.bb-library,
+.coach-iq,
+.image-portal-stage,
+.image-portal-shell,
+.portal-artboard{
+  min-width:0!important;
+  max-width:100%!important;
+}
+
+/* Transition layer must never affect document width or layout */
+#bbLivePortalTransition.portal-transition{
+  position:fixed!important;
+  inset:0!important;
+  width:100%!important;
+  height:100dvh!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+  contain:layout paint size!important;
+  transform:translateZ(0);
+  touch-action:none;
+  pointer-events:none!important;
+}
+#bbLivePortalTransition *{
+  max-width:none!important;
+  box-sizing:border-box;
+}
+
+/* Prevent animated pieces from creating side-scroll */
+.player-transition .tball{
+  will-change:transform,left,top;
+}
+.player-transition .ripple,
+.coach-transition .arena-lane,
+.parent-transition .phalf,
+.parent-transition .glow{
+  will-change:transform,opacity;
+}
+
+/* Mobile entry artwork: keep image and hotspots inside viewport */
+@media(max-width:720px){
+  html,body{
+    width:100%!important;
+    max-width:100%!important;
+    overflow-x:hidden!important;
+  }
+  .portal-artboard{
+    width:100%!important;
+    max-width:100%!important;
+    margin-inline:auto!important;
+  }
+  .portal-arena-image{
+    width:100%!important;
+    max-width:100%!important;
+  }
+  .hs-coach{left:3.4%!important;top:49%!important;width:29.9%!important;height:4.6%!important}
+  .hs-player{left:36.1%!important;top:49%!important;width:29.2%!important;height:4.6%!important}
+  .hs-parent{left:68.1%!important;top:49%!important;width:28.7%!important;height:4.6%!important}
+  .portal-intro .wrap,
+  .role-dashboard-grid,
+  .toolboard,
+  .books,
+  .library-layout,
+  .player-lib-layout,
+  .parent-lib-layout{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+  input,select,textarea,button{
+    max-width:100%;
+  }
+  .modal-card,
+  .offer-card{
+    width:min(94vw,680px)!important;
+    max-width:94vw!important;
+  }
+}
+</style>
+
 </head>
 <body id="top" data-portal="entry">
 
@@ -2904,18 +3008,32 @@ function buildPortalTransition(p){
   document.body.appendChild(el);
   return el;
 }
+let bbTransitionBusy=false;
 function transitionToPortal(p){
+  if(bbTransitionBusy)return;
+  bbTransitionBusy=true;
   bbPortalClickSound();
-  const map={coach:[720,1650],player:[700,1500],parent:[430,1350]};
+  const map={coach:[620,1450],player:[600,1320],parent:[380,1180]};
   const timing=map[p]||[0,0];
   const el=buildPortalTransition(p);
+  const cleanup=()=>{
+    try{el.classList.remove('active');el.remove()}catch(e){}
+    bbTransitionBusy=false;
+    document.documentElement.style.overflowX='hidden';
+    document.body.style.overflowX='hidden';
+  };
   requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('active')));
-  setTimeout(()=>enterPortal(p),timing[0]);
-  setTimeout(()=>{el.classList.remove('active');setTimeout(()=>el.remove(),100)},timing[1]);
+  setTimeout(async()=>{try{await enterPortal(p)}catch(e){console.error(e)}},timing[0]);
+  setTimeout(cleanup,timing[1]);
+  setTimeout(cleanup,2200);
 }
 
 function goEntry(){
- clearTimeout(portalOfferTimer);bbStopMusic();document.body.dataset.portal='entry';location.hash='top';window.scrollTo({top:0,behavior:'smooth'});
+ clearTimeout(portalOfferTimer);bbTransitionBusy=false;
+ const old=document.getElementById('bbLivePortalTransition');if(old)old.remove();
+ bbStopMusic();document.body.dataset.portal='entry';location.hash='top';
+ document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden';
+ window.scrollTo({top:0,left:0,behavior:'instant'});
 }
 async function enterPortal(p){
  clearTimeout(portalOfferTimer);document.body.dataset.portal=p;setPortalNav(p);closeMobileMenu();window.scrollTo({top:0,left:0,behavior:'instant'});
