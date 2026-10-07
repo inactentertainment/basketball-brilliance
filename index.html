@@ -203,7 +203,7 @@ linear-gradient(transparent 84%,rgba(241,90,41,.12) 84.4%,transparent 84.8%) 0 0
 /* Approved arena artwork portal */
 .image-portal-stage{min-height:calc(100vh - 92px);background:#030303;color:#fff;display:grid;place-items:center;overflow:hidden;padding:0}
 .image-portal-shell{width:100%;display:flex;justify-content:center;background:#030303}
-.portal-artboard{position:relative;width:min(1491px,100vw);aspect-ratio:1491/875;overflow:hidden;background:#050505}
+.portal-artboard{position:relative;width:min(1491px,100%);aspect-ratio:1491/875;overflow:hidden;background:#050505}
 .portal-arena-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
 .portal-hotspot{position:absolute;z-index:4;border:2px solid transparent;background:transparent;border-radius:22px;color:transparent;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .portal-hotspot span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -230,7 +230,7 @@ linear-gradient(transparent 84%,rgba(241,90,41,.12) 84.4%,transparent 84.8%) 0 0
 @media(max-width:720px){
  .image-portal-stage{min-height:auto;align-items:start}
  .image-portal-shell{overflow:hidden;justify-content:center}
- .portal-artboard{width:100vw;min-width:0;height:auto;margin:0 auto}
+ .portal-artboard{width:100%;min-width:0;height:auto;margin:0 auto}
  .bb-footer-inner{justify-content:center;text-align:center}
  .bb-footer-brand{width:100%;justify-content:center}
  .bb-simple-footer .legal{justify-content:center}
@@ -242,7 +242,7 @@ body:not([data-portal="entry"]) .image-portal-stage{display:none!important}
 body[data-portal="entry"] .image-portal-stage{display:block!important}
 .image-portal-stage{min-height:auto!important;overflow:visible!important;background:#030303!important}
 .image-portal-shell{width:100%!important;display:flex!important;justify-content:center!important;overflow:hidden!important;background:#030303!important}
-.portal-artboard{position:relative!important;width:min(1491px,100vw)!important;max-width:1491px!important;min-width:0!important;height:auto!important;aspect-ratio:1491/875!important;margin:0 auto!important;overflow:hidden!important}
+.portal-artboard{position:relative!important;width:min(1491px,100%)!important;max-width:1491px!important;min-width:0!important;height:auto!important;aspect-ratio:1491/875!important;margin:0 auto!important;overflow:hidden!important}
 .portal-arena-image{width:100%!important;height:100%!important;object-fit:contain!important}
 .hs-coach{left:3.4%!important;top:49.0%!important;width:29.9%!important;height:4.6%!important}
 .hs-player{left:36.1%!important;top:49.0%!important;width:29.2%!important;height:4.6%!important}
@@ -256,7 +256,7 @@ linear-gradient(180deg,#12100f 0,#090909 40%,#030303 100%);border-top:1px solid 
 @media(max-width:720px){
  .image-portal-stage{display:block!important}
  .image-portal-shell{overflow:hidden!important;justify-content:center!important}
- .portal-artboard{width:100vw!important;min-width:0!important;margin:0!important;aspect-ratio:1491/875!important}
+ .portal-artboard{width:100%!important;min-width:0!important;margin:0!important;aspect-ratio:1491/875!important}
  .portal-hotspot{min-height:30px!important;border-radius:12px!important}
  .hs-coach{left:3.4%!important;top:49.0%!important;width:29.9%!important;height:4.6%!important}
  .hs-player{left:36.1%!important;top:49.0%!important;width:29.2%!important;height:4.6%!important}
@@ -412,7 +412,7 @@ body[data-portal="coach"] .nav{display:block}
 .image-portal-shell{display:flex!important;justify-content:center!important;overflow:hidden!important;width:100%!important;background:transparent!important;position:relative!important;z-index:2!important}
 .portal-artboard{
   position:relative!important;
-  width:min(900px,100vw)!important;
+  width:min(900px,100%)!important;
   max-width:900px!important;
   min-width:0!important;
   height:auto!important;
@@ -435,7 +435,7 @@ body[data-portal="coach"] .nav{display:block}
 .hs-player{left:36.1%!important;top:49.0%!important;width:29.2%!important;height:4.6%!important}
 .hs-parent{left:68.1%!important;top:49.0%!important;width:28.7%!important;height:4.6%!important}
 @media(max-width:720px){
-  .portal-artboard{width:100vw!important;max-width:100vw!important;aspect-ratio:1152/2048!important}
+  .portal-artboard{width:100%!important;max-width:100%!important;aspect-ratio:1152/2048!important}
   .portal-hotspot{min-height:28px!important;border-radius:12px!important}
 }
 </style>
@@ -662,7 +662,7 @@ body[data-portal="entry"] .image-portal-shell{
   padding:0!important;
 }
 body[data-portal="entry"] .portal-artboard{
-  width:min(900px,100vw)!important;
+  width:min(900px,100%)!important;
   max-width:900px!important;
   aspect-ratio:1152/1900!important;
   margin:0 auto!important;
@@ -689,8 +689,8 @@ body[data-portal="entry"] .hs-player{left:35.4%!important;top:49.7%!important;wi
 body[data-portal="entry"] .hs-parent{left:66.8%!important;top:49.7%!important;width:29.8%!important;height:4.6%!important}
 @media(max-width:720px){
   body[data-portal="entry"] .portal-artboard{
-    width:100vw!important;
-    max-width:100vw!important;
+    width:100%!important;
+    max-width:100%!important;
     aspect-ratio:1152/1900!important;
   }
   body[data-portal="entry"] .bb-simple-footer{
@@ -1350,6 +1350,29 @@ img,video,iframe,canvas,svg{
     max-width:94vw!important;
   }
 }
+
+/* Let grid/flex children shrink; keep wide datasets scrolling inside their own box. */
+main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
+.player-tool-card,.parent-tool-card,.modalbox,.mobile-drawer{
+  min-width:0;max-width:100%;
+}
+.wrap{width:min(1220px,94%)}
+.portal-artboard,body[data-portal="entry"] .portal-artboard{width:min(900px,100%)!important}
+.portal-shell :where(div,label,input,select,textarea),.modalbox :where(div,label,input,select,textarea){min-width:0}
+.portal-shell,.modalbox,.mobile-drawer{overflow-wrap:anywhere}
+.scrollx,.import-review,.player-game-log{min-width:0;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+.modal{max-width:100%;overflow:hidden;padding:20px;grid-template-columns:minmax(0,1fr);justify-items:center}
+.modalbox{max-width:100%!important;max-height:calc(100dvh - 40px);overscroll-behavior:contain}
+.mobile-drawer{max-height:calc(100dvh - 84px);overflow-y:auto;overscroll-behavior:contain}
+.toast{max-width:calc(100% - 36px);overflow-wrap:anywhere}
+@media(max-width:720px){
+ .portal-shell input,.portal-shell select,.portal-shell textarea,.modalbox input,.modalbox select,.modalbox textarea{font-size:16px!important}
+ .voicebar{flex-wrap:wrap}
+ .copybox input{flex:1;width:0;min-width:0}.copybox button{flex-shrink:0}
+ .toolboard,.portal-visual-grid,.player-lib-results,.parent-lib-results{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@supports(overflow:clip){body{overflow-x:clip!important}}
 </style>
 
 </head>
@@ -1690,7 +1713,7 @@ img,video,iframe,canvas,svg{
       <button class="btn ghost" onclick="resendConfirmationFromCelebration()">Resend Confirmation</button>
       <button class="btn ghost" onclick="continuePreview()">Continue Preview</button>
     </div>
-  </div></div>
+  </div></div></div>
 <div class="modal" id="rosterImportModal" onclick="if(event.target===this)closeModal('rosterImportModal')"><div class="modalbox" style="width:min(980px,96vw)"><button class="close" onclick="closeModal('rosterImportModal')">×</button><span class="eyebrow">Fast roster setup</span><h3>Roster Import Center</h3><p class="section-copy" style="font-size:14px;margin-bottom:10px">Bring in the roster you already have. Basketball Brilliance extracts the players first, then you review and approve every row before anything is saved.</p>
 <div class="import-paths">
 <button class="import-path active" data-import-mode="file" onclick="setRosterImportMode('file',this)"><span class="import-icon">▦</span><b>Spreadsheet</b><span>Excel, XLSX, XLS or CSV roster files.</span></button>
@@ -2491,7 +2514,7 @@ async function refreshCoachMembershipState(){
 }
 function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='basketball-brilliance-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Basketball Brilliance backup downloaded.')}
 function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=Object.assign(JSON.parse(JSON.stringify(defaultData)),JSON.parse(r.result));saveDB('Backup restored.');hydrateTeam()}catch(err){toast('That backup could not be read.')}};r.readAsText(f)}
-function refreshAll(){const rr=record();heroTeam.textContent=(db.team.name||'My Team')+' • '+(db.team.season||'New Season');sideTeam.textContent=db.team.name||'Basketball Brilliance';sideSeason.textContent=(db.team.level||'Coach')+' • '+(db.team.season||'Workspace');heroRecord.textContent=rr.w+'–'+rr.l;heroPlayers.textContent=db.players.length;heroPractices.textContent=db.practices.length;heroGames.textContent=db.games.length;heroScouts.textContent=db.scouts.length;mPlayers.textContent=persistentCoachDashboard?.playerCount??db.players.length;mInvites.textContent=persistentCoachDashboard?.inviteCount??db.invites.length;mPractices.textContent=persistentCoachDashboard?.practiceCount??db.practices.length;mGames.textContent=persistentCoachDashboard?.gameCount??db.games.length;if(window.mAssistants)mAssistants.textContent=persistentCoachDashboard?.assistantCount??0;nextPractice.textContent=db.practices[0]?`${db.practices[0].date||'Upcoming'} • ${db.practices[0].focus||'Practice'}`:'No practice plan saved yet.';latestScout.textContent=db.scouts[0]?`${db.scouts[0].opponent} • ${(db.scouts[0].plan||'Report saved').slice(0,85)}`:'No opponent report saved yet.';familyStatus.textContent=db.invites.length?`${db.invites.filter(x=>x.status==='Completed').length} completed • ${db.invites.filter(x=>x.status!=='Completed').length} pending invite(s)`:'Generate an invite from Roster + Invites to connect the family path.';seasonRecordText.textContent=(persistentCoachDashboard?.wins??rr.w)+' wins • '+(persistentCoachDashboard?.losses??rr.l)+' losses';if(window.staffStatus){const active=persistentCoachDashboard?.assistantCount??0;const pending=(db.invites||[]).filter(x=>x.role==='coach'&&x.status==='pending').length;staffStatus.textContent=active+' active assistant'+(active===1?'':'s')+' • '+pending+' pending invite'+(pending===1?'':'s');}renderRoster();renderStaff();renderPractices();renderGames();renderScouts();renderPlays();renderNotes();renderStatSelectors();renderStats()}
+function refreshAll(){const rr=record();if(document.getElementById('heroTeam'))document.getElementById('heroTeam').textContent=(db.team.name||'My Team')+' • '+(db.team.season||'New Season');sideTeam.textContent=db.team.name||'Basketball Brilliance';sideSeason.textContent=(db.team.level||'Coach')+' • '+(db.team.season||'Workspace');if(document.getElementById('heroRecord'))document.getElementById('heroRecord').textContent=rr.w+'–'+rr.l;if(document.getElementById('heroPlayers'))document.getElementById('heroPlayers').textContent=db.players.length;if(document.getElementById('heroPractices'))document.getElementById('heroPractices').textContent=db.practices.length;if(document.getElementById('heroGames'))document.getElementById('heroGames').textContent=db.games.length;if(document.getElementById('heroScouts'))document.getElementById('heroScouts').textContent=db.scouts.length;mPlayers.textContent=persistentCoachDashboard?.playerCount??db.players.length;mInvites.textContent=persistentCoachDashboard?.inviteCount??db.invites.length;mPractices.textContent=persistentCoachDashboard?.practiceCount??db.practices.length;mGames.textContent=persistentCoachDashboard?.gameCount??db.games.length;if(window.mAssistants)mAssistants.textContent=persistentCoachDashboard?.assistantCount??0;nextPractice.textContent=db.practices[0]?`${db.practices[0].date||'Upcoming'} • ${db.practices[0].focus||'Practice'}`:'No practice plan saved yet.';latestScout.textContent=db.scouts[0]?`${db.scouts[0].opponent} • ${(db.scouts[0].plan||'Report saved').slice(0,85)}`:'No opponent report saved yet.';familyStatus.textContent=db.invites.length?`${db.invites.filter(x=>x.status==='Completed').length} completed • ${db.invites.filter(x=>x.status!=='Completed').length} pending invite(s)`:'Generate an invite from Roster + Invites to connect the family path.';seasonRecordText.textContent=(persistentCoachDashboard?.wins??rr.w)+' wins • '+(persistentCoachDashboard?.losses??rr.l)+' losses';if(window.staffStatus){const active=persistentCoachDashboard?.assistantCount??0;const pending=(db.invites||[]).filter(x=>x.role==='coach'&&x.status==='pending').length;staffStatus.textContent=active+' active assistant'+(active===1?'':'s')+' • '+pending+' pending invite'+(pending===1?'':'s');}renderRoster();renderStaff();renderPractices();renderGames();renderScouts();renderPlays();renderNotes();renderStatSelectors();renderStats()}
 
 const COACH_IQ_LIBRARY={
   "attack-zone":{
@@ -3008,40 +3031,72 @@ function buildPortalTransition(p){
   document.body.appendChild(el);
   return el;
 }
-let bbTransitionBusy=false;
-function transitionToPortal(p){
-  if(bbTransitionBusy)return;
-  bbTransitionBusy=true;
-  bbPortalClickSound();
-  const map={coach:[620,1450],player:[600,1320],parent:[380,1180]};
-  const timing=map[p]||[0,0];
-  const el=buildPortalTransition(p);
-  const cleanup=()=>{
-    try{el.classList.remove('active');el.remove()}catch(e){}
-    bbTransitionBusy=false;
-    document.documentElement.style.overflowX='hidden';
-    document.body.style.overflowX='hidden';
-  };
-  requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('active')));
-  setTimeout(async()=>{try{await enterPortal(p)}catch(e){console.error(e)}},timing[0]);
-  setTimeout(cleanup,timing[1]);
-  setTimeout(cleanup,2200);
+// Each transition owns its timers: stale callbacks cannot unlock or navigate a new one.
+let bbTransitionBusy=false, bbActiveTransition=null;
+function bbFinishTransition(state,completeEntry=false){
+  if(!state||bbActiveTransition!==state)return;
+  if(completeEntry)bbCommitPortalEntry(state);
+  state.timers.forEach(clearTimeout);
+  state.frames.forEach(cancelAnimationFrame);
+  state.el?.remove();
+  bbActiveTransition=null;
+  bbTransitionBusy=false;
 }
-
+function bbCommitPortalEntry(state){
+  if(bbActiveTransition!==state||state.entered)return;
+  state.entered=true;
+  Promise.resolve(enterPortal(state.portal)).catch(console.error);
+}
+function transitionToPortal(p){
+  if(!portalOffers[p]||bbTransitionBusy)return;
+  const state={portal:p,entered:false,timers:[],frames:[],el:null,started:performance.now()};
+  bbActiveTransition=state;
+  bbTransitionBusy=true;
+  try{
+    bbPortalClickSound();
+    closeMobileMenu();
+    state.el=buildPortalTransition(p);
+    state.el.setAttribute('aria-hidden','true');
+    const timing={coach:[620,1450],player:[600,1320],parent:[380,1180]}[p];
+    state.frames.push(requestAnimationFrame(()=>{
+      state.frames.push(requestAnimationFrame(()=>{
+        if(bbActiveTransition===state)state.el.classList.add('active');
+      }));
+    }));
+    state.timers.push(setTimeout(()=>bbCommitPortalEntry(state),timing[0]));
+    state.timers.push(setTimeout(()=>bbFinishTransition(state,true),timing[1]));
+    state.timers.push(setTimeout(()=>bbFinishTransition(state,true),2200));
+  }catch(e){
+    console.error(e);
+    bbFinishTransition(state,true);
+  }
+}
+// Resume safely after backgrounding, interrupted animation, or back/forward restoration.
+function bbRecoverTransition(){
+  const state=bbActiveTransition;
+  if(state&&performance.now()-state.started>=2200)bbFinishTransition(state,true);
+}
+window.addEventListener('pageshow',()=>bbFinishTransition(bbActiveTransition,true));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)bbRecoverTransition()});
 function goEntry(){
- clearTimeout(portalOfferTimer);bbTransitionBusy=false;
- const old=document.getElementById('bbLivePortalTransition');if(old)old.remove();
- bbStopMusic();document.body.dataset.portal='entry';location.hash='top';
- document.documentElement.style.overflowX='hidden';document.body.style.overflowX='hidden';
+ clearTimeout(portalOfferTimer);
+ bbFinishTransition(bbActiveTransition);
+ closeMobileMenu();
+ document.querySelectorAll('.modal.open').forEach(el=>el.classList.remove('open'));
+ bbStopMusic();document.body.dataset.portal='entry';
+ history.replaceState(null,'',location.pathname+location.search+'#top');
  window.scrollTo({top:0,left:0,behavior:'instant'});
 }
 async function enterPortal(p){
- clearTimeout(portalOfferTimer);document.body.dataset.portal=p;setPortalNav(p);closeMobileMenu();window.scrollTo({top:0,left:0,behavior:'instant'});
- requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));
+ if(!portalOffers[p])return;
+ clearTimeout(portalOfferTimer);document.body.dataset.portal=p;setPortalNav(p);closeMobileMenu();
+ history.replaceState(null,'',location.pathname+location.search);
+ window.scrollTo({top:0,left:0,behavior:'instant'});
+ // Scroll once after switching layout; async data and animation cleanup never reset it.
  if(p==='parent'){try{await loadParentWorkspace()}catch(e){}}if(p==='player'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch(e){}if(pref!=='off')await bbStartMusic();try{await loadPlayerWorkspace()}catch(e){}}
  else bbStopMusic();
  if(p==='coach'){try{if(await window.BBAuth?.getSession?.())await loadPersistentCoachWorkspace();await refreshCoachMembershipState()}catch(e){}}
- portalOfferTimer=setTimeout(()=>openPortalOffer(p),12000);
+ if(document.body.dataset.portal===p)portalOfferTimer=setTimeout(()=>{if(document.body.dataset.portal===p)openPortalOffer(p)},12000);
 }
 let pendingMembershipRole='coach';
 function openPortalOffer(p){
@@ -3068,7 +3123,7 @@ async function demoCheckout(){
 }
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});
 async function installBasketballBrilliance(){if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else toast('On supported phones, use Add to Home Screen / Install App from your browser menu.')}
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}))}
 window.addEventListener('load',async()=>{const q=new URLSearchParams(location.search);const invite=q.get('invite');if(invite){const role=(q.get('role')||'parent').toLowerCase();selectedRole=role.charAt(0).toUpperCase()+role.slice(1);db.session.role=selectedRole;await enterPortal(role==='coach'?'coach':role);openLogin();setAuthStatus('You were invited to a Basketball Brilliance team. Create an account or sign in to accept this invitation.','good');}});
 </script><audio id="bbMusic" src="assets/dmv-ballin.mp3" preload="auto" loop></audio>
 
