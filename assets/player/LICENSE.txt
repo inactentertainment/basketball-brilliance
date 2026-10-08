@@ -1,0 +1,5 @@
+Human character: Innerscene / MakeHuman / MPFB, CC0 public domain.
+Source: https://www.innerscene.com/tools/library/3d-parts/human-base-mesh-with-editable-53-bone-rig-8e7c8ab1
+Source model: human-base-rigged.glb, downloaded October 8, 2026.
+Dressed, colored and animated for Basketball Brilliance.
+Files athlete-0.bin through athlete-8.bin concatenate to a gzip-compressed GLB.
