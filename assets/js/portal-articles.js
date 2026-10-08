@@ -1,5 +1,5 @@
-import{portalArticles}from'./portal-articles-data.js?v=51';
-import{banner}from'./player-articles-data.js?v=51';
+import{portalArticles}from'./portal-articles-data.js?v=52';
+import{banner}from'./player-articles-data.js?v=52';
 const e=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 for(const role of ['coach','parent']){
  const control=document.getElementById(role+'ArticleControls'),cards=document.getElementById(role+'ArticleCards');if(!control||!cards)continue;

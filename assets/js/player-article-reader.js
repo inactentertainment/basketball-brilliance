@@ -1,6 +1,6 @@
-import{articles as playerArticles,banner}from'./player-articles-data.js?v=51';
+import{articles as playerArticles,banner}from'./player-articles-data.js?v=52';
 const params=new URLSearchParams(location.search),role=['coach','parent'].includes(params.get('role'))?params.get('role'):'player',roleName=role[0].toUpperCase()+role.slice(1),table=role==='player'?'player_article_notes':'portal_article_notes';
-const articles=role==='player'?playerArticles:(await import('./portal-articles-data.js?v=51')).portalArticles[role];
+const articles=role==='player'?playerArticles:(await import('./portal-articles-data.js?v=52')).portalArticles[role];
 document.body.dataset.role=role;
 document.querySelector('.article-top a').href='index.html?portal='+role+'#'+role+'-articles';
 document.querySelector('.article-top a').textContent='← '+roleName+' Articles';
