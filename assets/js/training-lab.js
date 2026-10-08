@@ -15,7 +15,7 @@ let profile={...defaults},circuit=[],active=drills[0],playing=!matchMedia('(pref
 const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 function cleanProfile(p){const color=(x,d)=>/^#[0-9a-f]{6}$/i.test(x||'')?x:d;return {name:String(p.name||defaults.name).slice(0,24),height:clamp(Number(p.height)||175,130,220),weight:clamp(Number(p.weight)||70,35,140),skin:color(p.skin,defaults.skin),hair:color(p.hair,defaults.hair),style:['crop','curls','bald'].includes(p.style)?p.style:'crop',jersey:color(p.jersey,defaults.jersey),shorts:color(p.shorts,defaults.shorts),number:clamp(Math.round(Number(p.number)||0),0,99),hand:p.hand==='left'?'left':'right'};}
 try{const p=JSON.parse(localStorage.getItem('bb-training-avatar-v1'));if(p)profile=cleanProfile(p);const c=JSON.parse(localStorage.getItem('bb-training-circuit-v1'));if(Array.isArray(c))circuit=c.filter(x=>drills.some(d=>d.id===x.id)).slice(0,12).map(x=>({id:x.id,seconds:clamp(Number(x.seconds)||30,10,180)}));}catch{}
-root.innerHTML=`<div class="wrap"><div class="tl-head"><div><span class="tl-label">Basketball Brilliance / Player development</span><h2>Training Lab</h2><p>Build your player. See the skill. Practice with purpose.</p></div><span class="tl-badge">Prototype 2 · Human character</span></div><div class="tl-layout"><aside class="tl-panel tl-avatar"><h3>Create your player</h3><small>Make a player like you. Appearance settings personalize the demonstration.</small><div class="tl-avatar-fields"><label>Player name<input id="tl-name" maxlength="24"></label><label>Height <output id="tl-height-value"></output><input id="tl-height" type="range" min="130" max="220" value="175"></label><label>Weight <output id="tl-weight-value"></output><input id="tl-weight" type="range" min="35" max="140" value="70"></label><label>Skin tone<input id="tl-skin" type="color"></label><label>Hair color<input id="tl-hair" type="color"></label><label>Hairstyle<select id="tl-style"><option value="crop">Short crop</option><option value="curls">Curls</option><option value="bald">Bald</option></select></label><label>Jersey color<input id="tl-jersey" type="color"></label><label>Shorts color<input id="tl-shorts" type="color"></label><label>Jersey number<input id="tl-number" type="number" min="0" max="99"></label><label>Preferred hand<select id="tl-hand"><option value="right">Right</option><option value="left">Left</option></select></label></div><button class="tl-btn primary" id="tl-save">Save my player</button> <button class="tl-btn" id="tl-reset">Reset</button><div class="tl-status" id="tl-avatar-status" role="status"></div><small>Saved in this browser. Height and weight change the avatar’s proportions, not your real-world ability.</small></aside><div class="tl-viewer"><div class="tl-stage-shell"><div class="tl-stage" id="tl-stage" role="img" aria-label="Interactive 3D basketball drill demonstration" tabindex="0"><div class="tl-stage-top"><b id="tl-player-label"></b><b id="tl-stage-label">Stationary pound</b></div><div class="tl-stage-note">Drag left/right to orbit · Use camera presets for close views</div><div class="tl-error" id="tl-loading"><p>Preparing your court…</p></div></div><div class="tl-controls"><button class="tl-btn primary" id="tl-play">Pause</button><button class="tl-btn" id="tl-replay">Replay</button><label>Speed<select id="tl-speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option></select></label><label>Camera<select id="tl-camera"><option value="front">Front</option><option value="side">Side</option><option value="back">Behind</option><option value="court">Full court</option><option value="hands">Hands &amp; release</option><option value="feet">Feet &amp; ankles</option></select></label><input id="tl-progress" class="tl-progress" type="range" min="0" max="1000" step="1" value="0" aria-label="Scrub drill demonstration"></div></div><div id="tl-drills" class="tl-drills"></div><div class="tl-cue"><span class="tl-label" id="tl-rep"></span><h3 id="tl-drill-title"></h3><p id="tl-drill-note"></p><ol id="tl-cues"></ol></div></div></div><div class="tl-bottom"><div class="tl-panel"><h3>Design your practice</h3><small>Combine demonstrations into your own timed circuit. Adjust each station from 10 to 180 seconds.</small><div class="tl-circuit-row"><label style="flex:1">Drill<select id="tl-circuit-drill"></select></label><label>Seconds<input id="tl-seconds" type="number" min="10" max="180" value="30"></label><button class="tl-btn" id="tl-add">Add drill</button></div><ol class="tl-circuit-list" id="tl-circuit-list"></ol><button class="tl-btn primary" id="tl-start-circuit">Start circuit</button> <button class="tl-btn" id="tl-save-circuit">Save circuit</button> <button class="tl-btn" id="tl-stop-circuit" disabled>Stop</button><div class="tl-status" id="tl-circuit-status" role="status"></div></div><div class="tl-panel"><h3>See it. Then try it.</h3><small>1. Choose a skill and read the coaching cues.<br><br>2. Watch from the front and side. Slow it down or pause at a key moment.<br><br>3. Practice at your own pace with a ball and a safe space. Use the circuit to guide your session.<br><br>This prototype uses an articulated human model and handcrafted demonstration motion. Have your coach review the movement and adapt it to you. It does not evaluate your body, track real makes, or grade your technique.</small></div></div><p class="tl-footer">Your avatar and saved circuit stay on this device. This lab does not record your camera or upload your appearance settings. More skills and finer animation can be added as the drill library develops.</p></div>`;
+root.innerHTML=`<div class="wrap"><div class="tl-head"><div><span class="tl-label">Basketball Brilliance / Player development</span><h2>Training Lab</h2><p>Build your player. See the skill. Practice with purpose.</p></div><span class="tl-badge">Prototype 3 · Tailored player</span></div><div class="tl-layout"><aside class="tl-panel tl-avatar"><h3>Create your player</h3><small>Make a player like you. Appearance settings personalize the demonstration.</small><div class="tl-avatar-fields"><label>Player name<input id="tl-name" maxlength="24"></label><label>Height <output id="tl-height-value"></output><input id="tl-height" type="range" min="130" max="220" value="175"></label><label>Weight <output id="tl-weight-value"></output><input id="tl-weight" type="range" min="35" max="140" value="70"></label><label>Skin tone<input id="tl-skin" type="color"></label><label>Hair color<input id="tl-hair" type="color"></label><label>Hairstyle<select id="tl-style"><option value="crop">Short crop</option><option value="curls">Curls</option><option value="bald">Bald</option></select></label><label>Jersey color<input id="tl-jersey" type="color"></label><label>Shorts color<input id="tl-shorts" type="color"></label><label>Jersey number<input id="tl-number" type="number" min="0" max="99"></label><label>Preferred hand<select id="tl-hand"><option value="right">Right</option><option value="left">Left</option></select></label></div><button class="tl-btn primary" id="tl-save">Save my player</button> <button class="tl-btn" id="tl-reset">Reset</button><div class="tl-status" id="tl-avatar-status" role="status"></div><small>Saved in this browser. Height and weight change the avatar’s proportions, not your real-world ability.</small></aside><div class="tl-viewer"><div class="tl-stage-shell"><div class="tl-stage" id="tl-stage" role="img" aria-label="Interactive 3D basketball drill demonstration" tabindex="0"><div class="tl-stage-top"><b id="tl-player-label"></b><b id="tl-stage-label">Stationary pound</b></div><div class="tl-stage-note">Drag left/right to orbit · Use camera presets for close views</div><div class="tl-error" id="tl-loading"><p>Preparing your court…</p></div></div><div class="tl-controls"><button class="tl-btn primary" id="tl-play">Pause</button><button class="tl-btn" id="tl-replay">Replay</button><label>Speed<select id="tl-speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option></select></label><label>Camera<select id="tl-camera"><option value="front">Front</option><option value="side">Side</option><option value="back">Behind</option><option value="court">Full court</option><option value="hands">Hands &amp; release</option><option value="feet">Feet &amp; ankles</option></select></label><input id="tl-progress" class="tl-progress" type="range" min="0" max="1000" step="1" value="0" aria-label="Scrub drill demonstration"></div></div><div id="tl-drills" class="tl-drills"></div><div class="tl-cue"><span class="tl-label" id="tl-rep"></span><h3 id="tl-drill-title"></h3><p id="tl-drill-note"></p><ol id="tl-cues"></ol></div></div></div><div class="tl-bottom"><div class="tl-panel"><h3>Design your practice</h3><small>Combine demonstrations into your own timed circuit. Adjust each station from 10 to 180 seconds.</small><div class="tl-circuit-row"><label style="flex:1">Drill<select id="tl-circuit-drill"></select></label><label>Seconds<input id="tl-seconds" type="number" min="10" max="180" value="30"></label><button class="tl-btn" id="tl-add">Add drill</button></div><ol class="tl-circuit-list" id="tl-circuit-list"></ol><button class="tl-btn primary" id="tl-start-circuit">Start circuit</button> <button class="tl-btn" id="tl-save-circuit">Save circuit</button> <button class="tl-btn" id="tl-stop-circuit" disabled>Stop</button><div class="tl-status" id="tl-circuit-status" role="status"></div></div><div class="tl-panel"><h3>See it. Then try it.</h3><small>1. Choose a skill and read the coaching cues.<br><br>2. Watch from the front and side. Slow it down or pause at a key moment.<br><br>3. Practice at your own pace with a ball and a safe space. Use the circuit to guide your session.<br><br>This prototype uses an articulated human model and handcrafted demonstration motion. Have your coach review the movement and adapt it to you. It does not evaluate your body, track real makes, or grade your technique.</small></div></div><p class="tl-footer">Your avatar and saved circuit stay on this device. This lab does not record your camera or upload your appearance settings. More skills and finer animation can be added as the drill library develops.</p></div>`;
 function fields(){for(const key of Object.keys(defaults))$('tl-'+key).value=profile[key];updateLabels();}
 function updateLabels(){const inches=Math.round(profile.height/2.54);$('tl-height-value').textContent=`${Math.floor(inches/12)}′ ${inches%12}″ / ${profile.height} cm`;$('tl-weight-value').textContent=`${Math.round(profile.weight*2.20462)} lb / ${profile.weight} kg`;$('tl-player-label').textContent=profile.name+' · #'+profile.number;}
 fields();
@@ -53,7 +53,7 @@ async function init(){
  for(let i=0;i<9;i++){const h=3+(i%4)*1.1;box(2,h,2.5,mat(i%2?'#263a46':'#30424b'),-12+i*3,h/2,-14);}
  for(const side of [-1,1]){for(let z=-9;z<=6;z+=3)box(.055,2.2,.055,black,side*7.7,1.1,z);for(let y=.4;y<=2.2;y+=.35)box(.025,.025,15,mat('#78858b'),side*7.7,y,-1.5);}
  const cones=new T.Group();scene.add(cones);for(let i=0;i<4;i++){const c=mesh(new T.ConeGeometry(.18,.45,16),mat('#ff8a39'),cones);c.position.set(i%2?.55:-.55,.225,1.7-i*1.1);}
- const {createAthlete}=await import('./athlete.js');
+ const {createAthlete}=await import('./athlete.js?build=3');
  const athlete=await createAthlete(scene,profile),player=athlete.player;
  const ball=mesh(new T.SphereGeometry(.12,24,20),mat('#d76a22'));const seamMat=new T.MeshBasicMaterial({color:'#372b23'});for(const rot of [[0,0,0],[Math.PI/2,0,0],[0,Math.PI/2,0]]){const s=mesh(new T.TorusGeometry(.1205,.0025,4,48),seamMat,ball);s.rotation.set(...rot);}
  const V=(x,y,z)=>new T.Vector3(x,y,z),ease=x=>{x=clamp(x,0,1);return x*x*(3-2*x);};
@@ -62,11 +62,23 @@ async function init(){
    const t=time%active.length,p=t/active.length,h=profile.hand==='left'?1:-1;
    let x=0,z=0,jump=0,crouch=.1,lean=.08,flight=false,flightU=0,wristL=0,wristR=0;
    let ballLocal=V(h*.34,.65,.24),left=V(-.36,1.05,.19),right=V(.36,1.05,.19);
+   let poseL={},poseR={},contactSide=0,contactWeight=0,releaseStart=null,falling=null,heading=0;
    let ankleL=V(-.23,.075,.02),ankleR=V(.23,.075,.02),pitchL=0,pitchR=0;
    cones.visible=active.id==='cones';ball.visible=active.id!=='slides';
-   if(active.id==='pound'){const b=.12+.63*Math.abs(Math.cos(p*Math.PI));ballLocal=V(h*.35,b,.28);const target=V(h*.35,.72+.12*Math.cos(p*Math.PI*2),.27);if(h===1)right=target;else left=target;}
-   if(active.id==='cross'){const a=p*Math.PI*2;ballLocal=V(.4*Math.cos(a),.12+.53*Math.abs(Math.cos(a)),.32);crouch=.16;lean=.12;left=V(-.35,.73,.30);right=V(.35,.73,.30);if(ballLocal.x<0)left.x=ballLocal.x;else right.x=ballLocal.x;}
-   if(active.id==='cones'){const cycle=p*8,u=cycle%1,step=Math.floor(cycle),dir=step%2?1:-1;z=1.6-p*3.2;x=.63*Math.sin(p*Math.PI*6);crouch=.09;ballLocal=V((Math.cos(p*Math.PI*6)>0?1:-1)*.36,.12+.62*Math.abs(Math.cos(p*Math.PI*8)),.27);const lift=Math.sin(u*Math.PI)*.07;ankleL.z=dir*.14*Math.cos(u*Math.PI);ankleR.z=-ankleL.z;if(dir===1){ankleL.y+=lift;pitchL=-Math.sin(u*Math.PI)*.2;}else{ankleR.y+=lift;pitchR=-Math.sin(u*Math.PI)*.2;}if(ballLocal.x<0)left=V(-.35,.75,.26);else right=V(.35,.75,.26);}
+   const dribbleHand=(side,center)=>{const target=center.clone().add(V(0,.13,-.085));target.y=Math.max(.62,target.y);const options={fingers:V(0,-.08,1),palm:V(0,-1,0),elbow:V(side*.25,-1,.3)};if(side===1){right=target;poseR=options;}else{left=target;poseL=options;}contactSide=side;contactWeight=ease((center.y-.56)/.16);};
+   if(active.id==='pound'){const b=.12+.63*Math.abs(Math.cos(p*Math.PI));ballLocal=V(h*.35,b,.28);dribbleHand(h,ballLocal);const sway=Math.sin(p*Math.PI*2)*.012;crouch=.105+sway;}
+   if(active.id==='cross'){const a=p*Math.PI*2;ballLocal=V(.38*Math.cos(a),.12+.55*Math.abs(Math.cos(a)),.33);crouch=.16;lean=.10;const side=ballLocal.x>=0?1:-1;dribbleHand(side,ballLocal);if(side===1)left=V(-.3,.82,.3);else right=V(.3,.82,.3);}
+   if(active.id==='cones'){
+     const route=u=>({x:.62*Math.sin(u*Math.PI*4),z:1.6*Math.cos(u*Math.PI*2),yaw:Math.atan2(.62*4*Math.PI*Math.cos(u*Math.PI*4),-1.6*2*Math.PI*Math.sin(u*Math.PI*2))});
+     const current=route(p);x=current.x;z=current.z;heading=current.yaw;crouch=.10;lean=.06;
+     const foot=(side,offset)=>{const cycle=p*12+offset,k=Math.floor(cycle),u=cycle-k,start=(k-offset+.3)/12,end=start+1/12,swing=ease((u-.60)/.40);
+       const point=g=>{const f=route(g);return V(f.x+side*.18*Math.cos(f.yaw),.075,f.z-side*.18*Math.sin(f.yaw));};
+       const target=point(start).lerp(point(end),swing);const dx=target.x-x,dz=target.z-z;
+       return V((dx*Math.cos(heading)-dz*Math.sin(heading))/player.scale.x,.075+(u>.6?Math.sin((u-.6)/.4*Math.PI)*.065:0),(dx*Math.sin(heading)+dz*Math.cos(heading))/player.scale.z);
+     };
+     ankleL=foot(-1,0);ankleR=foot(1,.5);pitchL=-Math.max(0,ankleL.y-.075)*3;pitchR=-Math.max(0,ankleR.y-.075)*3;
+     const side=Math.sin(p*Math.PI*4)>=0?h:-h;ballLocal=V(side*.34,.12+.63*Math.abs(Math.cos(p*Math.PI*12)),.27);dribbleHand(side,ballLocal);
+   }
    if(active.id==='slides'){
      // Discrete lead/trail steps. A planted foot keeps the same court position
      // as the pelvis moves; only the swinging foot advances and lifts.
@@ -76,27 +88,45 @@ async function init(){
      const leadLift=u<.48?Math.sin(u/.48*Math.PI)*.055:0,trailLift=u>.52?Math.sin((u-.52)/.48*Math.PI)*.035:0;
      const a=V(leadX-center,.075+leadLift,.015),b=V(trailX-center,.075+trailLift,.015);
      if(dir===1){ankleR=a;ankleL=b;pitchR=-leadLift*3;pitchL=trailLift*3;}else{ankleL=a;ankleR=b;pitchL=-leadLift*3;pitchR=trailLift*3;}
-     left=V(-.43,1.01,.25);right=V(.43,1.01,.25);
+     left=V(-.49,1.12,.18);right=V(.49,1.12,.18);poseL={fingers:V(-.55,.18,.8),palm:V(0,0,1),elbow:V(-1,-.2,.2)};poseR={fingers:V(.55,.18,.8),palm:V(0,0,1),elbow:V(1,-.2,.2)};
    }
    const shot=active.id==='form'||active.id==='pullup';
-   if(shot){z=active.id==='form'?-2.65:-1.15;const start=active.id==='pullup'?.23:0;
-     if(p<start){z=-.55-.6*ease(p/start);ballLocal=V(h*.34,.12+.62*Math.abs(Math.cos(p/start*Math.PI)),.28);const lift=Math.sin(p/start*Math.PI)*.06;ankleL.y+=lift;ankleL.z=.1;ankleR.z=-.1;if(h===1)right=V(.35,.75,.26);else left=V(-.35,.75,.26);}
-     else{const q=(p-start)/(1-start);crouch=.15*(1-ease(q/.29));lean=.03;jump=q>.25&&q<.49?Math.sin((q-.25)/.24*Math.PI)*.095:0;
-       const gather=ease(q/.27),extend=ease((q-.27)/.12),recover=ease((q-.79)/.2);
-       ballLocal=V(h*.105,1.02+.49*gather+.22*extend,.3-.09*extend);
-       const shooting=ballLocal.clone().add(V(h*.035,-.075,-.025)),guide=ballLocal.clone().add(V(-h*.1,0,.01));
-       if(q>=.39&&q<.79){flight=true;flightU=(q-.39)/.40;shooting.set(h*.12,1.72,.19);guide.set(-h*.26,1.29,.21);}
-       if(q>=.79){ballLocal.set(h*.1,1.73-.72*recover,.25);shooting.copy(ballLocal).add(V(h*.03,-.07,0));guide.copy(ballLocal).add(V(-h*.1,0,0));}
-       const wrist=q>.36&&q<.79?-.95*ease((q-.36)/.07):.25;
-       if(h===1){right=shooting;left=guide;wristR=wrist;}else{left=shooting;right=guide;wristL=wrist;}
-       pitchL=pitchR=jump>0?-.18:0;
+   if(shot){
+     z=active.id==='form'?-2.65:-1.15;const approach=active.id==='pullup'?.2:0;
+     if(p<approach){const u=p/approach;z=-.55-.6*ease(u);ballLocal=V(h*.34,.12+.62*Math.abs(Math.cos(u*Math.PI)),.28);dribbleHand(h,ballLocal);const lift=Math.sin(u*Math.PI)*.045;ankleL.y+=lift;ankleL.z=.1*(1-ease(u));ankleR.z=-ankleL.z;}
+     else{
+       const q=(p-approach)/(1-approach),gather=ease(q/.22),rise=ease((q-.22)/.15),release=.37,settle=ease((q-.82)/.18);
+       const lift=q>.24&&q<.57?Math.sin((q-.24)/.33*Math.PI)*.09:0;
+       crouch=.17*(1-ease((q-.12)/.23))+.055*Math.sin(ease((q-.55)/.15)*Math.PI)+.025*Math.sin(settle*Math.PI);lean=.025;jump=lift;
+       ballLocal=V(h*.095,1.00+.47*gather+.36*rise,.33-.085*rise);
+       let shooting=ballLocal.clone().add(V(h*.02,-.09,-.06)),guide=ballLocal.clone().add(V(-h*.125,-.015,-.005));
+       let shotFingers=V(0,.92,-.25),shotPalm=V(0,.35,1),guideFingers=V(0,1,.10);
+       if(q>=release&&q<.82){
+         flight=true;flightU=(q-release)/.45;
+         const snap=ease((q-release)/.065),guideAway=ease((q-release)/.16);
+         shooting=V(h*.115,1.75+.02*Math.sin(snap*Math.PI),.185);
+         guide=V(-h*(.03+.27*guideAway),1.815-.5*guideAway,.23);
+         shotFingers=V(0,.92-1.75*snap,-.25+1.03*snap).normalize();shotPalm=V(0,.35,1);
+         releaseStart=V(h*.095,1.83,.245);
+       }
+       if(q>=.82){
+         // Finish the ball's flight below the hoop; hands reset empty.
+         falling=settle;shooting=V(h*.115,1.75,.185).lerp(V(h*.31,1.00,.24),settle);guide=V(-h*.3,1.28,.23).lerp(V(-h*.31,1.00,.24),settle);
+         shotFingers=V(0,-.83,.78);guideFingers=V(0,-.6,.7);
+       }
+       const shotOptions={fingers:shotFingers,palm:shotPalm,elbow:V(h*.10,-1,.16)},guideOptions={fingers:guideFingers,palm:V(h,0,0),elbow:V(-h*.7,-.5,.35)};
+       if(h===1){right=shooting;left=guide;poseR=shotOptions;poseL=guideOptions;}else{left=shooting;right=guide;poseL=shotOptions;poseR=guideOptions;}
+       // The guide hand opens before the wrist snaps. Both feet extend together.
+       pitchL=pitchR=q>.22&&q<.56?-.18*Math.sin((q-.22)/.34*Math.PI):0;
      }
    }
-   player.position.set(x,jump,z);player.rotation.y=shot?Math.PI:0;player.updateMatrixWorld(true);
+   player.position.set(x,jump,z);player.rotation.y=shot?Math.PI:heading;player.updateMatrixWorld(true);
    athlete.reset(crouch,lean);athlete.leg(-1,ankleL,pitchL);athlete.leg(1,ankleR,pitchR);
-   athlete.arm(-1,left,wristL,flight?.25:.12);athlete.arm(1,right,wristR,flight?.25:.12);
+   athlete.arm(-1,left,wristL,flight?.10:.14,poseL);athlete.arm(1,right,wristR,flight?.10:.14,poseR);
    player.updateMatrixWorld(true);
-   if(flight){const start=player.localToWorld(V(h*.105,1.73,.21));ball.position.copy(start).lerp(V(0,3.05,-5),flightU);ball.position.y+=Math.sin(flightU*Math.PI)*.88;}
+   if(contactWeight>0&&!shot){const contact=athlete.handPosition(contactSide).add(V(0,-.13,.085));ballLocal.lerp(contact,contactWeight);}
+   if(flight){const start=player.localToWorld(releaseStart);start.y+=.09*Math.sin((.37-.24)/.33*Math.PI)-jump;ball.position.copy(start).lerp(V(0,3.05,-5),flightU);ball.position.y+=Math.sin(flightU*Math.PI)*.88;}
+   else if(falling!==null)ball.position.set(0,3.05-2.7*falling,-5);
    else ball.position.copy(player.localToWorld(ballLocal));
    ball.rotation.x=t*3;ball.rotation.z=t*1.5;
    const close=cameraMode==='hands'||cameraMode==='feet';const focusZ=close?z:-1.2,targetY=cameraMode==='hands'?1.7:cameraMode==='feet'?.48:1.15;
