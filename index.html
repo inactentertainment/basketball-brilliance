@@ -1376,7 +1376,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 </style>
 
 <link rel="stylesheet" href="assets/training-lab.css">
-<link rel="stylesheet" href="assets/public-gallery.css?v=42">
+<link rel="stylesheet" href="assets/public-gallery.css?v=43">
 </head>
 <body id="top" data-portal="entry">
 <header class="nav"><div class="wrap navin">
@@ -1676,7 +1676,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <section class="portal-pricing" id="player-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">Annual player membership</span><h2 class="section-title" style="color:#fff">Keep building after the final buzzer.</h2><p class="section-copy" style="color:#aeb1b6">Goals, workouts, stats, highlights, Basketball Passport, opportunities, synced records and year-to-year player history.</p></div><div><div class="price-number">$29 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('player')">See Player Membership</button><div id="playerMembershipState" class="lock-note">Player account foundation ready. Secure payment activation remains before launch.</div><div class="lock-note">Working introductory price for planning. A parent or guardian can purchase for a player.</div></div></div></div></section>
 </main>
 
-<section class="bg-athletes" id="bb-athletes"><div class="wrap"><figure class="bg-athlete-frame" style="margin:0"><img src="assets/art/next-generation-v1.webp" alt="Original artwork featuring a Black teenage boy with locs, a Black teenage girl, a White teenage boy, and a young Latina girl playing basketball" loading="lazy"><figcaption class="bg-athlete-caption"><span class="bg-label">Every player. Every beginning.</span><h2>There is a place for your game.</h2><p>From your first dribble to your next challenge. Girls and boys belong in the journey.</p></figcaption></figure></div></section>
+<section class="bg-athletes" id="bb-athletes"><div class="wrap"><figure class="bg-athlete-frame" style="margin:0"><img src="assets/art/next-generation-v1.webp" width="1536" height="1024" alt="Original artwork featuring a Black teenage boy with locs, a Black teenage girl, a White teenage boy, and a young Latina girl playing basketball" loading="lazy"><figcaption class="bg-athlete-caption"><span class="bg-label">Every player. Every beginning.</span><h2>There is a place for your game.</h2><p>From your first dribble to your next challenge. Girls and boys belong in the journey.</p></figcaption></figure></div></section>
 <section class="bg-watch" id="bb-watch" aria-label="Free basketball viewing"></section>
 <footer class="footer bb-simple-footer">
   <div class="wrap bb-footer-inner">
@@ -2971,7 +2971,7 @@ function setPortalNav(p){
   parent:[['#parent-home','Overview'],['#parent-tools','Parent Tools'],['#parent-membership','Membership'],['#bb-watch','Watch']],
   player:[['#player-home','Overview'],['#training-lab','Training Lab'],['#player-tools','Player Tools'],['#player-membership','Membership'],['#bb-watch','Watch']]
  }[p]||[];
- const links=cfg.map(x=>'<a href="'+x[0]+'" onclick="closeMobileMenu()">'+x[1]+'</a>').join('');
+ const links=cfg.map(x=>'<a href="'+x[0]+'" onclick="clearTimeout(portalOfferTimer);closeMobileMenu()">'+x[1]+'</a>').join('');
  d.innerHTML=links+'<button class="portal-back" onclick="goEntry()">Choose Portal</button><button class="shimmer-btn compact" onclick="openLogin()">Sign In / Join</button>';
  m.innerHTML=links+'<button class="portal-back" onclick="closeMobileMenu();goEntry()">Choose Portal</button><button class="shimmer-btn mobile-member attention" onclick="closeMobileMenu();openLogin()">Member Access</button>';
  c.textContent=(p.charAt(0).toUpperCase()+p.slice(1))+' Portal';
@@ -3135,7 +3135,7 @@ window.addEventListener('load',async()=>{const q=new URLSearchParams(location.se
 <script src="assets/js/bb-library.js"></script>
 
 <script type="module" src="assets/js/training-lab.js?v=3"></script>
-<script type="module" src="assets/js/public-gallery.js?v=42"></script>
+<script type="module" src="assets/js/public-gallery.js?v=43"></script>
 <script>
 setPortalNav(document.body.dataset.portal);
 document.getElementById('bb-watch').addEventListener('pointerdown',()=>clearTimeout(portalOfferTimer));

@@ -1,4 +1,4 @@
-const CACHE='basketball-brilliance-v42-public-gallery';
+const CACHE='basketball-brilliance-v43-public-gallery';
 const CORE=['./manifest.webmanifest','./assets/basketball-brilliance-header.gif','./assets/dmv-ballin.mp3','./assets/js/bb-config.js','./assets/js/bb-auth.js','./assets/js/bb-data.js'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('basketball-brilliance-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
