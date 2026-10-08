@@ -1375,6 +1375,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 @supports(overflow:clip){body{overflow-x:clip!important}}
 </style>
 
+<link rel="stylesheet" href="assets/training-lab.css">
 </head>
 <body id="top" data-portal="entry">
 
@@ -1614,7 +1615,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <span class="demo-ribbon"><span class="demo-dot"></span> Player Preview Mode</span>
     <h1 class="portal-title">Your game. Your grind. Your record.</h1>
     <p class="portal-lede">Goals, development, performance, film, opportunities and the story you are creating every season — presented in a darker, faster player experience.</p>
-    <div class="ctas"><a class="shimmer-btn attention" href="#player-tools">Explore Player Tools</a><button class="shimmer-btn" onclick="openPortalOffer('player')">Player Membership</button></div>
+    <div class="ctas"><a class="shimmer-btn attention" href="#training-lab">Enter Training Lab</a><a class="shimmer-btn" href="#player-tools">Player Tools</a><button class="shimmer-btn" onclick="openPortalOffer('player')">Player Membership</button></div>
   </div>
   <div class="portal-video-wrap">
     <div class="portal-video"><iframe src="https://www.youtube.com/embed/pQAja2qvU1E?rel=0&modestbranding=1" title="Youth AAU basketball highlights" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
@@ -1637,6 +1638,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
   </div></div>
   <div id="playerAnswers" class="player-answer-grid"><div class="library-empty" style="color:#aaa;border-color:#36383d;background:#0d0e10">Ask a question or tap a quick topic.</div></div>
 </div></div></section>
+<section id="training-lab" aria-label="Basketball Brilliance Training Lab"></section>
 <section id="player-library-top"><div class="wrap"><div class="player-library-shell">
   <div class="player-section-head"><div><span class="eyebrow">Know the game</span><h2>Player Basketball Library</h2><p>Search basketball language, hear how the term is pronounced, and learn what it means in a way built for players.</p></div><span class="player-glow-tag">Shared Basketball Brilliance Library</span></div>
   <div class="player-input-card"><div class="player-lib-row"><input id="playerLibrarySearch" placeholder="Search: drop coverage, Spain pick-and-roll, BLOB, short corner…"><button class="shimmer-btn attention" onclick="startPlayerLibraryVoice()">🎙 Speak a Term</button></div></div>
@@ -2970,7 +2972,7 @@ function setPortalNav(p){
  const cfg={
   coach:[['#coach-home','Overview'],['#app','Coach System'],['#books','Coach Tools'],['#families','Families'],['#coach-membership','Membership']],
   parent:[['#parent-home','Overview'],['#parent-tools','Parent Tools'],['#parent-membership','Membership']],
-  player:[['#player-home','Overview'],['#player-tools','Player Tools'],['#player-membership','Membership']]
+  player:[['#player-home','Overview'],['#training-lab','Training Lab'],['#player-tools','Player Tools'],['#player-membership','Membership']]
  }[p]||[];
  const links=cfg.map(x=>'<a href="'+x[0]+'" onclick="closeMobileMenu()">'+x[1]+'</a>').join('');
  d.innerHTML=links+'<button class="portal-back" onclick="goEntry()">Choose Portal</button><button class="shimmer-btn compact" onclick="openLogin()">Sign In / Join</button>';
@@ -3135,4 +3137,5 @@ window.addEventListener('load',async()=>{const q=new URLSearchParams(location.se
 <script src="assets/js/bb-data.js"></script>
 <script src="assets/js/bb-library.js"></script>
 
+<script type="module" src="assets/js/training-lab.js"></script>
 </body></html>
