@@ -34,8 +34,8 @@ function placeWatch(){
  if(!watch)return;
  let shortcuts=watch.querySelector('.bg-tool-shortcuts');
  if(!shortcuts){shortcuts=document.createElement('div');shortcuts.className='bg-tool-shortcuts';watch.querySelector('.wrap').append(shortcuts);}
- const targets={coach:['app','coachLibrary'],parent:['parent-tools','parent-library-top'],player:['player-tools','player-library-top']}[role];
- shortcuts.innerHTML=targets?`<a class="shimmer-btn" href="#${targets[0]}">Try ${role[0].toUpperCase()+role.slice(1)} Tools Free</a><a class="shimmer-btn" href="#${targets[1]}">Basketball Library</a><a class="shimmer-btn" href="#${role}-membership">Membership &amp; Benefits</a>`:'';
+ const targets={coach:['app','coachLibrary'],parent:['parent-tools','parent-library-top'],player:['player-training','player-library-top']}[role];
+ shortcuts.innerHTML=role==='player'?'<a class="shimmer-btn" href="#player-training">Training Lab · Free</a><a class="shimmer-btn" href="#player-library-top">Basketball Library</a><a class="shimmer-btn" href="#player-articles">Player Articles</a>':targets?`<a class="shimmer-btn" href="#${targets[0]}">Try ${role[0].toUpperCase()+role.slice(1)} Tools Free</a><a class="shimmer-btn" href="#${targets[1]}">Basketball Library</a><a class="shimmer-btn" href="#${role}-membership">Membership &amp; Benefits</a>`:'';
 }
 placeWatch();
 window.addEventListener('resize',refreshRows);
