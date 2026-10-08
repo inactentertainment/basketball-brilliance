@@ -1376,7 +1376,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 </style>
 
 <link rel="stylesheet" href="assets/training-lab.css">
-<link rel="stylesheet" href="assets/public-gallery.css?v=45">
+<link rel="stylesheet" href="assets/public-gallery.css?v=46">
 </head>
 <body id="top" data-portal="entry">
 <header class="nav"><div class="wrap navin">
@@ -1419,9 +1419,10 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <span class="demo-ribbon"><span class="demo-dot"></span> Coach Preview Mode</span>
     <h1 class="portal-title">Run the team without losing the season.</h1>
     <p class="portal-lede">Build the roster, organize practice, track games, scout opponents, connect families and keep the season record together in one coach-first system.</p>
-    <div class="ctas"><a class="shimmer-btn attention" href="#app">Explore Coach Tools</a><button class="shimmer-btn" onclick="openPortalOffer('coach')">Coach Membership</button></div>
+    <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#app">Try Coach Tools Free</a><a class="shimmer-btn" href="#coach-membership">Coach Membership</a></div>
   </div>
 </div></section>
+<section class="portal-pricing" id="coach-membership"><div class="wrap"><div class="price-box" style="background:linear-gradient(145deg,#2c2e33,#111214);border:1px solid #4b4e54;color:#fff;box-shadow:0 22px 55px rgba(0,0,0,.2)"><div><span class="eyebrow">Annual coach membership</span><h2 class="section-title" style="color:#fff">Turn the preview into your active season system.</h2><p class="section-copy" style="color:#c9cbd0">Persistent team records, synced access, roster history, family invitations, practices, games, scouting, reports, downloads and year-to-year archives.</p><p class="bb-membership-benefits">Membership brings saved team records, family invitations, practice planning, game stats, scouting and season reports together. Coach-linked family forms do not require a separate family subscription.</p><div class="ctas"><a class="shimmer-btn" href="#app">Try the Tools Free</a><button class="shimmer-btn" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div></div><div><div class="price-number">$47 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('coach')">See Coach Membership</button><div id="coachMembershipState" class="lock-note">Account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.</div><div class="lock-note">Annual subscription · Stripe sandbox testing · No real charges.</div></div></div></div></section>
 <section class="coach-iq" id="coachIQStation"><div class="wrap"><div class="coach-iq-shell">
   <div class="coach-iq-head">
     <div><span class="eyebrow">Coach IQ</span><h2>Basketball Brilliance Situation Station</h2><p>Tell Coach IQ what you are seeing. Get multiple basketball solutions, teaching points and counters — then send the answer directly into your Practice Planner or Play Lab.</p></div>
@@ -1475,12 +1476,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <div class="library-download-card"><span class="member-pill">Library Expansion</span><b>Videos • Podcasts • Clinics • Links</b><p>The shared media library will organize basketball education by age, role, skill, recruiting stage and coaching topic.</p><button class="btn ghost tiny" onclick="toast('Media Library structure is locked in for a later build.')">Coming Next</button></div>
   </div></div>
 </div></div></section>
-<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Coach Command Preview</h3><span>Your active dashboard begins here.</span></div><div class="role-dashboard-grid">
-<div class="role-dashboard-card"><b>Team + Roster</b><span>Players, families, contacts and season structure.</span></div>
-<div class="role-dashboard-card"><b>Practice</b><span>Plans, drills, objectives and coaching notes.</span></div>
-<div class="role-dashboard-card"><b>Games + Stats</b><span>Results, player lines and season totals.</span></div>
-<div class="role-dashboard-card"><b>Reports</b><span>Scouting, season summaries and downloadable records.</span></div>
-</div></div></div></section>
+
 <section id="coaches"><div class="wrap"><span class="eyebrow">Coach-first business model</span><h2 class="section-title">The coach pays. The team connects.</h2><p class="section-copy">Parents and players do not need a second subscription just to complete the coach's team forms. They can enter requested information through a linked family path. Separate Parent + Player products remain optional upgrades owned by the family.</p><div class="flow"><div class="step"><span class="num">01 • Coach</span><h3>Create the team</h3><p>Set the team, season, staff, roster structure and required information.</p></div><div class="step"><span class="num">02 • Invite</span><h3>Send one link</h3><p>Generate a player/family invite without making the coach retype everything.</p></div><div class="step"><span class="num">03 • Connect</span><h3>Profile appears</h3><p>Player and guardian information flows into the same coach roster.</p></div><div class="step"><span class="num">04 • Grow</span><h3>Family owns more</h3><p>Basketball Passport, Journal, Opportunities, Recruiting and Parent Resources become natural upsells.</p></div></div></div></section>
 <section id="app"><div class="wrap"><span class="eyebrow">Coach workspace</span><h2 class="section-title">Coach Command Center</h2><p class="section-copy">Move from team setup to player development without losing the story of your season. Keep rosters, practices, games, scouting, plays, notes and reports organized in one place.</p>
 <div class="appshell">
@@ -1520,6 +1516,14 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <div class="card"><h4>Launch Readiness</h4><p>Check whether the Coach workspace has the records and account pieces needed for a real season.</p><div class="toolbar"><button class="btn primary tiny" onclick="runCoachLaunchCheck()">Run Readiness Check</button></div><div id="coachLaunchStatus" class="sub" style="margin-top:8px">Not checked yet.</div></div></div><div class="divider"></div><div id="seasonReport" class="card"><p>No report generated yet.</p></div>
 <div class="coach-flowbar"><div><b>Season loop</b><span>Use the report to review trends, then return to Practice Planner for the next cycle.</span></div><button class="btn ghost tiny" onclick="switchView('practice')">Back to Practice Planner →</button></div></div>
 </div></div></div></section>
+
+<section id="families"><div class="wrap"><div class="familyhub"><div class="familygrid"><div><span class="eyebrow">Parent + Player path</span><h2 style="font-size:40px;line-height:1.05;margin:16px 0 12px">Team-linked access first.<br>Family-owned tools second.</h2><p class="section-copy" style="margin-bottom:20px">Families can complete the information their coach needs without paying again. Optional long-term tools give players and parents a place to keep the journey going beyond one team or season.</p><div class="toolbar"><button class="shimmer-btn family-action" onclick="openFamilyDemo()">Explore Family Access</button></div></div><div class="upsell"><div><b>Basketball Passport</b><span>Keep teams, seasons, achievements, stats and player history beyond one coach.</span></div><div><b>Opportunity Finder</b><span>AAU, camps, tryouts, clinics and basketball opportunities.</span></div><div><b>Recruiting Roadmap</b><span>Grade-based tasks, school research, communication and recruiting organization.</span></div><div><b>Parent Resource Vault</b><span>Guides, checklists, downloads and Player Journal offers.</span></div></div></div></div></div></section>
+<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Coach Command Preview</h3><span>Your active dashboard begins here.</span></div><div class="role-dashboard-grid">
+<div class="role-dashboard-card"><b>Team + Roster</b><span>Players, families, contacts and season structure.</span></div>
+<div class="role-dashboard-card"><b>Practice</b><span>Plans, drills, objectives and coaching notes.</span></div>
+<div class="role-dashboard-card"><b>Games + Stats</b><span>Results, player lines and season totals.</span></div>
+<div class="role-dashboard-card"><b>Reports</b><span>Scouting, season summaries and downloadable records.</span></div>
+</div></div></div></section>
 <section id="books"><div class="wrap"><span class="eyebrow">Coach tools</span><h2 class="section-title">Seven core tools. One connected season.</h2><p class="section-copy">Ask the question, learn the language, run the team, prepare, compete and preserve the season. Every core tool connects back to the Coach Command Center.</p><div class="books">
 <div class="book"><div class="bar"></div><small>Coach IQ</small><h4>Basketball Brilliance Situation Station</h4><p>Speak or type the basketball situation, compare recommended solutions, then send an answer directly to Practice Planner or Play Lab.</p><button onclick="document.getElementById('coachIQStation').scrollIntoView({behavior:'smooth'})">Open Situation Station →</button></div>
 <div class="book"><div class="bar"></div><small>Knowledge Base</small><h4>Coach Library</h4><p>Search basketball terminology, hear pronunciation, listen to full entries, and access coach cues, downloads and learning resources.</p><button onclick="document.getElementById('coachLibrary').scrollIntoView({behavior:'smooth'})">Open Coach Library →</button></div>
@@ -1529,8 +1533,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <div class="book"><div class="bar"></div><small>Opponent Prep</small><h4>Scouting Suite</h4><p>Opponent personnel, tendencies, game-plan notes and scouting reports.</p><button onclick="switchView('scouting');location.hash='app'">Open Scouting →</button></div>
 <div class="book"><div class="bar"></div><small>Season Record</small><h4>Reports + Archive</h4><p>Season summaries, downloadable reports, backups, saved plays and long-term history.</p><button onclick="switchView('reports');location.hash='app'">Open Reports →</button></div>
 </div></div></section>
-<section id="families"><div class="wrap"><div class="familyhub"><div class="familygrid"><div><span class="eyebrow">Parent + Player path</span><h2 style="font-size:40px;line-height:1.05;margin:16px 0 12px">Team-linked access first.<br>Family-owned tools second.</h2><p class="section-copy" style="margin-bottom:20px">Families can complete the information their coach needs without paying again. Optional long-term tools give players and parents a place to keep the journey going beyond one team or season.</p><div class="toolbar"><button class="shimmer-btn family-action" onclick="openFamilyDemo()">Explore Family Access</button></div></div><div class="upsell"><div><b>Basketball Passport</b><span>Keep teams, seasons, achievements, stats and player history beyond one coach.</span></div><div><b>Opportunity Finder</b><span>AAU, camps, tryouts, clinics and basketball opportunities.</span></div><div><b>Recruiting Roadmap</b><span>Grade-based tasks, school research, communication and recruiting organization.</span></div><div><b>Parent Resource Vault</b><span>Guides, checklists, downloads and Player Journal offers.</span></div></div></div></div></div></section>
-<section class="portal-pricing" id="coach-membership"><div class="wrap"><div class="price-box" style="background:linear-gradient(145deg,#2c2e33,#111214);border:1px solid #4b4e54;color:#fff;box-shadow:0 22px 55px rgba(0,0,0,.2)"><div><span class="eyebrow">Annual coach membership</span><h2 class="section-title" style="color:#fff">Turn the preview into your active season system.</h2><p class="section-copy" style="color:#c9cbd0">Persistent team records, synced access, roster history, family invitations, practices, games, scouting, reports, downloads and year-to-year archives.</p></div><div><div class="price-number">$99 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('coach')">See Coach Membership</button><div id="coachMembershipState" class="lock-note">Account foundation ready. Payment provider activation is the remaining launch step.</div><div class="lock-note">Working introductory price for planning. Final pricing will be researched before launch.</div></div></div></div></section></main>
+</main>
 <main id="parentPortal" class="portal-shell">
  
 <section class="portal-intro" id="parent-home"><div class="wrap">
@@ -1538,27 +1541,11 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <span class="demo-ribbon"><span class="demo-dot"></span> Parent Preview Mode</span>
     <h1 class="portal-title">Guide the journey without losing the details.</h1>
     <p class="portal-lede">Keep player history, team-linked information, opportunities, recruiting organization and the records that outlive one season in one brighter family experience.</p>
-    <div class="ctas"><a class="shimmer-btn attention" href="#parent-tools">Explore Parent Tools</a><button class="shimmer-btn" onclick="openPortalOffer('parent')">Parent Membership</button></div>
+    <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#parent-tools">Try Parent Tools Free</a><a class="shimmer-btn" href="#parent-membership">Parent Membership</a></div>
   </div>
 </div></section>
-<section id="parent-question-hub"><div class="wrap"><div class="parent-guide-shell">
-  <div class="parent-section-head"><div><span class="eyebrow">Ask before you decide</span><h2>Parent Sideline Guide</h2><p>Ask the basketball questions families face outside the lines: teams, AAU, camps, recruiting, scholarships, costs, development, coach communication, and what to do next.</p></div><span class="parent-light-tag">Ask • Understand • Decide</span></div>
-  <div class="parent-input-card"><div class="parent-ask-row"><textarea id="parentQuestion" placeholder="Example: How do I know if this AAU team is actually a good fit for my child?"></textarea><button class="shimmer-btn attention" onclick="startParentVoice()">🎙 Ask by Voice</button></div>
-  <div class="parent-quick-grid">
-    <button class="parent-quick" onclick="askParentPreset('choose-team')">Choose a Team</button>
-    <button class="parent-quick" onclick="askParentPreset('aau')">AAU</button>
-    <button class="parent-quick" onclick="askParentPreset('coach-talk')">Talk to the Coach</button>
-    <button class="parent-quick" onclick="askParentPreset('playing-time')">Playing Time</button>
-    <button class="parent-quick" onclick="askParentPreset('camps')">Camps + Showcases</button>
-    <button class="parent-quick" onclick="askParentPreset('recruiting')">Recruiting</button>
-    <button class="parent-quick" onclick="askParentPreset('scholarships')">Scholarships</button>
-    <button class="parent-quick" onclick="askParentPreset('costs')">Basketball Costs</button>
-    <button class="parent-quick" onclick="askParentPreset('development')">Development</button>
-    <button class="parent-quick" onclick="askParentPreset('academics')">Academics</button>
-    <button class="shimmer-btn" onclick="runParentGuide()">Ask the Sideline Guide</button>
-  </div></div>
-  <div id="parentAnswers" class="parent-answer-grid"><div class="library-empty" style="color:#555;border-color:#c6cbd0;background:#fff">Ask a question or choose a quick topic.</div></div>
-</div></div></section>
+<section class="portal-pricing" id="parent-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">Annual parent membership</span><h2 class="section-title">Keep the basketball journey in the family.</h2><p class="section-copy">Persistent Basketball Passport, opportunity tracking, recruiting organization, family vault, downloadable reports and year-to-year history.</p><p class="bb-membership-benefits">Membership adds a family-owned Basketball Passport, opportunity tracking, recruiting plans, a private resource vault and year-to-year records. Parent membership is optional and separate from team-linked access or guardian approval.</p><div class="ctas"><a class="shimmer-btn" href="#parent-tools">Try the Tools Free</a><button class="shimmer-btn" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div></div><div><div class="price-number">$24 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('parent')">See Parent Membership</button><div id="parentMembershipState" class="lock-note">Parent account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.</div><div class="lock-note">Annual subscription · Stripe sandbox testing · No real charges.</div></div></div></div></section>
+
 <section id="parent-library-top"><div class="wrap"><div class="parent-library-shell">
   <div class="parent-section-head"><div><span class="eyebrow">Shared basketball knowledge</span><h2>Parent Basketball Library</h2><p>Learn the language your child and coaches use. Search a term, hear it pronounced, listen to the full definition, and see what the concept means from a parent's point of view.</p></div><span class="parent-light-tag">Basketball Brilliance Reference Center</span></div>
   <div class="parent-input-card"><div class="parent-lib-row"><input id="parentLibrarySearch" placeholder="Search: BLOB, drop coverage, 3-2 zone, showcase, high post…"><button class="shimmer-btn attention" onclick="startParentLibraryVoice()">🎙 Speak a Term</button></div>
@@ -1569,12 +1556,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <div class="parent-download-card"><b>Family Basketball Learning Library</b><p>Videos, podcasts, recruiting education, team-selection guidance, and age-based resources will be added here as the Parent portal grows.</p><button class="btn ghost tiny" onclick="toast('Family learning resources are part of the next Parent build.')">Coming Next</button></div>
   </div>
 </div></div></section>
-<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Parent Dashboard</h3><span>Family-owned tools continue below.</span></div><div class="parent-dashboard-stats"><div class="parent-stat"><b id="parChildCount">0</b><span>Players</span></div><div class="parent-stat"><b id="parPassportCount">0</b><span>Passport</span></div><div class="parent-stat"><b id="parOpportunityCount">0</b><span>Opportunities</span></div><div class="parent-stat"><b id="parRecruitingCount">0</b><span>Schools</span></div><div class="parent-stat"><b id="parVaultCount">0</b><span>Vault</span></div><div class="parent-stat"><b id="parStepCount">0</b><span>Next Steps</span></div></div><div class="role-dashboard-grid">
-<div class="role-dashboard-card"><b>Basketball Passport</b><span>Teams, seasons, milestones and player history.</span></div>
-<div class="role-dashboard-card"><b>Opportunity Finder</b><span>AAU, camps, clinics, showcases and tryouts.</span></div>
-<div class="role-dashboard-card"><b>Recruiting Roadmap</b><span>Grade-based tasks, contacts and next steps.</span></div>
-<div class="role-dashboard-card"><b>Family Vault</b><span>Documents, reports, links and important records.</span></div><div class="role-dashboard-card"><b>Parent Library</b><span>Terminology, recruiting education, scholarship guidance and trusted basketball resources.</span></div>
-</div></div></div></section>
+
 <section class="portal-tools" id="parent-tools"><div class="wrap"><span class="eyebrow">Parent tools</span><h2 class="section-title">Keep the journey organized from season to season.</h2><p class="section-copy">Signed-in Parent accounts keep family-owned records, linked team information, recruiting plans, private documents, and next steps together.</p>
 <div class="parent-tool-shell">
   <div class="parent-tool-card"><small class="num">00 • Family Profile</small><h3>Player / Child Profile</h3><p>Add the player whose basketball journey you are organizing. One Parent account can manage more than one child.</p><div class="formgrid"><label>Name<input id="parentChildName" placeholder="Player name"></label><label>Grade<input id="parentChildGrade" placeholder="9"></label><label>Graduation Year<input id="parentChildGrad" type="number" placeholder="2030"></label><label>Primary Position<input id="parentChildPosition" placeholder="PG / Wing / Post"></label></div><label>Notes<textarea id="parentChildNotes" placeholder="Development notes, school, goals…"></textarea></label><button class="shimmer-btn" onclick="saveParentChild()">Add Player</button><div id="parentChildrenList" class="parent-tool-history"></div></div>
@@ -1597,7 +1579,30 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <div class="parent-download-item"><b>Recruiting Roadmap</b><p>Spreadsheet-ready school list, contacts, fit, status, and next steps.</p><button class="btn soft tiny" onclick="exportParentRecruitingCSV()">Recruiting CSV</button></div>
   </div><div class="toolbar"><button class="shimmer-btn" onclick="runParentReadiness()">Run Parent Readiness Check</button></div><div id="parentReadinessStatus" class="parent-readiness">Not checked yet.</div></div>
 </div></div></section>
-<section class="portal-pricing" id="parent-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">Annual parent membership</span><h2 class="section-title">Keep the basketball journey in the family.</h2><p class="section-copy">Persistent Basketball Passport, opportunity tracking, recruiting organization, family vault, downloadable reports and year-to-year history.</p></div><div><div class="price-number">$49 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('parent')">See Parent Membership</button><div id="parentMembershipState" class="lock-note">Parent account foundation ready. Secure payment activation remains before launch.</div><div class="lock-note">Working introductory price for planning. Final pricing will be researched before launch.</div></div></div></div></section>
+<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Parent Dashboard</h3><span>Family-owned tools continue below.</span></div><div class="parent-dashboard-stats"><div class="parent-stat"><b id="parChildCount">0</b><span>Players</span></div><div class="parent-stat"><b id="parPassportCount">0</b><span>Passport</span></div><div class="parent-stat"><b id="parOpportunityCount">0</b><span>Opportunities</span></div><div class="parent-stat"><b id="parRecruitingCount">0</b><span>Schools</span></div><div class="parent-stat"><b id="parVaultCount">0</b><span>Vault</span></div><div class="parent-stat"><b id="parStepCount">0</b><span>Next Steps</span></div></div><div class="role-dashboard-grid">
+<div class="role-dashboard-card"><b>Basketball Passport</b><span>Teams, seasons, milestones and player history.</span></div>
+<div class="role-dashboard-card"><b>Opportunity Finder</b><span>AAU, camps, clinics, showcases and tryouts.</span></div>
+<div class="role-dashboard-card"><b>Recruiting Roadmap</b><span>Grade-based tasks, contacts and next steps.</span></div>
+<div class="role-dashboard-card"><b>Family Vault</b><span>Documents, reports, links and important records.</span></div><div class="role-dashboard-card"><b>Parent Library</b><span>Terminology, recruiting education, scholarship guidance and trusted basketball resources.</span></div>
+</div></div></div></section>
+<section id="parent-question-hub"><div class="wrap"><div class="parent-guide-shell">
+  <div class="parent-section-head"><div><span class="eyebrow">Ask before you decide</span><h2>Parent Sideline Guide</h2><p>Ask the basketball questions families face outside the lines: teams, AAU, camps, recruiting, scholarships, costs, development, coach communication, and what to do next.</p></div><span class="parent-light-tag">Ask • Understand • Decide</span></div>
+  <div class="parent-input-card"><div class="parent-ask-row"><textarea id="parentQuestion" placeholder="Example: How do I know if this AAU team is actually a good fit for my child?"></textarea><button class="shimmer-btn attention" onclick="startParentVoice()">🎙 Ask by Voice</button></div>
+  <div class="parent-quick-grid">
+    <button class="parent-quick" onclick="askParentPreset('choose-team')">Choose a Team</button>
+    <button class="parent-quick" onclick="askParentPreset('aau')">AAU</button>
+    <button class="parent-quick" onclick="askParentPreset('coach-talk')">Talk to the Coach</button>
+    <button class="parent-quick" onclick="askParentPreset('playing-time')">Playing Time</button>
+    <button class="parent-quick" onclick="askParentPreset('camps')">Camps + Showcases</button>
+    <button class="parent-quick" onclick="askParentPreset('recruiting')">Recruiting</button>
+    <button class="parent-quick" onclick="askParentPreset('scholarships')">Scholarships</button>
+    <button class="parent-quick" onclick="askParentPreset('costs')">Basketball Costs</button>
+    <button class="parent-quick" onclick="askParentPreset('development')">Development</button>
+    <button class="parent-quick" onclick="askParentPreset('academics')">Academics</button>
+    <button class="shimmer-btn" onclick="runParentGuide()">Ask the Sideline Guide</button>
+  </div></div>
+  <div id="parentAnswers" class="parent-answer-grid"><div class="library-empty" style="color:#555;border-color:#c6cbd0;background:#fff">Ask a question or choose a quick topic.</div></div>
+</div></div></section>
 </main>
 
 <main id="playerPortal" class="portal-shell">
@@ -1607,37 +1612,18 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <span class="demo-ribbon"><span class="demo-dot"></span> Player Preview Mode</span>
     <h1 class="portal-title">Your game. Your grind. Your record.</h1>
     <p class="portal-lede">Goals, development, performance, film, opportunities and the story you are creating every season — presented in a darker, faster player experience.</p>
-    <div class="ctas"><a class="shimmer-btn attention" href="#training-lab">Enter Training Lab</a><a class="shimmer-btn" href="#player-tools">Player Tools</a><button class="shimmer-btn" onclick="openPortalOffer('player')">Player Membership</button></div>
+    <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#player-tools">Try Player Tools Free</a><a class="shimmer-btn" href="#player-membership">Player Membership</a></div>
   </div>
 </div></section>
-<section id="player-question-hub"><div class="wrap"><div class="player-next-shell">
-  <div class="player-section-head"><div><span class="eyebrow">Player answer center</span><h2>Player Next Move</h2><p>Ask what you should work on, how to handle a basketball situation, what coaches are looking for, or what your next step should be.</p></div><span class="player-glow-tag">Ask • Learn • Move</span></div>
-  <div class="player-input-card"><div class="player-ask-row"><textarea id="playerQuestion" placeholder="Example: I’m not getting much playing time. What should I work on this week?"></textarea><button class="shimmer-btn attention" onclick="startPlayerVoice()">🎙 Ask by Voice</button></div>
-  <div class="player-quick-grid">
-    <button class="player-quick" onclick="askPlayerPreset('playing-time')">Playing Time</button>
-    <button class="player-quick" onclick="askPlayerPreset('shooting')">Improve Shooting</button>
-    <button class="player-quick" onclick="askPlayerPreset('ball-handling')">Handle Pressure</button>
-    <button class="player-quick" onclick="askPlayerPreset('film')">Film Study</button>
-    <button class="player-quick" onclick="askPlayerPreset('confidence')">Confidence</button>
-    <button class="player-quick" onclick="askPlayerPreset('camps')">Camps + Showcases</button>
-    <button class="player-quick" onclick="askPlayerPreset('recruiting')">Recruiting</button>
-    <button class="player-quick" onclick="askPlayerPreset('academics')">Academics</button>
-    <button class="shimmer-btn" onclick="runPlayerNextMove()">Get My Next Move</button>
-  </div></div>
-  <div id="playerAnswers" class="player-answer-grid"><div class="library-empty" style="color:#aaa;border-color:#36383d;background:#0d0e10">Ask a question or tap a quick topic.</div></div>
-</div></div></section>
-<section id="training-lab" aria-label="Basketball Brilliance Training Lab"></section>
+<section class="portal-pricing" id="player-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">Annual player membership</span><h2 class="section-title" style="color:#fff">Keep building after the final buzzer.</h2><p class="section-copy" style="color:#aeb1b6">Goals, workouts, stats, highlights, Basketball Passport, opportunities, synced records and year-to-year player history.</p><p class="bb-membership-benefits">Membership adds saved goals, workouts, stats, film notes, Basketball Passport and player history across seasons. A parent or legal guardian must approve participation and handle membership purchases for players under 18.</p><div class="ctas"><a class="shimmer-btn" href="#player-tools">Try the Tools Free</a><button class="shimmer-btn" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div><div class="bb-guardian-note"><b>Under 18? Start with your parent or guardian.</b><p>Ask an adult to use the Parent portal. Guardian approval does not require a paid Parent membership. Youth account enrollment is not available yet; a verified approval and account-linking process must be in place first. Do not enter a child’s personal information in preview tools.</p><button class="shimmer-btn" onclick="enterPortal('parent')">Parent / Guardian Portal</button><p>Parents: the optional Parent membership adds family records, opportunities and recruiting organization.</p></div></div><div><div class="price-number">$17 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('player')">See Player Membership</button><div id="playerMembershipState" class="lock-note">Player account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.</div><div class="lock-note">Annual subscription · Stripe sandbox testing · Adult purchase only; youth account activation remains unavailable.</div></div></div></div></section>
+
+
 <section id="player-library-top"><div class="wrap"><div class="player-library-shell">
   <div class="player-section-head"><div><span class="eyebrow">Know the game</span><h2>Player Basketball Library</h2><p>Search basketball language, hear how the term is pronounced, and learn what it means in a way built for players.</p></div><span class="player-glow-tag">Shared Basketball Brilliance Library</span></div>
   <div class="player-input-card"><div class="player-lib-row"><input id="playerLibrarySearch" placeholder="Search: drop coverage, Spain pick-and-roll, BLOB, short corner…"><button class="shimmer-btn attention" onclick="startPlayerLibraryVoice()">🎙 Speak a Term</button></div></div>
   <div class="player-lib-layout"><div id="playerLibraryResults" class="player-lib-results"></div><div id="playerLibraryDetail" class="player-lib-detail"><span class="library-cat">Player Library</span><h3>Choose a basketball term</h3><p>Open any term to see the definition, player context, pronunciation, and read-aloud option.</p></div></div>
 </div></div></section>
-<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Player Dashboard Preview</h3><span>Your player-owned record starts here.</span></div><div class="role-dashboard-grid">
-<div class="role-dashboard-card"><b>Goals + Grind</b><span>Targets, habits and weekly development.</span></div>
-<div class="role-dashboard-card"><b>My Numbers</b><span>Stats, trends, best games and progress.</span></div>
-<div class="role-dashboard-card"><b>Highlights + Film</b><span>Clips, links, achievements and moments.</span></div>
-<div class="role-dashboard-card"><b>My Passport</b><span>A season-to-season basketball timeline.</span></div><div class="role-dashboard-card"><b>Player Library</b><span>Basketball terms, skill learning, film, training and college-pathway education.</span></div>
-</div></div></div></section>
+
 <section class="portal-tools" id="player-tools"><div class="wrap"><span class="eyebrow">Player tools</span><h2 class="section-title" style="color:#fff">Build the record behind your game.</h2><p class="section-copy" style="color:#aeb1b6">Signed-in Player accounts keep these records across seasons and devices. Preview mode lets you try the workflow before membership activation.</p>
 <div class="player-tool-shell">
   <div class="player-tool-card"><small class="num">01 • Focus</small><h3>Goals + Grind</h3><p>Turn a basketball goal into a target you can actually work toward.</p><div class="formgrid"><label>Goal<input id="playerGoalTitle" placeholder="Improve left-hand finishing"></label><label>Target Date<input id="playerGoalDate" type="date"></label></div><label>Plan / Notes<textarea id="playerGoalNotes" placeholder="What will you do each week?"></textarea></label><button class="shimmer-btn" onclick="savePlayerGoal()">Save Goal</button><div id="playerGoalsList" class="player-tool-history"></div></div>
@@ -1667,7 +1653,30 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <div class="player-download"><b>Basketball Passport</b><p>Season-by-season player history for your own records.</p><button class="btn soft tiny" onclick="exportPlayerPassportCSV()">Passport CSV</button></div>
   </div><div class="toolbar"><button class="shimmer-btn" onclick="runPlayerReadiness()">Run Player Readiness Check</button></div><div id="playerReadinessStatus" class="player-readiness">Not checked yet.</div></div>
 </div></div></section>
-<section class="portal-pricing" id="player-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">Annual player membership</span><h2 class="section-title" style="color:#fff">Keep building after the final buzzer.</h2><p class="section-copy" style="color:#aeb1b6">Goals, workouts, stats, highlights, Basketball Passport, opportunities, synced records and year-to-year player history.</p></div><div><div class="price-number">$29 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('player')">See Player Membership</button><div id="playerMembershipState" class="lock-note">Player account foundation ready. Secure payment activation remains before launch.</div><div class="lock-note">Working introductory price for planning. A parent or guardian can purchase for a player.</div></div></div></div></section>
+<section class="role-dashboard"><div class="wrap"><div class="dash-shell"><div class="dash-head"><h3>Player Dashboard Preview</h3><span>Your player-owned record starts here.</span></div><div class="role-dashboard-grid">
+<div class="role-dashboard-card"><b>Goals + Grind</b><span>Targets, habits and weekly development.</span></div>
+<div class="role-dashboard-card"><b>My Numbers</b><span>Stats, trends, best games and progress.</span></div>
+<div class="role-dashboard-card"><b>Highlights + Film</b><span>Clips, links, achievements and moments.</span></div>
+<div class="role-dashboard-card"><b>My Passport</b><span>A season-to-season basketball timeline.</span></div><div class="role-dashboard-card"><b>Player Library</b><span>Basketball terms, skill learning, film, training and college-pathway education.</span></div>
+</div></div></div></section>
+<section id="player-question-hub"><div class="wrap"><div class="player-next-shell">
+  <div class="player-section-head"><div><span class="eyebrow">Player answer center</span><h2>Player Next Move</h2><p>Ask what you should work on, how to handle a basketball situation, what coaches are looking for, or what your next step should be.</p></div><span class="player-glow-tag">Ask • Learn • Move</span></div>
+  <div class="player-input-card"><div class="player-ask-row"><textarea id="playerQuestion" placeholder="Example: I’m not getting much playing time. What should I work on this week?"></textarea><button class="shimmer-btn attention" onclick="startPlayerVoice()">🎙 Ask by Voice</button></div>
+  <div class="player-quick-grid">
+    <button class="player-quick" onclick="askPlayerPreset('playing-time')">Playing Time</button>
+    <button class="player-quick" onclick="askPlayerPreset('shooting')">Improve Shooting</button>
+    <button class="player-quick" onclick="askPlayerPreset('ball-handling')">Handle Pressure</button>
+    <button class="player-quick" onclick="askPlayerPreset('film')">Film Study</button>
+    <button class="player-quick" onclick="askPlayerPreset('confidence')">Confidence</button>
+    <button class="player-quick" onclick="askPlayerPreset('camps')">Camps + Showcases</button>
+    <button class="player-quick" onclick="askPlayerPreset('recruiting')">Recruiting</button>
+    <button class="player-quick" onclick="askPlayerPreset('academics')">Academics</button>
+    <button class="shimmer-btn" onclick="runPlayerNextMove()">Get My Next Move</button>
+  </div></div>
+  <div id="playerAnswers" class="player-answer-grid"><div class="library-empty" style="color:#aaa;border-color:#36383d;background:#0d0e10">Ask a question or tap a quick topic.</div></div>
+</div></div></section>
+<section class="bb-prototype-intro" id="player-prototype"><div class="wrap"><span class="bg-label">Live prototype · In development</span><h2>Help shape the Training Lab.</h2><p>A fun basketball project in progress. Try the player and drills below, return to see what improves, and share what feels useful or needs work. Feedback is encouraged; demonstrations are still being refined.</p><button class="shimmer-btn" onclick="openLegal('contact')">Feedback &amp; contact</button></div></section>
+<section id="training-lab" aria-label="Basketball Brilliance Training Lab"></section>
 </main>
 
 <section class="bg-watch" id="bb-watch" aria-label="Free basketball viewing"></section>
@@ -1689,7 +1698,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
   </div>
 </footer>
 
-<div class="modal" id="loginModal" onclick="if(event.target===this)closeModal('loginModal')"><div class="modalbox"><button class="close" onclick="closeModal('loginModal')">×</button><div id="authFormView"><span class="eyebrow">Member access</span><h3>Basketball Brilliance Account</h3><p class="section-copy" style="font-size:14px;margin-bottom:10px">Choose your role, then sign in or create your account.</p><div class="rolegrid" id="roleGrid"><button class="role active" data-role="Coach">Coach</button><button class="role" data-role="Player">Player</button><button class="role" data-role="Parent">Parent</button></div><div class="formgrid" style="margin-top:12px"><label>Full Name<input id="loginName" placeholder="Your name" autocomplete="name"></label><label>Email<input id="loginEmail" placeholder="you@example.com" type="email" autocomplete="email"></label><label style="grid-column:1/-1">Password<input id="loginPassword" placeholder="At least 8 characters" type="password" autocomplete="current-password"></label></div><div id="authBackendStatus" class="notice" style="margin-top:12px">Secure Basketball Brilliance account system connected.</div><div class="toolbar" style="margin-top:14px"><button class="btn primary" onclick="continueLogin()">Sign In</button><button class="btn soft" id="createAccountBtn" onclick="createAccount()">Create Account</button><button class="btn ghost" onclick="resendConfirmationEmail()">Resend Confirmation</button><button class="btn ghost" onclick="resetAccountPassword()">Forgot Password</button></div><button class="btn ghost" style="width:100%;margin-top:10px" onclick="continuePreview()">Continue in Preview Mode</button></div>
+<div class="modal" id="loginModal" onclick="if(event.target===this)closeModal('loginModal')"><div class="modalbox"><button class="close" onclick="closeModal('loginModal')">×</button><div id="authFormView"><span class="eyebrow">Member access</span><h3>Basketball Brilliance Account</h3><p class="section-copy" style="font-size:14px;margin-bottom:10px">Choose your role, then sign in or create your account.</p><div class="rolegrid" id="roleGrid"><button class="role active" data-role="Coach">Coach</button><button class="role" data-role="Player">Player</button><button class="role" data-role="Parent">Parent</button></div><div class="bb-account-gate"><label for="accountAge">Before entering account details, choose your age group</label><select id="accountAge" onchange="updateAccountAgeGate()"><option value="">Choose an age group</option><option value="under13">Under 13</option><option value="teen">13–17</option><option value="adult">18 or older</option></select><p id="accountAgeNote" role="status">Current registration is for adults 18 or older. Youth enrollment awaits verified guardian approval. Use only your own account details.</p><button class="btn soft" type="button" onclick="openGuardianPortal()">Parent / Guardian Portal</button><button class="btn ghost" type="button" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div><div class="formgrid" style="margin-top:12px"><label>Full Name<input id="loginName" placeholder="Your name" autocomplete="name"></label><label>Email<input id="loginEmail" placeholder="you@example.com" type="email" autocomplete="email"></label><label style="grid-column:1/-1">Password<input id="loginPassword" placeholder="At least 8 characters" type="password" autocomplete="current-password"></label></div><label class="bb-account-agreement"><input id="accountAgreement" type="checkbox"> I am 18 or older and have reviewed the Terms of Use and Privacy Policy. If acting for a child, I am their parent or legal guardian. This statement is not verified parental consent and does not activate a youth account.</label><div class="toolbar"><button type="button" class="btn ghost tiny" onclick="openLegal('terms')">Terms of Use</button><button type="button" class="btn ghost tiny" onclick="openLegal('privacy')">Privacy Policy</button></div><div id="authBackendStatus" class="notice" style="margin-top:12px">Secure Basketball Brilliance account system connected.</div><div class="toolbar" style="margin-top:14px"><button class="btn primary" onclick="continueLogin()">Sign In</button><button class="btn soft" id="createAccountBtn" onclick="createAccount()">Create Account</button><button class="btn ghost" onclick="resendConfirmationEmail()">Resend Confirmation</button><button class="btn ghost" onclick="resetAccountPassword()">Forgot Password</button></div><button class="btn ghost" style="width:100%;margin-top:10px" onclick="continuePreview()">Continue in Preview Mode</button></div>
   <div id="signupCelebration" class="signup-celebration" aria-live="polite">
     <div class="celebrate-ball"></div>
     <div class="welcome-line">Welcome to Basketball Brilliance</div>
@@ -1723,7 +1732,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <div class="modal" id="familyModal" onclick="if(event.target===this)closeModal('familyModal')"><div class="modalbox"><button class="close" onclick="closeModal('familyModal')">×</button><span class="eyebrow">Team-linked family access</span><h3>Complete Player Information</h3><p class="section-copy" style="font-size:14px;margin-bottom:12px">No separate subscription is required to complete information requested by the coach.</p><div class="formgrid"><label>Invite Code<input id="famCode"></label><label>Player Name<input id="famPlayer"></label><label>Jersey #<input id="famJersey"></label><label>Position<input id="famPosition"></label><label>Grade<input id="famGrade"></label><label>Height<input id="famHeight"></label><label>Parent / Guardian<input id="famGuardian"></label><label>Guardian Email<input id="famEmail" type="email"></label><label>Phone<input id="famPhone" type="tel"></label></div><div class="toolbar"><button class="btn primary" onclick="submitFamilyProfile()">Send to Coach Roster</button></div><div class="divider"></div><div class="card"><h4>Optional family-owned membership</h4><p>Basketball Passport • Opportunity Finder • Recruiting Roadmap • Parent Resource Vault</p></div></div></div>
 <div class="modal" id="legalModal" onclick="if(event.target===this)closeModal('legalModal')"><div class="modalbox"><button class="close" onclick="closeModal('legalModal')">×</button><h3 id="legalTitle">Legal</h3><div id="legalBody" class="sub" style="line-height:1.7"></div></div></div>
 <div class="modal membership-modal" id="membershipModal" onclick="if(event.target===this)closeMembershipOffer()"><div class="modalbox"><button class="close" onclick="closeMembershipOffer()">×</button><div class="membership-kicker">Basketball Brilliance Membership</div><h3 style="font-size:32px;margin:6px 0 8px">Three paths. One basketball journey.</h3><p class="section-copy" style="margin-bottom:8px">Whether you run the team, play the game, or guide the journey, Basketball Brilliance keeps the right tools within reach.</p><div class="membership-grid"><div class="membership-card featured"><span class="who">Coach</span><h4>Run the Team</h4><p>Organize rosters, practices, games, scouting, plays, notes and season reports from one command center.</p><a class="shimmer-btn" href="#app" onclick="closeMembershipOffer()">Explore Coach Membership</a></div><div class="membership-card"><span class="who">Player</span><h4>Raise Your Game</h4><p>Stay connected to team information while building a longer record of development, goals, seasons and achievements.</p><a class="shimmer-btn" href="#families" onclick="closeMembershipOffer()">Explore Player Membership</a></div><div class="membership-card"><span class="who">Parent</span><h4>Guide the Journey</h4><p>Keep player history, opportunities, recruiting organization, resources and family-owned records together beyond one season.</p><a class="shimmer-btn" href="#families" onclick="closeMembershipOffer()">Explore Parent Membership</a></div></div><div class="membership-note">Coach-linked team forms remain part of the team workflow. Optional family memberships add long-term player and parent tools.</div></div></div>
-<div class="modal offer-modal" id="portalOfferModal" onclick="if(event.target===this)closeModal('portalOfferModal')"><div class="modalbox"><button class="close" onclick="closeModal('portalOfferModal')">×</button><div class="offer-top"><div><span class="eyebrow" id="offerEyebrow">Annual Membership</span><h3 id="offerTitle" style="font-size:34px;margin:8px 0">Basketball Brilliance</h3><p class="section-copy" id="offerCopy" style="margin-bottom:0;color:#c6c9ce"></p></div><div class="offer-price" id="offerPrice">$99 <small>/ year</small></div></div><div class="offer-list" id="offerList"></div><button class="shimmer-btn attention" style="width:100%" onclick="demoCheckout()">Create Account / Sign In</button><div class="offer-foot">Create or sign in to your Basketball Brilliance account first. Secure payment checkout will be activated when payment setup is finalized.</div></div></div><div class="toast" id="toast"></div>
+<div class="modal offer-modal" id="portalOfferModal" onclick="if(event.target===this)closeModal('portalOfferModal')"><div class="modalbox"><button class="close" onclick="closeModal('portalOfferModal')">×</button><div class="offer-top"><div><span class="eyebrow" id="offerEyebrow">Annual Membership</span><h3 id="offerTitle" style="font-size:34px;margin:8px 0">Basketball Brilliance</h3><p class="section-copy" id="offerCopy" style="margin-bottom:0;color:#c6c9ce"></p></div><div class="offer-price" id="offerPrice">$47 <small>/ year</small></div></div><div class="offer-list" id="offerList"></div><button class="shimmer-btn attention" style="width:100%" onclick="demoCheckout()">Continue to Stripe Sandbox</button><div class="offer-foot">Annual test subscription. Sign in with an adult account first. Sandbox makes no real charges. Automatic membership activation awaits webhook setup.</div></div></div><div class="toast" id="toast"></div>
 <script>
 /* Brand artwork is embedded in the page header and footer. */
 const KEY='bb_build2_data_v1';
@@ -1766,6 +1775,23 @@ function setAuthStatus(message,type='info'){
   const st=document.getElementById('authBackendStatus');if(!st)return;
   st.textContent=message;st.className='notice'+(type==='good'?' statusgood':type==='bad'?' statusbad':'');
 }
+function updateAccountAgeGate(){
+ const age=document.getElementById('accountAge').value,adult=age==='adult';
+ ['loginName','loginEmail','loginPassword'].forEach(id=>{const input=document.getElementById(id);input.disabled=!adult;if(!adult)input.value='';});
+ document.getElementById('accountAgreement').disabled=!adult;
+ if(!adult)document.getElementById('accountAgreement').checked=false;
+ document.getElementById('accountAgeNote').textContent=adult?'Use your own adult account details. A Parent account does not require a paid Parent membership. Youth account activation is not available yet.':age?'Please ask your parent or legal guardian to use the Parent portal. Do not enter your name, email, or other personal information here. You can browse and try tools with sample information.':'Current registration is for adults 18 or older. Choose your age group before entering details.';
+}
+function adultAccountAllowed(requireAgreement=false){
+ if(document.getElementById('accountAge').value!=='adult'){setAuthStatus('An adult 18 or older must manage account registration. Youth enrollment awaits verified guardian approval.','bad');return false;}
+ if(requireAgreement&&!document.getElementById('accountAgreement').checked){setAuthStatus('Review the Terms of Use and Privacy Policy, then confirm the adult account statement.','bad');return false;}
+ return true;
+}
+async function openGuardianPortal(){
+ closeModal('loginModal');closeModal('portalOfferModal');
+ await enterPortal('parent');clearTimeout(portalOfferTimer);
+ document.getElementById('parent-membership').scrollIntoView({behavior:'smooth'});
+}
 function openLogin(){
   const af=document.getElementById('authFormView'),sc=document.getElementById('signupCelebration');
   if(af)af.style.display='';if(sc)sc.classList.remove('show');
@@ -1775,10 +1801,12 @@ function openLogin(){
   if(window.loginName)loginName.value='';
   if(window.loginPassword)loginPassword.value='';
   setAuthStatus(window.BBAuth?.isConfigured?.()?'Secure Basketball Brilliance account system connected.':'Preview access is available while the secure account system is being connected.');
+  document.getElementById('accountAge').value='';document.getElementById('accountAgreement').checked=false;updateAccountAgeGate();
   openModal('loginModal');
 }
 document.querySelectorAll('#roleGrid .role').forEach(b=>b.onclick=()=>{selectedRole=b.dataset.role;document.querySelectorAll('#roleGrid .role').forEach(x=>x.classList.toggle('active',x===b))});
 async function continueLogin(){
+  if(!adultAccountAllowed())return;
   const email=loginEmail.value.trim(), password=(window.loginPassword?.value||'');
   if(window.BBAuth?.isConfigured?.()){
     if(!email||!password){setAuthStatus('Enter your email and password.','bad');return}
@@ -1805,7 +1833,7 @@ async function continueLogin(){
       const p=selectedRole.toLowerCase();
       await enterPortal(p);
       if(p==='coach'){await loadPersistentCoachWorkspace();location.hash='app';switchView('dashboard')}
-      toast('Welcome back.');
+      toast('Welcome back.');window.BBBilling?.ready();
     }catch(e){
       const msg=String(e?.message||'Sign in failed.');
       if(/email not confirmed/i.test(msg)){
@@ -1817,7 +1845,7 @@ async function continueLogin(){
   continuePreview();
 }
 function continuePreview(){
-  db.session={role:selectedRole,email:loginEmail.value.trim()};saveDB();closeModal('loginModal');
+  db.session={role:selectedRole,email:''};saveDB();closeModal('loginModal');
   const p=selectedRole.toLowerCase();enterPortal(p);if(p==='coach'){location.hash='app';switchView('dashboard')}
   toast(selectedRole+' preview opened.');
 }
@@ -1866,6 +1894,7 @@ async function resendConfirmationFromCelebration(){
 }
 
 async function createAccount(){
+  if(!adultAccountAllowed(true))return;
   const email=loginEmail.value.trim(),password=(window.loginPassword?.value||''),fullName=(window.loginName?.value||'').trim();
   if(!window.BBAuth?.isConfigured?.()){setAuthStatus('Secure account system is not connected yet.','bad');return}
   if(!fullName||!email||password.length<8){setAuthStatus('Enter your name, email, and a password of at least 8 characters.','bad');return}
@@ -2501,7 +2530,7 @@ async function refreshCoachMembershipState(){
     const m=await window.BBData?.getMyMembership?.('coach');
     if(m?.status==='active')el.textContent='Coach membership active.';
     else el.textContent='Coach account ready. Secure payment checkout is the remaining launch step.';
-  }catch(e){el.textContent='Coach account foundation ready. Payment provider activation is the remaining launch step.'}
+  }catch(e){el.textContent='Coach account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}
 }
 function exportBackup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='basketball-brilliance-backup.json';a.click();URL.revokeObjectURL(a.href);toast('Basketball Brilliance backup downloaded.')}
 function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{db=Object.assign(JSON.parse(JSON.stringify(defaultData)),JSON.parse(r.result));saveDB('Backup restored.');hydrateTeam()}catch(err){toast('That backup could not be read.')}};r.readAsText(f)}
@@ -2741,13 +2770,13 @@ async function loadCoachIQHistory(){
 function startVoice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){voiceStatus.textContent='Voice recognition is not available in this browser. Chrome usually supports it.';return}const r=new SR();r.lang='en-US';r.interimResults=false;r.maxAlternatives=1;voiceStatus.textContent='Listening…';r.onresult=e=>{const t=e.results[0][0].transcript;voiceStatus.textContent='Heard: “'+t+'”';parseSpeech(t)};r.onerror=()=>voiceStatus.textContent='I could not hear that clearly. Tap and try again.';r.start()}
 function parseSpeech(t){let s=t.trim();const num=s.match(/(?:number|jersey)\s+(\d+)/i);if(num)jersey.value=num[1];const gr=s.match(/grade\s+(\d+)/i);if(gr)grade.value=gr[1];const pos=s.match(/(point guard|shooting guard|small forward|power forward|center|guard|forward)/i);if(pos)position.value=pos[1].replace(/\b\w/g,c=>c.toUpperCase());const name=s.match(/^(.+?)(?:,| number| jersey| point guard| shooting guard| small forward| power forward| center| guard| forward| grade)/i);if(name)playerName.value=name[1].trim().replace(/\b\w/g,c=>c.toUpperCase());const ht=s.match(/(\d)\s*(?:foot|feet)\s*(\d{1,2})?/i);if(ht)height.value=ht[1]+"'"+(ht[2]||'0')+'"'}
 function showLegal(which){
-const last='October 3, 2026';
+const last='October 8, 2026';
 const data={
-privacy:['Privacy Policy',`<p><b>Last updated:</b> ${last}</p><p>Basketball Brilliance collects account, team, player, parent/guardian and usage information needed to provide its services. Membership versions may store records across devices and may use third-party service providers for hosting, authentication, payments, email and analytics.</p><p>Player information should be entered only by an authorized coach, parent/guardian, or the player when appropriate. We will provide controls for access, correction and deletion as the membership system is activated.</p>`],
-terms:['Terms of Use',`<p><b>Last updated:</b> ${last}</p><p>Basketball Brilliance provides organizational, educational and basketball-development tools for coaches, players and families. Users are responsible for the accuracy of information they enter and for using team and player information appropriately.</p><p>Paid features, account rules, acceptable use, intellectual property, termination and dispute terms will apply to annual memberships at launch.</p>`],
+privacy:['Privacy Policy',`<p><b>Last updated:</b> ${last}</p><p>Basketball Brilliance collects account, team, player, parent/guardian and usage information needed to provide its services. Membership versions may store records across devices and may use third-party service providers for hosting, authentication, payments, email and analytics.</p><p>Current account registration is limited to adults 18 or older. Youth account enrollment and verified guardian controls are not available yet. Do not enter children’s personal information in preview tools. See Children &amp; Parent Consent for current restrictions. Preview tools may save entries on this device; signed-in tools use the connected account service. YouTube loads its own player when a video is opened.</p>`],
+terms:['Terms of Use',`<p><b>Last updated:</b> ${last}</p><p>Basketball Brilliance provides organizational, educational and basketball-development tools for coaches, players and families. Users are responsible for the accuracy of information they enter and for using team and player information appropriately.</p><p>Account holders must be 18 or older. Do not create an account in a child’s name or submit a child’s personal information in preview tools. Youth account enrollment remains unavailable pending a verified guardian process. Preview tools are free to explore with sample information. Membership prices are introductory planning prices; payment and renewal terms must be shown before any purchase. Optional Parent membership is not a condition of guardian approval.</p>`],
 subscriptions:['Annual Subscription Terms',`<p><b>Last updated:</b> ${last}</p><p>Basketball Brilliance is being designed around annual Coach, Parent and Player memberships. Annual plans will renew once per year unless canceled before the renewal date. Final prices, taxes, renewal notices and payment processor terms will be shown before purchase.</p><p>Coach-linked family forms can remain part of a coach's team workflow without requiring a separate family subscription. Optional Parent and Player memberships add family-owned and player-owned tools.</p>`],
 cancellation:['Cancellation & Refund Policy',`<p><b>Last updated:</b> ${last}</p><p>Members will be able to cancel future annual renewal from their account. Cancellation stops the next renewal and does not automatically erase account records.</p><p>The final launch policy will clearly state any refund window, exceptions and how to request help before checkout is activated.</p>`],
-children:['Children & Parent Consent',`<p><b>Last updated:</b> ${last}</p><p>Basketball Brilliance may be used by youth basketball players. Accounts and data involving younger players will be designed around parent/guardian and coach permissions appropriate to the player's age.</p><p>Before public launch, the membership flow will include age-aware consent, parent/guardian controls and a process for handling youth data.</p>`],
+children:['Children & Parent Consent',`<p><b>Last updated:</b> ${last}</p><p>Basketball Brilliance is operated by InAct Entertainment LLC. Current self-service account registration is limited to adults 18 or older. Players under 18 must involve a parent or legal guardian; youth account enrollment and guardian-linked account activation are not available in this release.</p><p>Do not register using a child’s name or email, or enter a child’s personal information in preview tools. Adults should use their own credentials. A coach invitation, an adult checkbox, or a payment by itself does not activate a child account or establish verified guardian approval.</p><p>For children under 13, collection of personal information requires the applicable direct parental notice and verifiable parental consent process before collection, except where a legal exception applies. That process, guardian identity checks, account linking, and guardian review/deletion controls must be implemented before youth enrollment opens.</p><p>Guardian approval is separate from paid membership. No paid Parent membership is required merely to be a guardian. Optional Player and Parent subscriptions are separate products; any future purchase for a minor must be handled by an adult guardian.</p><p>Use sample information while exploring tools. Embedded videos are provided by YouTube, whose player may use cookies or other identifiers when loaded. Review YouTube’s privacy practices before viewing with a child. This notice does not certify the site as compliant with every applicable youth privacy law.</p>`],
 disclaimer:['Basketball & Recruiting Disclaimer',`<p>Basketball Brilliance provides organizational, educational and development tools. It does not guarantee playing time, roster selection, scholarships, recruiting interest, college admission, professional opportunities, medical outcomes or athletic success.</p><p>Training and competition decisions should be made with appropriate coaches, families and qualified professionals.</p>`],
 affiliate:['Affiliate Disclosure',`<p>Some Basketball Brilliance pages may contain affiliate links to books, journals, equipment or other products. InAct Entertainment or an affiliated brand may earn a commission from qualifying purchases without changing the purchaser's price.</p><p>Affiliate relationships will be identified where required.</p>`],
 accessibility:['Accessibility',`<p>Basketball Brilliance is being designed for keyboard, touch and mobile use with readable contrast, responsive layouts and scalable text. If you experience an accessibility barrier, contact us so we can review it.</p>`],
@@ -2860,7 +2889,7 @@ function printParentFamilyReport(){
  const body='<h1>Basketball Brilliance - Family Basketball Report</h1><h3>Players</h3>'+((parentData.children||[]).map(x=>'<p><b>'+esc(x.name)+'</b> - '+esc([x.grade?'Grade '+x.grade:'',x.graduation_year?'Class of '+x.graduation_year:'',x.primary_position].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No player profiles saved.</p>')+'<h3>Basketball Passport</h3>'+((parentData.passport||[]).map(x=>'<p><b>'+esc(parentChildLabel(x.child_id))+' - '+esc(x.season||'Season')+' - '+esc(x.team)+'</b><br>'+esc([x.level,x.position,x.coach,x.milestones].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No Passport entries.</p>')+'<h3>Opportunities</h3>'+((parentData.opportunities||[]).slice(0,20).map(x=>'<p>'+esc(parentChildLabel(x.child_id))+' - <b>'+esc(x.title)+'</b> - '+esc([x.event_date,x.deadline?'Deadline '+x.deadline:'',x.status].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No opportunities saved.</p>')+'<h3>Recruiting Roadmap</h3>'+((parentData.recruiting||[]).map(x=>'<p>'+esc(parentChildLabel(x.child_id))+' - <b>'+esc(x.school)+'</b> - '+esc([x.level,x.fit,x.status,x.next_step].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No recruiting schools saved.</p>')+'<h3>Next Steps</h3>'+((parentData.steps||[]).filter(x=>x.status!=='complete').map(x=>'<p>'+esc(parentChildLabel(x.child_id))+' - '+esc(x.title)+' - '+esc([x.due_date,x.category,x.status].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No open next steps.</p>');
  const w=window.open('','_blank');if(!w){toast('Allow pop-ups to print the report.');return}w.document.write('<!doctype html><html><head><title>Family Basketball Report</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;color:#111}h1{border-bottom:6px solid #f15a29;padding-bottom:12px}h3{margin-top:28px}</style></head><body>'+body+'</body></html>');w.document.close();setTimeout(()=>w.print(),250)
 }
-async function refreshParentMembershipState(){const el=document.getElementById('parentMembershipState');if(!el)return;try{if(!(await parentSignedIn())){el.textContent='Create or sign in to a Parent account first.';return}const m=await window.BBData.getMyMembership('parent');el.textContent=m?.status==='active'?'Parent membership active.':'Parent account ready. Secure payment activation remains before launch.'}catch(e){el.textContent='Parent account foundation ready. Secure payment activation remains before launch.'}}
+async function refreshParentMembershipState(){const el=document.getElementById('parentMembershipState');if(!el)return;try{if(!(await parentSignedIn())){el.textContent='Create or sign in to a Parent account first.';return}const m=await window.BBData.getMyMembership('parent');el.textContent=m?.status==='active'?'Parent membership active.':'Parent account ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}catch(e){el.textContent='Parent account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}}
 async function runParentReadiness(){
  const el=document.getElementById('parentReadinessStatus');if(!el)return;const signed=await parentSignedIn();let membership=null;try{if(signed)membership=await window.BBData.getMyMembership('parent')}catch(e){}
  const checks=[['Parent account signed in',signed],['At least one player profile',parentData.children.length>0],['Coach/team connection present',parentData.connections.length>0],['Basketball Passport started',parentData.passport.length>0],['Opportunity list started',parentData.opportunities.length>0],['Recruiting Roadmap started',parentData.recruiting.length>0],['Family Vault started',parentData.vault.length>0],['Next-Step Planner started',parentData.steps.length>0]];
@@ -2935,7 +2964,7 @@ function printPlayerDevelopmentReport(){
  const body=`<h1>Basketball Brilliance — Player Development Report</h1><h2>${esc(name)}</h2><p><b>Official games:</b> ${games} &nbsp; <b>PPG:</b> ${avg('points')} &nbsp; <b>RPG:</b> ${avg('rebounds')} &nbsp; <b>APG:</b> ${avg('assists')}</p><h3>Development Record</h3><p>Goals: ${playerData.goals.length} • Workouts: ${playerData.workouts.length} • Training minutes: ${playerData.workouts.reduce((a,x)=>a+Number(x.minutes||0),0)} • Film entries: ${playerData.highlights.length}</p><h3>Basketball Passport</h3>${playerData.passport.map(x=>'<p><b>'+esc(x.season||'Season')+' — '+esc(x.team)+'</b><br>'+esc([x.level,x.position,x.achievements].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No Passport entries yet.</p>'}<h3>College Pathway</h3>${playerData.college.map(x=>'<p><b>'+esc(x.school)+'</b> — '+esc(x.level||'')+' — '+esc(x.status||'')+'<br>Next: '+esc(x.next_step||'')+'</p>').join('')||'<p>No schools saved yet.</p>'}<h3>Next Opportunities</h3>${playerData.opportunities.filter(x=>x.status!=='passed').slice(0,10).map(x=>'<p>'+esc(x.title)+' — '+esc(x.event_date||'')+' — '+esc(x.status||'')+'</p>').join('')||'<p>No active opportunities saved.</p>'}`;
  const w=window.open('','_blank');if(!w){toast('Allow pop-ups to print the report.');return}w.document.write('<!doctype html><html><head><title>Player Development Report</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;color:#111}h1{border-bottom:6px solid #f15a29;padding-bottom:12px}h2,h3{margin-top:28px}</style></head><body>'+body+'</body></html>');w.document.close();setTimeout(()=>w.print(),250)
 }
-async function refreshPlayerMembershipState(){const el=document.getElementById('playerMembershipState');if(!el)return;try{if(!(await playerSignedIn())){el.textContent='Create or sign in to a Player account first. A parent or guardian can purchase membership.';return}const m=await window.BBData.getMyMembership('player');el.textContent=m?.status==='active'?'Player membership active.':'Player account ready. Secure payment activation remains before launch.'}catch(e){el.textContent='Player account foundation ready. Secure payment activation remains before launch.'}}
+async function refreshPlayerMembershipState(){const el=document.getElementById('playerMembershipState');if(!el)return;try{if(!(await playerSignedIn())){el.textContent='Create or sign in to a Player account first. A parent or guardian can purchase membership.';return}const m=await window.BBData.getMyMembership('player');el.textContent=m?.status==='active'?'Player membership active.':'Player account ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}catch(e){el.textContent='Player account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}}
 async function runPlayerReadiness(){
  const el=document.getElementById('playerReadinessStatus');if(!el)return;const signed=await playerSignedIn();let membership=null;try{if(signed)membership=await window.BBData.getMyMembership('player')}catch(e){}
  const checks=[['Player account signed in',signed],['Coach-linked player record',!!playerData.linked?.player],['Official stats connected',(playerData.officialStats||[]).length>0],['At least one active goal',playerData.goals.length>0],['Workout history started',playerData.workouts.length>0],['Basketball Passport started',playerData.passport.length>0],['Film / highlights started',playerData.highlights.length>0],['Opportunity or college pathway started',playerData.opportunities.length>0||playerData.college.length>0]];
@@ -2952,17 +2981,17 @@ document.addEventListener('click',e=>{
 <script>
 let portalOfferTimer=null, installPrompt=null;
 const portalOffers={
- coach:{eyebrow:'Coach Annual Membership',title:'Run the season from one command center.',price:'$99',copy:'Turn the Coach preview into an active team system with persistent records, synced access, reports and season-to-season history.',items:['Persistent team + roster records','Practice, game + scouting history','Player stats + season reports','Family invite workflow','PDF / downloadable records','Year-to-year team archive']},
- parent:{eyebrow:'Parent Annual Membership',title:'Keep the player journey in the family.',price:'$49',copy:'Own the long-term record beyond one team or one season.',items:['Basketball Passport','Opportunity Finder','Recruiting Roadmap','Family document vault','Downloadable reports','Year-to-year player history']},
- player:{eyebrow:'Player Annual Membership',title:'Build the record behind your game.',price:'$29',copy:'Keep goals, workouts, stats, highlights, opportunities and your Basketball Passport together.',items:['Goals + Grind tracker','Workout history','Stats + best games','Highlights + film links','Basketball Passport','Opportunities + progress history']}
+ coach:{eyebrow:'Coach Annual Membership',title:'Run the season from one command center.',price:'$47',copy:'Turn the Coach preview into an active team system with persistent records, synced access, reports and season-to-season history.',items:['Persistent team + roster records','Practice, game + scouting history','Player stats + season reports','Family invite workflow','PDF / downloadable records','Year-to-year team archive']},
+ parent:{eyebrow:'Parent Annual Membership',title:'Keep the player journey in the family.',price:'$24',copy:'Own the long-term record beyond one team or one season.',items:['Basketball Passport','Opportunity Finder','Recruiting Roadmap','Family document vault','Downloadable reports','Year-to-year player history']},
+ player:{eyebrow:'Player Annual Membership',title:'Build the record behind your game.',price:'$17',copy:'Keep goals, workouts, stats, highlights, opportunities and your Basketball Passport together.',items:['Goals + Grind tracker','Workout history','Stats + best games','Highlights + film links','Basketball Passport','Opportunities + progress history']}
 };
 function setPortalNav(p){
  const d=document.getElementById('desktopNav'),m=document.getElementById('mobileDrawer'),c=document.getElementById('portalContext');
  const cfg={
   entry:[['#entryStage','Portals'],['#bb-watch','Watch']],
-  coach:[['#coach-home','Overview'],['#app','Coach System'],['#books','Coach Tools'],['#families','Families'],['#coach-membership','Membership'],['#bb-watch','Watch']],
-  parent:[['#parent-home','Overview'],['#parent-tools','Parent Tools'],['#parent-membership','Membership'],['#bb-watch','Watch']],
-  player:[['#player-home','Overview'],['#training-lab','Training Lab'],['#player-tools','Player Tools'],['#player-membership','Membership'],['#bb-watch','Watch']]
+  coach:[['#coach-home','Overview'],['#bb-watch','Watch'],['#coach-membership','Membership'],['#app','Coach System'],['#coachIQStation','Coach IQ'],['#books','Tool Guide']],
+  parent:[['#parent-home','Overview'],['#bb-watch','Watch'],['#parent-membership','Membership'],['#parent-tools','Parent Tools'],['#parent-question-hub','Sideline Guide']],
+  player:[['#player-home','Overview'],['#bb-watch','Watch'],['#player-membership','Membership'],['#player-tools','Player Tools'],['#player-question-hub','Player Guide'],['#player-prototype','Live Prototype']]
  }[p]||[];
  const links=cfg.map(x=>'<a href="'+x[0]+'" onclick="clearTimeout(portalOfferTimer);closeMobileMenu()">'+x[1]+'</a>').join('');
  d.innerHTML=links+'<button class="portal-back" onclick="goEntry()">Choose Portal</button><button class="shimmer-btn compact" onclick="openLogin()">Sign In / Join</button>';
@@ -3094,25 +3123,10 @@ let pendingMembershipRole='coach';
 function openPortalOffer(p){
  pendingMembershipRole=p||document.body.dataset.portal||'coach';
  const o=portalOffers[pendingMembershipRole];if(!o||document.body.dataset.portal==='entry')return;
- offerEyebrow.textContent=o.eyebrow;offerTitle.textContent=o.title;offerPrice.innerHTML=o.price+' <small>/ year</small>';offerCopy.textContent=o.copy;offerList.innerHTML=o.items.map(x=>'<div>✓ '+x+'</div>').join('');openModal('portalOfferModal');
+ offerEyebrow.textContent=o.eyebrow;offerTitle.textContent=o.title;offerPrice.innerHTML=o.price+' <small>/ year</small>';offerCopy.textContent=o.copy;offerList.innerHTML=o.items.map(x=>'<div>✓ '+x+'</div>').join('')+(pendingMembershipRole==='player'?'<div class="bb-guardian-note"><b>Under 18? Involve your parent or guardian.</b><p>Youth enrollment awaits verified approval. A paid Parent membership is optional.</p><button class="btn soft" onclick="openGuardianPortal()">Parent / Guardian Portal</button><button class="btn ghost" onclick="openLegal(\'children\')">Youth Accounts &amp; Consent</button></div>':'');openModal('portalOfferModal');
 }
 function demoAction(who,tool){toast(tool+' preview works. '+who+' membership activates persistent records and synced history.')}
-async function demoCheckout(){
-  const p=pendingMembershipRole||document.body.dataset.portal||'coach';
-  closeModal('portalOfferModal');
-  selectedRole=p.charAt(0).toUpperCase()+p.slice(1);
-  db.session.role=selectedRole;
-  try{
-    const session=await window.BBAuth?.getSession?.();
-    if(session){
-      toast('Your '+selectedRole+' account is ready. Secure payment activation is the remaining launch step.');
-      refreshCoachMembershipState();
-      return;
-    }
-  }catch(e){}
-  openLogin();
-  setAuthStatus(selectedRole+' membership starts with your account. Create an account or sign in below. Payment checkout will be added after account setup is verified.','good');
-}
+async function demoCheckout(){await window.BBBilling.start(pendingMembershipRole||document.body.dataset.portal||'coach');}
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});
 async function installBasketballBrilliance(){if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else toast('On supported phones, use Add to Home Screen / Install App from your browser menu.')}
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}))}
@@ -3125,10 +3139,11 @@ window.addEventListener('load',async()=>{const q=new URLSearchParams(location.se
 <script src="assets/js/bb-config.js"></script>
 <script src="assets/js/bb-auth.js"></script>
 <script src="assets/js/bb-data.js"></script>
+<script src="assets/js/bb-billing.js?v=46"></script>
 <script src="assets/js/bb-library.js"></script>
 
 <script type="module" src="assets/js/training-lab.js?v=3"></script>
-<script type="module" src="assets/js/public-gallery.js?v=45"></script>
+<script type="module" src="assets/js/public-gallery.js?v=46"></script>
 <script>
 setPortalNav(document.body.dataset.portal);
 document.getElementById('bb-watch').addEventListener('pointerdown',()=>clearTimeout(portalOfferTimer));
