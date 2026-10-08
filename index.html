@@ -1375,8 +1375,8 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 @supports(overflow:clip){body{overflow-x:clip!important}}
 </style>
 
-<link rel="stylesheet" href="assets/player-learning.css?v=47">
-<link rel="stylesheet" href="assets/public-gallery.css?v=46">
+<link rel="stylesheet" href="assets/player-learning.css?v=49">
+<link rel="stylesheet" href="assets/public-gallery.css?v=49">
 </head>
 <body id="top" data-portal="entry">
 <header class="nav"><div class="wrap navin">
@@ -1422,6 +1422,30 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#app">Try Coach Tools Free</a><a class="shimmer-btn" href="#coach-membership">Coach Membership</a></div>
   </div>
 </div></section>
+<section class="bb-library" id="coachLibrary"><div class="wrap"><div class="library-shell">
+  <div class="library-head">
+    <div><span class="eyebrow">Coach Reference Center</span><h2>Basketball Brilliance Coach Library</h2><p>Search the language of basketball, hear the pronunciation, listen to the complete entry, and use coach-specific cues to teach the concept clearly.</p></div>
+    <span class="library-count" id="coachLibraryCount">Loading terms…</span>
+  </div>
+  <div class="coach-interaction-card">
+  <div class="library-search-row"><input id="coachLibrarySearch" placeholder="Type a term: ICE, BLOB, 3-2 zone, high post, ball screen…"><button class="shimmer-btn attention" id="coachLibraryMic" onclick="BBLibrary.voiceSearch()">🎙 Speak a Term</button></div>
+  <div class="library-filters" id="coachLibraryFilters">
+    <button class="library-filter active" onclick="BBLibrary.setCategory('All',this)">All</button>
+    <button class="library-filter" onclick="BBLibrary.setCategory('Offense',this)">Offense</button>
+    <button class="library-filter" onclick="BBLibrary.setCategory('Defense',this)">Defense</button>
+    <button class="library-filter" onclick="BBLibrary.setCategory('Situations',this)">Situations</button>
+    <button class="library-filter" onclick="BBLibrary.setCategory('Fundamentals',this)">Fundamentals</button>
+  </div>
+  </div>
+  <div class="library-layout"><div id="coachLibraryMatches" class="library-matches"></div><div id="coachLibraryDetail"></div></div>
+  <div class="library-downloads"><h3>Coach Member Downloads</h3><div class="library-download-grid">
+    <div class="library-download-card"><span class="member-pill">Included with Coach Membership</span><b>Basketball Brilliance Coach Glossary</b><p>Working branded glossary preview. The final edition will expand the terminology, teaching context, links and visual references.</p><button class="btn primary tiny" onclick="BBLibrary.downloadPreview()">Download Preview</button></div>
+    <div class="library-download-card"><span class="member-pill">Member Product</span><b>Coach Master Playbook Workbook</b><p>The workbook source is preserved for revision into a polished downloadable membership product and a separate retail product.</p><button class="btn ghost tiny" onclick="toast('The revised Basketball Brilliance workbook download is being prepared for the member library.')">Preview Product</button></div>
+    <div class="library-download-card"><span class="member-pill">Library Expansion</span><b>Videos • Podcasts • Clinics • Links</b><p>The shared media library will organize basketball education by age, role, skill, recruiting stage and coaching topic.</p><button class="btn ghost tiny" onclick="toast('Media Library structure is locked in for a later build.')">Coming Next</button></div>
+  </div></div>
+</div></div></section>
+<section id="coach-articles" class="bb-learning bb-role-articles" aria-labelledby="coach-articles-title"><div class="wrap"><span class="eyebrow">Free coach articles</span><h2 id="coach-articles-title">Teach the game. Build the person.</h2><p>Practical coaching guides for thoughtful teaching, fair opportunities, and a stronger team culture.</p><div id="coachArticleControls" class="article-search"></div><p id="coachArticleCount" aria-live="polite"></p><div id="coachArticleCards" class="learn-grid"></div></div></section>
+<div class="bb-paid-boundary" aria-hidden="true"></div>
 <section class="portal-pricing" id="coach-membership"><div class="wrap"><div class="price-box" style="background:linear-gradient(145deg,#2c2e33,#111214);border:1px solid #4b4e54;color:#fff;box-shadow:0 22px 55px rgba(0,0,0,.2)"><div><span class="eyebrow">Annual coach membership</span><h2 class="section-title" style="color:#fff">Turn the preview into your active season system.</h2><p class="section-copy" style="color:#c9cbd0">Persistent team records, synced access, roster history, family invitations, practices, games, scouting, reports, downloads and year-to-year archives.</p><p class="bb-membership-benefits">Membership brings saved team records, family invitations, practice planning, game stats, scouting and season reports together. Coach-linked family forms do not require a separate family subscription.</p><div class="ctas"><a class="shimmer-btn" href="#app">Try the Tools Free</a><button class="shimmer-btn" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div></div><div><div class="price-number">$47 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('coach')">See Coach Membership</button><div id="coachMembershipState" class="lock-note">Account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.</div><div class="lock-note">Annual subscription · Stripe sandbox testing · No real charges.</div></div></div></div></section>
 <section class="coach-iq" id="coachIQStation"><div class="wrap"><div class="coach-iq-shell">
   <div class="coach-iq-head">
@@ -1454,28 +1478,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
   <div id="coachIQResults" class="iq-results"><div class="iq-empty">Ask a situation or tap a quick scenario to see recommended options.</div></div>
   <div class="iq-history"><h4>Recent Coach IQ Questions</h4><div id="coachIQHistory" class="iq-history-list"><span class="sub">Your signed-in team history will appear here.</span></div></div>
 </div></div></section>
-<section class="bb-library" id="coachLibrary"><div class="wrap"><div class="library-shell">
-  <div class="library-head">
-    <div><span class="eyebrow">Coach Reference Center</span><h2>Basketball Brilliance Coach Library</h2><p>Search the language of basketball, hear the pronunciation, listen to the complete entry, and use coach-specific cues to teach the concept clearly.</p></div>
-    <span class="library-count" id="coachLibraryCount">Loading terms…</span>
-  </div>
-  <div class="coach-interaction-card">
-  <div class="library-search-row"><input id="coachLibrarySearch" placeholder="Type a term: ICE, BLOB, 3-2 zone, high post, ball screen…"><button class="shimmer-btn attention" id="coachLibraryMic" onclick="BBLibrary.voiceSearch()">🎙 Speak a Term</button></div>
-  <div class="library-filters" id="coachLibraryFilters">
-    <button class="library-filter active" onclick="BBLibrary.setCategory('All',this)">All</button>
-    <button class="library-filter" onclick="BBLibrary.setCategory('Offense',this)">Offense</button>
-    <button class="library-filter" onclick="BBLibrary.setCategory('Defense',this)">Defense</button>
-    <button class="library-filter" onclick="BBLibrary.setCategory('Situations',this)">Situations</button>
-    <button class="library-filter" onclick="BBLibrary.setCategory('Fundamentals',this)">Fundamentals</button>
-  </div>
-  </div>
-  <div class="library-layout"><div id="coachLibraryMatches" class="library-matches"></div><div id="coachLibraryDetail"></div></div>
-  <div class="library-downloads"><h3>Coach Member Downloads</h3><div class="library-download-grid">
-    <div class="library-download-card"><span class="member-pill">Included with Coach Membership</span><b>Basketball Brilliance Coach Glossary</b><p>Working branded glossary preview. The final edition will expand the terminology, teaching context, links and visual references.</p><button class="btn primary tiny" onclick="BBLibrary.downloadPreview()">Download Preview</button></div>
-    <div class="library-download-card"><span class="member-pill">Member Product</span><b>Coach Master Playbook Workbook</b><p>The workbook source is preserved for revision into a polished downloadable membership product and a separate retail product.</p><button class="btn ghost tiny" onclick="toast('The revised Basketball Brilliance workbook download is being prepared for the member library.')">Preview Product</button></div>
-    <div class="library-download-card"><span class="member-pill">Library Expansion</span><b>Videos • Podcasts • Clinics • Links</b><p>The shared media library will organize basketball education by age, role, skill, recruiting stage and coaching topic.</p><button class="btn ghost tiny" onclick="toast('Media Library structure is locked in for a later build.')">Coming Next</button></div>
-  </div></div>
-</div></div></section>
+
 
 <section id="coaches"><div class="wrap"><span class="eyebrow">Coach-first business model</span><h2 class="section-title">The coach pays. The team connects.</h2><p class="section-copy">Parents and players do not need a second subscription just to complete the coach's team forms. They can enter requested information through a linked family path. Separate Parent + Player products remain optional upgrades owned by the family.</p><div class="flow"><div class="step"><span class="num">01 • Coach</span><h3>Create the team</h3><p>Set the team, season, staff, roster structure and required information.</p></div><div class="step"><span class="num">02 • Invite</span><h3>Send one link</h3><p>Generate a player/family invite without making the coach retype everything.</p></div><div class="step"><span class="num">03 • Connect</span><h3>Profile appears</h3><p>Player and guardian information flows into the same coach roster.</p></div><div class="step"><span class="num">04 • Grow</span><h3>Family owns more</h3><p>Basketball Passport, Journal, Opportunities, Recruiting and Parent Resources become natural upsells.</p></div></div></div></section>
 <section id="app"><div class="wrap"><span class="eyebrow">Coach workspace</span><h2 class="section-title">Coach Command Center</h2><p class="section-copy">Move from team setup to player development without losing the story of your season. Keep rosters, practices, games, scouting, plays, notes and reports organized in one place.</p>
@@ -1544,8 +1547,6 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#parent-tools">Try Parent Tools Free</a><a class="shimmer-btn" href="#parent-membership">Parent Membership</a></div>
   </div>
 </div></section>
-<section class="portal-pricing" id="parent-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">Annual parent membership</span><h2 class="section-title">Keep the basketball journey in the family.</h2><p class="section-copy">Persistent Basketball Passport, opportunity tracking, recruiting organization, family vault, downloadable reports and year-to-year history.</p><p class="bb-membership-benefits">Membership adds a family-owned Basketball Passport, opportunity tracking, recruiting plans, a private resource vault and year-to-year records. Parent membership is optional and separate from team-linked access or guardian approval.</p><div class="ctas"><a class="shimmer-btn" href="#parent-tools">Try the Tools Free</a><button class="shimmer-btn" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div></div><div><div class="price-number">$24 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('parent')">See Parent Membership</button><div id="parentMembershipState" class="lock-note">Parent account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.</div><div class="lock-note">Annual subscription · Stripe sandbox testing · No real charges.</div></div></div></div></section>
-
 <section id="parent-library-top"><div class="wrap"><div class="parent-library-shell">
   <div class="parent-section-head"><div><span class="eyebrow">Shared basketball knowledge</span><h2>Parent Basketball Library</h2><p>Learn the language your child and coaches use. Search a term, hear it pronounced, listen to the full definition, and see what the concept means from a parent's point of view.</p></div><span class="parent-light-tag">Basketball Brilliance Reference Center</span></div>
   <div class="parent-input-card"><div class="parent-lib-row"><input id="parentLibrarySearch" placeholder="Search: BLOB, drop coverage, 3-2 zone, showcase, high post…"><button class="shimmer-btn attention" onclick="startParentLibraryVoice()">🎙 Speak a Term</button></div>
@@ -1556,6 +1557,11 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <div class="parent-download-card"><b>Family Basketball Learning Library</b><p>Videos, podcasts, recruiting education, team-selection guidance, and age-based resources will be added here as the Parent portal grows.</p><button class="btn ghost tiny" onclick="toast('Family learning resources are part of the next Parent build.')">Coming Next</button></div>
   </div>
 </div></div></section>
+<section id="parent-articles" class="bb-learning bb-role-articles" aria-labelledby="parent-articles-title"><div class="wrap"><span class="eyebrow">Free parent articles</span><h2 id="parent-articles-title">More knowledge. Better support.</h2><p>Practical guides for supporting your child, understanding the journey, and asking better basketball questions.</p><div id="parentArticleControls" class="article-search"></div><p id="parentArticleCount" aria-live="polite"></p><div id="parentArticleCards" class="learn-grid"></div></div></section>
+<div class="bb-paid-boundary" aria-hidden="true"></div>
+<section class="portal-pricing" id="parent-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">Annual parent membership</span><h2 class="section-title">Keep the basketball journey in the family.</h2><p class="section-copy">Persistent Basketball Passport, opportunity tracking, recruiting organization, family vault, downloadable reports and year-to-year history.</p><p class="bb-membership-benefits">Membership adds a family-owned Basketball Passport, opportunity tracking, recruiting plans, a private resource vault and year-to-year records. Parent membership is optional and separate from team-linked access or guardian approval.</p><div class="ctas"><a class="shimmer-btn" href="#parent-tools">Try the Tools Free</a><button class="shimmer-btn" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div></div><div><div class="price-number">$24 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('parent')">See Parent Membership</button><div id="parentMembershipState" class="lock-note">Parent account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.</div><div class="lock-note">Annual subscription · Stripe sandbox testing · No real charges.</div></div></div></div></section>
+
+
 
 <section class="portal-tools" id="parent-tools"><div class="wrap"><span class="eyebrow">Parent tools</span><h2 class="section-title">Keep the journey organized from season to season.</h2><p class="section-copy">Signed-in Parent accounts keep family-owned records, linked team information, recruiting plans, private documents, and next steps together.</p>
 <div class="parent-tool-shell">
@@ -1621,7 +1627,8 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
   <div class="player-lib-layout"><div id="playerLibraryResults" class="player-lib-results"></div><div id="playerLibraryDetail" class="player-lib-detail"><span class="library-cat">Player Library</span><h3>Choose a basketball term</h3><p>Open any term to see the definition, player context, pronunciation, and read-aloud option.</p></div></div>
 </div></div></section>
 
-<section class="bb-learning" id="player-articles" aria-label="Free player articles"></section><section class="bb-learning" id="player-journal"><div class="wrap bb-journal-shell"><div><span class="eyebrow">06 / Basketball Brilliance / Paper companion</span><h2>The Player’s Journal</h2><p>A place for your observations, goals, and next steps beyond the screen. An optional paper companion to your basketball journey.</p><p class="bb-learning-status">Amazon product link coming soon.</p><p>When the product link is added, “View on Amazon” will take you to Amazon to see the book and purchase there.</p></div><div class="bb-journal-cover" aria-label="Player Journal placeholder cover"><span>BASKETBALL BRILLIANCE</span><b>PLAYER’S<br>JOURNAL</b></div></div></section><section class="portal-pricing" id="player-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">07 / Player membership / Saved tools</span><h2 class="section-title" style="color:#fff">Keep building after the final buzzer.</h2><p class="section-copy" style="color:#aeb1b6">Goals, workouts, stats, highlights, Basketball Passport, opportunities, synced records and year-to-year player history.</p><p class="bb-membership-benefits">Membership adds Player Next Move, saved goals, workouts, stats, film notes, Basketball Passport, player history, and private article bookmarks, highlights, and journal notes. A parent or legal guardian must approve participation and handle membership purchases for players under 18.</p><div class="ctas"><a class="shimmer-btn" href="#player-tools">Explore Player Tools</a><button class="shimmer-btn" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div><div class="bb-guardian-note"><b>Under 18? Start with your parent or guardian.</b><p>Ask an adult to use the Parent portal. Guardian approval does not require a paid Parent membership. Youth account enrollment is not available yet; a verified approval and account-linking process must be in place first. Do not enter a child’s personal information in preview tools.</p><button class="shimmer-btn" onclick="enterPortal('parent')">Parent / Guardian Portal</button><p>Parents: the optional Parent membership adds family records, opportunities and recruiting organization.</p></div></div><div><div class="price-number">$17 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('player')">See Player Membership</button><div id="playerMembershipState" class="lock-note">Player account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.</div><div class="lock-note">Annual subscription · Stripe sandbox testing · Adult purchase only; youth account activation remains unavailable.</div></div></div></div></section>
+<section class="bb-learning" id="player-articles" aria-label="Free player articles"></section><div class="bb-paid-boundary" aria-hidden="true"></div>
+<section class="bb-learning" id="player-journal"><div class="wrap bb-journal-shell"><div><span class="eyebrow">06 / Basketball Brilliance / Paper companion</span><h2>The Player’s Journal</h2><p>A place for your observations, goals, and next steps beyond the screen. An optional paper companion to your basketball journey.</p><p class="bb-learning-status">Amazon product link coming soon.</p><p>When the product link is added, “View on Amazon” will take you to Amazon to see the book and purchase there.</p></div><div class="bb-journal-cover" aria-label="Player Journal placeholder cover"><span>BASKETBALL BRILLIANCE</span><b>PLAYER’S<br>JOURNAL</b></div></div></section><section class="portal-pricing" id="player-membership"><div class="wrap"><div class="price-box"><div><span class="eyebrow">07 / Player membership / Saved tools</span><h2 class="section-title" style="color:#fff">Keep building after the final buzzer.</h2><p class="section-copy" style="color:#aeb1b6">Goals, workouts, stats, highlights, Basketball Passport, opportunities, synced records and year-to-year player history.</p><p class="bb-membership-benefits">Membership adds Player Next Move, saved goals, workouts, stats, film notes, Basketball Passport, player history, and private article bookmarks, highlights, and journal notes. A parent or legal guardian must approve participation and handle membership purchases for players under 18.</p><div class="ctas"><a class="shimmer-btn" href="#player-tools">Explore Player Tools</a><button class="shimmer-btn" onclick="openLegal('children')">Youth Accounts &amp; Consent</button></div><div class="bb-guardian-note"><b>Under 18? Start with your parent or guardian.</b><p>Ask an adult to use the Parent portal. Guardian approval does not require a paid Parent membership. Youth account enrollment is not available yet; a verified approval and account-linking process must be in place first. Do not enter a child’s personal information in preview tools.</p><button class="shimmer-btn" onclick="enterPortal('parent')">Parent / Guardian Portal</button><p>Parents: the optional Parent membership adds family records, opportunities and recruiting organization.</p></div></div><div><div class="price-number">$17 <small>/ year</small></div><button class="shimmer-btn attention" onclick="openPortalOffer('player')">See Player Membership</button><div id="playerMembershipState" class="lock-note">Player account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.</div><div class="lock-note">Annual subscription · Stripe sandbox testing · Adult purchase only; youth account activation remains unavailable.</div></div></div></div></section>
 
 
 <section class="portal-tools" id="player-tools"><div class="wrap"><span class="eyebrow">08 / Player Tools + Membership</span><h2 class="section-title" style="color:#fff">Your dashboard. Your next move.</h2><p class="section-copy" style="color:#aeb1b6">Start with the dashboard and directions, then choose the tool that matches your next step. Membership adds saved records. Preview workflows remain available for adults to explore; do not enter a child’s personal information.</p>
@@ -2987,8 +2994,8 @@ function setPortalNav(p){
  const d=document.getElementById('desktopNav'),m=document.getElementById('mobileDrawer'),c=document.getElementById('portalContext');
  const cfg={
   entry:[['#entryStage','Portals'],['#bb-watch','Watch']],
-  coach:[['#coach-home','Overview'],['#bb-watch','Watch'],['#coach-membership','Membership'],['#app','Coach System'],['#coachIQStation','Coach IQ'],['#books','Tool Guide']],
-  parent:[['#parent-home','Overview'],['#bb-watch','Watch'],['#parent-membership','Membership'],['#parent-tools','Parent Tools'],['#parent-question-hub','Sideline Guide']],
+  coach:[['#coach-home','Overview'],['#bb-watch','Watch'],['#coachLibrary','Library'],['#coach-articles','Articles'],['#app','My Tools'],['#books','Tool Guide']],
+  parent:[['#parent-home','Overview'],['#bb-watch','Watch'],['#parent-library-top','Library'],['#parent-articles','Articles'],['#parent-tools','My Tools'],['#parent-question-hub','Sideline Guide']],
   player:[['#player-home','Overview'],['#bb-watch','Watch'],['#player-training','Train'],['#player-library-top','Library'],['#player-articles','Articles'],['#player-tools','My Tools']]
  }[p]||[];
  const links=cfg.map(x=>'<a href="'+x[0]+'" onclick="clearTimeout(portalOfferTimer);closeMobileMenu()">'+x[1]+'</a>').join('');
@@ -3140,11 +3147,12 @@ window.addEventListener('load',async()=>{const q=new URLSearchParams(location.se
 <script src="assets/js/bb-billing.js?v=46"></script>
 <script src="assets/js/bb-library.js"></script>
 
-<script type="module" src="assets/js/player-learning.js?v=48"></script>
-<script type="module" src="assets/js/public-gallery.js?v=48"></script>
+<script type="module" src="assets/js/player-learning.js?v=49"></script>
+<script type="module" src="assets/js/public-gallery.js?v=49"></script>
 <script>
 setPortalNav(document.body.dataset.portal);
 document.getElementById('bb-watch').addEventListener('pointerdown',()=>clearTimeout(portalOfferTimer));
 </script>
+<script type="module" src="assets/js/portal-articles.js?v=49"></script>
 </body></html>
 

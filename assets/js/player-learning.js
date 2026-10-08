@@ -1,4 +1,4 @@
-import {articles,banner} from './player-articles-data.js?v=47';
+import {articles,banner} from './player-articles-data.js?v=49';
 const root=document.getElementById('player-training');
 const courses=[
 ['Ball Control','Protect the ball and move with purpose.',[
