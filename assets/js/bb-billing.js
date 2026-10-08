@@ -1,8 +1,8 @@
 (function(){
  const plans=Object.freeze({
-  coach:{amount:47,url:'https://buy.stripe.com/test_5kQbJ26oLbil2th9rze3e00'},
-  parent:{amount:24,url:'https://buy.stripe.com/test_4gMbJ2bJ59adebZ1Z7e3e01'},
-  player:{amount:17,url:'https://buy.stripe.com/test_28EbJ214r5Y15FtbzHe3e02'}
+  coach:Object.freeze({amount:47,currency:'usd',interval:'year',priceId:'price_1UNnG5IuokIcVOLNfhxbFNJx',url:'https://buy.stripe.com/test_5kQbJ26oLbil2th9rze3e00'}),
+  parent:Object.freeze({amount:24,currency:'usd',interval:'year',priceId:'price_1UNwFtIuokIcVOLNm7TMfPJg',url:'https://buy.stripe.com/test_4gMbJ2bJ59adebZ1Z7e3e01'}),
+  player:Object.freeze({amount:17,currency:'usd',interval:'year',priceId:'price_1UNwOQIuokIcVOLN6qFqhQ8B',url:'https://buy.stripe.com/test_28EbJ214r5Y15FtbzHe3e02'})
  });
  async function start(role){
   if(!plans[role])return;

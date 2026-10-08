@@ -1,8 +1,8 @@
 // Sandbox-only membership fulfillment. No browser-supplied payment status is trusted.
 const plans = {
- 'https://buy.stripe.com/test_5kQbJ26oLbil2th9rze3e00': {role:'coach',amount:4700},
- 'https://buy.stripe.com/test_4gMbJ2bJ59adebZ1Z7e3e01': {role:'parent',amount:2400},
- 'https://buy.stripe.com/test_28EbJ214r5Y15FtbzHe3e02': {role:'player',amount:1700}
+ 'https://buy.stripe.com/test_5kQbJ26oLbil2th9rze3e00': {role:'coach',amount:4700,priceId:'price_1UNnG5IuokIcVOLNfhxbFNJx'},
+ 'https://buy.stripe.com/test_4gMbJ2bJ59adebZ1Z7e3e01': {role:'parent',amount:2400,priceId:'price_1UNwFtIuokIcVOLNm7TMfPJg'},
+ 'https://buy.stripe.com/test_28EbJ214r5Y15FtbzHe3e02': {role:'player',amount:1700,priceId:'price_1UNwOQIuokIcVOLN6qFqhQ8B'}
 };
 const env = name => Deno.env.get(name) || '';
 async function authentic(body,header,secret){
@@ -46,7 +46,7 @@ Deno.serve(async req=>{
    const plan=plans[link.url];if(!plan||link.livemode!==false)throw new Error('Unrecognized plan');
    const subscription=await stripe('subscriptions/'+encodeURIComponent(identifier(session.subscription)));
    const items=subscription.items?.data||[];
-   if(subscription.livemode!==false||items.length!==1||items[0].quantity!==1||items[0].price.unit_amount!==plan.amount||items[0].price.currency!=='usd'||items[0].price.recurring?.interval!=='year'||items[0].price.recurring?.interval_count!==1)throw new Error('Plan mismatch');
+   if(subscription.livemode!==false||items.length!==1||items[0].quantity!==1||items[0].price.id!==plan.priceId||items[0].price.livemode!==false||items[0].price.unit_amount!==plan.amount||items[0].price.currency!=='usd'||items[0].price.recurring?.interval!=='year'||items[0].price.recurring?.interval_count!==1)throw new Error('Plan mismatch');
    const users=await database('profiles?id=eq.'+uid+'&select=id');if(users.length!==1)throw new Error('Account not found');
    const old=await database('memberships?user_id=eq.'+uid+'&role=eq.'+plan.role+'&select=provider,status');
    if(old.some(x=>x.provider==='stripe'&&x.status==='active'))throw new Error('Live membership cannot be replaced by sandbox');
