@@ -1,0 +1,33 @@
+/* Portal-specific viewing surfaces; preserve artwork, controls and Player theme. */
+.nav .desktopnav a,.mobile-drawer a{font-family:Georgia,'Times New Roman',serif!important}
+body[data-portal="parent"] .bg-watch{background:linear-gradient(180deg,#f5f6f7,#e8ebee)!important;color:#17191d!important}
+body[data-portal="parent"] .bg-watch-head h2,body[data-portal="parent"] .bg-category h3,body[data-portal="parent"] .bg-card-copy h4,body[data-portal="parent"] .bg-row-caption b{color:#17191d!important}
+body[data-portal="parent"] .bg-watch-head p,body[data-portal="parent"] .bg-card-copy p,body[data-portal="parent"] .bg-card-copy small,body[data-portal="parent"] .bg-row-caption,body[data-portal="parent"] .bg-live-note,body[data-portal="parent"] .bg-source-note,body[data-portal="parent"] .bg-empty{color:#50565e!important}
+body[data-portal="parent"] .bg-label,body[data-portal="parent"] .bg-category-head>span,body[data-portal="parent"] .bg-credit-link{color:#aa390d!important}
+body[data-portal="parent"] .bg-watch-filters{background:linear-gradient(130deg,#fff,#e9ecef);border-color:#caa590;box-shadow:0 10px 28px #0000000b,inset 0 1px 0 #fff}
+body[data-portal="parent"] .bg-watch-filters label,body[data-portal="parent"] .bg-audience-control>span{color:#25282d}
+body[data-portal="parent"] .bg-watch-filters input,body[data-portal="parent"] #bg-audience-toggle{background:#fff!important;color:#17191d!important;border-color:#aeb5be!important}
+body[data-portal="parent"] .bg-watch-filters input::placeholder{color:#626974}
+body[data-portal="parent"] #bg-audience-list{background:#fff;border-color:#c95520;box-shadow:0 12px 28px #0002}
+body[data-portal="parent"] #bg-audience-list button{color:#17191d}
+body[data-portal="parent"] #bg-audience-list button[aria-selected=true]{background:#fff0e6}
+body[data-portal="parent"] #bg-audience-list button:hover,body[data-portal="parent"] #bg-audience-list button:focus-visible{color:#fff}
+body[data-portal="parent"] .bg-video-card{background:#fff;border-color:#cbd1d8;box-shadow:0 6px 18px #0000000a}
+body[data-portal="parent"] .bg-card-play{color:#17191d}
+body[data-portal="parent"] .bg-card-art{background:linear-gradient(135deg,#edf0f3,#d5dae0)}
+body[data-portal="parent"] .bg-card-art span{background:#f8fafaf0;color:#17191d;border:1px solid #ffffff90}
+body[data-portal="parent"] .bg-video-grid{scrollbar-color:#b34b20 #dce1e6}
+body[data-portal="parent"] .bg-video-dialog{background:#f7f8fa;color:#17191d;border-color:#bfc6ce}
+body[data-portal="parent"] .bg-video-dialog h3{color:#17191d}
+body[data-portal="parent"] .bg-video-dialog a{color:#a63c10}
+body[data-portal="parent"] .bg-dialog-caption{color:#50565e}
+/* Coach: smoke-gray surrounding space and charcoal video cards. */
+body[data-portal="coach"] .bg-watch{background:linear-gradient(180deg,#d0d1d3,#bfc2c6)!important;color:#17191d!important}
+body[data-portal="coach"] .bg-watch-head h2,body[data-portal="coach"] .bg-category h3,body[data-portal="coach"] .bg-row-caption b{color:#17191d!important}
+body[data-portal="coach"] .bg-watch-head p,body[data-portal="coach"] .bg-row-caption,body[data-portal="coach"] .bg-live-note,body[data-portal="coach"] .bg-source-note,body[data-portal="coach"] .bg-empty{color:#414750!important}
+body[data-portal="coach"] .bg-label,body[data-portal="coach"] .bg-category-head>span{color:#9e320a}
+body[data-portal="coach"] .bg-video-card{background:linear-gradient(155deg,#34373c,#23262b);border-color:#555a62;box-shadow:0 8px 24px #0002}
+body[data-portal="coach"] .bg-card-copy h4{color:#fff!important}
+body[data-portal="coach"] .bg-card-copy p,body[data-portal="coach"] .bg-card-copy small{color:#d0d3d7}
+body[data-portal="coach"] .bg-credit-link{color:#ffb986}
+body[data-portal="coach"] .bg-video-grid{scrollbar-color:#a64a24 #aeb3ba}
