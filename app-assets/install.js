@@ -65,7 +65,7 @@
   }
   window.siteInstallApp=install;
   window.__siteExperienceConfig=brand;
-  const experience=document.createElement("script");experience.src=new URL("site-experience.js?v=20261015-bb-fire",document.currentScript.src).href;document.head.append(experience);
+  const experience=document.createElement("script");experience.src=new URL("site-experience.js?v=60",document.currentScript.src).href;document.head.append(experience);
   function init() {
     const desktopHost = document.querySelector(brand.desktop);
     const desktop = makeButton('Install App','site-app-desktop');
@@ -76,7 +76,7 @@
     if (mobileHost) { mobileHost.prepend(mobile); new MutationObserver(() => { if (!mobileHost.contains(mobile)) mobileHost.prepend(mobile); }).observe(mobileHost, {childList:true}); }
     else { const rail=document.createElement('div');rail.className='site-app-mobile-rail site-app-mobile-slot';rail.append(mobile);(document.querySelector('main')||document.body).prepend(rail); }
     const entry = document.getElementById('entryStage');
-    if (entry) { const row=document.createElement('div');row.className='site-app-entry';row.style.cssText='position:absolute;right:12px;top:12px;z-index:5';row.append(makeButton());entry.append(row); }
+    if (entry) { const row=document.createElement('div');row.className='site-app-entry';row.style.cssText='position:absolute;right:12px;top:12px;z-index:5';row.append(makeButton());entry.prepend(row); }
     const legacy = document.querySelectorAll('[data-pwa-install], [onclick*="installBasketballBrilliance"]');
     legacy.forEach(b => { b.hidden=true;b.style.setProperty('display','none','important'); });
     document.querySelectorAll('.site-app-footer').forEach(n=>n.remove());

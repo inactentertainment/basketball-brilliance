@@ -35,10 +35,8 @@ function addMenu(){
  all(cfg.preserve||'[data-no-preserve]').forEach(n=>{if(sources.some(s=>s.contains(n)))host.append(n);});
  sources.forEach(n=>{n.classList.add('x-hidden-nav');n.style.setProperty('display','none','important');new MutationObserver(refresh).observe(n,{childList:true,subtree:true});});refresh();
  all(cfg.oldMenuTriggers||'[data-no-old-menu]').forEach(n=>{n.classList.add('x-hidden-nav');n.style.setProperty('display','none','important');});
- function toggle(){const b=el('button','x-menu-toggle');b.type='button';b.setAttribute('aria-label','Open '+cfg.name+' navigation');b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls','site-experience-menu');b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16M17 4v16"/></svg>';b.onclick=()=>{refresh();menu.showModal();b.setAttribute('aria-expanded','true');};return b;}
+ function toggle(){const b=el('button','x-menu-toggle');b.type='button';b.setAttribute('aria-label','Open '+cfg.name+' navigation');b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls','site-experience-menu');b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';b.onclick=()=>{refresh();menu.showModal();b.setAttribute('aria-expanded','true');};return b;}
  menu.id='site-experience-menu';host.append(toggle());
- // The Basketball Brilliance entry screen intentionally has no header.
- if(cfg.slug==='basketball-brilliance'&&$('#entryStage')){const dock=el('div','x-entry-menu');dock.style.cssText='position:absolute;left:12px;top:12px;z-index:6';dock.append(toggle());$('#entryStage').append(dock);}
  // Keep install access outside the navigation containers that were collapsed.
  const top=$('.site-app-desktop');if(top&&!host.contains(top))host.insertBefore(top,host.lastElementChild);
 }
@@ -53,7 +51,7 @@ function brandNative(){
  if(heading&&!panel.querySelector('.x-divider')){const old=panel.querySelector('.jb-divider,.cb-juke-divider,.etp-jukebox-divider');if(old)old.replaceWith(divider(cfg.divider));else heading.after(divider(cfg.divider));}
  if(cfg.slug==='divine-shades-of-brown'&&heading&&!heading.querySelector('.x-brand-name')){const small=el('small','x-brand-name',cfg.name);heading.querySelector('h2')?.before(small);}
  if(cfg.slug==='examine-the-past-home'){const copy=heading?.querySelector('div');if(copy){const h=copy.querySelector('h2'),s=copy.querySelector('span');if(h&&s){h.textContent='Jukebox';s.textContent=cfg.name;copy.prepend(s);}}}
- const summary=panel.querySelector('.jb-personal summary,.cb-favorites summary');if(summary){summary.textContent='› My playlists';}
+ const summary=panel.querySelector('.jb-personal summary,.cb-favorites summary');if(summary){summary.textContent=cfg.slug==='basketball-brilliance'?'Playlist':'› My playlists';}
  panel.querySelector('.x-explore-footer')?.remove();
  if(cfg.slug!=='basketball-brilliance'&&!panel.querySelector('.x-explore-footer')){const link=el('a','x-action x-wide x-explore-footer','Explore '+cfg.name);link.href=new URL('../',base).href;panel.append(link);}
 }
@@ -121,7 +119,7 @@ async function genericPlayer(){
 }
 function init(){
  const body=document.body;body.dataset.siteSlug=cfg.slug;for(const [key,value] of Object.entries({high:cfg.high,mid:cfg.mid,low:cfg.low,ink:cfg.ink}))body.style.setProperty('--x-'+key,value);
- const link=el('link');link.rel='stylesheet';link.href=asset('site-experience.css?v=20261015-bb-fire');document.head.append(link);
+ const link=el('link');link.rel='stylesheet';link.href=asset('site-experience.css?v=60');document.head.append(link);
  function syncTheme(){const m=getComputedStyle(document.body).color.match(/[\d.]+/g)||[240,240,240];const light=cfg.slug!=='ie'&&(+m[0]*.2126 + +m[1]*.7152 + +m[2]*.0722)<145;body.style.setProperty('--x-panel',light?'#f1eee7':'#0c100f');body.style.setProperty('--x-text',light?'#262923':'#eee');}
  syncTheme();for(const n of [document.body,document.documentElement])new MutationObserver(syncTheme).observe(n,{attributes:true,attributeFilter:['class','data-theme']});
  addMenu();brandNative();genericPlayer();

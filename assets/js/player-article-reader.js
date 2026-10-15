@@ -1,5 +1,5 @@
 import{articles as playerArticles,banner}from'./player-articles-data.js?v=52';
-import{mountArticleListener}from'./article-listen.js?v=55';
+import{mountArticleComfort}from'./article-comfort.js?v=60';
 const params=new URLSearchParams(location.search),role=['coach','parent'].includes(params.get('role'))?params.get('role'):'player',roleName=role[0].toUpperCase()+role.slice(1),table=role==='player'?'player_article_notes':'portal_article_notes';
 const articles=role==='player'?playerArticles:(await import('./portal-articles-catalog.js?v=55')).portalArticles[role];
 document.body.dataset.role=role;
@@ -46,5 +46,5 @@ if(!a){main.innerHTML=`<h1>Choose a ${roleName} Article</h1><p>This guide could 
  async function loadNotes(){record={bookmark:false,highlights:[],journal_note:''};document.getElementById('journalNote').value='';paint();try{const{client,session}=await clientSession(false);let query=client.from(table).select('bookmark,highlights,journal_note').eq('user_id',session.user.id).eq('article_slug',a.slug);if(role!=='player')query=query.eq('role',role);const{data,error}=await query.maybeSingle();if(error)throw error;if(data){record=data;document.getElementById('journalNote').value=data.journal_note;paint();status('Your private saved notes are loaded.');}}catch(err){if(!/Sign in/.test(err.message))status('Private notes could not be loaded. Try Member access again.');}}
  loadNotes();window.BBAuth?.onAuthStateChange(()=>loadNotes());
  const progress=()=>{const total=document.documentElement.scrollHeight-innerHeight;document.getElementById('readProgress').style.width=(total>0?Math.min(100,Math.max(0,scrollY/total*100)):100)+'%';};addEventListener('scroll',progress,{passive:true});addEventListener('resize',progress);progress();
- mountArticleListener(main);
+ await mountArticleComfort();
 }
