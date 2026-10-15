@@ -301,6 +301,13 @@ body[data-portal="parent"] .role-dashboard-card span{color:#68707a}
  .role-dashboard-grid{grid-template-columns:1fr 1fr}
 }
 
+
+/* Three-role entrance music: independent visible orange toggle; preserve jukebox. */
+.bb-entry-theme{margin-left:8px;position:relative;border-color:#a74d24;background:#21100b}
+.bb-entry-theme:hover{box-shadow:0 0 16px #ff762b55}
+.bb-entry-theme::after{content:attr(title);position:absolute;left:50%;bottom:calc(100% + 9px);transform:translate(-50%,4px);background:#20120d;border:1px solid #f47b33;color:#ffae75;border-radius:7px;padding:3px 9px;font:700 11px/1.3 Arial,sans-serif;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+.bb-entry-theme:hover::after,.bb-entry-theme:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+body:not([data-portal="entry"]) .bb-entry-theme{display:none}
 </style>
 
 
@@ -1391,6 +1398,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <header class="nav"><div class="wrap navin">
 <a class="portal-header-brand" href="javascript:void(0)" onclick="goEntry()" aria-label="Basketball Brilliance entry"><img src="assets/bb-fire-logo.webp?v=20261015" alt="Basketball Brilliance basketball mark"><span class="portal-context" id="portalContext">Choose your portal</span></a>
 <nav class="desktopnav" id="desktopNav"></nav>
+<button class="sound-toggle bb-entry-theme muted" type="button" id="bbEntryTheme" aria-label="Turn theme music on" title="On" aria-pressed="false" onclick="toggleBBMusic()"><span></span><span></span><span></span></button>
 <button class="sound-toggle portal-sound" type="button" id="musicToggle" aria-label="Open Basketball Brilliance Jukebox" aria-expanded="false" aria-controls="musicPanel"><span></span><span></span><span></span></button>
 <button class="hamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
 </div><nav class="mobile-drawer" id="mobileDrawer"></nav></header>
@@ -1766,7 +1774,7 @@ function openModal(id){document.getElementById(id).classList.add('open')}functio
 
 let bbMusicStarted=false;
 function bbSyncSoundButtons(isPlaying){
-  document.querySelectorAll('.sound-toggle').forEach(b=>b.classList.toggle('muted',!isPlaying));
+  document.querySelectorAll('.sound-toggle').forEach(b=>b.classList.toggle('muted',!isPlaying));const b=document.getElementById('bbEntryTheme');if(b){b.title=isPlaying?'Off':'On';b.setAttribute('aria-label',isPlaying?'Turn theme music off':'Turn theme music on');b.setAttribute('aria-pressed',String(isPlaying))}
 }
 async function bbStartMusic(){
   const a=document.getElementById('bbMusic'); if(!a) return false;
@@ -3127,7 +3135,7 @@ function goEntry(){
  bbFinishTransition(bbActiveTransition);
  closeMobileMenu();
  document.querySelectorAll('.modal.open').forEach(el=>el.classList.remove('open'));
- window.BBJukebox?.close();bbStopMusic();document.body.dataset.portal='entry';setPortalNav('entry');
+ window.BBJukebox?.close();bbStopMusic();document.body.dataset.portal='entry';setPortalNav('entry');bbSyncSoundButtons(!document.getElementById('bbMusic')?.paused);
  history.replaceState(null,'',location.pathname+location.search+'#top');
  window.scrollTo({top:0,left:0,behavior:'instant'});
 }
@@ -3138,7 +3146,7 @@ async function enterPortal(p){
  window.scrollTo({top:0,left:0,behavior:'instant'});
  // Scroll once after switching layout; async data and animation cleanup never reset it.
  window.BBJukebox?.portalChanged(p);if(p==='parent'){try{await loadParentWorkspace()}catch(e){}}if(p==='player'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch(e){}if(pref!=='off')await bbStartMusic();try{await loadPlayerWorkspace()}catch(e){}}
- else bbStopMusic();
+ else if(p!=='entry')bbStopMusic();
  if(p==='coach'){try{if(await window.BBAuth?.getSession?.())await loadPersistentCoachWorkspace();await refreshCoachMembershipState()}catch(e){}}
  /* Membership offers open on an intentional click. */
 }
@@ -3153,6 +3161,7 @@ async function demoCheckout(){await window.BBBilling.start(pendingMembershipRole
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});
 async function installBasketballBrilliance(){if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else toast('On supported phones, use Add to Home Screen / Install App from your browser menu.')}
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}))}
+window.addEventListener('load',()=>{if(document.body.dataset.portal==='entry'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch{}if(pref!=='off')bbStartMusic();document.addEventListener('pointerdown',function resumeEntryMusic(e){if(document.body.dataset.portal!=='entry'||e.target.closest('#bbEntryTheme,#musicToggle,.music-panel'))return;const a=document.getElementById('bbMusic');if(a?.paused&&pref!=='off')bbStartMusic();document.removeEventListener('pointerdown',resumeEntryMusic,true)},{capture:true,once:false})}});
 window.addEventListener('load',async()=>{const q=new URLSearchParams(location.search);const invite=q.get('invite');if(invite){const role=(q.get('role')||'parent').toLowerCase();selectedRole=role.charAt(0).toUpperCase()+role.slice(1);db.session.role=selectedRole;await enterPortal(role==='coach'?'coach':role);openLogin();setAuthStatus('You were invited to a Basketball Brilliance team. Create an account or sign in to accept this invitation.','good');}});
 </script><audio id="bbMusic" src="assets/dmv-ballin.mp3" preload="auto" loop></audio>
 
