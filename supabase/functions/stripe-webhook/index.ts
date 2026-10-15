@@ -29,7 +29,8 @@ function membership(subscription){
 }
 Deno.serve(async req=>{
  const configured=Boolean(/^(sk|rk)_test_/.test(env('STRIPE_TEST_SECRET_KEY'))&&env('STRIPE_WEBHOOK_SIGNING_SECRET')&&env('SUPABASE_SERVICE_ROLE_KEY'));
- if(req.method==='GET')return Response.json({mode:'sandbox',configured});
+ if(req.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'GET,OPTIONS','Access-Control-Allow-Headers':'content-type'}});
+ if(req.method==='GET')return Response.json({mode:'sandbox',configured,checks:{testKey:/^(sk|rk)_test_/.test(env('STRIPE_TEST_SECRET_KEY')),signingSecret:Boolean(env('STRIPE_WEBHOOK_SIGNING_SECRET')),serviceAccess:Boolean(env('SUPABASE_SERVICE_ROLE_KEY'))}},{headers:{'Access-Control-Allow-Origin':'*','Cache-Control':'no-store'}});
  if(req.method!=='POST')return new Response('Method not allowed',{status:405});
  if(!configured)return new Response('Sandbox webhook setup is pending',{status:503});
  const body=await req.text();

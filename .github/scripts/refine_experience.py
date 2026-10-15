@@ -65,7 +65,7 @@ print(slug+': site-specific refinements complete')
 # Activate new controls for visitors whose previous app cached the installer.
 sw=root/'sw.js'
 if sw.exists():
- text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='basketball-brilliance-v60'",text,count=1);sw.write_text(text)
+ text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='basketball-brilliance-v61'",text,count=1);sw.write_text(text)
 
 # Refresh the single shared gallery used by Coach, Player and Parent homepages.
 p=root/'index.html';text=p.read_text();text=re.sub(r'assets/js/public-gallery\.js\?v=[^"\']+', 'assets/js/public-gallery.js?v=60',text);p.write_text(text)

@@ -26,6 +26,7 @@
    if(recovery){showRecovery();return;}
    const profile=await BBAuth.getProfile();
    const role=await BBAuth.resolveRole(profile.primary_role,profile);
+   if(db.session.email&&db.session.email.toLowerCase()!==session.user.email.toLowerCase())window.bbClearAccountWorkspace();
    db.session={role,email:session.user.email};saveDB();
    if(query.get('auth')==='confirmed'){
     await enterPortal(role.toLowerCase());history.replaceState({},'',location.pathname+(query.get('invite')?'?invite='+encodeURIComponent(query.get('invite')):''));toast('Email confirmed. You are signed in.');
@@ -33,13 +34,20 @@
   }catch(e){if(query.has('auth')){openLogin();setAuthStatus(e.message||'Account could not load. Try signing in again.','bad');}}
   finally{restoring=false;}
  }
- window.signOutAccount=async()=>{
-  await BBAuth.signOut();window.BBJukebox?.close();
-  db=structuredClone(defaultData);saveDB();
-  coachBackendLoaded=false;currentTeamId=null;
+ window.bbClearAccountWorkspace=()=>{
+  window.BBAccountEpoch=(window.BBAccountEpoch||0)+1;
+  coachBackendLoaded=false;currentTeamId=null;persistentCoachDashboard=null;
   parentData={children:[],passport:[],opportunities:[],recruiting:[],steps:[],vault:[],connections:[]};
   playerData={goals:[],workouts:[],highlights:[],passport:[],opportunities:[],college:[],bounce:[],officialStats:[],linked:null};
-  renderParentWorkspace();renderPlayerWorkspace();
+  localStorage.removeItem('bb_active_team');sessionStorage.removeItem('bb-checkout-attempt');
+  db=structuredClone(defaultData);saveDB();renderParentWorkspace();renderPlayerWorkspace();
+ };
+ window.signOutAccount=async()=>{
+  window.BBAccountEpoch=(window.BBAccountEpoch||0)+1;
+  try{await BBAuth.signOut();}catch(e){openLogin();setAuthStatus('Sign out could not finish. '+e.message,'bad');return;}
+  sessionStorage.removeItem('bb-pending-checkout');sessionStorage.removeItem('bb-checkout-attempt');localStorage.removeItem('bb_active_team');
+  window.BBJukebox?.close();
+  window.bbClearAccountWorkspace();
   goEntry();openLogin();setAuthStatus('Signed out. Choose a role and sign in to the next account.','good');
  };
  BBAuth.onAuthStateChange(event=>{if(event==='PASSWORD_RECOVERY')setTimeout(showRecovery,0);});

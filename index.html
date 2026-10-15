@@ -1386,7 +1386,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Basketball Brilliance">
 <script defer src="app-assets/install.js?v=60"></script>
-<link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/></head>
+<link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/><link rel="stylesheet" href="assets/account-flow.css?v=61"></head>
 <body id="top" data-portal="entry">
 <header class="nav"><div class="wrap navin">
 <a class="portal-header-brand" href="javascript:void(0)" onclick="goEntry()" aria-label="Basketball Brilliance entry"><img src="assets/bb-fire-logo.webp?v=20261015" alt="Basketball Brilliance basketball mark"><span class="portal-context" id="portalContext">Choose your portal</span></a>
@@ -1746,7 +1746,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <div class="modal" id="familyModal" onclick="if(event.target===this)closeModal('familyModal')"><div class="modalbox"><button class="close" onclick="closeModal('familyModal')">×</button><span class="eyebrow">Team-linked family access</span><h3>Complete Player Information</h3><p class="section-copy" style="font-size:14px;margin-bottom:12px">No separate subscription is required to complete information requested by the coach.</p><div class="formgrid"><label>Invite Code<input id="famCode"></label><label>Player Name<input id="famPlayer"></label><label>Jersey #<input id="famJersey"></label><label>Position<input id="famPosition"></label><label>Grade<input id="famGrade"></label><label>Height<input id="famHeight"></label><label>Parent / Guardian<input id="famGuardian"></label><label>Guardian Email<input id="famEmail" type="email"></label><label>Phone<input id="famPhone" type="tel"></label></div><div class="toolbar"><button class="btn primary" onclick="submitFamilyProfile()">Send to Coach Roster</button></div><div class="divider"></div><div class="card"><h4>Optional family-owned membership</h4><p>Basketball Passport • Opportunity Finder • Recruiting Roadmap • Parent Resource Vault</p></div></div></div>
 <div class="modal" id="legalModal" onclick="if(event.target===this)closeModal('legalModal')"><div class="modalbox"><button class="close" onclick="closeModal('legalModal')">×</button><h3 id="legalTitle">Legal</h3><div id="legalBody" class="sub" style="line-height:1.7"></div></div></div>
 <div class="modal membership-modal" id="membershipModal" onclick="if(event.target===this)closeMembershipOffer()"><div class="modalbox"><button class="close" onclick="closeMembershipOffer()">×</button><div class="membership-kicker">Basketball Brilliance Membership</div><h3 style="font-size:32px;margin:6px 0 8px">Three paths. One basketball journey.</h3><p class="section-copy" style="margin-bottom:8px">Whether you run the team, play the game, or guide the journey, Basketball Brilliance keeps the right tools within reach.</p><div class="membership-grid"><div class="membership-card featured"><span class="who">Coach</span><h4>Run the Team</h4><p>Organize rosters, practices, games, scouting, plays, notes and season reports from one command center.</p><a class="shimmer-btn" href="#app" onclick="closeMembershipOffer()">Explore Coach Membership</a></div><div class="membership-card"><span class="who">Player</span><h4>Raise Your Game</h4><p>Stay connected to team information while building a longer record of development, goals, seasons and achievements.</p><a class="shimmer-btn" href="#families" onclick="closeMembershipOffer()">Explore Player Membership</a></div><div class="membership-card"><span class="who">Parent</span><h4>Guide the Journey</h4><p>Keep player history, opportunities, recruiting organization, resources and family-owned records together beyond one season.</p><a class="shimmer-btn" href="#families" onclick="closeMembershipOffer()">Explore Parent Membership</a></div></div><div class="membership-note">Coach-linked team forms remain part of the team workflow. Optional family memberships add long-term player and parent tools.</div></div></div>
-<div class="modal offer-modal" id="portalOfferModal" onclick="if(event.target===this)closeModal('portalOfferModal')"><div class="modalbox"><button class="close" onclick="closeModal('portalOfferModal')">×</button><div class="offer-top"><div><span class="eyebrow" id="offerEyebrow">Annual Membership</span><h3 id="offerTitle" style="font-size:34px;margin:8px 0">Basketball Brilliance</h3><p class="section-copy" id="offerCopy" style="margin-bottom:0;color:#c6c9ce"></p></div><div class="offer-price" id="offerPrice">$47 <small>/ year</small></div></div><div class="offer-list" id="offerList"></div><button class="shimmer-btn attention" style="width:100%" onclick="demoCheckout()">Continue to Stripe Sandbox</button><div class="offer-foot">Annual test subscription. Sign in with an adult account first. Sandbox makes no real charges. Automatic membership activation awaits webhook setup.</div></div></div><div class="toast" id="toast"></div>
+<div class="modal offer-modal" id="portalOfferModal" onclick="if(event.target===this)closeModal('portalOfferModal')"><div class="modalbox"><button class="close" onclick="closeModal('portalOfferModal')">×</button><div class="offer-top"><div><span class="eyebrow" id="offerEyebrow">Annual Membership</span><h3 id="offerTitle" style="font-size:34px;margin:8px 0">Basketball Brilliance</h3><p class="section-copy" id="offerCopy" style="margin-bottom:0;color:#c6c9ce"></p></div><div class="offer-price" id="offerPrice">$47 <small>/ year</small></div></div><div class="offer-list" id="offerList"></div><button class="shimmer-btn attention" style="width:100%" onclick="demoCheckout()">Continue to Stripe Sandbox</button><button class="btn ghost" type="button" onclick="BBBilling.checkAccess(pendingMembershipRole)">Check membership access</button><div class="offer-foot">Annual sandbox test subscription. No real charges. Checkout checks account access and activation readiness before opening.</div></div></div><div class="toast" id="toast"></div>
 <script>
 /* Brand artwork is embedded in the page header and footer. */
 const KEY='bb_build2_data_v1';
@@ -1809,7 +1809,7 @@ async function openGuardianPortal(){
 function openLogin(){
   const af=document.getElementById('authFormView'),sc=document.getElementById('signupCelebration');
   if(af)af.style.display='';if(sc)sc.classList.remove('show');
-  selectedRole=db.session.role||'Coach';
+  const portal=document.body.dataset.portal;selectedRole=['coach','player','parent'].includes(portal)?portal[0].toUpperCase()+portal.slice(1):(db.session.role||'Coach');
   document.querySelectorAll('#roleGrid .role').forEach(b=>b.classList.toggle('active',b.dataset.role===selectedRole));
   loginEmail.value=db.session.email||'';
   if(window.loginName)loginName.value='';
@@ -1826,6 +1826,8 @@ async function continueLogin(){
     if(!email||!password){setAuthStatus('Enter your email and password.','bad');return}
     try{
       const {data,error}=await window.BBAuth.signIn({email,password}); if(error)throw error;
+      if(db.session.email&&db.session.email.toLowerCase()!==data.user.email.toLowerCase())window.bbClearAccountWorkspace?.();
+      window.BBAccountEpoch=(window.BBAccountEpoch||0)+1;
       const profile=await window.BBAuth.getProfile();
       selectedRole=await window.BBAuth.resolveRole(selectedRole,profile);
       db.session={role:selectedRole,email};saveDB();closeModal('loginModal');
@@ -1967,9 +1969,11 @@ function splitPlayerName(name){
   return {first_name:parts.shift()||'',last_name:parts.join(' ')||null};
 }
 async function loadPersistentCoachWorkspace(){
+ const accountEpoch=window.BBAccountEpoch||0;
   if(!(await coachSessionReady())) return false;
   try{
     const teams=await window.BBData.listMyTeams();
+    if(accountEpoch!==(window.BBAccountEpoch||0))return false;
     if(!teams.length){
       coachBackendLoaded=true;currentTeamId=null;persistentCoachDashboard={playerCount:0,inviteCount:0,assistantCount:0,practiceCount:0,gameCount:0,wins:0,losses:0,staff:[],invites:[]};
       db.team={name:'',season:'',level:'Varsity',coach:'',org:'',gym:''};db.players=[];db.invites=[];db.staff=[];
@@ -1996,6 +2000,7 @@ async function loadPersistentCoachWorkspace(){
       window.BBData.listCoachPlays(currentTeamId),
       window.BBData.dashboard(currentTeamId)
     ]);
+    if(accountEpoch!==(window.BBAccountEpoch||0))return false;
     db.team={
       id:team.id,name:team.name||'',season:team.season||'',level:team.level||'Varsity',
       coach:profile?.full_name||'',org:team.organizations?.name||'',gym:team.home_gym||''
@@ -2542,7 +2547,7 @@ async function refreshCoachMembershipState(){
     const session=await window.BBAuth?.getSession?.();
     if(!session){el.textContent='Create or sign in to your Coach account first. Payment activation comes after account setup.';return}
     const m=await window.BBData?.getMyMembership?.('coach');
-    if(m?.status==='active')el.textContent='Coach membership active.';
+    if(window.BBAuth.membershipActive(m))el.textContent='Coach membership active.';
     else el.textContent='Coach account ready. Secure payment checkout is the remaining launch step.';
   }catch(e){el.textContent='Coach account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}
 }
@@ -2831,7 +2836,7 @@ function startParentLibraryVoice(){const SR=window.SpeechRecognition||window.web
 function downloadParentGlossary(){
  const terms=(window.BBLibrary?.terms||[]).slice(0,40);
  const rows=terms.map(t=>'<section><h2>'+esc(t.term)+'</h2><p>'+esc(t.definition)+'</p><p><b>Parent context:</b> '+esc(parentTermContext(t))+'</p></section>').join('');
- const html='<!doctype html><html><head><meta charset="utf-8"><title>Basketball Brilliance Parent Glossary Preview</title><style>body{font-family:Arial,sans-serif;max-width:850px;margin:40px auto;padding:0 24px;color:#171717}header{border-bottom:6px solid #f15a29;padding-bottom:16px;margin-bottom:24px}h1{margin:0}h2{color:#c64316;margin-bottom:4px}section{padding:12px 0;border-bottom:1px solid #ddd}</style><link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/></head><body><header><h1>BASKETBALL BRILLIANCE</h1><p>Parent Basketball Glossary — Preview Edition</p></header>'+rows+'</body></html>';
+ const html='<!doctype html><html><head><meta charset="utf-8"><title>Basketball Brilliance Parent Glossary Preview</title><style>body{font-family:Arial,sans-serif;max-width:850px;margin:40px auto;padding:0 24px;color:#171717}header{border-bottom:6px solid #f15a29;padding-bottom:16px;margin-bottom:24px}h1{margin:0}h2{color:#c64316;margin-bottom:4px}section{padding:12px 0;border-bottom:1px solid #ddd}</style><link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/><link rel="stylesheet" href="assets/account-flow.css?v=61"></head><body><header><h1>BASKETBALL BRILLIANCE</h1><p>Parent Basketball Glossary — Preview Edition</p></header>'+rows+'</body></html>';
  const blob=new Blob([html],{type:'text/html'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Basketball-Brilliance-Parent-Glossary-Preview.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)
 }
 
@@ -2843,11 +2848,13 @@ function parentChildOptions(){
  ['parentPassportChild','parentOpportunityChild','parentRecruitingChild','parentVaultChild','parentStepChild'].forEach(id=>{const el=document.getElementById(id);if(el){const current=el.value;el.innerHTML=html;if([...el.options].some(o=>o.value===current))el.value=current}})
 }
 async function loadParentWorkspace(){
+ const accountEpoch=window.BBAccountEpoch||0;
  if(!(await parentSignedIn())){renderParentWorkspace();refreshParentMembershipState();return}
  try{
   const [children,passport,opportunities,recruiting,steps,vault,connections]=await Promise.all([
    window.BBData.listParentChildren(),window.BBData.listParentPassport(),window.BBData.listParentOpportunities(),window.BBData.listParentRecruiting(),window.BBData.listParentNextSteps(),window.BBData.listParentVault(),window.BBData.getMyParentConnections()
   ]);
+  if(accountEpoch!==(window.BBAccountEpoch||0))return;
   parentData={children,passport,opportunities,recruiting,steps,vault,connections};renderParentWorkspace();await refreshParentMembershipState();
  }catch(e){console.error(e);toast('Parent records could not be loaded.')}
 }
@@ -2901,9 +2908,9 @@ function exportParentOpportunitiesCSV(){bbParentCSV('basketball-brilliance-famil
 function exportParentRecruitingCSV(){bbParentCSV('basketball-brilliance-recruiting-roadmap.csv',parentData.recruiting.map(x=>({player:parentChildLabel(x.child_id),school:x.school,level:x.level||'',fit:x.fit||'',status:x.status||'',contact:x.contact_name||'',email:x.contact_email||'',next_step:x.next_step||'',next_step_date:x.next_step_date||'',notes:x.notes||''})))}
 function printParentFamilyReport(){
  const body='<h1>Basketball Brilliance - Family Basketball Report</h1><h3>Players</h3>'+((parentData.children||[]).map(x=>'<p><b>'+esc(x.name)+'</b> - '+esc([x.grade?'Grade '+x.grade:'',x.graduation_year?'Class of '+x.graduation_year:'',x.primary_position].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No player profiles saved.</p>')+'<h3>Basketball Passport</h3>'+((parentData.passport||[]).map(x=>'<p><b>'+esc(parentChildLabel(x.child_id))+' - '+esc(x.season||'Season')+' - '+esc(x.team)+'</b><br>'+esc([x.level,x.position,x.coach,x.milestones].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No Passport entries.</p>')+'<h3>Opportunities</h3>'+((parentData.opportunities||[]).slice(0,20).map(x=>'<p>'+esc(parentChildLabel(x.child_id))+' - <b>'+esc(x.title)+'</b> - '+esc([x.event_date,x.deadline?'Deadline '+x.deadline:'',x.status].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No opportunities saved.</p>')+'<h3>Recruiting Roadmap</h3>'+((parentData.recruiting||[]).map(x=>'<p>'+esc(parentChildLabel(x.child_id))+' - <b>'+esc(x.school)+'</b> - '+esc([x.level,x.fit,x.status,x.next_step].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No recruiting schools saved.</p>')+'<h3>Next Steps</h3>'+((parentData.steps||[]).filter(x=>x.status!=='complete').map(x=>'<p>'+esc(parentChildLabel(x.child_id))+' - '+esc(x.title)+' - '+esc([x.due_date,x.category,x.status].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No open next steps.</p>');
- const w=window.open('','_blank');if(!w){toast('Allow pop-ups to print the report.');return}w.document.write('<!doctype html><html><head><title>Family Basketball Report</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;color:#111}h1{border-bottom:6px solid #f15a29;padding-bottom:12px}h3{margin-top:28px}</style><link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/></head><body>'+body+'</body></html>');w.document.close();setTimeout(()=>w.print(),250)
+ const w=window.open('','_blank');if(!w){toast('Allow pop-ups to print the report.');return}w.document.write('<!doctype html><html><head><title>Family Basketball Report</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;color:#111}h1{border-bottom:6px solid #f15a29;padding-bottom:12px}h3{margin-top:28px}</style><link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/><link rel="stylesheet" href="assets/account-flow.css?v=61"></head><body>'+body+'</body></html>');w.document.close();setTimeout(()=>w.print(),250)
 }
-async function refreshParentMembershipState(){const el=document.getElementById('parentMembershipState');if(!el)return;try{if(!(await parentSignedIn())){el.textContent='Create or sign in to a Parent account first.';return}const m=await window.BBData.getMyMembership('parent');el.textContent=m?.status==='active'?'Parent membership active.':'Parent account ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}catch(e){el.textContent='Parent account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}}
+async function refreshParentMembershipState(){const el=document.getElementById('parentMembershipState');if(!el)return;try{if(!(await parentSignedIn())){el.textContent='Create or sign in to a Parent account first.';return}const m=await window.BBData.getMyMembership('parent');el.textContent=window.BBAuth.membershipActive(m)?'Parent membership active.':'Parent account ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}catch(e){el.textContent='Parent account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}}
 async function runParentReadiness(){
  const el=document.getElementById('parentReadinessStatus');if(!el)return;const signed=await parentSignedIn();let membership=null;try{if(signed)membership=await window.BBData.getMyMembership('parent')}catch(e){}
  const checks=[['Parent account signed in',signed],['At least one player profile',parentData.children.length>0],['Coach/team connection present',parentData.connections.length>0],['Basketball Passport started',parentData.passport.length>0],['Opportunity list started',parentData.opportunities.length>0],['Recruiting Roadmap started',parentData.recruiting.length>0],['Family Vault started',parentData.vault.length>0],['Next-Step Planner started',parentData.steps.length>0]];
@@ -2935,11 +2942,13 @@ function startPlayerLibraryVoice(){const SR=window.SpeechRecognition||window.web
 let playerData={goals:[],workouts:[],highlights:[],passport:[],opportunities:[],college:[],bounce:[],officialStats:[],linked:null};
 async function playerSignedIn(){try{return !!(await window.BBAuth?.getSession?.())}catch(e){return false}}
 async function loadPlayerWorkspace(){
+ const accountEpoch=window.BBAccountEpoch||0;
  if(!(await playerSignedIn())){renderPlayerWorkspace();refreshPlayerMembershipState();return}
  try{
   const [goals,workouts,highlights,passport,opportunities,college,bounce,officialStats,linked]=await Promise.all([
    window.BBData.listPlayerGoals(),window.BBData.listPlayerWorkouts(),window.BBData.listPlayerHighlights(),window.BBData.listPlayerPassport(),window.BBData.listPlayerOpportunities(),window.BBData.listPlayerCollegePathway(),window.BBData.listPlayerBounceBack(),window.BBData.listMyOfficialStats(),window.BBData.getMyLinkedPlayer()
   ]);
+  if(accountEpoch!==(window.BBAccountEpoch||0))return;
   playerData={goals,workouts,highlights,passport,opportunities,college,bounce,officialStats,linked};renderPlayerWorkspace();await refreshPlayerMembershipState();
  }catch(e){console.error(e);toast('Player records could not be loaded.')}
 }
@@ -2976,9 +2985,9 @@ function printPlayerDevelopmentReport(){
  const stats=playerData.officialStats||[],games=stats.length,sum=k=>stats.reduce((a,x)=>a+Number(x[k]||0),0),avg=k=>games?(sum(k)/games).toFixed(1):'0.0';
  const name=playerData.linked?.player?[playerData.linked.player.first_name,playerData.linked.player.last_name].filter(Boolean).join(' '):'Player';
  const body=`<h1>Basketball Brilliance — Player Development Report</h1><h2>${esc(name)}</h2><p><b>Official games:</b> ${games} &nbsp; <b>PPG:</b> ${avg('points')} &nbsp; <b>RPG:</b> ${avg('rebounds')} &nbsp; <b>APG:</b> ${avg('assists')}</p><h3>Development Record</h3><p>Goals: ${playerData.goals.length} • Workouts: ${playerData.workouts.length} • Training minutes: ${playerData.workouts.reduce((a,x)=>a+Number(x.minutes||0),0)} • Film entries: ${playerData.highlights.length}</p><h3>Basketball Passport</h3>${playerData.passport.map(x=>'<p><b>'+esc(x.season||'Season')+' — '+esc(x.team)+'</b><br>'+esc([x.level,x.position,x.achievements].filter(Boolean).join(' • '))+'</p>').join('')||'<p>No Passport entries yet.</p>'}<h3>College Pathway</h3>${playerData.college.map(x=>'<p><b>'+esc(x.school)+'</b> — '+esc(x.level||'')+' — '+esc(x.status||'')+'<br>Next: '+esc(x.next_step||'')+'</p>').join('')||'<p>No schools saved yet.</p>'}<h3>Next Opportunities</h3>${playerData.opportunities.filter(x=>x.status!=='passed').slice(0,10).map(x=>'<p>'+esc(x.title)+' — '+esc(x.event_date||'')+' — '+esc(x.status||'')+'</p>').join('')||'<p>No active opportunities saved.</p>'}`;
- const w=window.open('','_blank');if(!w){toast('Allow pop-ups to print the report.');return}w.document.write('<!doctype html><html><head><title>Player Development Report</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;color:#111}h1{border-bottom:6px solid #f15a29;padding-bottom:12px}h2,h3{margin-top:28px}</style><link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/></head><body>'+body+'</body></html>');w.document.close();setTimeout(()=>w.print(),250)
+ const w=window.open('','_blank');if(!w){toast('Allow pop-ups to print the report.');return}w.document.write('<!doctype html><html><head><title>Player Development Report</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;color:#111}h1{border-bottom:6px solid #f15a29;padding-bottom:12px}h2,h3{margin-top:28px}</style><link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/><link rel="stylesheet" href="assets/account-flow.css?v=61"></head><body>'+body+'</body></html>');w.document.close();setTimeout(()=>w.print(),250)
 }
-async function refreshPlayerMembershipState(){const el=document.getElementById('playerMembershipState');if(!el)return;try{if(!(await playerSignedIn())){el.textContent='Create or sign in to a Player account first. A parent or guardian can purchase membership.';return}const m=await window.BBData.getMyMembership('player');el.textContent=m?.status==='active'?'Player membership active.':'Player account ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}catch(e){el.textContent='Player account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}}
+async function refreshPlayerMembershipState(){const el=document.getElementById('playerMembershipState');if(!el)return;try{if(!(await playerSignedIn())){el.textContent='Create or sign in to a Player account first. A parent or guardian can purchase membership.';return}const m=await window.BBData.getMyMembership('player');el.textContent=window.BBAuth.membershipActive(m)?'Player membership active.':'Player account ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}catch(e){el.textContent='Player account foundation ready. Sandbox checkout is available. Automatic account activation awaits webhook setup.'}}
 async function runPlayerReadiness(){
  const el=document.getElementById('playerReadinessStatus');if(!el)return;const signed=await playerSignedIn();let membership=null;try{if(signed)membership=await window.BBData.getMyMembership('player')}catch(e){}
  const checks=[['Player account signed in',signed],['Coach-linked player record',!!playerData.linked?.player],['Official stats connected',(playerData.officialStats||[]).length>0],['At least one active goal',playerData.goals.length>0],['Workout history started',playerData.workouts.length>0],['Basketball Passport started',playerData.passport.length>0],['Film / highlights started',playerData.highlights.length>0],['Opportunity or college pathway started',playerData.opportunities.length>0||playerData.college.length>0]];
@@ -3151,12 +3160,12 @@ window.addEventListener('load',async()=>{const q=new URLSearchParams(location.se
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.99.1"></script>
 <script src="assets/js/bb-config.js"></script>
-<script src="assets/js/bb-auth.js?v=57"></script>
+<script src="assets/js/bb-auth.js?v=61"></script>
 <script src="assets/js/bb-data.js"></script>
-<script src="assets/js/bb-billing.js?v=54"></script>
+<script src="assets/js/bb-billing.js?v=61"></script>
 <script src="assets/js/bb-library.js?v=53"></script>
 
-<script type="module" src="assets/js/player-learning.js?v=52"></script>
+<script type="module" src="assets/js/player-learning.js?v=61"></script>
 <script type="module" src="assets/js/public-gallery.js?v=60"></script>
 <script>
 setPortalNav(document.body.dataset.portal);
@@ -3183,6 +3192,6 @@ document.getElementById('bb-watch').addEventListener('pointerdown',()=>clearTime
 <script src="assets/js/bb-jukebox-catalog.js?v=58"></script>
 <script src="assets/js/bb-basketball-songs.js?v=58"></script>
 <script src="assets/js/bb-jukebox.js?v=60"></script>
-<script src="assets/js/bb-session.js?v=57"></script>
+<script src="assets/js/bb-session.js?v=61"></script>
 </body></html>
 

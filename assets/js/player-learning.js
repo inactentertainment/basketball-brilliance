@@ -57,3 +57,5 @@ async function savedArticles(){const mount=document.getElementById('playerSavedA
 access();savedArticles();window.BBAuth?.onAuthStateChange(()=>{access();savedArticles();});
 window.addEventListener('pagehide',()=>clearInterval(timer));
 window.addEventListener('load',async()=>{const q=new URLSearchParams(location.search);if(q.get('portal')==='player'&&!q.has('invite')){const target=location.hash.slice(1);await enterPortal('player');clearTimeout(portalOfferTimer);if(target&&document.getElementById(target)){history.replaceState(null,'',location.pathname+location.search+'#'+target);document.getElementById(target).scrollIntoView({block:'start',behavior:'instant'});}}});
+
+window.addEventListener('bb:membership-changed',()=>{access();savedArticles();});
