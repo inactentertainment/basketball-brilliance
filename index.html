@@ -331,6 +331,14 @@ body:not([data-portal="entry"]) .bb-entry-sound-row{display:none}
 .image-portal-shell>.bb-entry-sound-row{height:30px!important;padding:0 2px 2px 0!important;justify-content:flex-end!important}
 .image-portal-shell>.portal-artboard{aspect-ratio:1491/875}
 #bbEntryTheme{touch-action:manipulation;cursor:pointer}
+
+/* Final entrance picture + control share one intrinsic box: no screen-edge drift. */
+.image-portal-shell{display:flex!important;flex-direction:column!important;align-items:center!important;width:100%!important}
+.bb-portal-picture-wrap{position:relative;display:block;width:min(1491px,100%)!important;max-width:100%;margin:0 auto}
+.bb-portal-picture-wrap .portal-artboard{width:100%!important}
+.bb-portal-picture-wrap .bb-entry-sound-row{position:relative!important;display:flex!important;width:100%!important;height:32px!important;padding:0 1px 1px 0!important;margin:0!important;align-items:center!important;justify-content:flex-end!important}
+.bb-portal-picture-wrap #bbEntryTheme{position:static!important;display:inline-flex!important;flex:0 0 auto!important;width:30px!important;height:28px!important;padding:3px 5px!important;margin:0!important;box-shadow:none!important;border:0!important;background:transparent!important;border-radius:0!important}
+.bb-portal-picture-wrap #bbEntryTheme span{background:#f27635!important;box-shadow:0 0 7px #f2763580}
 </style>
 
 
@@ -1442,13 +1450,13 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
   </div>
 
   <div class="image-portal-shell">
-<div class="bb-entry-sound-row"><button class="sound-toggle bb-entry-theme muted" type="button" id="bbEntryTheme" aria-label="Turn theme music on" title="On" aria-pressed="false" onclick="toggleBBMusic()"><span></span><span></span><span></span></button></div>
-    <div class="portal-artboard" aria-label="Basketball Brilliance Coach, Player and Parent portals">
+
+    <div class="bb-portal-picture-wrap"><div class="bb-entry-sound-row"><button class="sound-toggle bb-entry-theme muted" type="button" id="bbEntryTheme" aria-label="Turn theme music on" title="On" aria-pressed="false" onclick="bbEntranceToggle(event)"><span></span><span></span><span></span></button></div><div class="portal-artboard" aria-label="Basketball Brilliance Coach, Player and Parent portals">
       <img class="portal-arena-image" src="assets/basketball-brilliance-portal-v4.jpg" alt="Basketball Brilliance Coach, Player and Parent portals">
       <button class="portal-hotspot hs-coach" onclick="transitionToPortal('coach')" aria-label="Enter Coach Portal"><span>Enter Coach Portal</span></button>
       <button class="portal-hotspot hs-player" onclick="transitionToPortal('player')" aria-label="Enter Player Portal"><span>Enter Player Portal</span></button>
       <button class="portal-hotspot hs-parent" onclick="transitionToPortal('parent')" aria-label="Enter Parent Portal"><span>Enter Parent Portal</span></button>
-    </div>
+    </div></div>
   </div>
   <div class="portal-court-extension"><div class="portal-court-glow"></div></div>
 </section>
@@ -1803,6 +1811,7 @@ function bbSyncSoundButtons(isPlaying){
 async function bbStartMusic(){
   const a=document.getElementById('bbMusic'); if(!a) return false;
   if(sessionStorage.getItem('bbMusic')==='off')return false;
+  a.muted=false;
   a.volume=.72;
   try{await a.play();if(sessionStorage.getItem('bbMusic')==='off'){a.pause();bbSyncSoundButtons(false);return false}bbMusicStarted=true;bbSyncSoundButtons(true);return true}
   catch(e){bbSyncSoundButtons(false);return false}
@@ -1812,6 +1821,14 @@ async function toggleBBMusic(){
  const off=sessionStorage.getItem('bbMusic')==='off'||(!a.paused&&sessionStorage.getItem('bbMusic')!=='off');
  if(off){sessionStorage.setItem('bbMusic','off');a.pause();bbSyncSoundButtons(false)}
  else{sessionStorage.setItem('bbMusic','on');await bbStartMusic()}
+}
+function bbEntranceToggle(e){
+ e?.preventDefault();e?.stopPropagation();
+ const a=document.getElementById('bbMusic');if(!a)return;
+ const wantOff=sessionStorage.getItem('bbMusic')!=='off';
+ sessionStorage.setItem('bbMusic',wantOff?'off':'on');
+ if(wantOff){a.pause();a.muted=true;bbSyncSoundButtons(false)}
+ else{a.muted=false;bbStartMusic()}
 }
 function bbStopMusic(){const a=document.getElementById('bbMusic');if(a){a.pause();bbSyncSoundButtons(false)}}
 function toggleMobileMenu(btn){const d=document.getElementById('mobileDrawer');const open=!d.classList.contains('open');d.classList.toggle('open',open);if(btn)btn.setAttribute('aria-expanded',open?'true':'false')}
