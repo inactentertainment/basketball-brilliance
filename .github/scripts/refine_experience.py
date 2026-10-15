@@ -65,7 +65,29 @@ print(slug+': site-specific refinements complete')
 # Activate new controls for visitors whose previous app cached the installer.
 sw=root/'sw.js'
 if sw.exists():
- text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='basketball-brilliance-media-20261015'",text,count=1);sw.write_text(text)
+ text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='basketball-brilliance-fire-20261015'",text,count=1);sw.write_text(text)
 
 # Refresh the single shared gallery used by Coach, Player and Parent homepages.
 p=root/'index.html';text=p.read_text();text=re.sub(r'assets/js/public-gallery\.js\?v=[^"\']+', 'assets/js/public-gallery.js?v=59',text);p.write_text(text)
+
+# Apply the official supplied fiery basketball consistently, including embedded old marks.
+for page in root.rglob('*.html'):
+ text=page.read_text()
+ def logo_tag(match):
+  tag=match[0]
+  if 'Basketball Brilliance basketball mark' in tag or 'src="assets/bb-mark.jpg"' in tag:
+   tag=re.sub(r'src="[^"]+"','src="assets/bb-fire-logo.webp?v=20261015"',tag)
+  return tag
+ text=re.sub(r'<img\b[^>]*>',logo_tag,text)
+ text=text.replace('assets/bb-mark.svg','app-assets/bb-fire-32.png?v=20261015')
+ text=re.sub(r'(href="(?:\.\./)*app-assets/)icon-180\.png',r'\1bb-fire-180.png?v=20261015',text)
+ text=re.sub(r'(src="(?:\.\./)*app-assets/install\.js)(?:\?[^"\s]*)?',r'\1?v=20261015-bb-fire',text)
+ text=re.sub(r'(href="(?:\.\./)*manifest\.webmanifest)(?:\?[^"\s]*)?',r'\1?v=20261015-bb-fire',text)
+ if page.name=='index.html' and page.parent==root:
+  if 'rel="icon"' not in text:text=text.replace('</head>','<link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/></head>')
+ page.write_text(text)
+p=root/'manifest.webmanifest';manifest=__import__('json').loads(p.read_text())
+for icon in manifest['icons']:
+ if icon.get('sizes') in ['192x192','512x512']:
+  size=icon['sizes'].split('x')[0];icon['src']='app-assets/bb-fire-'+size+'.png?v=20261015'
+p.write_text(__import__('json').dumps(manifest,indent=2)+'\n')

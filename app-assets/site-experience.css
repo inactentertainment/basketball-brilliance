@@ -32,3 +32,7 @@ body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-tex
 body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text:is(:hover,:focus-visible){background:none!important;background-image:none!important;box-shadow:none!important;animation:none!important;transform:none!important;translate:none!important;text-decoration:none!important}
 body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text::before,body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text::after{content:none!important;display:none!important}
 body[data-site-app-installed] footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text{display:none!important}
+
+/* Preserve the supplied fire artwork and transparent silhouette in every logo slot. */
+body .portal-header-brand img,body .bb-footer-brand img,body #musicPanel .jb-heading img{object-fit:contain!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+body button.site-app-button.site-app-button.site-app-button.site-app-button{background:#b73710!important;background-image:none!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#d75a2c!important}
