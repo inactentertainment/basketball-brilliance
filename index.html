@@ -316,6 +316,14 @@ body[data-portal="entry"] .music-panel{display:none!important}
 .portal-artboard #bbEntryTheme span{width:3px}
 .portal-artboard #bbEntryTheme:hover{background:#2d160d}
 .portal-artboard #bbEntryTheme::after{z-index:13}
+
+/* Minimal sound bars above the image, never overlaying the three portals. */
+.image-portal-shell{flex-direction:column;align-items:center}
+.bb-entry-sound-row{width:min(1491px,100%);height:33px;display:flex;align-items:center;justify-content:flex-end;padding-right:clamp(9px,1.5vw,20px)}
+.bb-entry-sound-row #bbEntryTheme{display:inline-flex!important;position:relative!important;inset:auto!important;width:36px!important;height:31px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding:5px 8px!important;margin:0!important}
+.bb-entry-sound-row #bbEntryTheme:hover{background:transparent!important;box-shadow:none!important}
+.bb-entry-sound-row #bbEntryTheme span{background:#f27635!important;box-shadow:0 0 7px #f2763580}
+body:not([data-portal="entry"]) .bb-entry-sound-row{display:none}
 </style>
 
 
@@ -1427,8 +1435,8 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
   </div>
 
   <div class="image-portal-shell">
+<div class="bb-entry-sound-row"><button class="sound-toggle bb-entry-theme muted" type="button" id="bbEntryTheme" aria-label="Turn theme music on" title="On" aria-pressed="false" onclick="toggleBBMusic()"><span></span><span></span><span></span></button></div>
     <div class="portal-artboard" aria-label="Basketball Brilliance Coach, Player and Parent portals">
-<button class="sound-toggle bb-entry-theme muted" type="button" id="bbEntryTheme" aria-label="Turn theme music on" title="On" aria-pressed="false" onclick="toggleBBMusic()"><span></span><span></span><span></span></button>
       <img class="portal-arena-image" src="assets/basketball-brilliance-portal-v4.jpg" alt="Basketball Brilliance Coach, Player and Parent portals">
       <button class="portal-hotspot hs-coach" onclick="transitionToPortal('coach')" aria-label="Enter Coach Portal"><span>Enter Coach Portal</span></button>
       <button class="portal-hotspot hs-player" onclick="transitionToPortal('player')" aria-label="Enter Player Portal"><span>Enter Player Portal</span></button>
@@ -1787,13 +1795,14 @@ function bbSyncSoundButtons(isPlaying){
 }
 async function bbStartMusic(){
   const a=document.getElementById('bbMusic'); if(!a) return false;
+  if(sessionStorage.getItem('bbMusic')==='off')return false;
   a.volume=.72;
-  try{await a.play();bbMusicStarted=true;bbSyncSoundButtons(true);return true}
+  try{await a.play();if(sessionStorage.getItem('bbMusic')==='off'){a.pause();bbSyncSoundButtons(false);return false}bbMusicStarted=true;bbSyncSoundButtons(true);return true}
   catch(e){bbSyncSoundButtons(false);return false}
 }
 async function toggleBBMusic(){
   const a=document.getElementById('bbMusic'); if(!a)return;
-  if(a.paused){await bbStartMusic();try{sessionStorage.setItem('bbMusic','on')}catch(e){}}
+  if(a.paused){try{sessionStorage.setItem('bbMusic','on')}catch(e){}await bbStartMusic()}
   else{a.pause();bbSyncSoundButtons(false);try{sessionStorage.setItem('bbMusic','off')}catch(e){}}
 }
 function bbStopMusic(){const a=document.getElementById('bbMusic');if(a){a.pause();bbSyncSoundButtons(false)}}
