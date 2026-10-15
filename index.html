@@ -339,6 +339,11 @@ body:not([data-portal="entry"]) .bb-entry-sound-row{display:none}
 .bb-portal-picture-wrap .bb-entry-sound-row{position:relative!important;display:flex!important;width:100%!important;height:32px!important;padding:0 1px 1px 0!important;margin:0!important;align-items:center!important;justify-content:flex-end!important}
 .bb-portal-picture-wrap #bbEntryTheme{position:static!important;display:inline-flex!important;flex:0 0 auto!important;width:30px!important;height:28px!important;padding:3px 5px!important;margin:0!important;box-shadow:none!important;border:0!important;background:transparent!important;border-radius:0!important}
 .bb-portal-picture-wrap #bbEntryTheme span{background:#f27635!important;box-shadow:0 0 7px #f2763580}
+
+/* Same exact 900px artwork width on the entry page, including its bars. */
+body[data-portal="entry"] .bb-portal-picture-wrap{width:min(900px,100%)!important;max-width:900px!important;margin:0 auto!important}
+body[data-portal="entry"] .bb-portal-picture-wrap .portal-artboard{width:100%!important;max-width:100%!important}
+body[data-portal="entry"] .bb-portal-picture-wrap .bb-entry-sound-row{width:100%!important;max-width:100%!important}
 </style>
 
 
@@ -1810,10 +1815,10 @@ function bbSyncSoundButtons(isPlaying){
 }
 async function bbStartMusic(){
   const a=document.getElementById('bbMusic'); if(!a) return false;
-  if(sessionStorage.getItem('bbMusic')==='off')return false;
+  if(window.__bbEntryMusicOff===true||sessionStorage.getItem('bbMusic')==='off')return false;
   a.muted=false;
   a.volume=.72;
-  try{await a.play();if(sessionStorage.getItem('bbMusic')==='off'){a.pause();bbSyncSoundButtons(false);return false}bbMusicStarted=true;bbSyncSoundButtons(true);return true}
+  try{await a.play();if(window.__bbEntryMusicOff===true||sessionStorage.getItem('bbMusic')==='off'){a.muted=true;a.pause();bbSyncSoundButtons(false);return false}bbMusicStarted=true;bbSyncSoundButtons(true);return true}
   catch(e){bbSyncSoundButtons(false);return false}
 }
 async function toggleBBMusic(){
@@ -1825,9 +1830,9 @@ async function toggleBBMusic(){
 function bbEntranceToggle(e){
  e?.preventDefault();e?.stopPropagation();
  const a=document.getElementById('bbMusic');if(!a)return;
- const wantOff=sessionStorage.getItem('bbMusic')!=='off';
- sessionStorage.setItem('bbMusic',wantOff?'off':'on');
- if(wantOff){a.pause();a.muted=true;bbSyncSoundButtons(false)}
+ const wantOff=window.__bbEntryMusicOff!==true;
+ window.__bbEntryMusicOff=wantOff;sessionStorage.setItem('bbMusic',wantOff?'off':'on');
+ if(wantOff){a.muted=true;a.pause();document.querySelectorAll('audio,video').forEach(media=>{if(media!==a&&!media.paused){media.pause();media.muted=true}});window.BBJukebox?.stop?.();bbSyncSoundButtons(false)}
  else{a.muted=false;bbStartMusic()}
 }
 function bbStopMusic(){const a=document.getElementById('bbMusic');if(a){a.pause();bbSyncSoundButtons(false)}}
@@ -3204,7 +3209,7 @@ async function demoCheckout(){await window.BBBilling.start(pendingMembershipRole
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});
 async function installBasketballBrilliance(){if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else toast('On supported phones, use Add to Home Screen / Install App from your browser menu.')}
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}))}
-window.addEventListener('load',()=>{document.getElementById('bbMusic')?.addEventListener('pause',()=>bbSyncSoundButtons(false));document.getElementById('bbMusic')?.addEventListener('play',()=>{if(sessionStorage.getItem('bbMusic')==='off'){document.getElementById('bbMusic').pause();return}bbSyncSoundButtons(true)});if(document.body.dataset.portal==='entry'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch{}if(pref!=='off')bbStartMusic();document.addEventListener('pointerdown',function resumeEntryMusic(e){if(document.body.dataset.portal!=='entry'||e.target.closest('#bbEntryTheme,#musicToggle,.music-panel'))return;const a=document.getElementById('bbMusic');let current='on';try{current=sessionStorage.getItem('bbMusic')||'on'}catch{}if(a?.paused&&current!=='off')bbStartMusic();document.removeEventListener('pointerdown',resumeEntryMusic,true)},{capture:true,once:false})}});
+window.addEventListener('load',()=>{window.__bbEntryMusicOff=sessionStorage.getItem('bbMusic')==='off';document.getElementById('bbMusic')?.addEventListener('pause',()=>bbSyncSoundButtons(false));document.getElementById('bbMusic')?.addEventListener('play',()=>{if(sessionStorage.getItem('bbMusic')==='off'){document.getElementById('bbMusic').pause();return}bbSyncSoundButtons(true)});if(document.body.dataset.portal==='entry'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch{}if(pref!=='off')bbStartMusic();document.addEventListener('pointerdown',function resumeEntryMusic(e){if(document.body.dataset.portal!=='entry'||e.target.closest('#bbEntryTheme,#musicToggle,.music-panel'))return;const a=document.getElementById('bbMusic');let current='on';try{current=sessionStorage.getItem('bbMusic')||'on'}catch{}if(a?.paused&&current!=='off')bbStartMusic();document.removeEventListener('pointerdown',resumeEntryMusic,true)},{capture:true,once:false})}});
 window.addEventListener('load',async()=>{const q=new URLSearchParams(location.search);const invite=q.get('invite');if(invite){const role=(q.get('role')||'parent').toLowerCase();selectedRole=role.charAt(0).toUpperCase()+role.slice(1);db.session.role=selectedRole;await enterPortal(role==='coach'?'coach':role);openLogin();setAuthStatus('You were invited to a Basketball Brilliance team. Create an account or sign in to accept this invitation.','good');}});
 </script><audio id="bbMusic" src="assets/dmv-ballin.mp3" preload="auto" loop></audio>
 
