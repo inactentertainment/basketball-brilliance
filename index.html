@@ -308,6 +308,14 @@ body[data-portal="parent"] .role-dashboard-card span{color:#68707a}
 .bb-entry-theme::after{content:attr(title);position:absolute;left:50%;bottom:calc(100% + 9px);transform:translate(-50%,4px);background:#20120d;border:1px solid #f47b33;color:#ffae75;border-radius:7px;padding:3px 9px;font:700 11px/1.3 Arial,sans-serif;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
 .bb-entry-theme:hover::after,.bb-entry-theme:focus-visible::after{opacity:1;transform:translate(-50%,0)}
 body:not([data-portal="entry"]) .bb-entry-theme{display:none}
+
+body[data-portal="entry"] #musicToggle{display:none!important}
+body[data-portal="entry"] .music-panel{display:none!important}
+.portal-artboard{position:relative}
+.portal-artboard #bbEntryTheme{display:inline-flex!important;position:absolute;top:clamp(8px,1.6vw,22px);right:clamp(8px,1.7vw,24px);z-index:12;width:39px;height:37px;background:#140d0acc;border:1px solid #ff7a36;border-radius:9px;box-shadow:0 0 13px #ff6b2538}
+.portal-artboard #bbEntryTheme span{width:3px}
+.portal-artboard #bbEntryTheme:hover{background:#2d160d}
+.portal-artboard #bbEntryTheme::after{z-index:13}
 </style>
 
 
@@ -1398,7 +1406,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <header class="nav"><div class="wrap navin">
 <a class="portal-header-brand" href="javascript:void(0)" onclick="goEntry()" aria-label="Basketball Brilliance entry"><img src="assets/bb-fire-logo.webp?v=20261015" alt="Basketball Brilliance basketball mark"><span class="portal-context" id="portalContext">Choose your portal</span></a>
 <nav class="desktopnav" id="desktopNav"></nav>
-<button class="sound-toggle bb-entry-theme muted" type="button" id="bbEntryTheme" aria-label="Turn theme music on" title="On" aria-pressed="false" onclick="toggleBBMusic()"><span></span><span></span><span></span></button>
+
 <button class="sound-toggle portal-sound" type="button" id="musicToggle" aria-label="Open Basketball Brilliance Jukebox" aria-expanded="false" aria-controls="musicPanel"><span></span><span></span><span></span></button>
 <button class="hamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
 </div><nav class="mobile-drawer" id="mobileDrawer"></nav></header>
@@ -1420,6 +1428,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 
   <div class="image-portal-shell">
     <div class="portal-artboard" aria-label="Basketball Brilliance Coach, Player and Parent portals">
+<button class="sound-toggle bb-entry-theme muted" type="button" id="bbEntryTheme" aria-label="Turn theme music on" title="On" aria-pressed="false" onclick="toggleBBMusic()"><span></span><span></span><span></span></button>
       <img class="portal-arena-image" src="assets/basketball-brilliance-portal-v4.jpg" alt="Basketball Brilliance Coach, Player and Parent portals">
       <button class="portal-hotspot hs-coach" onclick="transitionToPortal('coach')" aria-label="Enter Coach Portal"><span>Enter Coach Portal</span></button>
       <button class="portal-hotspot hs-player" onclick="transitionToPortal('player')" aria-label="Enter Player Portal"><span>Enter Player Portal</span></button>
@@ -3135,7 +3144,7 @@ function goEntry(){
  bbFinishTransition(bbActiveTransition);
  closeMobileMenu();
  document.querySelectorAll('.modal.open').forEach(el=>el.classList.remove('open'));
- window.BBJukebox?.close();bbStopMusic();document.body.dataset.portal='entry';setPortalNav('entry');bbSyncSoundButtons(!document.getElementById('bbMusic')?.paused);
+ window.BBJukebox?.close();document.body.dataset.portal='entry';setPortalNav('entry');bbSyncSoundButtons(!document.getElementById('bbMusic')?.paused);
  history.replaceState(null,'',location.pathname+location.search+'#top');
  window.scrollTo({top:0,left:0,behavior:'instant'});
 }
