@@ -4,6 +4,12 @@ const heritage='https://www.fiba.basketball/en/news/berlin-calling-the-womens-wo
 const boysGame='https://www.fiba.basketball/en/history/276-fiba-u19-basketball-world-cup/208299/games/104147-USA-FRA';
 const girlsGame='https://www.fiba.basketball/en/events/fiba-u19-womens-basketball-world-cup-2025/games/126690-USA-FRA';
 const entries=[
+ ['post-pass','mDLAl96CjCo','Post Pass Shooting Drill','Jr. NBA','All Players','Skills & Coaching','Practice offensive movement, passing and finishing as a team.','https://www.youtube.com/@jrnba','https://jr.nba.com/video/post-pass-shooting-drill/'],
+ ['dribble-target','8F4D7KWWLl8','Dribble & Pass to a Target','Jr. NBA','All Players','Skills & Coaching','Combine controlled dribbling, movement and accurate passing.','https://www.youtube.com/@jrnba','https://jr.nba.com/video/dribble-and-pass-to-a-target-drill/'],
+ ['catch-turn','O5b5HaxCE3U','Catch, Turn & Shoot','Jr. NBA','All Players','Skills & Coaching','Work on balance, footwork and squaring up to the basket.','https://www.youtube.com/@jrnba','https://jr.nba.com/video/catch-turn-shoot-drill/'],
+ ['use-screen','NqgaWL7b86A','Using a Screen Shooting Drill','Jr. NBA','All Players','Skills & Coaching','Learn how to set up and use a screen in a team shooting drill.','https://www.youtube.com/@jrnba','https://jr.nba.com/video/using-a-screen-shooting-drill/'],
+ ['zandalasini-story','Sf2DTgTPdC8','Cecilia Zandalasini: Player Portrait','FIBA Basketball','Girls','Player Stories','Explore Cecilia Zandalasini’s basketball journey in FIBA’s official portrait.','https://www.youtube.com/@FIBA',heritage],
+
  ['wnba-best','y1gthAt8FgU','Best of WNBA: First Half of 2025','WNBA','Girls','Game Highlights','A collection of plays from the first half of the 2025 WNBA season.','https://www.youtube.com/@WNBA'],
  ['u19-boys-final','vMuyG9WmCeY','USA vs Germany: U19 Final Highlights','FIBA Basketball','Boys','Game Highlights','Extended highlights from the 2025 U19 World Cup final.','https://www.youtube.com/@FIBA'],
  ['u19-girls-final','HQz9pFdNKYY','USA vs Australia: U19 Women’s Final','FIBA Basketball','Girls','Game Highlights','Extended highlights from the 2025 U19 women’s final.','https://www.youtube.com/@FIBA'],
@@ -16,9 +22,9 @@ const entries=[
  ['bones-story','aq0H4TbZ2FA','The Grind: Bones Hyland','Jr. NBA','Boys','Player Stories','Bones Hyland shares the preparation behind his season.','https://www.youtube.com/@jrnba',grind],
  ['women-world-cup','YjatN9Dxkfs','The World on Our Shoulders','FIBA Basketball','Girls','History','The story of the Women’s World Cup, from pioneers to modern icons.','https://www.youtube.com/@FIBA',heritage],
  ['world-cup-history','mDxrdWZOTpM','The History of the FIBA Basketball World Cup','FIBA Basketball','Boys','History','FIBA’s documentary on the history of its men’s World Cup.','https://www.youtube.com/@FIBA','https://www.fiba.basketball/en/news/basketballworldcup-2023-news-where-and-how-to-watch-revamped-world-cup-documentary-with-previews-from-melo'],
- ['nigeria-history','Sar9pBurcxY','Uncovered: Nigeria vs Greece, 2018','FIBA Basketball','Girls','History','Revisit a milestone in Nigeria’s Women’s World Cup journey.','https://www.youtube.com/@FIBA',heritage],
- ['usa-czechia-history','e4CaU8ILOlg','Uncovered: USA vs Czechia, 2010','FIBA Basketball','Girls','History','A look back at a memorable Women’s World Cup matchup.','https://www.youtube.com/@FIBA',heritage],
- ['opals-history','IWIP1Azs3Ts','Uncovered: The Magical Run of the Opals','FIBA Basketball','Girls','History','Return to Australia’s 2006 Women’s World Cup run.','https://www.youtube.com/@FIBA',heritage],
+ ['fiebich-story','cVvO2Z842i8','Leonie Fiebich: Player Portrait','FIBA Basketball','Girls','Player Stories','Meet Leonie Fiebich through FIBA’s official player portrait.','https://www.youtube.com/@FIBA',heritage],
+ ['zhang-story','ZzTyuzL4jd4','Zhang Ziyu: Player Portrait','FIBA Basketball','Girls','Player Stories','Discover Zhang Ziyu through FIBA’s official player portrait.','https://www.youtube.com/@FIBA',heritage],
+ ['opals-history','K-vTwVx6Fw0','Uncovered: The Magical Run of the Opals','FIBA Basketball','Girls','History','Return to Australia’s 2006 Women’s World Cup run.','https://www.youtube.com/@FIBA',heritage],
  ['boys-broadcast','V1DHq7tjriI','USA vs France: U19 Final Broadcast','FIBA Basketball','Boys','Live & Upcoming','Full-game replay · 2021 U19 World Cup final.','https://www.youtube.com/@FIBA',boysGame],
  ['girls-broadcast','0PGZ7CLvB8I','USA vs France: U19 Women’s Broadcast','FIBA Basketball','Girls','Live & Upcoming','Full-game replay · 2025 U19 women’s quarter-final.','https://www.youtube.com/@FIBA',girlsGame]
 ];
