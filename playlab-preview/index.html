@@ -24,7 +24,7 @@
 <label>Ball handler<select id="handler"></select></label>
 <div class="controls"><button id="add" class="primary">+ Add step</button><button id="duplicate">Duplicate step</button><button id="remove">Delete step</button></div>
 <div id="steps" class="step-list" aria-label="Play steps"></div>
-<hr><div class="controls"><button id="example">Load example play</button><button id="save">Save locally</button><button id="load">Load saved</button><button id="export">Export JSON</button></div>
+<hr><div class="controls"><button id="example">Load example play</button><button id="save">Save locally</button><button id="load">Load saved</button><button id="export">Export JSON</button><button id="assign" class="primary">Assign to player preview</button><a href="../player-learning-preview/" style="color:#ffc09d;align-self:center">Open Player Learning Preview →</a></div>
 <label>Import saved play JSON<input id="import" type="file" accept=".json,application/json"></label>
 <p class="hint">Legacy compatibility: JSON with <code>dots:[{x,y}]</code> or <code>markers:[{x,y}]</code> can be imported as an initial frame. Import never overwrites live Supabase data.</p>
 <hr><h3>Animation coverage</h3><p class="hint">Offensive and defensive players interpolate smoothly between frames. Ball possession changes between steps. The animation engine is standalone for safe testing; team assignment, assessment, and account permissions are later phases.</p>
@@ -67,6 +67,7 @@ function apply(data){stop();play=validate(data);idx=0;sync();render()}
 $('load').onclick=()=>{try{const v=localStorage.getItem(key);if(!v)throw Error('No locally saved play yet');apply(JSON.parse(v))}catch(e){$('status').textContent=e.message}};
 $('export').onclick=()=>{const blob=new Blob([JSON.stringify(play,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='basketball-playlab-play.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 $('import').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{if(f.size>1000000)throw Error('File exceeds 1 MB');apply(JSON.parse(await f.text()));$('status').textContent='Play imported successfully.'}catch(err){$('status').textContent='Import failed: '+err.message}e.target.value=''};
+$('assign').onclick=()=>{try{const key='bb-playlab-player-assignment-v1',raw=JSON.parse(localStorage.getItem(key)||'[]'),items=Array.isArray(raw)?raw:[],id='demo-'+Date.now();items.unshift({id,assignedAt:new Date().toISOString(),play:clone(play)});localStorage.setItem(key,JSON.stringify(items.slice(0,50)));$('status').textContent='Assigned to the Player Learning Preview in this browser. This is a demonstration, not a real team assignment.'}catch(e){$('status').textContent='Assignment preview could not be saved: '+e.message}};
 example();
 })();
 </script></body></html>
