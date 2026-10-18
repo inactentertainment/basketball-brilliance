@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Basketball Brilliance | Play Lab Animation Preview</title>
+<style>
+:root{color-scheme:dark;--orange:#f15a29;--bg:#090b0f;--panel:#161a20;--line:#39414c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f5f6f7;font:16px system-ui,Arial,sans-serif}main{max-width:1250px;margin:auto;padding:20px}h1{margin:6px 0;font-size:clamp(26px,4vw,42px)}p{color:#bec5d0}.notice{border:1px solid #6c481c;background:#241a10;padding:12px;border-radius:12px}.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:18px;margin-top:18px}.panel{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:16px;min-width:0}.controls{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}button,select,input,textarea{font:inherit}button{background:#292f39;color:#fff;border:1px solid #56606e;border-radius:9px;padding:10px 12px;cursor:pointer}button.primary{background:var(--orange);border-color:#f98a63;color:#111;font-weight:800}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #fff;outline-offset:2px}button[aria-pressed=true]{border-color:var(--orange);box-shadow:0 0 0 2px #f15a2970}label{display:block;margin:10px 0;color:#cbd1d8;font-size:14px}input,select,textarea{width:100%;background:#090b0f;border:1px solid #57616d;border-radius:9px;color:#fff;padding:10px;margin-top:5px}textarea{min-height:70px}svg{display:block;width:100%;height:auto;background:#b77e43;border-radius:12px;touch-action:none;user-select:none}.off{fill:#f15a29;stroke:#151515;stroke-width:2}.def{fill:#2c6cf3;stroke:white;stroke-width:2}.ball{fill:#ffdb4c;stroke:#1b1b1b;stroke-width:2}.num{font-weight:900;fill:#fff;font-size:14px;text-anchor:middle;dominant-baseline:central;pointer-events:none}.path{fill:none;stroke-width:3;stroke-linecap:round;stroke-dasharray:7 6}.path.offpath{stroke:#ff5c26}.path.defpath{stroke:#3078ff}.hint{font-size:13px;color:#aeb8c5}.status{min-height:24px;color:#ffe0b4;font-size:14px}.step-list{display:flex;flex-wrap:wrap;gap:7px}.step-list button.active{background:#a94018;border-color:#ff9b75}.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;margin:8px 0}.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:5px;background:#f15a29}.dot.blue{background:#3078ff}.dot.yellow{background:#ffdb4c}#court circle.player{cursor:grab}#court circle.player:active{cursor:grabbing}hr{border:0;border-top:1px solid #39414c;margin:18px 0}@media(max-width:860px){.layout{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head><body><main>
+<div class="notice"><strong>Development preview only.</strong> Isolated Play Lab animation prototype. It does not connect to live team accounts, Supabase, or existing Coach/Player navigation.</div>
+<h1>Basketball Brilliance — Play Lab</h1><p>Build a play frame by frame. Drag orange offense or blue defense, assign the ball, then play the sequence.</p>
+<div class="layout"><section class="panel">
+<div class="legend"><span><i class="dot"></i>Offense 1–5</span><span><i class="dot blue"></i>Defense X1–X5</span><span><i class="dot yellow"></i>Ball</span></div>
+<svg id="court" viewBox="0 0 700 440" role="img" aria-label="Interactive full basketball court. Drag players to position them." tabindex="0">
+<rect x="8" y="8" width="684" height="424" fill="#b77e43" stroke="#fff5df" stroke-width="3"/>
+<path d="M350 8V432 M8 145H145V295H8 M692 145H555V295H692" stroke="#fff5df" stroke-width="3" fill="none"/>
+<circle cx="350" cy="220" r="65" stroke="#fff5df" stroke-width="3" fill="none"/>
+<path d="M8 74 Q190 220 8 366 M692 74 Q510 220 692 366" stroke="#fff5df" stroke-width="3" fill="none"/>
+<circle cx="88" cy="220" r="44" stroke="#fff5df" stroke-width="3" fill="none"/><circle cx="612" cy="220" r="44" stroke="#fff5df" stroke-width="3" fill="none"/>
+<path d="M46 206V234 M654 206V234" stroke="#f5f5f5" stroke-width="7"/>
+<g id="paths"></g><g id="players"></g></svg>
+<div class="controls"><button id="play" class="primary">▶ Play</button><button id="pause">Pause</button><button id="reset">Reset</button><button id="prev">← Previous</button><button id="next">Next →</button></div>
+<div class="controls"><label style="margin:0">Playback speed<select id="speed"><option value="1600">Slow</option><option value="900" selected>Normal</option><option value="450">Fast</option></select></label><button id="pathsBtn" aria-pressed="true">Movement paths: On</button><button id="defBtn" aria-pressed="true">Defense: On</button></div>
+<div id="status" class="status" role="status"></div><p class="hint">Drag a marker to change its position in the current step. Add another step, then move markers again to animate. Tap a numbered step to edit it. Yellow ball follows its assigned handler.</p>
+</section><section class="panel">
+<h2>Play editor</h2><label>Play name<input id="name" maxlength="100" value="High Pick-and-Roll"></label>
+<label>Coaching notes<textarea id="notes">1 sets a screen for 2. 2 drives while 1 rolls to the rim. X2 fights over the screen; X1 helps.</textarea></label>
+<label>Ball handler<select id="handler"></select></label>
+<div class="controls"><button id="add" class="primary">+ Add step</button><button id="duplicate">Duplicate step</button><button id="remove">Delete step</button></div>
+<div id="steps" class="step-list" aria-label="Play steps"></div>
+<hr><div class="controls"><button id="example">Load example play</button><button id="save">Save locally</button><button id="load">Load saved</button><button id="export">Export JSON</button></div>
+<label>Import saved play JSON<input id="import" type="file" accept=".json,application/json"></label>
+<p class="hint">Legacy compatibility: JSON with <code>dots:[{x,y}]</code> or <code>markers:[{x,y}]</code> can be imported as an initial frame. Import never overwrites live Supabase data.</p>
+<hr><h3>Animation coverage</h3><p class="hint">Offensive and defensive players interpolate smoothly between frames. Ball possession changes between steps. The animation engine is standalone for safe testing; team assignment, assessment, and account permissions are later phases.</p>
+</section></div></main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg';
+const ids=[...'12345'].map(n=>'O'+n).concat([...'12345'].map(n=>'D'+n));
+const initial=()=>({O1:{x:280,y:220},O2:{x:220,y:100},O3:{x:220,y:340},O4:{x:135,y:160},O5:{x:135,y:280},D1:{x:315,y:220},D2:{x:240,y:145},D3:{x:240,y:315},D4:{x:155,y:185},D5:{x:155,y:255}});
+let play,idx=0,drag=null,raf=0,token=0,showPaths=true,showDefense=true,playing=false;
+const clone=x=>JSON.parse(JSON.stringify(x));
+function example(){const a=initial(),b=clone(a),c=clone(b),d=clone(c);b.O4={x:270,y:190};b.O1={x:305,y:225};b.D1={x:335,y:205};c.O1={x:380,y:230};c.O4={x:340,y:270};c.D1={x:355,y:200};c.D4={x:320,y:245};d.O4={x:465,y:245};d.O1={x:410,y:275};d.D4={x:415,y:260};play={version:2,name:'High Pick-and-Roll',notes:'1 uses the screen. 4 rolls. Read the help defender.',steps:[{players:a,ball:'O1'},{players:b,ball:'O1'},{players:c,ball:'O1'},{players:d,ball:'O4'}]};idx=0;sync();render()}
+const el=(tag,attrs,parent)=>{const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));parent.append(e);return e};
+const pos=(p,id)=>p[id]||{x:350,y:220};
+function paint(p,handler){$('players').replaceChildren();for(const id of ids){if(id[0]==='D'&&!showDefense)continue;const v=pos(p,id);el('circle',{cx:v.x,cy:v.y,r:18,class:(id[0]==='O'?'off':'def')+' player','data-id':id},$('players'));const t=el('text',{x:v.x,y:v.y,class:'num'},$('players'));t.textContent=id[0]==='O'?id.slice(1):'X'+id.slice(1)}const b=pos(p,handler);el('circle',{cx:b.x+15,cy:b.y-16,r:8,class:'ball'},$('players'))}
+function paths(){const root=$('paths');root.replaceChildren();if(!showPaths||idx===0)return;const a=play.steps[idx-1].players,b=play.steps[idx].players;for(const id of ids){if(id[0]==='D'&&!showDefense)continue;const p=pos(a,id),q=pos(b,id);if(Math.hypot(q.x-p.x,q.y-p.y)<2)continue;el('path',{d:'M'+p.x+' '+p.y+' L'+q.x+' '+q.y,class:'path '+(id[0]==='O'?'offpath':'defpath')},root)}}
+function render(){const frame=play.steps[idx];paint(frame.players,frame.ball);paths();$('status').textContent='Step '+(idx+1)+' of '+play.steps.length+ (playing?' • Playing':' • Editing');$('handler').value=frame.ball;$('remove').disabled=play.steps.length<=1;$('prev').disabled=idx===0;$('next').disabled=idx===play.steps.length-1;const box=$('steps');box.replaceChildren();play.steps.forEach((s,i)=>{const b=document.createElement('button');b.textContent='Step '+(i+1);b.className=i===idx?'active':'';b.onclick=()=>{stop();idx=i;render()};box.append(b)})}
+function sync(){$('name').value=play.name;$('notes').value=play.notes}
+function stop(){token++;cancelAnimationFrame(raf);playing=false}
+function tween(a,b,handler,duration,done){const start=performance.now(),mine=token;function frame(now){if(mine!==token)return;const t=Math.min(1,(now-start)/duration),u=t*t*(3-2*t),p={};for(const id of ids){const x=pos(a.players,id),y=pos(b.players,id);p[id]={x:x.x+(y.x-x.x)*u,y:x.y+(y.y-x.y)*u}}paint(p,t<.5?a.ball:handler);if(t<1)raf=requestAnimationFrame(frame);else done()}raf=requestAnimationFrame(frame)}
+function playFrom(){stop();if(play.steps.length<2){$('status').textContent='Add at least two steps to animate.';return}playing=true;const mine=token;let current=idx===play.steps.length-1?0:idx;idx=current;render();const next=()=>{if(mine!==token)return;if(current>=play.steps.length-1){playing=false;render();return}const a=play.steps[current],b=play.steps[current+1];tween(a,b,b.ball,Number($('speed').value),()=>{if(mine!==token)return;current++;idx=current;render();next()})};next()}
+function point(evt){const r=$('court').getBoundingClientRect();return {x:Math.max(20,Math.min(680,(evt.clientX-r.left)*700/r.width)),y:Math.max(20,Math.min(420,(evt.clientY-r.top)*440/r.height))}}
+$('court').addEventListener('pointerdown',e=>{const id=e.target.getAttribute('data-id');if(!id)return;stop();drag=id;$('court').setPointerCapture(e.pointerId)});
+$('court').addEventListener('pointermove',e=>{if(!drag)return;play.steps[idx].players[drag]=point(e);render()});
+for(const ev of ['pointerup','pointercancel','lostpointercapture'])$('court').addEventListener(ev,()=>drag=null);
+$('play').onclick=playFrom;$('pause').onclick=()=>{stop();render()};$('reset').onclick=()=>{stop();idx=0;render()};$('prev').onclick=()=>{stop();idx=Math.max(0,idx-1);render()};$('next').onclick=()=>{stop();idx=Math.min(play.steps.length-1,idx+1);render()};
+$('add').onclick=()=>{stop();play.steps.splice(idx+1,0,clone(play.steps[idx]));idx++;render()};
+$('duplicate').onclick=$('add').onclick;
+$('remove').onclick=()=>{if(play.steps.length<=1)return;stop();play.steps.splice(idx,1);idx=Math.min(idx,play.steps.length-1);render()};
+$('handler').innerHTML=[...'12345'].map(n=>'<option value="O'+n+'">Offense '+n+'</option>').join('');
+$('handler').onchange=()=>{play.steps[idx].ball=$('handler').value;render()};
+$('name').oninput=()=>play.name=$('name').value;$('notes').oninput=()=>play.notes=$('notes').value;
+$('pathsBtn').onclick=()=>{showPaths=!showPaths;$('pathsBtn').setAttribute('aria-pressed',String(showPaths));$('pathsBtn').textContent='Movement paths: '+(showPaths?'On':'Off');render()};
+$('defBtn').onclick=()=>{showDefense=!showDefense;$('defBtn').setAttribute('aria-pressed',String(showDefense));$('defBtn').textContent='Defense: '+(showDefense?'On':'Off');render()};
+$('example').onclick=()=>{stop();example()};
+const key='bb-playlab-animation-preview-v2';
+$('save').onclick=()=>{try{localStorage.setItem(key,JSON.stringify(play));$('status').textContent='Saved in this browser only.'}catch(e){$('status').textContent='Browser storage unavailable.'}};
+function validate(data){if(!data||typeof data!=='object')throw Error('Invalid play file');if(Array.isArray(data.steps)&&data.steps.length){if(data.steps.length>100)throw Error('Maximum 100 steps');const steps=data.steps.map(s=>{const players={};for(const id of ids){const p=s.players?.[id];const x=Number(p?.x),y=Number(p?.y);players[id]={x:Number.isFinite(x)?Math.max(20,Math.min(680,x)):initial()[id].x,y:Number.isFinite(y)?Math.max(20,Math.min(420,y)):initial()[id].y}}return {players,ball:ids.slice(0,5).includes(s.ball)?s.ball:'O1'}});return {version:2,name:String(data.name||'Imported play').slice(0,100),notes:String(data.notes||data.description||'').slice(0,2000),steps}}const dots=data.dots||data.markers;if(Array.isArray(dots)){const players=initial();dots.slice(0,5).forEach((p,i)=>{const x=Number(p.x),y=Number(p.y);if(Number.isFinite(x)&&Number.isFinite(y))players['O'+(i+1)]={x:Math.max(20,Math.min(680,x*7)),y:Math.max(20,Math.min(420,y*4.4))}});return {version:2,name:String(data.name||'Legacy diagram').slice(0,100),notes:String(data.desc||data.description||'').slice(0,2000),steps:[{players,ball:'O1'}]}}throw Error('Unsupported play format')}
+function apply(data){stop();play=validate(data);idx=0;sync();render()}
+$('load').onclick=()=>{try{const v=localStorage.getItem(key);if(!v)throw Error('No locally saved play yet');apply(JSON.parse(v))}catch(e){$('status').textContent=e.message}};
+$('export').onclick=()=>{const blob=new Blob([JSON.stringify(play,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='basketball-playlab-play.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+$('import').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{if(f.size>1000000)throw Error('File exceeds 1 MB');apply(JSON.parse(await f.text()));$('status').textContent='Play imported successfully.'}catch(err){$('status').textContent='Import failed: '+err.message}e.target.value=''};
+example();
+})();
+</script></body></html>
