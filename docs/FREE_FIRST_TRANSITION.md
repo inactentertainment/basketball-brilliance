@@ -23,3 +23,16 @@
 6. Verify full mobile and desktop UI, links, offline behavior, backup/restore, error handling and permissions.
 7. Review and update privacy, child safety, retention and terms; verify no marketing email collection. Authentication invitations/recovery emails are operational notices.
 8. Merge only after tests pass. Current live main branch remains unchanged.
+
+## Session 3 — Free account implementation (2026-10-25)
+
+Code saved only to `feature/free-coach-platform-2026`:
+- `bb-auth.js`: resolve verified primary roles and active team membership rather than paid subscription entitlements. Do not treat this UI role selection as RLS authorization.
+- `bb-billing.js`: no Stripe checkout, paid plan links or payment redirects. Compatibility facade remains for old callsites; original sandbox implementation preserved in Git history/archive.
+- `index.html`: free-account calls to action, player tool wording, account-status language, and hidden legacy subscription modals. Coach, Player and Parent portal code retained.
+- `tests/account-flow.test.cjs`: replace obsolete Stripe checkout tests with free-access/role checks and retain session cleanup tests.
+- `.github/workflows/free-access-qa.yml`: run npm tests and JS syntax checks on changes, no deployment permissions.
+
+Verification: GitHub Actions run 40239266852 succeeded, including `npm ci`, `npm test` and JS syntax checks. Static review confirms the main role resolver no longer queries paid `memberships`, and active team membership can be read under existing self/coach RLS.
+
+Not verified: actual Supabase project connectivity, migration state, 2+ real isolated accounts, adult/guardian approval workflow for minors, cross-device roster/assignment/progress persistence, and production browser behavior. Keep PR #4 as DRAFT until those checks pass. No public deploy or main branch merge authorized by this note.
