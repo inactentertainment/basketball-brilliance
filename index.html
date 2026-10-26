@@ -1429,7 +1429,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Basketball Brilliance">
 <script defer src="app-assets/install.js?v=60"></script>
-<link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/><link rel="stylesheet" href="assets/account-flow.css?v=61"></head>
+<link rel="icon" type="image/png" sizes="32x32" href="app-assets/bb-fire-32.png?v=20261015"/><link rel="stylesheet" href="assets/account-flow.css?v=61"><style id="bb-free-public-access">.portal-pricing,.bb-paid-boundary,#membershipModal,#portalOfferModal{display:none!important}a[href="#coach-membership"],a[href="#parent-membership"],a[href="#player-membership"]{display:none!important}</style></head>
 <body id="top" data-portal="entry">
 <header class="nav"><div class="wrap navin">
 <a class="portal-header-brand" href="javascript:void(0)" onclick="goEntry()" aria-label="Basketball Brilliance entry"><img src="assets/bb-fire-logo.webp?v=20261015" alt="Basketball Brilliance basketball mark"><span class="portal-context" id="portalContext">Choose your portal</span></a>
@@ -1473,7 +1473,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <span class="demo-ribbon"><span class="demo-dot"></span> Coach Preview Mode</span>
     <h1 class="portal-title">Run the team without losing the season.</h1>
     <p class="portal-lede">Build the roster, organize practice, track games, scout opponents, connect families and keep the season record together in one coach-first system.</p>
-    <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#app">Try Coach Tools Free</a><a class="shimmer-btn" href="#coach-membership">Coach Membership</a></div>
+    <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#app">Try Coach Tools Free</a><button class="shimmer-btn" onclick="openLogin()">Free Coach Account</button></div>
   </div>
 </div></section>
 <section class="bb-library" id="coachLibrary"><div class="wrap"><div class="library-shell">
@@ -1598,7 +1598,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
     <span class="demo-ribbon"><span class="demo-dot"></span> Parent Preview Mode</span>
     <h1 class="portal-title">Guide the journey without losing the details.</h1>
     <p class="portal-lede">Keep player history, team-linked information, opportunities, recruiting organization and the records that outlive one season in one brighter family experience.</p>
-    <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#parent-tools">Try Parent Tools Free</a><a class="shimmer-btn" href="#parent-membership">Parent Membership</a></div>
+    <div class="ctas"><a class="shimmer-btn attention" href="#bb-watch">Watch Basketball</a><a class="shimmer-btn" href="#parent-tools">Try Parent Tools Free</a><button class="shimmer-btn" onclick="openLogin()">Free Parent Account</button></div>
   </div>
 </div></section>
 <section id="parent-library-top"><div class="wrap"><div class="parent-library-shell">
@@ -1694,7 +1694,7 @@ main,section,header,footer,.appshell,.workspace,.sidebar,.card,.tool-preview,
 </div><div id="playerSavedArticles" class="bb-member-gate">Sign in to load your saved articles. Reading remains free.</div></div></div></section>
 <details class="bb-guide" id="player-tool-guide"><summary>Player Tool Guide / Start here</summary><p>The dashboard introduces your tools. Open a tool below, enter the appropriate information, and save when your account and membership are active.</p><ol><li><b>Player Next Move:</b> guided, rules-based suggestions for a basketball question; it is not a live coach or medical advice.</li><li><b>Goals + Grind, Workout Tracker, My Numbers:</b> plan, record work, and review progress. Official team stats remain coach-controlled.</li><li><b>Highlights + Film:</b> save your video links and review notes. This tool does not upload or host video files.</li><li><b>Basketball Passport:</b> your season-by-season team, coach, and milestone timeline.</li><li><b>Opportunities and College Pathway:</b> organize research and next steps with an adult.</li><li><b>Bounce Back and Downloads:</b> reflect on setbacks and take your records with you.</li><li><b>My Saved Articles:</b> open a saved guide to view or update your private highlights and journal note.</li></ol><p>The free Training Lab, Basketball Library, and article reading are available without membership. Under-18 enrollment remains unavailable until verified guardian approval is ready.</p></details><section id="player-question-hub" class="bb-next-lock" aria-disabled="true"><div class="wrap"><div class="player-next-shell">
   <div class="player-section-head"><div><span class="eyebrow">Member tool / Guided decisions</span><h2>Player Next Move</h2><p>Ask what you should work on, how to handle a basketball situation, what coaches are looking for, or what your next step should be.</p></div><span class="player-glow-tag">Player membership</span></div>
-  <div class="bb-member-gate" id="playerNextGate">Player Next Move is a membership tool. Sign in with an active Player membership to use it. <a href="#player-membership">See membership</a>.</div><div class="player-input-card"><div class="player-ask-row"><textarea id="playerQuestion" placeholder="Example: I’m not getting much playing time. What should I work on this week?"></textarea><button class="shimmer-btn attention" onclick="startPlayerVoice()">🎙 Ask by Voice</button></div>
+  <div class="bb-member-gate" id="playerNextGate">Player Next Move is available with a linked account. Sign in to save your progress; guardian approval is required for youth enrollment.</div><div class="player-input-card"><div class="player-ask-row"><textarea id="playerQuestion" placeholder="Example: I’m not getting much playing time. What should I work on this week?"></textarea><button class="shimmer-btn attention" onclick="startPlayerVoice()">🎙 Ask by Voice</button></div>
   <div class="player-quick-grid">
     <button class="player-quick" onclick="askPlayerPreset('playing-time')">Playing Time</button>
     <button class="player-quick" onclick="askPlayerPreset('shooting')">Improve Shooting</button>
@@ -1839,7 +1839,7 @@ function bbStopMusic(){const a=document.getElementById('bbMusic');if(a){a.pause(
 function toggleMobileMenu(btn){const d=document.getElementById('mobileDrawer');const open=!d.classList.contains('open');d.classList.toggle('open',open);if(btn)btn.setAttribute('aria-expanded',open?'true':'false')}
 function closeMobileMenu(){const d=document.getElementById('mobileDrawer');if(d)d.classList.remove('open');const b=document.querySelector('.hamburger');if(b)b.setAttribute('aria-expanded','false')}
 function closeMembershipOffer(){const m=document.getElementById('membershipModal');if(m)m.classList.remove('open')}
-function showMembershipOffer(){const p=document.body.dataset.portal;if(p&&p!=='entry')openPortalOffer(p)}
+function showMembershipOffer(){const p=document.body.dataset.portal;if(p&&p!=='entry')openLogin()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMobileMenu();['membershipModal','loginModal','playerModal','inviteModal','familyModal','legalModal'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('open')})}});
 function setAuthStatus(message,type='info'){
   const st=document.getElementById('authBackendStatus');if(!st)return;
@@ -3205,7 +3205,7 @@ function openPortalOffer(p){
  offerEyebrow.textContent=o.eyebrow;offerTitle.textContent=o.title;offerPrice.innerHTML=o.price+' <small>/ year</small>';offerCopy.textContent=o.copy;offerList.innerHTML=o.items.map(x=>'<div>✓ '+x+'</div>').join('')+(pendingMembershipRole==='player'?'<div class="bb-guardian-note"><b>Under 18? Involve your parent or guardian.</b><p>Youth enrollment awaits verified approval. A paid Parent membership is optional.</p><button class="btn soft" onclick="openGuardianPortal()">Parent / Guardian Portal</button><button class="btn ghost" onclick="openLegal(\'children\')">Youth Accounts &amp; Consent</button></div>':'');openModal('portalOfferModal');
 }
 function demoAction(who,tool){toast(tool+' preview works. '+who+' membership activates persistent records and synced history.')}
-async function demoCheckout(){await window.BBBilling.start(pendingMembershipRole||document.body.dataset.portal||'coach');}
+async function demoCheckout(){openLogin();setAuthStatus('Free account setup is available. Membership checkout is not required for public tools.','info');}
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});
 async function installBasketballBrilliance(){if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null}else toast('On supported phones, use Add to Home Screen / Install App from your browser menu.')}
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}))}

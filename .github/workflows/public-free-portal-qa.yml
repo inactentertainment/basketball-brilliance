@@ -1,0 +1,32 @@
+name: Public Free Portal Release QA
+on:
+  pull_request:
+    paths: ['index.html', '.github/workflows/public-free-portal-qa.yml']
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: npm ci
+      - name: Run existing application tests
+        run: npm test
+      - name: Verify public copy and retained authorization source
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),assert=require('assert');
+          const s=fs.readFileSync('index.html','utf8');
+          const a=fs.readFileSync('assets/js/bb-auth.js','utf8');
+          const b=fs.readFileSync('assets/js/bb-data.js','utf8');
+          assert(s.includes('id="bb-free-public-access"'));
+          assert(s.includes('Free Coach Account'));
+          assert(s.includes('Free Parent Account'));
+          assert(s.includes('guardian approval is required'));
+          assert(b.includes('team_memberships'));
+          assert(a.includes('resolveRole'));
+          assert(fs.existsSync('supabase/migrations/011_coach_play_lab_persistence.sql'));
+          for(const m of s.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi))if(!/\bsrc\s*=/.test(m[1]))new Function(m[2]);
+          console.log('Public free-first UI and saved team workspace preserved');
+          JS
