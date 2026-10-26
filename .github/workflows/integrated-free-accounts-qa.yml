@@ -1,0 +1,40 @@
+name: Integrated Free Accounts QA
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'assets/js/bb-*.js'
+      - 'tests/**'
+      - '.github/workflows/integrated-free-accounts-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Test application flows
+        run: npm test
+      - name: Verify free access preserves team authorization
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),assert=require('assert');
+          const html=fs.readFileSync('index.html','utf8');
+          const billing=fs.readFileSync('assets/js/bb-billing.js','utf8');
+          const auth=fs.readFileSync('assets/js/bb-auth.js','utf8');
+          const data=fs.readFileSync('assets/js/bb-data.js','utf8');
+          assert(html.includes('Free Parent Account'));
+          assert(html.includes('bb-free-first-transition'));
+          assert(!billing.includes('https://buy.stripe.com'));
+          assert(billing.includes("mode:'free'"));
+          assert(auth.includes("from('team_memberships')"));
+          assert(data.includes('saveCoachPlay'));
+          assert(data.includes('team_memberships'));
+          console.log('Free-account integration and RLS-dependent data code preserved');
+          JS

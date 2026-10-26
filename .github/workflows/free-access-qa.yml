@@ -1,0 +1,32 @@
+name: Basketball Brilliance — Free Access QA
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'assets/js/bb-*.js'
+      - 'assets/js/bb-session.js'
+      - 'supabase/**'
+      - 'tests/**'
+      - 'package*.json'
+      - '.github/workflows/free-access-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  free-access:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Run all application tests
+        run: npm test
+      - name: Check edited JavaScript syntax
+        run: |
+          node --check assets/js/bb-auth.js
+          node --check assets/js/bb-billing.js
+          node --check assets/js/bb-data.js
+          node --check tests/account-flow.test.cjs

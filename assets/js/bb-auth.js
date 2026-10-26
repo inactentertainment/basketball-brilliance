@@ -40,14 +40,24 @@
     if(invite)url.searchParams.set('invite',invite);
     url.searchParams.set('auth',kind);return url.href;
   }
+  // Free accounts use a stored primary role or an active team invitation.
+  // Paid subscription rows are NOT an authorization source. Team/roster access
+  // must still be enforced by RLS on each server-side query.
   async function resolveRole(requested,profile){
-    const desired=String(requested||'').toLowerCase();
-    const session=await getSession();if(!session)throw new Error('Please sign in again.');
-    const {data,error}=await getClient().from('memberships').select('role,status,current_period_end').eq('user_id',session.user.id);
+    const desired=String(requested||'').trim().toLowerCase();
+    const primary=String(profile?.primary_role||'').toLowerCase();
+    const allowed=['coach','player','parent'];
+    const session=await getSession();
+    if(!session)throw new Error('Please sign in again.');
+    if(!allowed.includes(primary))throw new Error('Your account role could not be loaded. Please contact support.');
+    if(desired===primary)return primary.charAt(0).toUpperCase()+primary.slice(1);
+    if(!allowed.includes(desired))return primary.charAt(0).toUpperCase()+primary.slice(1);
+    const client=getClient();
+    if(!client)throw new Error('Team access cannot be checked right now.');
+    const {data,error}=await client.from('team_memberships')
+      .select('role,status').eq('user_id',session.user.id).eq('role',desired).eq('status','active').limit(1);
     if(error)throw error;
-    const permitted=(data||[]).some(m=>m.role===desired&&membershipActive(m));
-    const role=permitted?desired:profile?.primary_role;
-    if(!['coach','player','parent'].includes(role))throw new Error('Your account role could not be loaded. Please contact support.');
+    const role=(data||[]).some(row=>row.role===desired&&row.status==='active')?desired:primary;
     return role.charAt(0).toUpperCase()+role.slice(1);
   }
   window.BBAuth={isConfigured,getClient,signUp,signIn,signOut,resetPassword,resendConfirmation,getSession,getProfile,onAuthStateChange,resolveRole,membershipActive};
