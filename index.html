@@ -391,7 +391,29 @@ linear-gradient(118deg,transparent 0 38%,rgba(241,90,41,.045) 38% 39%,transparen
 .portal-header-brand img{height:100%;width:auto;max-width:none;position:absolute;left:0;top:50%;transform:translateY(-50%)}
 .portal-context{position:absolute;left:12px;bottom:7px;font-size:9px;letter-spacing:.17em;text-transform:uppercase;color:#9fa2a7;font-weight:850}
 .portal-sound{display:none!important}
-body[data-portal="player"] .portal-sound{display:inline-flex!important}
+body[data-portal="coach"] .portal-sound,
+body[data-portal="player"] .portal-sound,
+body[data-portal="parent"] .portal-sound{display:inline-flex!important}
+/* The portal jukebox is always visually alive; the bars indicate availability, not autoplay. */
+body[data-portal="coach"] .portal-sound span,
+body[data-portal="player"] .portal-sound span,
+body[data-portal="parent"] .portal-sound span,
+body[data-portal="coach"] .portal-sound.muted span,
+body[data-portal="player"] .portal-sound.muted span,
+body[data-portal="parent"] .portal-sound.muted span{
+ animation:bbBars .78s ease-in-out infinite alternate!important;
+ opacity:1!important;box-shadow:0 0 8px rgba(241,90,41,.24)!important
+}
+body[data-portal="coach"] .portal-sound span:nth-child(1),
+body[data-portal="player"] .portal-sound span:nth-child(1),
+body[data-portal="parent"] .portal-sound span:nth-child(1){height:11px!important;animation-delay:-.35s!important}
+body[data-portal="coach"] .portal-sound span:nth-child(2),
+body[data-portal="player"] .portal-sound span:nth-child(2),
+body[data-portal="parent"] .portal-sound span:nth-child(2){height:20px!important;animation-delay:-.12s!important}
+body[data-portal="coach"] .portal-sound span:nth-child(3),
+body[data-portal="player"] .portal-sound span:nth-child(3),
+body[data-portal="parent"] .portal-sound span:nth-child(3){height:15px!important;animation-delay:-.55s!important}
+@media(prefers-reduced-motion:reduce){body[data-portal] .portal-sound span{animation:none!important}}
 .portal-back{border:1px solid #45484e;background:#111;color:#ddd;border-radius:999px;padding:8px 12px;font-weight:850;cursor:pointer}
 .portal-back:hover{border-color:#f15a29;color:#fff}
 
@@ -3193,8 +3215,12 @@ async function enterPortal(p){
  history.replaceState(null,'',location.pathname+location.search);
  window.scrollTo({top:0,left:0,behavior:'instant'});
  // Scroll once after switching layout; async data and animation cleanup never reset it.
- window.BBJukebox?.portalChanged(p);if(p==='parent'){try{await loadParentWorkspace()}catch(e){}}if(p==='player'){let pref='on';try{pref=sessionStorage.getItem('bbMusic')||'on'}catch(e){}if(pref!=='off')await bbStartMusic();try{await loadPlayerWorkspace()}catch(e){}}
- else if(p!=='entry')bbStopMusic();
+ // Portal entry is silent. Preserve entry-screen theme preferences and all transitions.
+ bbStopMusic();
+ window.BBJukebox?.close?.();
+ document.getElementById('jbPlayer')?.setAttribute('hidden','');
+ if(p==='parent'){try{await loadParentWorkspace()}catch(e){}}
+ if(p==='player'){try{await loadPlayerWorkspace()}catch(e){}}
  if(p==='coach'){try{if(await window.BBAuth?.getSession?.())await loadPersistentCoachWorkspace();await refreshCoachMembershipState()}catch(e){}}
  /* Membership offers open on an intentional click. */
 }
