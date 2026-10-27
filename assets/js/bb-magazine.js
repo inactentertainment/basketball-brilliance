@@ -13,7 +13,7 @@ const portal=()=>String(document.body.dataset.portal||'').toLowerCase();
 const relevant=()=>['coach','player','parent'].includes(portal());
 const completed=()=>{try{return localStorage.getItem('bb-magazine-completed-v1')==='1'}catch{return false}};
 const shown=()=>{try{return sessionStorage.getItem('bb-magazine-shown-v1')==='1'}catch{return false}};
-const busy=()=>!!document.querySelector('.modal.open,#bbFreeGiftModal.open,[role="dialog"][aria-modal="true"].open,[data-bb-focused-task="true"],[data-checkout-active="true"],audio:not([paused]),video:not([paused])')||!!document.activeElement?.closest('input,textarea,select,[contenteditable="true"]');
+const busy=()=>!!document.querySelector('.modal.open,#bbFreeGiftModal.open,[role="dialog"][aria-modal="true"].open,[data-bb-focused-task="true"],[data-checkout-active="true"]')||!!document.activeElement?.closest('input,textarea,select,[contenteditable="true"]')||!!document.fullscreenElement||[...document.querySelectorAll('video')].some(v=>!v.paused&&!v.ended);
 const css=document.createElement('style');
 css.textContent=`
 #bbMagazineModal{display:none;position:fixed;inset:0;z-index:95;background:#000c;padding:16px;place-items:center}
