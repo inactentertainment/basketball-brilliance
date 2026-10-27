@@ -15,13 +15,13 @@ if(!settings.enabled || !settings.endpoint) return;
 const key='bb-free-gift-completed-v2', shownKey='bb-free-gift-shown-session-v2';
 const role=()=>String(document.body.dataset.portal||'').toLowerCase();
 const getOffer=()=>settings.offers[role()];
-const configured=()=>!!getOffer() && !!settings.downloads[role()];
+const configured=()=>!!getOffer() && /^https:\/\//.test(settings.downloads[role()]||'') && /^https:\/\//.test(settings.endpoint);
 const saved=()=>{try{return localStorage.getItem(key)==='1'}catch{return false}};
 const wasShown=()=>{try{return sessionStorage.getItem(shownKey)==='1'}catch{return false}};
 const markShown=()=>{try{sessionStorage.setItem(shownKey,'1')}catch{}};
 const activeDialog=()=>!!document.querySelector('.modal.open,[role="dialog"][aria-modal="true"]');
 const focused=()=>!!document.activeElement?.closest('input,textarea,select,[contenteditable="true"],[role="textbox"]');
-const busy=()=>focused()||activeDialog()||!!document.querySelector('[data-bb-focused-task="true"],[data-checkout-active="true"]')||!!document.querySelector('video:not([paused])');
+const busy=()=>focused()||activeDialog()||!!document.querySelector('[data-bb-focused-task="true"],[data-checkout-active="true"],audio:not([paused]),video:not([paused])');
 const css=document.createElement('style');css.textContent=`
 #bbFreeGiftModal{position:fixed;inset:0;z-index:95;display:none;place-items:center;background:rgba(0,0,0,.79);padding:18px}
 #bbFreeGiftModal.open{display:grid}
@@ -61,7 +61,7 @@ let previousFocus=null,seconds=0,hadInput=Date.now();
 const close=()=>{dialog.classList.remove('open');try{sessionStorage.setItem('bb-last-offer-dismissed',String(Date.now()))}catch{}previousFocus?.focus?.()};
 dialog.querySelector('.bb-gift-x').addEventListener('click',close);
 dialog.addEventListener('click',e=>{if(e.target===dialog)close()});
-dialog.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();close()}});
+dialog.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();close()}if(e.key==='Tab'){const elements=[...dialog.querySelectorAll('button:not(:disabled),input:not(:disabled),a[href]')].filter(x=>x.getClientRects().length);const first=elements[0],last=elements[elements.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 ['pointerdown','keydown','scroll','touchstart'].forEach(type=>document.addEventListener(type,()=>{hadInput=Date.now()},{passive:true}));
 const timer=setInterval(()=>{
  if(saved()||wasShown()){clearInterval(timer);return}
@@ -84,7 +84,7 @@ dialog.querySelector('#bbGiftForm').addEventListener('submit',async e=>{
   const result=await response.json();
   if(result?.accepted!==true)throw new Error('Delivery service did not confirm acceptance.');
   const parsed=new URL(settings.downloads[role()],location.href);
-  if(!['https:','http:'].includes(parsed.protocol))throw new Error('Download address is invalid.');
+  if(parsed.protocol!=='https:')throw new Error('Download address is invalid.');
   try{localStorage.setItem(key,'1')}catch{}
   form.hidden=true;dialog.querySelector('#bbGiftReady').hidden=false;dialog.querySelector('#bbGiftLink').href=parsed.href;
  }catch(err){status.textContent='We could not confirm your request. Please try again later. Your details are still here.';console.warn('BB gift delivery:',err.message)}
