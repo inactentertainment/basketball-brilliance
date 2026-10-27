@@ -21,7 +21,7 @@ const wasShown=()=>{try{return sessionStorage.getItem(shownKey)==='1'}catch{retu
 const markShown=()=>{try{sessionStorage.setItem(shownKey,'1')}catch{}};
 const activeDialog=()=>!!document.querySelector('.modal.open,[role="dialog"][aria-modal="true"]');
 const focused=()=>!!document.activeElement?.closest('input,textarea,select,[contenteditable="true"],[role="textbox"]');
-const busy=()=>focused()||activeDialog()||!!document.querySelector('[data-bb-focused-task="true"],[data-checkout-active="true"],audio:not([paused]),video:not([paused])');
+const busy=()=>focused()||activeDialog()||!!document.querySelector('[data-bb-focused-task="true"],[data-checkout-active="true"]')||!!document.fullscreenElement||[...document.querySelectorAll('video')].some(v=>!v.paused&&!v.ended);
 const css=document.createElement('style');css.textContent=`
 #bbFreeGiftModal{position:fixed;inset:0;z-index:95;display:none;place-items:center;background:rgba(0,0,0,.79);padding:18px}
 #bbFreeGiftModal.open{display:grid}
