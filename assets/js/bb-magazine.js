@@ -8,12 +8,12 @@ const config=Object.freeze({
  consent:'I agree to receive Basketball Brilliance magazine updates and occasional promotional emails. I understand that I can unsubscribe at any time.'
 });
 window.BBMagazineSettings=config;
-if(!config.enabled||!config.endpoint)return;
+if(!config.enabled||!/^https:\/\//.test(config.endpoint))return;
 const portal=()=>String(document.body.dataset.portal||'').toLowerCase();
 const relevant=()=>['coach','player','parent'].includes(portal());
 const completed=()=>{try{return localStorage.getItem('bb-magazine-completed-v1')==='1'}catch{return false}};
 const shown=()=>{try{return sessionStorage.getItem('bb-magazine-shown-v1')==='1'}catch{return false}};
-const busy=()=>!!document.querySelector('.modal.open,#bbFreeGiftModal.open,[role="dialog"][aria-modal="true"].open,[data-bb-focused-task="true"],[data-checkout-active="true"]')||!!document.activeElement?.closest('input,textarea,select,[contenteditable="true"]');
+const busy=()=>!!document.querySelector('.modal.open,#bbFreeGiftModal.open,[role="dialog"][aria-modal="true"].open,[data-bb-focused-task="true"],[data-checkout-active="true"],audio:not([paused]),video:not([paused])')||!!document.activeElement?.closest('input,textarea,select,[contenteditable="true"]');
 const css=document.createElement('style');
 css.textContent=`
 #bbMagazineModal{display:none;position:fixed;inset:0;z-index:95;background:#000c;padding:16px;place-items:center}
@@ -51,7 +51,7 @@ let focusBefore,seconds=0,lastActivity=Date.now();
 const close=()=>{modal.classList.remove('open');try{sessionStorage.setItem('bb-last-offer-dismissed',String(Date.now()))}catch{}focusBefore?.focus?.()};
 modal.querySelector('.mag-close').addEventListener('click',close);
 modal.addEventListener('click',e=>{if(e.target===modal)close()});
-modal.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+modal.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();close()}if(e.key==='Tab'){const elements=[...modal.querySelectorAll('button:not(:disabled),input:not(:disabled),a[href]')].filter(x=>x.getClientRects().length);const first=elements[0],last=elements[elements.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 ['pointerdown','keydown','scroll','touchstart'].forEach(type=>document.addEventListener(type,()=>{lastActivity=Date.now()},{passive:true}));
 const ticker=setInterval(()=>{
  if(completed()||shown()){clearInterval(ticker);return}
@@ -63,7 +63,7 @@ const ticker=setInterval(()=>{
 },1000);
 modal.querySelector('#bbMagazineForm').addEventListener('submit',async e=>{
  e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;
- const name=form.elements.name.value.trim(),email=form.elements.email.value.trim(),consent=form.elements.consent.checked,status=modal.querySelector('#bbMagazineStatus'),button=form.querySelector('button[type=submit]');
+ const name=form.querySelector('[name="name"]').value.trim(),email=form.querySelector('[name="email"]').value.trim(),consent=form.querySelector('[name="consent"]').checked,status=modal.querySelector('#bbMagazineStatus'),button=form.querySelector('button[type=submit]');
  if(!name||!email||!consent)return;
  button.disabled=true;status.textContent='Submitting your subscription request…';
  try{const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),15000);let response;
